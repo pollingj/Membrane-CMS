@@ -18,14 +18,14 @@ namespace Membrane.Models.UserManagement
         private IList<User> users;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [HasMany(typeof(User))]
-        public IList<User> Users
+		public virtual IList<User> Users
         {
             get { return users; }
             set { users = value; }

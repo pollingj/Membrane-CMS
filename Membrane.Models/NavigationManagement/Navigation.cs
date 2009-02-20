@@ -14,35 +14,35 @@ namespace Membrane.Models.NavigationManagement
         private NavigationType navigationType;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [Property (Length = 300)]
-        public string Link
+		public virtual string Link
         {
             get { return link; }
             set { link = value; }
         }
 
         [Property("`Order`", NotNull = true)]
-        public int Order
+		public virtual int Order
         {
             get { return order; }
             set { order = value; }
         }
 
         [BelongsTo("ParentId")]
-        public Navigation ParentNode
+		public virtual Navigation ParentNode
         {
             get { return parentNode; }
             set { parentNode = value; }
         }
 
         [BelongsTo("TypeId")]
-        public NavigationType NavigationType
+		public virtual NavigationType NavigationType
         {
             get { return navigationType; }
             set { navigationType = value; }

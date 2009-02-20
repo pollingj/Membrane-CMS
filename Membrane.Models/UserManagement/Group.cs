@@ -15,14 +15,14 @@ namespace Membrane.Models.UserManagement
         private IList<User> users;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [HasAndBelongsToMany(typeof(User), Table = "UserGroups", ColumnKey = "GroupId", ColumnRef = "UserId")]
-        public IList<User> Users
+		public virtual IList<User> Users
         {
             get { return users; }
             set { users = value; }

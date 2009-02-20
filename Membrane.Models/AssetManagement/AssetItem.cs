@@ -23,7 +23,7 @@ namespace Membrane.Models.AssetManagement
         /// The url from where this asset may have been sourced
         /// </summary>
         [Property (Length = 300)]
-        public string Url
+		public virtual string Url
         {
             get { return url; }
             set { url = value; }
@@ -33,7 +33,7 @@ namespace Membrane.Models.AssetManagement
         /// Default caption for this asset (could be used as alt and title text)
         /// </summary>
         [Property (NotNull = true, Length = 300), ValidateNonEmpty]
-        public string Caption
+		public virtual string Caption
         {
             get { return caption; }
             set { caption = value; }
@@ -43,7 +43,7 @@ namespace Membrane.Models.AssetManagement
         /// What folder is this asset stored in?
         /// </summary>
         [BelongsTo("FolderId")]
-        public AssetFolder Folder
+		public virtual AssetFolder Folder
         {
             get { return folder; }
             set { folder = value; }
@@ -53,7 +53,7 @@ namespace Membrane.Models.AssetManagement
         /// Where was this asset taken from?
         /// </summary>
         [Property (Length = 300)]
-        public string Source
+		public virtual string Source
         {
             get { return source; }
             set { source = value; }
@@ -62,8 +62,8 @@ namespace Membrane.Models.AssetManagement
         /// <summary>
         /// What tags have been assigned to this asset?
         /// </summary>
-        [HasAndBelongsToMany(typeof(AssetTag), Table = "AssetItemTags", ColumnKey = "AssetItemId", ColumnRef = "AssetTagId")]        
-        public IList<AssetTag> Tags
+        [HasAndBelongsToMany(typeof(AssetTag), Table = "AssetItemTags", ColumnKey = "AssetItemId", ColumnRef = "AssetTagId")]
+		public virtual IList<AssetTag> Tags
         {
             get { return tags; }
             set { tags = value; }
@@ -73,7 +73,7 @@ namespace Membrane.Models.AssetManagement
         /// Has this asset be put into the recycle bin?
         /// </summary>
         [Property]
-        public bool IsDeleted
+		public virtual bool IsDeleted
         {
             get { return isDeleted; }
             set { isDeleted = value; }

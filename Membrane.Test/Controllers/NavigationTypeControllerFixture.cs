@@ -23,7 +23,7 @@ namespace Membrane.Test.Controllers
 			base.SetUp();
 			service = mockery.DynamicMock<INavigationService>();
             controller = new NavigationTypeController(service);
-            PrepareController(controller, "MembraneAdmin", "NavigationType");
+            PrepareController(controller, "NavigationType");
         }
 
         [Test]

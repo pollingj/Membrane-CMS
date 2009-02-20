@@ -17,28 +17,28 @@ namespace Membrane.Models.AssetManagement
         private bool isDeleted;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+        public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [HasAndBelongsToMany(typeof(AssetTag), Table="AssetFolderTags", ColumnKey="AssetFolderId", ColumnRef="AssetTagId")]
-        public IList<AssetTag> Tags
+		public virtual IList<AssetTag> Tags
         {
             get { return tags; }
             set { tags = value; }
         }
 
         [BelongsTo("ParentId")]
-        public AssetFolder ParentFolder
+		public virtual AssetFolder ParentFolder
         {
             get { return parentFolder; }
             set { parentFolder = value; }
         }
 
         [Property]
-        public bool IsDeleted
+		public virtual bool IsDeleted
         {
             get { return isDeleted; }
             set { isDeleted = value; }

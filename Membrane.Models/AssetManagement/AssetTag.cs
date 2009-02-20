@@ -18,21 +18,21 @@ namespace Membrane.Models.AssetManagement
         private IList<AssetItem> assets;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Tag
+		public virtual string Tag
         {
             get { return tag; }
             set { tag = value; }
         }
 
         [HasAndBelongsToMany(typeof(AssetFolder), Table = "AssetFolderTags", ColumnKey = "AssetTagId", ColumnRef = "AssetFolderId", Cascade = ManyRelationCascadeEnum.None)]
-        public IList<AssetFolder> Folders
+		public virtual IList<AssetFolder> Folders
         {
             get { return folders; }
             set { folders = value; }
         }
 
         [HasAndBelongsToMany(typeof(AssetItem), Table = "AssetItemTags", ColumnKey = "AssetTagId", ColumnRef = "AssetItemId", Cascade = ManyRelationCascadeEnum.None)]
-        public IList<AssetItem> Assets
+		public virtual IList<AssetItem> Assets
         {
             get { return assets; }
             set { assets = value; }

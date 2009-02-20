@@ -8,7 +8,7 @@ namespace Membrane.Models
         private int id;
 
         [PrimaryKey (PrimaryKeyType.Native, Access = PropertyAccess.NosetterLowercase )]
-        public int Id
+		public virtual int Id
         {
             get { return id; }
         }

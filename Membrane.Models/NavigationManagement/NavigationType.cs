@@ -13,21 +13,21 @@ namespace Membrane.Models.NavigationManagement
         private bool isLocked;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [HasMany(typeof(Navigation))]
-        public IList<Navigation> NavigationItems
+		public virtual IList<Navigation> NavigationItems
         {
             get { return navigationItems; }
             set { navigationItems = value; }
         }
 
         [Property]
-        public bool IsLocked
+		public virtual bool IsLocked
         {
             get { return isLocked; }
             set { isLocked = value; }

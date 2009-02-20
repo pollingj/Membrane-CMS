@@ -9,7 +9,7 @@ namespace Membrane.Models
         private string name;
 
         [Property]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }

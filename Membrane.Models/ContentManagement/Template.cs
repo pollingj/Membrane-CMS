@@ -14,28 +14,28 @@ namespace Membrane.Models.Content
         private IList<PropertyBag> propertyBags;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [Property (NotNull = true, Length = 100), ValidateNonEmpty]
-        public string Controller
+		public virtual string Controller
         {
             get { return controller; }
             set { controller = value; }
         }
 
         [Property (NotNull = true, Length = 100), ValidateNonEmpty]
-        public string Brail
+		public virtual string Brail
         {
             get { return brail; }
             set { brail = value; }
         }
 
         [HasAndBelongsToMany(typeof(PropertyBag), Table = "TemplatePropertyBags", ColumnKey = "TemplateId", ColumnRef = "PropertyBagId")]
-        public IList<PropertyBag> PropertyBags
+		public virtual IList<PropertyBag> PropertyBags
         {
             get { return propertyBags; }
             set { propertyBags = value; }

@@ -16,42 +16,42 @@ namespace Membrane.Models.UserManagement
     	private string password;
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty]
-        public string Name
+		public virtual string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [BelongsTo("TypeId")]
-        public UserType Type
+		public virtual UserType Type
         {
             get { return type; }
             set { type = value; }
         }
 
         [HasAndBelongsToMany(typeof(Group), Table = "UserGroups", ColumnKey = "UserId", ColumnRef = "GroupId")]
-        public IList<Group> Groups
+		public virtual IList<Group> Groups
         {
             get { return groups; }
             set { groups = value; }
         }
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty, ValidateIsUnique]
-        public string Username
+		public virtual string Username
         {
             get { return username; }
             set { username = value; }
         }
 
         [Property (NotNull = true, Length = 200), ValidateNonEmpty, ValidateIsUnique, ValidateEmail]
-        public string Email
+		public virtual string Email
         {
             get { return email; }
             set { email = value; }
         }
 
 		[Property (NotNull = true, Length = 200), ValidateNonEmpty]
-    	public string Password
+		public virtual string Password
     	{
 			get { return password; }
 			set { password = value; }
