@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Models", "Membrane.Models\Membrane.Models.csproj", "{C8A35D63-012B-424D-8039-E7E75656E9A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Services", "Membrane.Services\Membrane.Services.csproj", "{9926362A-159C-4073-B525-CF11FCE730B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Core", "Membrane.Core\Membrane.Core.csproj", "{9926362A-159C-4073-B525-CF11FCE730B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

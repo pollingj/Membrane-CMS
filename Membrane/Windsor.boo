@@ -7,7 +7,7 @@ import Rhino.Commons.ForTesting from Rhino.Commons.ActiveRecord
 Facility("monorail", MonoRailFacility)
 
 webAsm = Assembly.Load("Membrane")
-activeRecordAsm = (Assembly.Load("Membrane.Models"), )
+activeRecordAsm = (Assembly.Load("Membrane.Core"), )
 
 for type in webAsm.GetTypes():
 	if typeof(Controller).IsAssignableFrom(type):

@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Components.Common.TemplateEngine.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Syncmaster\bin\Castle.Components.Validator.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Core.dll</HintPath>
@@ -143,8 +147,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NavigationTypeController.cs" />
+    <Compile Include="Controllers\MembraneAdmin\NavigationTypeController.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -166,6 +171,10 @@
     <ProjectReference Include="..\Membrane.Models\Membrane.Models.csproj">
       <Project>{C8A35D63-012B-424D-8039-E7E75656E9A9}</Project>
       <Name>Membrane.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Core\Membrane.Core.csproj">
+      <Project>{9926362A-159C-4073-B525-CF11FCE730B1}</Project>
+      <Name>Membrane.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
