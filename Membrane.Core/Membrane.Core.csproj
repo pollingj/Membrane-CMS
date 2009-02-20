@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9926362A-159C-4073-B525-CF11FCE730B1}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -37,11 +37,11 @@
     </Reference>
     <Reference Include="Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Library\Castle-NHib-Rhino-trunk\Castle.ActiveRecord.dll</HintPath>
+      <HintPath>..\Libs\Castle.ActiveRecord.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Library\Castle-NHib-Rhino-trunk\Castle.Components.Validator.dll</HintPath>
+      <HintPath>..\Libs\Castle.Components.Validator.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -80,6 +80,7 @@
     <Compile Include="Domain\BaseModel.cs" />
     <Compile Include="Domain\BaseOrderModel.cs" />
     <Compile Include="Domain\ContentType.cs" />
+    <Compile Include="Domain\NavigationNode.cs" />
     <Compile Include="Domain\NavigationType.cs" />
     <Compile Include="DTOs\NavigationTypeDTO.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
