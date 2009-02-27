@@ -34,10 +34,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Boo.Lang.Interpreter.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.ActiveRecord, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Castle.ActiveRecord.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Components.Binder, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Components.Binder.dll</HintPath>
@@ -62,6 +58,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Facilities.AutomaticTransactionManagement.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.MicroKernel.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.MonoRail.ActiveRecordSupport, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.ActiveRecordSupport.dll</HintPath>
@@ -77,6 +77,10 @@
     <Reference Include="Castle.MonoRail.WindsorExtension, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.WindsorExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.Log4netIntegration, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Services.Transaction, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,10 +98,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\NHibernate.ByteCode.Castle.dll</HintPath>
@@ -105,22 +105,6 @@
     <Reference Include="Nullables.NHibernate, Version=2.0.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Nullables.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Commons, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Rhino.Commons.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Commons.ActiveRecord, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Rhino.Commons.ActiveRecord.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Commons.NHibernate, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Rhino.Commons.NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.5.0.2, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -154,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembraneAdmin\NavigationTypeController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -171,12 +156,15 @@
   <ItemGroup>
     <None Include="Views\home\Index.brail" />
     <None Include="Views\layouts\default.brail" />
-    <None Include="Windsor.boo" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Membrane.Models\Membrane.Models.csproj">
-      <Project>{C8A35D63-012B-424D-8039-E7E75656E9A9}</Project>
-      <Name>Membrane.Models</Name>
+    <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">
+      <Project>{447ECB81-C632-46DD-9FDD-38696EA69C72}</Project>
+      <Name>Membrane.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Entities\Membrane.Entities.csproj">
+      <Project>{252BEF52-0747-49C1-95AE-4AFEBB259F73}</Project>
+      <Name>Membrane.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Membrane.Core\Membrane.Core.csproj">
       <Project>{9926362A-159C-4073-B525-CF11FCE730B1}</Project>

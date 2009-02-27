@@ -1,6 +1,5 @@
-using Castle.ActiveRecord;
 
-namespace Membrane.Core.Domain
+namespace Membrane.Entities
 {
 	/// <summary>
 	/// This class is used when ordering is required on the objects
@@ -8,7 +7,6 @@ namespace Membrane.Core.Domain
 	/// </summary>
 	public class BaseOrderModel : BaseModel
 	{
-		[Property]
-		public int Order { get; set; }
+		public virtual int OrderPosition { get; set; }
 	}
 }

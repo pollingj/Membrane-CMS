@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using AutoMapper;
-using Membrane.Core.Domain;
+using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
-using Rhino.Commons;
+using Membrane.Entities;
 
 namespace Membrane.Core.Services
 {
@@ -28,7 +28,7 @@ namespace Membrane.Core.Services
 		/// <returns></returns>
 		public ICollection<NavigationTypeDTO> GetAllNavigationTypes()
 		{
-			var types = navigationTypeRepository.FindAll();
+			var types = navigationTypeRepository.Find();
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
 			Mapper.AssertConfigurationIsValid();
 			return Mapper.Map<ICollection<NavigationType>, ICollection<NavigationTypeDTO>>(types);

@@ -75,7 +75,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Commons, Version=1.5.886.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Rhino.Commons, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Rhino.Commons.dll</HintPath>
     </Reference>
@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseControllerFixture.cs" />
+    <Compile Include="Controllers\ContentControllerFixture.cs" />
     <Compile Include="Controllers\NavigationTypeControllerFixture.cs" />
     <Compile Include="IBuilder.cs" />
     <Compile Include="Models\AssetBaseFixture.cs" />
@@ -121,9 +122,18 @@
     <Compile Include="Models\UserFixture.cs" />
     <Compile Include="Models\UserTypeFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ContentServiceFixture.cs" />
     <Compile Include="Services\NavigationServiceFixture.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">
+      <Project>{447ECB81-C632-46DD-9FDD-38696EA69C72}</Project>
+      <Name>Membrane.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Entities\Membrane.Entities.csproj">
+      <Project>{252BEF52-0747-49C1-95AE-4AFEBB259F73}</Project>
+      <Name>Membrane.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Membrane.Models\Membrane.Models.csproj">
       <Project>{C8A35D63-012B-424D-8039-E7E75656E9A9}</Project>
       <Name>Membrane.Models</Name>
@@ -138,12 +148,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Windsor.boo">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

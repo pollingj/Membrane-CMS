@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Membrane.Core.Domain;
+using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services;
+using Membrane.Entities;
 using NUnit.Framework;
-using Rhino.Commons;
 using Rhino.Mocks;
 using With=Rhino.Mocks.With;
 
@@ -43,7 +43,7 @@ namespace Membrane.Test.Services
 
 			// User of Fluent Rhino Mocks syntax
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(navigationTypeRepository.FindAll()).Return(typeList))
+				.Expecting(() => Expect.Call(navigationTypeRepository.Find()).Return(typeList))
 				.Verify(
 				() =>
 					{

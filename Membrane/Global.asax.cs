@@ -1,12 +1,34 @@
-﻿using Rhino.Commons.HttpModules;
+﻿using System.Reflection;
+using Castle.MonoRail.Framework.Routing;
+using Membrane.Commons.Web.MonoRail;
+using Membrane.Core.Services;
+using Membrane.Core.Services.Interfaces;
 
 namespace Membrane
 {
 	/// <summary>
 	/// TODO: Need to consider the url rewriting for Membrane
 	/// </summary>
-    public class Global : UnitOfWorkApplication
+	public class Global : MonoRailNHibernateHttpApplication
     {
- 
+		public Global()
+			: base(Assembly.Load("Membrane.Entities"))
+		{
+
+		}
+
+		public override void RegisterApplicationComponents()
+		{
+			container.AddComponent<IContentService, ContentService>();
+		}
+
+		public override void RegisterRoutes(RoutingEngine rules)
+		{
+			rules.Add(new PatternRoute("[controller]/[action]")
+				.DefaultForArea().IsEmpty
+				.DefaultForController().Is("Home")
+				.DefaultForAction().Is("Index"));
+		}
+
     }
 }
