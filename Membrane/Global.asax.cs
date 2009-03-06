@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Castle.MonoRail.Framework.Routing;
+using Membrane.Commons.Services;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
@@ -20,6 +21,7 @@ namespace Membrane
 		public override void RegisterApplicationComponents()
 		{
 			container.AddComponent<IContentService, ContentService>();
+            container.AddComponent("basecrudservice", typeof(IBaseCrudService<>), typeof(BaseCrudService<>));
 		}
 
 		public override void RegisterRoutes(RoutingEngine rules)

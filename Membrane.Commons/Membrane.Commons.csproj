@@ -76,6 +76,10 @@
       <HintPath>..\Libs\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition, Version=2009.1.23.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -90,7 +94,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseController.cs" />
+    <Compile Include="Editors\BaseCrudController.cs" />
+    <Compile Include="Services\BaseCrudService.cs" />
     <Compile Include="GuardAgainst.cs" />
+    <Compile Include="Services\IBaseCrudService.cs" />
+    <Compile Include="Editors\IEditorController.cs" />
     <Compile Include="Persistence\IEntity.cs" />
     <Compile Include="Persistence\IQueryCommand.cs" />
     <Compile Include="Persistence\IRepository.cs" />

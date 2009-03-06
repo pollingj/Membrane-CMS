@@ -21,7 +21,7 @@ namespace Membrane.Core.Services
 		private Type GetReflectedType(string modelName)
 		{
 			// Hard code assembly for now.  This needs to be set in the db later
-			var assembly = Assembly.LoadFrom(@"C:\Membrane\Membrane\bin\Membrane.Entities.dll");
+			var assembly = Assembly.LoadFrom(@"C:\Membrane\Membrane.TestSite.Entities\bin\Debug\Membrane.TestSite.Entities.dll");
 			Type foundType = null;
 
 			foreach (var type in assembly.GetTypes())
@@ -56,8 +56,7 @@ namespace Membrane.Core.Services
 			var type = GetReflectedType(modelName);
 			var elementQuery = contentElementRepository.AsQueryable().Where(x => x.Type == GetContentType(type));
 
-			return contentElementRepository.Find(elementQuery);;
-			//return query.List(); 
+			return contentElementRepository.Find(elementQuery);
 		}
 
 
@@ -66,54 +65,63 @@ namespace Membrane.Core.Services
 			throw new System.NotImplementedException();
 		}
 
-		public object GetElementItem(string modelName, int id)
+		public Dictionary<string, object> GetElementItem(string modelName, int id)
 		{
-			/*
+			var values = new Dictionary<string, object>();
 			var type = GetReflectedType(modelName);
-			//var contentType = GetContentType(type);
-			var query = CreateReflectedQuery(type, id);
 
+			// This gives us an object array
+			var returnedData = contentElementRepository.FindOne(CreateReflectedQuery(type), type);
 
-			return contentElementRepository.FindOne(query, type);*/
-			return null;
-		}
+			var count = 0;
 
-		/*private string CreateReflectedQuery(Type type, int id)
-		{
-			StringBuilder query = new StringBuilder("SELECT ");
-			IList<string> tableNames = new List<string>();
+			// Match the returnedData object array up to the Properties in the reflected type
 			foreach (var info in type.GetProperties())
 			{
-				if (info.PropertyType.FullName.IndexOf("System.") > -1)
-					query.AppendFormat("{0}.{1},", type.Name, info.Name);
-				else
+				if (info.DeclaringType == type)
 				{
-					query.AppendFormat("{0}.{1},", info.PropertyType.Name, info.Name);
-					tableNames.Add(info.PropertyType.Name);
+					if (info.PropertyType.FullName.IndexOf("Collection") > -1)
+					{
+						// Build Query
+						values.Add(info.PropertyType.GetGenericArguments()[0].Name, new object[] { 1, 2 });
+					}
+					else
+					{
+						values.Add(info.Name, returnedData[count]);
+						count++;
+					}
 				}
+
 			}
 
-			//FluentNHibernate.Utils.ReflectionHelper helper = new FluentNHibernate.Utils.ReflectionHelper();
-			//FluentNHibernate.Mapping.
+			return values;
+		}
+
+
+		/// <summary>
+		/// Generates the basic select statement on the fly.  This is based on the properties found within the 
+		/// reflected entity
+		/// </summary>
+		/// <param name="type">The reflected entity type</param>
+		/// <returns>Query string</returns>
+		private string CreateReflectedQuery(Type type)
+		{
+			StringBuilder query = new StringBuilder("SELECT ");
 			
-
-			// Remove last comma
-			query.Remove(query.Length - 1, 1);
-
-			query.AppendFormat(" FROM {0},", type.Name);
-			foreach (var table in tableNames)
+			foreach (var info in type.GetProperties())
 			{
-				query.AppendFormat("{0},", table);
+				if (info.DeclaringType == type && info.PropertyType.FullName.IndexOf("Collection") == -1)
+					query.AppendFormat("{0}.{1},", type.Name, info.Name);
 			}
-
+			
 			// Remove last comma
 			query.Remove(query.Length - 1, 1);
 
-			
-
-			query.AppendFormat(" WHERE BaseModelOrderId = {1}", type.Name, id);
+			query.AppendFormat(" FROM {0}", type.Name);
 
 			return query.ToString();
-		}*/
+		}
+
+
 	}
 }

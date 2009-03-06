@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.Web;
 using Castle.Facilities.Logging;
@@ -8,7 +9,6 @@ using Castle.Windsor;
 using FluentNHibernate;
 using FluentNHibernate.AutoMap;
 using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
 using NHibernate;
@@ -55,11 +55,17 @@ namespace Membrane.Commons.Web.MonoRail
 
 		protected virtual void RegisterControllers()
 		{
+
 			container
 				.Register(
 				AllTypes.Pick().FromAssembly(controllersAssembly)
 					.Configure(c => c.LifeStyle.Transient)
+					.If(c => c.Name.Contains("Controller")))
+				.Register(
+				AllTypes.Pick().FromAssembly(Assembly.LoadFile(@"C:\Membrane\Membrane.TestSite.Editing\bin\Debug\Membrane.TestSite.Editing.dll"))
+					.Configure(c => c.LifeStyle.Transient)
 					.If(c => c.Name.Contains("Controller"))
+
 				);
 		}
 
@@ -103,15 +109,45 @@ namespace Membrane.Commons.Web.MonoRail
 				.Configure(configuration);
 
 			configuration.AddAutoMappings(model);
-
+			
 			var sessionFactory = Fluently.Configure()  
 				.Mappings(m => m.AutoMappings.Add(model))
 				/*.ExposeConfiguration(cfg => new SchemaExport(cfg)  
-				                            	.Create(false, true))  */
+				                            	.Create(false, true))*/
 				.BuildSessionFactory();  
 
 			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
 		}
+
+		/*Assembly currentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		{
+			//This handler is called only when the common language runtime tries to bind to the assembly and fails.
+
+			//Retrieve the list of referenced assemblies in an array of AssemblyName.
+			var strTempAssmbPath = "";
+
+			var objExecutingAssemblies = Assembly.GetExecutingAssembly();
+			var arrReferencedAssmbNames = objExecutingAssemblies.GetReferencedAssemblies();
+
+			//Loop through the array of referenced assembly names.
+			foreach (var strAssmbName in arrReferencedAssmbNames)
+			{
+				//Check for the assembly names that have raised the "AssemblyResolve" event.
+				if (strAssmbName.FullName.Substring(0, strAssmbName.FullName.IndexOf(",")) == args.Name.Substring(0, args.Name.IndexOf(",")))
+				{
+					//Build the path of the assembly from where it has to be loaded.				
+					strTempAssmbPath = "C:\\Myassemblies\\" + args.Name.Substring(0, args.Name.IndexOf(",")) + ".dll";
+					break;
+				}
+
+			}
+			//Load the assembly from the specified path. 					
+			var MyAssembly = Assembly.LoadFrom(strTempAssmbPath);
+
+			//Return the loaded assembly.
+			return MyAssembly;		
+		}*/
+
 
 		public abstract void RegisterApplicationComponents();
 		public abstract void RegisterRoutes(RoutingEngine rules);

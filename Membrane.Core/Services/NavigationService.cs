@@ -28,7 +28,7 @@ namespace Membrane.Core.Services
 		/// <returns></returns>
 		public ICollection<NavigationTypeDTO> GetAllNavigationTypes()
 		{
-			var types = navigationTypeRepository.Find();
+			var types = navigationTypeRepository.FindAll();
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
 			Mapper.AssertConfigurationIsValid();
 			return Mapper.Map<ICollection<NavigationType>, ICollection<NavigationTypeDTO>>(types);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
@@ -36,14 +37,14 @@ namespace Membrane.Test.Services
 			// can use it when required
 			var typeList = new List<NavigationType>
 			               	{
-			               		new NavigationType {Id = 1, Name = "Primary Navigation"},
-			               		new NavigationType {Id = 2, Name = "Secondary Navigation"}
+			               		new NavigationType {Id = Guid.NewGuid(), Name = "Primary Navigation"},
+			               		new NavigationType {Id = Guid.NewGuid(), Name = "Secondary Navigation"}
 			               	};
 			ICollection<NavigationTypeDTO> result;
 
 			// User of Fluent Rhino Mocks syntax
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(navigationTypeRepository.Find()).Return(typeList))
+				.Expecting(() => Expect.Call(navigationTypeRepository.FindAll()).Return(typeList))
 				.Verify(
 				() =>
 					{

@@ -1,8 +1,10 @@
+using System;
+
 namespace Membrane.Commons.Persistence
 {
 	public interface IEntity
 	{
-		int Id { get; set; }
+		Guid Id { get; set; }
 	}
 
 }
