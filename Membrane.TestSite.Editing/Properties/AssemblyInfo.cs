@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Membrane.TestSite.EditorControllers")]
+[assembly: AssemblyTitle("Membrane.TestSite.Editing")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("White Agency")]
-[assembly: AssemblyProduct("Membrane.TestSite.EditorControllers")]
+[assembly: AssemblyProduct("Membrane.TestSite.Editing")]
 [assembly: AssemblyCopyright("Copyright © White Agency 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -18,26 +18,33 @@ namespace Membrane.Commons.Editors
 		public virtual void List()
 		{
 			PropertyBag["data"] = service.GetAllData();
+
+			RenderView(@"\Shared\List");
 		}
 
 		public virtual void New()
 		{
+			RenderView(@"\Shared\Form");
 		}
 
 		public virtual void Edit(int id)
 		{
+			RenderView(@"\Shared\Form");
 		}
 
 		public virtual void Submit([DataBind("item")] T item)
 		{
+			RedirectToAction("List");
 		}
 
 		public virtual void ConfirmDelete(int id)
 		{
+			RenderView(@"\Shared\ConfirmDelete");
 		}
 
 		public virtual void Delete(int id)
 		{
+			RedirectToAction("List");
 		}
 	}
 }
