@@ -8,8 +8,13 @@ namespace Membrane.TestSite.Editing.Controllers
 	[Export(typeof(IEditorController<>))]
 	public class ProductEditorController : BaseCrudController<Product>
 	{
-		public ProductEditorController(IBaseCrudService<Product> service) : base(service)
+		[ImportingConstructor]
+		public ProductEditorController(IBaseCrudService<Product> service)
+			: base(service)
 		{
 		}
+		/*public ProductEditorController(IBaseCrudService<Product> service) : base(service)
+		{
+		}*/
 	}
 }

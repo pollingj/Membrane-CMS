@@ -1,15 +1,17 @@
-using System.ComponentModel.Composition;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Services;
 
 namespace Membrane.Commons.Editors
 {
-	[Export(typeof(IEditorController<>))]
 	public class BaseCrudController<T> : BaseController, IEditorController<T> where T : IEntity
 	{
-		private IBaseCrudService<T> service;
+		protected IBaseCrudService<T> service;
 
+		public BaseCrudController()
+	{
+		
+	}
 		public BaseCrudController(IBaseCrudService<T> service)
 		{
 			this.service = service;

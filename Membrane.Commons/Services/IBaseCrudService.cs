@@ -3,7 +3,7 @@ using Membrane.Commons.Persistence;
 
 namespace Membrane.Commons.Services
 {
-	public interface IBaseCrudService<T> where T : IEntity
+	public interface IBaseCrudService<T> : IService where T : IEntity
 	{
 		ICollection<T> GetAllData();
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
@@ -6,7 +7,10 @@ using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
+using Membrane.Commons.Editors;
+using Membrane.Commons.MEFExportProvider;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.NHibernate;
 using Membrane.Commons.Services;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Core.Services;
@@ -23,9 +27,9 @@ namespace Membrane
 	/// </summary>
 	public class Global : MonoRailNHibernateHttpApplication
     {
-		
+		//[Import]
 		//public IEnumerable<IEditorController> Editors { get; set; }
-		[Import]
+		[Import(typeof(IEditorController<>))]
 		public IEnumerable Editors { get; set; }
 
 		/*[Import]
@@ -52,13 +56,16 @@ namespace Membrane
                     new DirectoryCatalog(@"C:\Membrane\Membrane.TestSite.Editing\bin\Debug")
                 });
 
-			
-			var mefcontainer = new CompositionContainer(catalog);
+			var factoryProvider = new FactoryExportProvider<IService>(GetService);
+			var mefcontainer = new CompositionContainer(catalog, factoryProvider);
 			var batch = new CompositionBatch();
 			batch.AddPart(this);
 			mefcontainer.Compose(batch);
+		}
 
-
+		public IService GetService(Type type) 
+		{
+			return null;
 		}
 
 		protected override void RegisterControllers()
@@ -67,27 +74,9 @@ namespace Membrane
 
 			foreach (var editor in Editors)
 			{
-				container.Register(AllTypes.From(editor.GetType()));
+				container.AddComponent(editor.GetType().Name, editor.GetType());//.Register(AllTypes.From(editor.GetType()));
 			}
 		}
-
-		/*protected override void ConfigureNHibernate()
-		{
-			
-			foreach (var entity in Entities)
-			{
-				var type = entity.GetType();
-				var methodInfo = model.GetType().GetMethod("AutoMap");
-				var generic = methodInfo.MakeGenericMethod(type);
-				generic.Invoke(model, null);
-
-
-
-			}
-			//model.AutoMap<>()
-
-			base.ConfigureNHibernate();
-		}*/
 
 		public override void RegisterRoutes(RoutingEngine rules)
 		{

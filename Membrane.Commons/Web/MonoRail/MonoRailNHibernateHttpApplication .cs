@@ -60,13 +60,7 @@ namespace Membrane.Commons.Web.MonoRail
 				.Register(
 				AllTypes.Pick().FromAssembly(controllersAssembly)
 					.Configure(c => c.LifeStyle.Transient)
-					.If(c => c.Name.Contains("Controller")))
-				.Register(
-				AllTypes.Pick().FromAssembly(Assembly.LoadFile(@"C:\Membrane\Membrane.TestSite.Editing\bin\Debug\Membrane.TestSite.Editing.dll"))
-					.Configure(c => c.LifeStyle.Transient)
-					.If(c => c.Name.Contains("Controller"))
-
-				);
+					.If(c => c.Name.Contains("Controller")));
 		}
 
 		protected virtual void RegisterComponents()

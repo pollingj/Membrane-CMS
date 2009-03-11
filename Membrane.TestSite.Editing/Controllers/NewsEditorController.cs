@@ -8,7 +8,9 @@ namespace Membrane.TestSite.Editing.Controllers
 	[Export(typeof(IEditorController<>))]
 	public class NewsEditorController : BaseCrudController<NewsArticle>
 	{
-		public NewsEditorController(IBaseCrudService<NewsArticle> service) : base(service)
+		[ImportingConstructor]
+		public NewsEditorController(IBaseCrudService<NewsArticle> service)
+			: base(service)
 		{
 		}
 	}

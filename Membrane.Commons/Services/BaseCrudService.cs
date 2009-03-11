@@ -5,7 +5,7 @@ namespace Membrane.Commons.Services
 {
 	public class BaseCrudService<T> : IBaseCrudService<T> where T : IEntity
 	{
-		private IRepository<T> repository;
+		private readonly IRepository<T> repository;
 
 		public BaseCrudService(IRepository<T> repository)
 		{
