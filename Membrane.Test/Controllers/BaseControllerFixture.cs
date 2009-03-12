@@ -4,6 +4,7 @@ using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.Test;
 using Castle.MonoRail.TestSupport;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace Membrane.Test.Controllers
@@ -11,19 +12,18 @@ namespace Membrane.Test.Controllers
 	public class BaseControllerFixture : BaseControllerTest
 	{
 		public MockRepository mockery;
-		private string referrer = "http://www.example.com";
+		private const string referrer = "http://www.example.com";
 
 		protected override IMockRequest BuildRequest()
 		{
-			StubRequest request = new StubRequest(Cookies);
-			request.UrlReferrer = referrer;
+			var request = new StubRequest(Cookies) {UrlReferrer = referrer};
 
 			return request;
 		}
 
 		protected override IMockResponse BuildResponse(UrlInfo info)
 		{
-			StubResponse response = new StubResponse(info,
+			var response = new StubResponse(info,
 											new DefaultUrlBuilder(),
 											new StubServerUtility(),
 											new RouteMatch(),
@@ -31,9 +31,28 @@ namespace Membrane.Test.Controllers
 			return response;
 		}
 
+		[SetUp]
 		public virtual void SetUp()
 		{
 			mockery = new MockRepository();
+		}
+
+		/// <summary>
+		/// Method to simulate a controller validation error
+		/// </summary>
+		/// <param name="controller">The controller</param>
+		/// <param name="instance">The item that is failing the validation</param>
+		public void SimulateOneValidationErrorFor(SmartDispatcherController controller, object instance)
+		{
+			controller.PopulateValidatorErrorSummary(instance, CreateDummyErrorSummaryWithOneError());
+		}
+
+		private ErrorSummary CreateDummyErrorSummaryWithOneError()
+		{
+			var errors = new ErrorSummary();
+			errors.RegisterErrorMessage("blah", "blah");
+
+			return errors;
 		}
 	}
 
