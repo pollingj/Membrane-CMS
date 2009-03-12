@@ -8,10 +8,6 @@ namespace Membrane.Commons.Editors
 	{
 		protected IBaseCrudService<T> service;
 
-		public BaseCrudController()
-	{
-		
-	}
 		public BaseCrudController(IBaseCrudService<T> service)
 		{
 			this.service = service;
