@@ -24,7 +24,7 @@ namespace Membrane.Commons.Editors
 			PropertyBag["displayCount"] = displayCount;
 		}
 
-		private bool CreateCustomSubmitError(string message)
+		private bool CreateCustomError(string message)
 		{
 			var submitError = true;
 			var errorSummary = new ErrorSummary();
@@ -80,7 +80,7 @@ namespace Membrane.Commons.Editors
 					var fromDb = service.Create(item);
 
 					if (fromDb == null)
-						submitError = CreateCustomSubmitError("There was a problem inserting this item.");
+						submitError = CreateCustomError("There was a problem inserting this item.");
 				}
 				// Edits
 				else
@@ -88,7 +88,7 @@ namespace Membrane.Commons.Editors
 					var success = service.Update(item);
 
 					if (!success)
-						submitError = CreateCustomSubmitError("There was a problem inserting this item.");
+						submitError = CreateCustomError("There was a problem inserting this item.");
 				}
 				
 			}
@@ -109,12 +109,22 @@ namespace Membrane.Commons.Editors
 
 		public virtual void ConfirmDelete(int id, int currentPage, int displayCount)
 		{
+			PropertyBag["item"] = service.GetItem(id);
+			StorePagingValues(currentPage, displayCount);
 			RenderView(@"\Shared\ConfirmDelete");
 		}
 
 		public virtual void Delete(int id, int currentPage, int displayCount)
 		{
-			RedirectToAction("List");
+			var success = service.Delete(id);
+
+			if (success)
+				RedirectToAction("List");
+			else
+			{
+				CreateCustomError("There was a problem deleting this item");
+				RedirectToReferrer();
+			}
 		}
 	}
 }

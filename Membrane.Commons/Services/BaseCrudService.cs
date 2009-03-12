@@ -37,5 +37,10 @@ namespace Membrane.Commons.Services
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public bool Delete(int id)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

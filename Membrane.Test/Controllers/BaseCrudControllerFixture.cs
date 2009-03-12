@@ -55,6 +55,14 @@ namespace Membrane.Test.Controllers
 				.Verify(() => controller.Submit(item, defaultPage, defaultDisplayCount));
 		}
 
+
+		private void SubmitDeleteItem(bool serviceReturnValue)
+		{
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Delete(itemId)).IgnoreArguments().Return(serviceReturnValue))
+				.Verify(() => controller.Delete(itemId, defaultPage, defaultDisplayCount));
+		}
+
 		[Test]
 		public void CanListFirstPageDataWithPagination()
 		{
@@ -140,6 +148,32 @@ namespace Membrane.Test.Controllers
 			Assert.IsNotNull(controller.Flash["item"]);
 			Assert.IsNotNull(controller.Flash["summary"]);
 			Assert.AreEqual(item, controller.Flash["item"]);
+		}
+
+		[Test]
+		public void CanDisplayDeleteConfirmation()
+		{
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.GetItem(itemId)).IgnoreArguments().Return(item))
+				.Verify(() => controller.ConfirmDelete(itemId, defaultPage, defaultDisplayCount));
+	
+			Assert.IsNotNull(controller.PropertyBag["item"]);
+			CheckPagingPropertyBags(defaultPage, defaultDisplayCount);
+		}
+
+		[Test]
+		public void CanSuccessfullyDelete()
+		{
+			SubmitDeleteItem(true);
+			Assert.IsNull(controller.Flash["summary"]);
+		}
+
+
+		[Test]
+		public void CanFailDelete()
+		{
+			SubmitDeleteItem(false);
+			Assert.IsNotNull(controller.Flash["summary"]);
 		}
 	}
 }

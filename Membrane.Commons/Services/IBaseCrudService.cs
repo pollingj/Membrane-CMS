@@ -11,5 +11,6 @@ namespace Membrane.Commons.Services
 		T GetItem(int id);
 		T Create(T item);
 		bool Update(T item);
+		bool Delete(int id);
 	}
 }
