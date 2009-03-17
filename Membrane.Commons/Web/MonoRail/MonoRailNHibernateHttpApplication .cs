@@ -29,6 +29,7 @@ namespace Membrane.Commons.Web.MonoRail
 		protected static IWindsorContainer container;
 		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
 		protected Assembly webAppAssembly;
+		private Dictionary<string, Assembly> _assemblyList; 
 
 		protected MonoRailNHibernateHttpApplication(Assembly entitiesAssembly)
 		{
@@ -163,7 +164,12 @@ namespace Membrane.Commons.Web.MonoRail
 
 			foreach (var pluginAssembly in pluginAssemblies)
 			{
-				model.AddEntityAssembly(pluginAssembly);
+				model
+
+					.AddEntityAssembly(pluginAssembly)
+					.Where(entity => entity.IsAbstract == false &&
+									 entity.GetInterface("IEntity") != null)
+					.Configure(configuration);
 			}
 
 			model
@@ -181,6 +187,23 @@ namespace Membrane.Commons.Web.MonoRail
 
 			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
 		}
+
+		/*private void loadPlugins()
+		{
+			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+			string[] dlls = System.IO.Directory.GetFiles(ConfigurationManager.AppSettings["plugins.path"], "*.dll");
+			_assemblyList = new Dictionary<string, Assembly>(dlls.Length);
+			foreach (String fileName in dlls)
+			{
+				Assembly asm = System.Reflection.Assembly.LoadFrom(fileName);
+				_assemblyList.Add(asm.FullName.Split(',')[0], asm);
+			}
+		} 
+
+		Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		{
+			return _assemblyList[args.Name];
+		}*/
 
 		public abstract void RegisterApplicationComponents();
 		public abstract void RegisterRoutes(RoutingEngine rules);
