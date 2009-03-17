@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace Membrane.Test.Controllers
 {
-    [TestFixture]
+   /* [TestFixture]
 	public class NavigationTypeControllerFixture : BaseCrudControllerFixture<NavigationTypeDTO>
     {
 		[SetUp]
@@ -35,6 +35,6 @@ namespace Membrane.Test.Controllers
 			paginatedData = PaginationHelper.CreatePagination(items, defaultPage, defaultDisplayCount);
 		}
 
-    }
+    }*/
 
 }

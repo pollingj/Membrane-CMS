@@ -35,7 +35,7 @@ namespace Membrane.Commons.MEFExportProvider
 			var exports = new List<Export>();
 			var constraint = importDefinition.Constraint.Compile();
 			var foundExports = from d in definitions
-							   where constraint(d)
+							  // where constraint(d)
 							   select new Export(d, () => d.ResolutionMethod(d.ServiceType));
 
 			if (importDefinition.Cardinality == ImportCardinality.ZeroOrMore)

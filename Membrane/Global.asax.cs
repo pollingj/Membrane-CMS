@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Configuration;
 using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
@@ -27,16 +28,6 @@ namespace Membrane
 	/// </summary>
 	public class Global : MonoRailNHibernateHttpApplication
     {
-		//[Import]
-		//public IEnumerable<IEditorController> Editors { get; set; }
-		[Import(typeof(IEditorController<>))]
-		public IEnumerable Editors { get; set; }
-
-		/*[Import]
-		public IEnumerable<IEntity> Entities { get; set; }*/
-
-
-
 		public Global()
 			: base(Assembly.Load("Membrane.Entities"))
 		{
@@ -44,38 +35,7 @@ namespace Membrane
 
 		public override void RegisterApplicationComponents()
 		{
-			container.AddComponent<IContentService, ContentService>();
-            container.AddComponent("basecrudservice", typeof(IBaseCrudService<>), typeof(BaseCrudService<>));
-
-			// Try registering the MEF stuff here
-
-
-			var catalog = new AggregateCatalog(new ComposablePartCatalog[] 
-                { 
-                    new AssemblyCatalog(Assembly.GetExecutingAssembly()), 
-                    new DirectoryCatalog(@"C:\Membrane\Membrane.TestSite.Editing\bin\Debug")
-                });
-
-			var factoryProvider = new FactoryExportProvider<IService>(GetService);
-			var mefcontainer = new CompositionContainer(catalog, factoryProvider);
-			var batch = new CompositionBatch();
-			batch.AddPart(this);
-			mefcontainer.Compose(batch);
-		}
-
-		public IService GetService(Type type) 
-		{
-			return null;
-		}
-
-		protected override void RegisterControllers()
-		{
-			base.RegisterControllers();
-
-			foreach (var editor in Editors)
-			{
-				container.AddComponent(editor.GetType().Name, editor.GetType());//.Register(AllTypes.From(editor.GetType()));
-			}
+            container.AddComponent("basecrudservice", typeof(IBaseCrudService<>), typeof(BaseCrudService<>));		
 		}
 
 		public override void RegisterRoutes(RoutingEngine rules)

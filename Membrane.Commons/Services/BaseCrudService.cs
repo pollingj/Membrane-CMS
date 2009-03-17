@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Castle.Components.Pagination;
 using Membrane.Commons.Persistence;
 
@@ -28,9 +30,9 @@ namespace Membrane.Commons.Services
 			throw new System.NotImplementedException();
 		}
 
-		public T Create(T item)
+		public Guid Create(T item)
 		{
-			throw new System.NotImplementedException();
+			return repository.Save(item);
 		}
 
 		public bool Update(T item)

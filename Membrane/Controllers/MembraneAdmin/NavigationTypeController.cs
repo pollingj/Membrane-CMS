@@ -1,7 +1,7 @@
 using Castle.MonoRail.Framework;
 using Membrane.Commons.Editors;
 using Membrane.Commons.Services;
-using Membrane.Core.DTOs;
+using Membrane.Entities;
 
 namespace Membrane.Controllers.MembraneAdmin
 {
@@ -10,9 +10,9 @@ namespace Membrane.Controllers.MembraneAdmin
 	/// This will in all likelyhood inherit from a BaseCRUDController.
 	/// </summary>
 	[Layout("default"), Rescue("generalerror")]
-	public class NavigationTypeController : BaseCrudController<NavigationTypeDTO>
+	public class NavigationTypeController : BaseCrudController<NavigationType>
 	{
-		public NavigationTypeController(IBaseCrudService<NavigationTypeDTO> service)
+		public NavigationTypeController(IBaseCrudService<NavigationType> service)
 			: base(service)
 		{
 		}

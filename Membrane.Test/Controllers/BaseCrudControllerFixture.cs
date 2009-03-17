@@ -39,7 +39,7 @@ namespace Membrane.Test.Controllers
 			Assert.AreEqual(testDisplayCount, controller.PropertyBag["displayCount"], "displayCount PropertyBag");
 		}
 
-		private void SubmitValidInsertItem(T serviceReturnValue)
+		private void SubmitValidInsertItem(Guid serviceReturnValue)
 		{
 			item.Id = Guid.Empty;
 
@@ -121,13 +121,13 @@ namespace Membrane.Test.Controllers
 		[Test]
 		public void CanSuccessfullySubmitValidInsertForm()
 		{
-			SubmitValidInsertItem(item);
+			SubmitValidInsertItem(new Guid("e8d86e7e-43f4-41e2-a521-9bcf00e9504b"));
 		}
 
 		[Test]
 		public void CanFailServiceInsertOnSubmit()
 		{
-			SubmitValidInsertItem(default(T));
+			SubmitValidInsertItem(Guid.Empty);
 
 			Assert.IsNotNull(controller.Flash["item"]);
 			Assert.IsNotNull(controller.Flash["summary"]);

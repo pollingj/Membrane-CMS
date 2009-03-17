@@ -36,7 +36,7 @@ namespace Membrane.Commons.Editors
 		/// <summary>
 		/// Default List Action to show first page of results
 		/// </summary>
-		public void List()
+		public virtual void List()
 		{
 			List(defaultPage, defaultDisplayCount);
 		}

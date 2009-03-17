@@ -21,11 +21,14 @@ namespace Membrane.Commons.Persistence.NHibernate
 			return sessionLocater.CurrentSession.Load<T>(id);
 		}
 
-		public T Save(T entity)
+		public Guid Save(T entity)
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
-			return (T)sessionLocater.CurrentSession.Save(entity);
+			var id = (Guid)sessionLocater.CurrentSession.Save(entity);
+			sessionLocater.CurrentSession.Flush();
+
+			return id;
 		}
 
 		public IQueryable<T> AsQueryable()
