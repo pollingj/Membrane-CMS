@@ -1,25 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
-using System.Configuration;
-using System.Reflection;
-using Castle.MicroKernel.Registration;
+﻿using System.Reflection;
 using Castle.MonoRail.Framework.Routing;
-using Membrane.Commons.Editors;
-using Membrane.Commons.MEFExportProvider;
-using Membrane.Commons.Persistence;
-using Membrane.Commons.Persistence.NHibernate;
 using Membrane.Commons.Services;
 using Membrane.Commons.Web.MonoRail;
-using Membrane.Core.Services;
-using Membrane.Core.Services.Interfaces;
-using FluentNHibernate;
-using FluentNHibernate.AutoMap;
-using FluentNHibernate.Cfg;
-using Membrane.Entities;
 
 namespace Membrane
 {
