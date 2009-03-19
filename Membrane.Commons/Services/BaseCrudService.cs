@@ -25,9 +25,9 @@ namespace Membrane.Commons.Services
 			throw new System.NotImplementedException();
 		}
 
-		public T GetItem(int id)
+		public T GetItem(Guid id)
 		{
-			throw new System.NotImplementedException();
+			return repository.FindById(id);
 		}
 
 		public Guid Create(T item)
@@ -40,7 +40,7 @@ namespace Membrane.Commons.Services
 			throw new System.NotImplementedException();
 		}
 
-		public bool Delete(int id)
+		public bool Delete(Guid id)
 		{
 			throw new System.NotImplementedException();
 		}

@@ -16,7 +16,7 @@ namespace Membrane.Commons.Persistence.NHibernate
 			this.sessionLocater = sessionLocater;
 		}
 
-		public T FindById(int id)
+		public T FindById(Guid id)
 		{
 			return sessionLocater.CurrentSession.Load<T>(id);
 		}

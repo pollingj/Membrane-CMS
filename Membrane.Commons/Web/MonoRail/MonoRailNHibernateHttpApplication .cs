@@ -150,11 +150,25 @@ namespace Membrane.Commons.Web.MonoRail
 		protected virtual void ConfigureNHibernate()
 		{
 			var configuration = new Configuration();
+			loadPlugins();
+			RegisterEntitiesAssembly(configuration, entitiesAssembly);
 
+			foreach (Assembly pluginAssembly in pluginAssemblies)
+			{
+				RegisterEntitiesAssembly(configuration, pluginAssembly);
+			}
+
+			ISessionFactory sessionFactory = configuration.BuildSessionFactory();
+			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
+		}
+
+		private void RegisterEntitiesAssembly(Configuration configuration, Assembly assembly)
+		{
 			var model = new AutoPersistenceModel
 			{
 				Conventions =
 				{
+					GetPrimaryKeyName = (type => "Id"),
 					GetForeignKeyNameOfParent = (type => type.Name + "_Id"),
 					GetForeignKeyName = (info => info.Name + "_Id"),
 					GetTableName = (type => type.Name),
@@ -162,33 +176,14 @@ namespace Membrane.Commons.Web.MonoRail
 				}
 			};
 
-			foreach (var pluginAssembly in pluginAssemblies)
-			{
-				model
-
-					.AddEntityAssembly(pluginAssembly)
-					.Where(entity => entity.IsAbstract == false &&
-									 entity.GetInterface("IEntity") != null)
-					.Configure(configuration);
-			}
-
 			model
-
-				.AddEntityAssembly(entitiesAssembly)
+				.AddEntityAssembly(assembly)
 				.Where(entity => entity.IsAbstract == false &&
 								 entity.GetInterface("IEntity") != null)
 				.Configure(configuration);
-
-			var sessionFactory = Fluently.Configure()
-					.Mappings(m => m.AutoMappings.Add(model))
-				/*.ExposeConfiguration(cfg => new SchemaExport(cfg)  
-												.Create(false, true))*/
-					.BuildSessionFactory();  
-
-			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
 		}
 
-		/*private void loadPlugins()
+		private void loadPlugins()
 		{
 			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
 			string[] dlls = System.IO.Directory.GetFiles(ConfigurationManager.AppSettings["plugins.path"], "*.dll");
@@ -202,8 +197,18 @@ namespace Membrane.Commons.Web.MonoRail
 
 		Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
 		{
-			return _assemblyList[args.Name];
-		}*/
+			try
+			{
+				var name = args.Name;
+				if (name.IndexOf(',') > -1)
+					name = name.Remove(name.IndexOf(','));
+				return _assemblyList[name];
+			}
+			catch (Exception ex)
+			{
+				return null;
+			} 
+		}
 
 		public abstract void RegisterApplicationComponents();
 		public abstract void RegisterRoutes(RoutingEngine rules);

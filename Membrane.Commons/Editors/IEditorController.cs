@@ -1,3 +1,4 @@
+using System;
 using Membrane.Commons.Persistence;
 
 namespace Membrane.Commons.Editors
@@ -6,9 +7,9 @@ namespace Membrane.Commons.Editors
 	{
 		void List(int currentPage, int displayCount);
 		void New(int currentPage, int displayCount);
-		void Edit(int id, int currentPage, int displayCount);
+		void Edit(Guid id, int currentPage, int displayCount);
 		void Submit(T item, int currentPage, int displayCount);
-		void ConfirmDelete(int id, int currentPage, int displayCount);
-		void Delete(int id, int currentPage, int displayCount);
+		void ConfirmDelete(Guid id, int currentPage, int displayCount);
+		void Delete(Guid id, int currentPage, int displayCount);
 	}
 }

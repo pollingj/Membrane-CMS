@@ -6,7 +6,7 @@ namespace Membrane.Commons.Persistence
 {
 	public interface IRepository<T> where T : IEntity
 	{
-		T FindById(int id);
+		T FindById(Guid id);
 		Guid Save(T entity);
 		IQueryable<T> AsQueryable();
 		/*ICollection<T> Find(IQueryCommand<T> queryCommand);

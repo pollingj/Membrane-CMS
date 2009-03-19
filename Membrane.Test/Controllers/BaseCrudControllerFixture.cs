@@ -19,7 +19,7 @@ namespace Membrane.Test.Controllers
 		public const int defaultDisplayCount = 10;
 		private const int currentPage = 2;
 		private const int displayCount = 20;
-		private const int itemId = 1;
+		private Guid itemId = new Guid();
 
 		protected ICollection<T> items;
 		protected IPaginatedPage<T> paginatedData;

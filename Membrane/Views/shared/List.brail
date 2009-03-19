@@ -1,3 +1,11 @@
 ﻿
 
+${items.Count}
+<br />
 ${items}
+
+<%for item in items:%>
+	<p>ID - ${item.Id}</p>
+<%end%>
+
+${singleItem.Id}

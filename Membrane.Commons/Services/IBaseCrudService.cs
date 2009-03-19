@@ -9,9 +9,9 @@ namespace Membrane.Commons.Services
 	{
 		ICollection<T> GetAllData();
 		IPaginatedPage<T> GetPagedData(int currentPage, int recordsPerPage);
-		T GetItem(int id);
+		T GetItem(Guid id);
 		Guid Create(T item);
 		bool Update(T item);
-		bool Delete(int id);
+		bool Delete(Guid id);
 	}
 }

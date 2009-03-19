@@ -43,7 +43,7 @@ namespace Membrane.Commons.Editors
 
 		public virtual void List(int currentPage, int displayCount)
 		{
-			PropertyBag["items"] = service.GetPagedData(currentPage, displayCount);
+			PropertyBag["items"] = service.GetAllData();//service.GetPagedData(currentPage, displayCount);
 			StorePagingValues(currentPage, displayCount);
 
 			RenderView(@"\Shared\List");
@@ -56,7 +56,7 @@ namespace Membrane.Commons.Editors
 			RenderView(@"\Shared\Form");
 		}
 
-		public virtual void Edit(int id, int currentPage, int displayCount)
+		public virtual void Edit(Guid id, int currentPage, int displayCount)
 		{
 			PropertyBag["item"] = service.GetItem(id);
 			StorePagingValues(currentPage, displayCount);
@@ -107,14 +107,14 @@ namespace Membrane.Commons.Editors
 
 
 
-		public virtual void ConfirmDelete(int id, int currentPage, int displayCount)
+		public virtual void ConfirmDelete(Guid  id, int currentPage, int displayCount)
 		{
 			PropertyBag["item"] = service.GetItem(id);
 			StorePagingValues(currentPage, displayCount);
 			RenderView(@"\Shared\ConfirmDelete");
 		}
 
-		public virtual void Delete(int id, int currentPage, int displayCount)
+		public virtual void Delete(Guid id, int currentPage, int displayCount)
 		{
 			var success = service.Delete(id);
 
