@@ -41,6 +41,7 @@ namespace Membrane.Commons.Web.MonoRail
 		{
 			container = new WindsorContainer();
 
+			
 			RegisterPlugins();
 
 			RegisterRoutes(RoutingModuleEx.Engine);
@@ -49,6 +50,7 @@ namespace Membrane.Commons.Web.MonoRail
 			RegisterComponents();
 			RegisterControllers();
 
+			ResolveEntityPluginDlls();
 			ConfigureNHibernate();
 		}
 
@@ -150,7 +152,7 @@ namespace Membrane.Commons.Web.MonoRail
 		protected virtual void ConfigureNHibernate()
 		{
 			var configuration = new Configuration();
-			loadPlugins();
+			
 			RegisterEntitiesAssembly(configuration, entitiesAssembly);
 
 			foreach (Assembly pluginAssembly in pluginAssemblies)
@@ -183,31 +185,43 @@ namespace Membrane.Commons.Web.MonoRail
 				.Configure(configuration);
 		}
 
-		private void loadPlugins()
+		/// <summary>
+		/// Puts all the plugin dlls into a dictionary object for resolving later 
+		/// </summary>
+		private void ResolveEntityPluginDlls()
 		{
-			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
-			string[] dlls = System.IO.Directory.GetFiles(ConfigurationManager.AppSettings["plugins.path"], "*.dll");
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			var dlls = Directory.GetFiles(ConfigurationManager.AppSettings["plugins.path"], "*.dll");
 			_assemblyList = new Dictionary<string, Assembly>(dlls.Length);
-			foreach (String fileName in dlls)
+			foreach (var fileName in dlls)
 			{
-				Assembly asm = System.Reflection.Assembly.LoadFrom(fileName);
+				var asm = Assembly.LoadFrom(fileName);
 				_assemblyList.Add(asm.FullName.Split(',')[0], asm);
 			}
 		} 
 
+		/// <summary>
+		/// Resolves the dependancies when RegisterEntitiesAssembly is called for the plugin entities
+		/// It searches the assemblyList stored earlier
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="args"></param>
+		/// <returns>The resolved Assembly</returns>
 		Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
 		{
-			try
-			{
-				var name = args.Name;
-				if (name.IndexOf(',') > -1)
-					name = name.Remove(name.IndexOf(','));
-				return _assemblyList[name];
-			}
-			catch (Exception ex)
-			{
-				return null;
-			} 
+			Assembly assembly = null;
+
+			var name = args.Name;
+
+			// Make sure the Name is clean to match the dictionary key
+			if (name.IndexOf(',') > -1)
+				name = name.Remove(name.IndexOf(','));
+
+			if (_assemblyList.ContainsKey(name))
+				assembly = _assemblyList[name];
+
+			return assembly;
+
 		}
 
 		public abstract void RegisterApplicationComponents();
