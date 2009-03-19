@@ -8,4 +8,4 @@ ${items}
 	<p>ID - ${item.Id}</p>
 <%end%>
 
-${singleItem.Id}
+${?singleItem.Id}
