@@ -8,7 +8,7 @@ namespace Membrane.TestSite.Editing.Entities
 	{
 		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
-		public virtual double Price { get; set; }
+		public virtual decimal Price { get; set; }
 		public virtual List<Product> Products { get; set; }
 	}
 }

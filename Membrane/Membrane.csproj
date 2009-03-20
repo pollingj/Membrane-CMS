@@ -70,6 +70,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.MonoRail.ViewComponents, Version=1.0.3068.15453, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.MonoRail.ViewComponents.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.MonoRail.Views.Brail, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.Views.Brail.dll</HintPath>
@@ -162,11 +166,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewComponents\FormGeneratorComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logging.config" />
     <None Include="Views\home\Index.brail" />
     <None Include="Views\layouts\default.brail" />
+    <None Include="Views\shared\Form.brail" />
     <None Include="Views\shared\List.brail" />
   </ItemGroup>
   <ItemGroup>

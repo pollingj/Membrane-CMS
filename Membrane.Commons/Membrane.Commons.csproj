@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{447ECB81-C632-46DD-9FDD-38696EA69C72}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -106,8 +106,9 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="Editors\BaseCrudController.cs" />
     <Compile Include="IMembranePlugin.cs" />
-    <Compile Include="MEFExportProvider\FactoryExportDefinition.cs" />
-    <Compile Include="MEFExportProvider\FactoryExportProvider.cs" />
+    <Compile Include="Scaffolding\FieldType.cs" />
+    <Compile Include="Scaffolding\FieldTypeAttr.cs" />
+    <Compile Include="Scaffolding\FormItem.cs" />
     <Compile Include="Services\BaseCrudService.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Services\IBaseCrudService.cs" />

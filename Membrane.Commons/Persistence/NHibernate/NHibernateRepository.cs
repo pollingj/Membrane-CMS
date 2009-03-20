@@ -79,5 +79,20 @@ namespace Membrane.Commons.Persistence.NHibernate
 
 			return entities.Count > 0 ? (object[])entities[0] : null;
 		}
+
+		public bool Update(T item)
+		{
+			var success = false;
+			try
+			{
+				sessionLocater.CurrentSession.Update(item);
+				sessionLocater.CurrentSession.Flush();
+				success = true;
+			}
+			catch (Exception)
+			{
+			}
+			return success;
+		}
 	}
 }

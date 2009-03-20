@@ -11,5 +11,7 @@ namespace Membrane.Commons.Editors
 		void Submit(T item, int currentPage, int displayCount);
 		void ConfirmDelete(Guid id, int currentPage, int displayCount);
 		void Delete(Guid id, int currentPage, int displayCount);
+
+		void LoadSupportiveData();
 	}
 }

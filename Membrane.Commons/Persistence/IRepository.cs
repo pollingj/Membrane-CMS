@@ -16,6 +16,7 @@ namespace Membrane.Commons.Persistence
 		ICollection<T> Find(IQueryable<T> queryCommand);
 		T FindOne(IQueryable<T> queryCommand);
 		object[] FindOne(string query, Type type);
+		bool Update(T item);
 	}
 
 }

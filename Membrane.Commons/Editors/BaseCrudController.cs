@@ -2,6 +2,7 @@ using System;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Scaffolding;
 using Membrane.Commons.Services;
 
 namespace Membrane.Commons.Editors
@@ -13,7 +14,7 @@ namespace Membrane.Commons.Editors
 		private const int defaultPage = 1;
 		private const int defaultDisplayCount = 10;
 
-		public BaseCrudController(IBaseCrudService<T> service)
+		protected BaseCrudController(IBaseCrudService<T> service)
 		{
 			this.service = service;
 		}
@@ -52,13 +53,23 @@ namespace Membrane.Commons.Editors
 		public virtual void New(int currentPage, int displayCount)
 		{
 			PropertyBag["itemtype"] = typeof (T);
+			PropertyBag["FormItems"] = FormItem.GetFields<T>();
+			// Are there any pre-stored items (e.g. has the validation failed?)
+			if (Flash.Contains("FormItems"))
+			{
+				PropertyBag["item"] = Flash["item"];
+			}
+			LoadSupportiveData();
 			StorePagingValues(currentPage, displayCount);
 			RenderView(@"\Shared\Form");
 		}
 
 		public virtual void Edit(Guid id, int currentPage, int displayCount)
 		{
-			PropertyBag["item"] = service.GetItem(id);
+			var data = service.GetItem(id);
+			PropertyBag["FormItems"] = FormItem.GetFieldsWithVals(data);
+			PropertyBag["item"] = data;
+			LoadSupportiveData();
 			StorePagingValues(currentPage, displayCount);
 			RenderView(@"\Shared\Form");
 		}
@@ -125,6 +136,10 @@ namespace Membrane.Commons.Editors
 				CreateCustomError("There was a problem deleting this item");
 				RedirectToReferrer();
 			}
+		}
+
+		public virtual void LoadSupportiveData()
+		{
 		}
 	}
 }

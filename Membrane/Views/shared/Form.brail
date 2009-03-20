@@ -1,0 +1,3 @@
+﻿<% component FormGenerator, {@source: FormItems}:
+
+ end %>

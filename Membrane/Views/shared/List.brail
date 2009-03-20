@@ -1,11 +1,8 @@
-﻿
-
-${items.Count}
-<br />
-${items}
-
+﻿<ul>
 <%for item in items:%>
-	<p>ID - ${item.Id}</p>
+	<li>${UrlHelper.Link(item.Headline, {@action: "Edit", @querystring: {@id: item.Id}})}</li>
 <%end%>
+</ul>
 
-${?singleItem.Id}
+
+${UrlHelper.Link("Add New", {@action: "New"})}

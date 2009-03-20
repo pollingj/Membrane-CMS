@@ -37,7 +37,7 @@ namespace Membrane.Commons.Services
 
 		public bool Update(T item)
 		{
-			throw new System.NotImplementedException();
+			return repository.Update(item);
 		}
 
 		public bool Delete(Guid id)
