@@ -3,14 +3,18 @@ using Membrane.Commons;
 
 namespace Membrane.TestSite.Editing
 {
-	public class Plugin : IWindsorPlugin
+	public class Plugin : IMembranePlugin
 	{
 		public string Name
 		{
 			get { return "Product Catalog Plugin"; }
 		}
 
-		public void RegisterComponents(IWindsorContainer container)
+	    public void Initialize()
+	    {
+	    }
+
+	    public void RegisterComponents(IWindsorContainer container)
 		{
 			//container.AddComponent<IProductService, ProductService>();
 		}

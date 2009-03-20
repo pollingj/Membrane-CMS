@@ -13,12 +13,9 @@ using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using FluentNHibernate.AutoMap;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
 using NHibernate;
-using NHibernate.Tool.hbm2ddl;
 using Configuration=NHibernate.Cfg.Configuration;
 
 namespace Membrane.Commons.Web.MonoRail
@@ -41,7 +38,6 @@ namespace Membrane.Commons.Web.MonoRail
 		{
 			container = new WindsorContainer();
 
-			
 			RegisterPlugins();
 
 			RegisterRoutes(RoutingModuleEx.Engine);
@@ -75,7 +71,7 @@ namespace Membrane.Commons.Web.MonoRail
 
 				try
 				{
-					var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof(IWindsorPlugin).IsAssignableFrom(t)).ToList();
+					var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof(IMembranePlugin).IsAssignableFrom(t)).ToList();
 
 					if (pluginTypes.Count > 0)
 					{
@@ -83,8 +79,10 @@ namespace Membrane.Commons.Web.MonoRail
 
 						foreach (var pluginType in pluginTypes)
 						{
-							var plugin = (IWindsorPlugin)Activator.CreateInstance(pluginType);
-							plugin.RegisterComponents(container);
+							var plugin = (IMembranePlugin)Activator.CreateInstance(pluginType);
+							
+                            plugin.Initialize();
+                            plugin.RegisterComponents(container);
 						}
 					}
 				}

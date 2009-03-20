@@ -36,10 +36,28 @@ namespace Membrane.Commons.Persistence.NHibernate
 			return sessionLocater.CurrentSession.Linq<T>().AsQueryable();
 		}
 
-		public ICollection<T> FindAll()
+        public ICollection<T> Find(IQueryCommand<T> queryCommand)
+        {
+            GuardAgainst.ArgumentNull(queryCommand, "queryCommand");
+
+            return queryCommand.Execute(this).ToList();
+        }
+
+        public T FindOne(IQueryCommand<T> queryCommand)
+        {
+            GuardAgainst.ArgumentNull(queryCommand, "queryCommand");
+
+            IList<T> entities = queryCommand.Execute(this).ToList();
+
+            return entities.Count > 0 ? entities[0] : null;
+        }
+
+	    public ICollection<T> FindAll()
 		{
 			return sessionLocater.CurrentSession.Linq<T>().ToList();
 		}
+
+
 
 		public ICollection<T> Find(IQueryable<T> queryable)
 		{
@@ -61,7 +79,5 @@ namespace Membrane.Commons.Persistence.NHibernate
 
 			return entities.Count > 0 ? (object[])entities[0] : null;
 		}
-
 	}
-
 }
