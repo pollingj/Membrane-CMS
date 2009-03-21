@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Scaffolding;
 
 namespace Membrane.TestSite.Editing.Entities
 {
@@ -9,6 +10,7 @@ namespace Membrane.TestSite.Editing.Entities
 		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
 		public virtual decimal Price { get; set; }
-		public virtual List<Product> Products { get; set; }
+		[FieldTypeAttr(FieldType.MultipleDropDownList, typeof(Product), "Id", "Name")]
+		public virtual IList<Product> Products { get; set; }
 	}
 }

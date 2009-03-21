@@ -74,7 +74,7 @@ namespace Membrane.ViewComponents
 			var list = new ArrayList();
 			foreach (var obj2 in source)
 			{
-				Array array;
+				IList data;
 				string str;
 				string str2;
 				var target = id.GetValue(obj2, null).ToString();
@@ -107,7 +107,7 @@ namespace Membrane.ViewComponents
 					case "SingleDropDownList":
 						//array = (Array) options.GetValue(obj2, null);
 
-						array = (Array) PropertyBag[string.Format("source.{0}", target)];
+						data = (IList) PropertyBag[string.Format("support.{0}", target.Remove(0, 5))];
 						str = optionValue.GetValue(obj2, null).ToString();
 						str2 = optionText.GetValue(obj2, null).ToString();
 						RenderText(formHelper.LabelFor(target, label));
@@ -119,7 +119,7 @@ namespace Membrane.ViewComponents
 						{
 							break;
 						}
-						RenderText(formHelper.Select(target, array, DictHelper.Create(new[] { "multiple=true", string.Format("value={0}", str), string.Format("text={0}", str2) })));
+						RenderText(formHelper.Select(target, data, DictHelper.Create(new[] { "multiple=true", string.Format("value={0}", str), string.Format("text={0}", str2) })));
 						break;
 
 					case "TextArea":

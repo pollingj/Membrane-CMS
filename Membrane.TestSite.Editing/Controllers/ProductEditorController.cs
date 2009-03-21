@@ -14,9 +14,10 @@ namespace Membrane.TestSite.Editing.Controllers
 			this.accessoryService = accessoryService;
 		}
 
+		// Would be nice to automate this
 		public override void LoadSupportiveData()
 		{
-			accessoryService.GetAllData();
+			PropertyBag["support.accessories"] = accessoryService.GetAllData();
 		}
 
 	}

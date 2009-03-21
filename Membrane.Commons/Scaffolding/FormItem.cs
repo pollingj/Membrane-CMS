@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Reflection;
+using Castle.Windsor;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
 using Membrane.Commons.Services;
@@ -128,11 +130,14 @@ namespace Membrane.Commons.Scaffolding
 							}
 							if ((attr.Type == FieldType.MultipleDropDownList) || (attr.Type == FieldType.SingleDropDownList))
 							{
-								/*Type[] typeArguments = new Type[] { attr.Options };
-								object target = Activator.CreateInstance(typeof(BaseCrudService<>).MakeGenericType(typeArguments));
-								object[] objArray2 = (object[])target.GetType().InvokeMember("GetAllData", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, null, target, null);*/
+								/*WindsorContainer container = new WindsorContainer();
+								var rep = container.Resolve("repository");
+								Type[] typeArguments = new Type[] { attr.Options };
+								object target = Activator.CreateInstance(typeof(BaseCrudService<>).MakeGenericType(typeArguments), AppDomain.CurrentDomain.);
+								object[] objArray2 = (object[])target.GetType().InvokeMember("GetAllData", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, null, target, null);
 								//formItem.Options = attr.Options;
 								//formItem.Options = (Array)supportData[0];
+								formItem.Options = objArray2;*/
 								formItem.OptionValue = attr.OptionValue;
 								formItem.OptionText = attr.OptionText;
 							}

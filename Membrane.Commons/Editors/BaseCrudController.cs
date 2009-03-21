@@ -1,6 +1,7 @@
 using System;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
+using Castle.Windsor;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Scaffolding;
 using Membrane.Commons.Services;
@@ -138,8 +139,14 @@ namespace Membrane.Commons.Editors
 			}
 		}
 
+
+		
 		public virtual void LoadSupportiveData()
 		{
+			/*	Type[] typeArguments = new Type[] { typeof(T) };
+				object target = Activator.CreateInstance(typeof(BaseCrudService<>).MakeGenericType(typeArguments));
+			*/
+			// Loop references types into "support" property bag.  They can be overwritten if required
 		}
 	}
 }
