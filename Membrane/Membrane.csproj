@@ -190,6 +190,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\" />
     <Folder Include="Views\mail\" />
     <Folder Include="Views\rescues\" />
   </ItemGroup>

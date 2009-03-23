@@ -106,6 +106,8 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="Editors\BaseCrudController.cs" />
     <Compile Include="IMembranePlugin.cs" />
+    <Compile Include="Persistence\BaseModel.cs" />
+    <Compile Include="Persistence\BaseOrderModel.cs" />
     <Compile Include="Scaffolding\FieldType.cs" />
     <Compile Include="Scaffolding\FieldTypeAttr.cs" />
     <Compile Include="Scaffolding\FormItem.cs" />

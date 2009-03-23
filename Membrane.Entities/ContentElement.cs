@@ -1,3 +1,5 @@
+using Membrane.Commons.Persistence;
+
 namespace Membrane.Entities
 {
 	public class ContentElement : BaseModel

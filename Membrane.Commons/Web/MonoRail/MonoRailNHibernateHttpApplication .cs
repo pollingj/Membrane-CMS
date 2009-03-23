@@ -9,6 +9,9 @@ using Castle.Facilities.Logging;
 using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Configuration;
+using Castle.MonoRail.Framework.Helpers.ValidationStrategy;
+using Castle.MonoRail.Framework.JSGeneration;
+using Castle.MonoRail.Framework.JSGeneration.jQuery;
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
@@ -107,6 +110,12 @@ namespace Membrane.Commons.Web.MonoRail
 					
 				}
 			}
+
+			// Get MonoRail to use jQuery
+			configuration.JSGeneratorConfiguration.AddLibrary("jquery-1.2.6", typeof(JQueryGenerator))
+				.AddExtension(typeof(CommonJSExtension))
+				.BrowserValidatorIs(typeof(JQueryValidator))
+				.SetAsDefault();
 		}
 
 		protected virtual void RegisterControllers()
@@ -173,7 +182,8 @@ namespace Membrane.Commons.Web.MonoRail
 					GetForeignKeyNameOfParent = (type => type.Name + "_Id"),
 					GetForeignKeyName = (info => info.Name + "_Id"),
 					GetTableName = (type => type.Name),
-					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name)
+					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name),
+					IsBaseType = (type => type == typeof(BaseModel) || type == typeof(BaseOrderModel))
 				}
 			};
 

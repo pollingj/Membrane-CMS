@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Membrane.Commons.Persistence;
 
 namespace Membrane.Entities
 {
@@ -16,5 +17,6 @@ namespace Membrane.Entities
 		public virtual string Controller { get; set; }
 		public virtual string Model { get; set; }
 		public virtual IList<ContentElement> Elements { get; set; }
+		public virtual Template DefaultTemplate { get; set; }
 	}
 }

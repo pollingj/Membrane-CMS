@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccessoryEditorController.cs" />
+    <Compile Include="Controllers\NewsTypeEditorController.cs" />
     <Compile Include="Entities\Accessory.cs" />
     <Compile Include="Entities\NewsArticle.cs" />
+    <Compile Include="Entities\NewsType.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Controllers\NewsEditorController.cs" />
     <Compile Include="Controllers\ProductEditorController.cs" />

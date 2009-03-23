@@ -114,12 +114,13 @@ namespace Membrane.ViewComponents
 						if (type.GetValue(obj2, null).ToString() == "SingleDropDownList")
 						{
 							target = string.Format("{0}.Id", target);
+							RenderText(formHelper.Select(target, data, DictHelper.Create(new[] { string.Format("value={0}", str), string.Format("text={0}", str2) })));
 						}
-						if (!(type.GetValue(obj2, null).ToString() == "MultipleDropDownList"))
+						if (type.GetValue(obj2, null).ToString() == "MultipleDropDownList")
 						{
-							break;
+							RenderText(formHelper.Select(target, data, DictHelper.Create(new[] { "multiple=true", string.Format("value={0}", str), string.Format("text={0}", str2) })));
 						}
-						RenderText(formHelper.Select(target, data, DictHelper.Create(new[] { "multiple=true", string.Format("value={0}", str), string.Format("text={0}", str2) })));
+						
 						break;
 
 					case "TextArea":
@@ -150,7 +151,6 @@ namespace Membrane.ViewComponents
 							}
 							break;
 				}
-				//RenderText(formHelper.Select(target, array, DictHelper.Create(new [] {string.Format("value={0}", str), string.Format("text={0}", str2)})));
 				RenderText("</div>");
 				Context.RenderSection("enditem");
 			}

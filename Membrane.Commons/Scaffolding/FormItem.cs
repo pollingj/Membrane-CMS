@@ -117,11 +117,11 @@ namespace Membrane.Commons.Scaffolding
 							}
 							if (((data != null) && (info.GetValue(data, null) != null)) && ((attr.Type == FieldType.MultipleDropDownList) || (attr.Type == FieldType.SingleDropDownList)))
 							{
-								ArrayList list2 = new ArrayList();
+								/*ArrayList list2 = new ArrayList();
 								foreach (object obj3 in (IEnumerable)info.GetValue(data, null))
 								{
 									list2.Add(obj3.GetType().GetProperty(attr.OptionValue).GetValue(obj3, null));
-								}
+								}*/
 							}
 							if (attr.Type == FieldType.TextArea)
 							{
