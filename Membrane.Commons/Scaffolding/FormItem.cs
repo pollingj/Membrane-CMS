@@ -1,17 +1,14 @@
 using System;
 using System.Collections;
-using System.ComponentModel;
+
 using System.Reflection;
-using Castle.Windsor;
-using Membrane.Commons.Persistence;
-using Membrane.Commons.Persistence.NHibernate;
-using Membrane.Commons.Services;
+using System.Text.RegularExpressions;
 
 namespace Membrane.Commons.Scaffolding
 {
 	public class FormItem
 	{
-		public static string assembly;
+
 
 		public int Cols { get; set; }
 		public string FieldId { get; set; }
@@ -83,29 +80,34 @@ namespace Membrane.Commons.Scaffolding
 
 		public static FormItem[] GetFieldsWithVals<T>(T data, params object[] supportData)
 		{
-			//assembly = Assembly.Load()
-			ArrayList list = new ArrayList();
-			Type modelClass = typeof (T);
+			var list = new ArrayList();
+			var modelClass = typeof (T);
+
 			if (modelClass == null)
 			{
-				throw new Exception(string.Format("No such model {0} exists in {1}", typeof(T), assembly));
+				throw new Exception(string.Format("No such model {0} exists", typeof(T)));
 			}
-			PropertyInfo[] properties = modelClass.GetProperties();
-			foreach (PropertyInfo info in properties)
+
+			var properties = modelClass.GetProperties();
+			foreach (var info in properties)
 			{
-				bool flag = false;
-				object[] customAttributes = info.GetCustomAttributes(true);
-				FormItem formItem = new FormItem();
-				formItem.FieldId = string.Format("item.{0}", info.Name);
-				formItem.Label = info.Name;
+				var hasFieldTypeAttribute = false;
+				var customAttributes = info.GetCustomAttributes(true);
+				var formItem = new FormItem { 
+					FieldId = string.Format("item.{0}", info.Name),
+					Label = CreateLabel(info.Name)
+				};
+
+				// Are there any custom attributes to configured for this property?
 				if (customAttributes.Length > 0)
 				{
-					foreach (object obj2 in customAttributes)
+					foreach (var attribute in customAttributes)
 					{
-						if (obj2.GetType() == typeof(FieldTypeAttr))
+						// Are we handling a FieldTypeAttr?
+						if (attribute.GetType() == typeof(FieldTypeAttr))
 						{
-							flag = true;
-							FieldTypeAttr attr = (FieldTypeAttr)obj2;
+							hasFieldTypeAttribute = true;
+							var attr = (FieldTypeAttr)attribute;
 							formItem.Type = attr.Type;
 							if (attr.Label != null)
 							{
@@ -115,40 +117,22 @@ namespace Membrane.Commons.Scaffolding
 							{
 								formItem.MaxLength = attr.MaxLength;
 							}
-							if (((data != null) && (info.GetValue(data, null) != null)) && ((attr.Type == FieldType.MultipleDropDownList) || (attr.Type == FieldType.SingleDropDownList)))
+
+							switch (attr.Type)
 							{
-								/*ArrayList list2 = new ArrayList();
-								foreach (object obj3 in (IEnumerable)info.GetValue(data, null))
-								{
-									list2.Add(obj3.GetType().GetProperty(attr.OptionValue).GetValue(obj3, null));
-								}*/
-							}
-							if (attr.Type == FieldType.TextArea)
-							{
-								formItem.Rows = attr.Rows;
-								formItem.Cols = attr.Cols;
-							}
-							if ((attr.Type == FieldType.MultipleDropDownList) || (attr.Type == FieldType.SingleDropDownList))
-							{
-								/*WindsorContainer container = new WindsorContainer();
-								var rep = container.Resolve("repository");
-								Type[] typeArguments = new Type[] { attr.Options };
-								object target = Activator.CreateInstance(typeof(BaseCrudService<>).MakeGenericType(typeArguments), AppDomain.CurrentDomain.);
-								object[] objArray2 = (object[])target.GetType().InvokeMember("GetAllData", BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, null, target, null);
-								//formItem.Options = attr.Options;
-								//formItem.Options = (Array)supportData[0];
-								formItem.Options = objArray2;*/
-								formItem.OptionValue = attr.OptionValue;
-								formItem.OptionText = attr.OptionText;
-							}
-							else if (attr.Type == FieldType.FileUpload)
-							{
-								formItem.UploadLocation = attr.UploadFolder;
-								formItem.UploadWidth = attr.ImageWidth;
-								formItem.UploadHeight = attr.ImageHeight;
+								case FieldType.SingleDropDownList:
+								case FieldType.MultipleDropDownList:
+									formItem.OptionValue = attr.OptionValue;
+									formItem.OptionText = attr.OptionText;
+									break;
+								case FieldType.FileUpload:
+									formItem.UploadLocation = attr.UploadFolder;
+									formItem.UploadWidth = attr.ImageWidth;
+									formItem.UploadHeight = attr.ImageHeight;
+									break;
 							}
 						}
-						else if (!flag)
+						else if (!hasFieldTypeAttribute)
 						{
 							CreateDefaultTypes(info, formItem);
 						}
@@ -158,6 +142,7 @@ namespace Membrane.Commons.Scaffolding
 				{
 					CreateDefaultTypes(info, formItem);
 				}
+
 				if (formItem.Type != FieldType.Ignore)
 				{
 					list.Add(formItem);
@@ -166,37 +151,13 @@ namespace Membrane.Commons.Scaffolding
 			return (FormItem[])list.ToArray(typeof(FormItem));
 		}
 
-		public static Type GetModelClass(string typename)
-		{
-			return GetModelClass(assembly, typename);
-		}
 
-		private static Type GetModelClass<T>(string assembly)
+		private static string CreateLabel(string typeName)
 		{
-			Type[] types = Assembly.LoadFrom(assembly).GetTypes();
-			foreach (Type type in types)
-			{
-				if (type == typeof(T))
-				{
-					return type;
-				}
-			}
-			return null;
-		}
+			var r = new Regex("([A-Z]+[a-z]+)");
+			return r.Replace(typeName, m => (m.Value.Length > 3 ? m.Value : m.Value.ToLower()) + " ");
 
-		private static Type GetModelClass(string assembly, string typename)
-		{
-			Type[] types = Assembly.LoadFrom(assembly).GetTypes();
-			foreach (Type type in types)
-			{
-				if (type.Name == typename)
-				{
-					return type;
-				}
-			}
-			return null;
 		}
-
 
 	}
 }

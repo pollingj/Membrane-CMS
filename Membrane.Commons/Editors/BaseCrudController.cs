@@ -1,7 +1,6 @@
 using System;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
-using Castle.Windsor;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Scaffolding;
 using Membrane.Commons.Services;
@@ -47,7 +46,7 @@ namespace Membrane.Commons.Editors
 		{
 			PropertyBag["items"] = service.GetAllData();//service.GetPagedData(currentPage, displayCount);
 			StorePagingValues(currentPage, displayCount);
-
+			LoadSupportiveData();
 			RenderView(@"\Shared\List");
 		}
 

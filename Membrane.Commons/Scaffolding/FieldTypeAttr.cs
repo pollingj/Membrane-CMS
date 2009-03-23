@@ -6,7 +6,6 @@ namespace Membrane.Commons.Scaffolding
 	public class FieldTypeAttr : Attribute
 	{
 		// Properties
-		public int Cols { get; set; }
 		public int ImageHeight { get; set; }
 		public int ImageWidth { get; set; }
 		public string Label { get; set; }
@@ -14,7 +13,6 @@ namespace Membrane.Commons.Scaffolding
 		public Type Options { get; set; }
 		public string OptionText { get; set; }
 		public string OptionValue { get; set; }
-		public int Rows { get; set; }
 		public FieldType Type { get; set; }
 		public string UploadFolder { get; set; }
 		
@@ -40,14 +38,6 @@ namespace Membrane.Commons.Scaffolding
 			: this(type, label)
 		{
 			UploadFolder = uploadFolder;
-		}
-
-		// Maybe look at removing this as it's too HTML Specific
-		public FieldTypeAttr(FieldType type, string label, int cols, int rows)
-			: this(type, label)
-		{
-			Cols = cols;
-			Rows = rows;
 		}
 
 		public FieldTypeAttr(FieldType type, Type options, string optionValue, string optionText)
