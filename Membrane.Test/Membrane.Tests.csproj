@@ -75,6 +75,10 @@
       <Project>{9926362A-159C-4073-B525-CF11FCE730B1}</Project>
       <Name>Membrane.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Membrane.Entities\Membrane.Entities.csproj">
+      <Project>{252BEF52-0747-49C1-95AE-4AFEBB259F73}</Project>
+      <Name>Membrane.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Membrane\Membrane.csproj">
       <Project>{390BD897-89B6-4D73-8B92-8B66C688004C}</Project>
       <Name>Membrane</Name>
