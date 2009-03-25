@@ -6,7 +6,7 @@ using Castle.MonoRail.TestSupport;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Membrane.Test.Unit.Web.MonoRail.Controllers
+namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 {
 	public class BaseControllerFixture : BaseControllerTest
 	{

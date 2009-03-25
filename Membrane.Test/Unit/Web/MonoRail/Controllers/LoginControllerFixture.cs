@@ -6,7 +6,7 @@ using Membrane.Entities.Enums;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Membrane.Test.Unit.Web.MonoRail.Controllers
+namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 {
 	[TestFixture]
 	public class LoginControllerFixture : BaseControllerFixture
