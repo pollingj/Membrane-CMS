@@ -1,2 +1,0 @@
-﻿<h1>${post.Title}</h1>
-<p>${post.Body}</p>
