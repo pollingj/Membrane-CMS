@@ -45,7 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Membrane.Entities\Membrane.Entities.csproj">
+      <Project>{252BEF52-0747-49C1-95AE-4AFEBB259F73}</Project>
+      <Name>Membrane.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

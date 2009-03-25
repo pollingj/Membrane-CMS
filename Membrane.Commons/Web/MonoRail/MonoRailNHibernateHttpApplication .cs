@@ -183,7 +183,7 @@ namespace Membrane.Commons.Web.MonoRail
 					GetForeignKeyName = (info => info.Name + "_Id"),
 					GetTableName = (type => type.Name),
 					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name),
-					IsBaseType = (type => type == typeof(BaseModel) || type == typeof(BaseOrderModel))
+					//IsBaseType = (type => type == typeof(BaseModel) || type == typeof(BaseOrderModel))
 				}
 			};
 
