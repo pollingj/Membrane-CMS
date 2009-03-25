@@ -18,9 +18,9 @@ namespace Membrane.Controllers
 		}
 
 		[AccessibleThrough(Verb.Post)]
-		public void Login(string username, string password)
+		public void Login([DataBind("login")]AuthenticationRequestDTO authenticationRequest)
 		{
-			var authenticatedUser = service.AuthenticateUser(username, password);
+			var authenticatedUser = service.AuthenticateUser(authenticationRequest);
 
 			if (authenticatedUser != null)
 			{

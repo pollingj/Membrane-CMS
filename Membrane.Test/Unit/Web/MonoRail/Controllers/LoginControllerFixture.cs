@@ -14,6 +14,8 @@ namespace Membrane.Test.Unit.Web.MonoRail.Controllers
 		private IAuthenticationService service;
 		private LoginController controller;
 
+		private readonly AuthenticationRequestDTO authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
+
 		public override void SetUp()
 		{
 			base.SetUp();
@@ -28,8 +30,8 @@ namespace Membrane.Test.Unit.Web.MonoRail.Controllers
 		public void ShouldAlertUserForInvalidLogin()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.AuthenticateUser("username", "password")).Return(null))
-				.Verify(() => controller.Login("username", "password"));
+				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(null))
+				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.AreEqual(1, controller.Flash.Count, "Flash error is not being populate");
 			Assert.AreEqual("Username or Password not recognised", controller.Flash["error"], "Flash is not being populated with correct message");
@@ -50,8 +52,8 @@ namespace Membrane.Test.Unit.Web.MonoRail.Controllers
 		private void DoSuccessFullLogin(AuthenticatedUserDTO authenticatedUser, UserType role, string redirectPath)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.AuthenticateUser("username", "password")).Return(authenticatedUser))
-				.Verify(() => controller.Login("username", "password"));
+				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(authenticatedUser))
+				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.IsTrue(Context.CurrentUser.Identity.IsAuthenticated);
 			Assert.IsTrue(Context.CurrentUser.IsInRole(role.ToString()));
