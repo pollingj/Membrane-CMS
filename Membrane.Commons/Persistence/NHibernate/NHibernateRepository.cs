@@ -21,14 +21,13 @@ namespace Membrane.Commons.Persistence.NHibernate
 			return sessionLocater.CurrentSession.Load<T>(id);
 		}
 
-		public Guid Save(T entity)
+		public void Save(T entity)
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
-			var id = (Guid)sessionLocater.CurrentSession.Save(entity);
+			sessionLocater.CurrentSession.Save(entity);
 			sessionLocater.CurrentSession.Flush();
 
-			return id;
 		}
 
 		public IQueryable<T> AsQueryable()
@@ -59,40 +58,6 @@ namespace Membrane.Commons.Persistence.NHibernate
 
 
 
-		public ICollection<T> Find(IQueryable<T> queryable)
-		{
-			return queryable.ToList();
-		}
 
-		public T FindOne(IQueryable<T> queryable)
-		{
-			GuardAgainst.ArgumentNull(queryable, "IQueryable");
-
-			IList<T> entities = queryable.ToList();
-
-			return entities.Count > 0 ? entities[0] : null;
-		}
-
-		public object[] FindOne(string query, Type type)
-		{
-			var entities = sessionLocater.CurrentSession.CreateSQLQuery(query).List();
-
-			return entities.Count > 0 ? (object[])entities[0] : null;
-		}
-
-		public bool Update(T item)
-		{
-			var success = false;
-			try
-			{
-				sessionLocater.CurrentSession.Update(item);
-				sessionLocater.CurrentSession.Flush();
-				success = true;
-			}
-			catch (Exception)
-			{
-			}
-			return success;
-		}
 	}
 }

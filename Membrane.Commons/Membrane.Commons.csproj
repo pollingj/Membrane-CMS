@@ -98,6 +98,7 @@
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\IEntity.cs" />
+    <Compile Include="Persistence\InMemory\InMemoryRepository.cs" />
     <Compile Include="Persistence\IQueryCommand.cs" />
     <Compile Include="Persistence\IRepository.cs" />
     <Compile Include="Persistence\NHibernate\INHibernateSessionLocater.cs" />
