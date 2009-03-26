@@ -1,0 +1,27 @@
+﻿<use namespace="Castle.MonoRail.Views.Spark"/> 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta content="false" http-equiv="imagetoolbar" />
+		<meta content="true" name="MSSmartTagsPreventParsing" />
+		<meta content="Membrane " name="author" />
+		<meta content="noindex,nofollow" name="robots" />
+		
+		<link href="/Content/css/reset.css" media="screen,projection" type="text/css" rel="stylesheet" />
+		<link href="/Content/css/layout.css" media="screen,projection" type="text/css" rel="stylesheet" />
+		
+		<script type="text/javascript" src="/Content/js/jquery-1.2.6.pack.js"></script>	
+		<script type="text/javascript" src="/Content/js/jquery.validate.min.js"></script>
+	    
+		<title>${Title} :: Membrane</title>
+	</head>
+	<body>
+		<use content="view"/>
+		
+
+	</body>
+</html>
+    

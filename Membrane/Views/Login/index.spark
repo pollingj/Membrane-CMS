@@ -1,0 +1,29 @@
+﻿<viewdata login="Membrane.Core.DTOs.AuthenticationRequestDTO" />
+<global Title="'Login'"/>
+<h1>Welcome to Membrane</h1>
+
+<!--<if condition='error'>
+<div id="formerrors">
+    <h2>There is a problem with this form</h2>
+    <ul>
+        <li>$error</li>
+    </ul>
+</div>
+</if>-->
+
+
+${Form.FormTag(new { id='loginDetails', action='login' })}
+	<h2>Please login with your Membrane Account</h2>
+	<fieldset>
+		<legend>Log in Details</legend>
+		<div class="values">
+            ${Form.LabelFor("login.username", "Username:")}
+            ${Form.TextField("login.username")}
+		</div>
+		<div class="values">
+            ${Form.LabelFor("login.password", "Password:")}
+            ${Form.PasswordField("loginpassword")}
+		</div>
+		${Form.Submit("Login", new { id = 'submit' })} 
+	</fieldset>    
+${Form.EndFormTag()}

@@ -29,7 +29,9 @@ namespace Membrane.Commons.Web.MonoRail
 		protected static IWindsorContainer container;
 		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
 		protected Assembly webAppAssembly;
-		private Dictionary<string, Assembly> _assemblyList; 
+		private Dictionary<string, Assembly> _assemblyList;
+
+		private string pluginFolder;
 
 		protected MonoRailNHibernateHttpApplication(Assembly entitiesAssembly)
 		{
@@ -40,8 +42,10 @@ namespace Membrane.Commons.Web.MonoRail
 		public void Application_OnStart()
 		{
 			container = new WindsorContainer();
+			pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 
-			RegisterPlugins();
+			if (Directory.Exists(pluginFolder))
+				RegisterPlugins();
 
 			RegisterRoutes(RoutingModuleEx.Engine);
 
@@ -49,7 +53,8 @@ namespace Membrane.Commons.Web.MonoRail
 			RegisterComponents();
 			RegisterControllers();
 
-			ResolveEntityPluginDlls();
+			if (Directory.Exists(pluginFolder))
+				ResolveEntityPluginDlls();
 			ConfigureNHibernate();
 		}
 
@@ -65,7 +70,6 @@ namespace Membrane.Commons.Web.MonoRail
 
 		protected virtual void RegisterPlugins()
 		{
-			var pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 			var pluginFilePaths = Directory.GetFiles(pluginFolder, "*.dll");
 
 			foreach (var pluginFilePath in pluginFilePaths)
@@ -74,7 +78,7 @@ namespace Membrane.Commons.Web.MonoRail
 
 				try
 				{
-					var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof(IMembranePlugin).IsAssignableFrom(t)).ToList();
+					var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof (IMembranePlugin).IsAssignableFrom(t)).ToList();
 
 					if (pluginTypes.Count > 0)
 					{
@@ -82,10 +86,10 @@ namespace Membrane.Commons.Web.MonoRail
 
 						foreach (var pluginType in pluginTypes)
 						{
-							var plugin = (IMembranePlugin)Activator.CreateInstance(pluginType);
-							
-                            plugin.Initialize();
-                            plugin.RegisterComponents(container);
+							var plugin = (IMembranePlugin) Activator.CreateInstance(pluginType);
+
+							plugin.Initialize();
+							plugin.RegisterComponents(container);
 						}
 					}
 				}

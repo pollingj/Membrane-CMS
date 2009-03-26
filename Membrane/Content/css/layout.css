@@ -1,0 +1,390 @@
+/* =======================================================================================================
+Generic Styles
+==========================================================================================================*/
+html 
+{ 
+	font-size: 100%;	
+	height: 100%;
+}
+
+body 
+{
+	background:#ffffff; 
+	font-size : 62.5%;
+	font-family: Verdana, helvetica, San-Serif;
+	line-height : 2em;
+	color: #666; 
+	height: 100%; 
+	margin: 30px 14px;
+}
+
+.resetStyle
+{
+	font-size: 1.2em; 
+	line-height: 1.6666666em;	
+}
+
+img { display: block; }
+
+h1
+{
+	font-size: 1.75em;
+	font-weight: bold;
+	line-height: 1.9047618em;
+	padding-top: 0em;
+	padding-bottom: 0em;
+	color: #000;	
+}
+
+h2
+{ 
+	font-size: 2em;
+	line-height: 1.666666666em;	
+	padding-top: 0.666666666em;
+	padding-bottom: 1em;
+	font-weight:normal;
+	clear:both;
+}
+
+h3
+{ 
+	clear: both;
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 2.6666664em;
+	border-bottom: 1px solid #ccc;
+	margin: 0 0 2em 0;
+}
+
+h4
+{ 
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 2.6666664em;
+}
+
+h5
+{
+	font-size: 1em;
+	font-weight: bold;
+	padding-bottom: 1.6666666em;	 
+}
+
+h6
+{ 
+	font-size: 1em; 
+	font-weight: bold;
+	padding-bottom: 1.6666666em;
+}
+
+strong
+{
+	font-weight: bold;
+}
+
+ul, p, ol, dl
+{
+	padding-bottom: 1.6666666em;
+	padding-top: 0.41666666em; 
+	padding-bottom: 1.25em;	
+	font-size: 1.1em;
+}
+
+
+a
+{
+	color: #ff7300;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #ff7300;
+	text-decoration: underline;
+}
+
+legend
+{
+	display: none;
+}
+
+label
+{
+	float: left;
+	display: inline;
+	width: 170px;
+	font-size: 1.2em;
+	margin-top: 2px;
+	font-weight: bold;
+}
+
+em 
+{
+	font-style: italic;
+}
+
+/* =======================================================================================================
+Page Layout
+==========================================================================================================*/
+
+/* =======================================================================================================
+Menus
+==========================================================================================================*/
+
+/* =======================================================================================================
+Forms
+==========================================================================================================*/
+
+
+
+/*form div.values input[type=text], select, form div textarea, form div input[type=checkbox], form div input[type=radio]*/
+form div.values input.std, select.std, form div textarea 
+{
+	float: left;
+	display: inline;
+	border: 1px solid #ccc;
+	height: 18px;
+	width:  372px;
+	padding-top: 3px;
+}
+
+form div.values select.std
+{
+    height: 26px;
+    padding-bottom: 3px;
+}
+
+form div.values input.short, form div.values select.short
+{
+	width: 200px;
+}
+
+form div.values div.chk
+{
+    float: left;
+    display: inline;
+}
+
+form div.values div.chk div
+{
+    margin: 0;
+}
+
+form div.values div.chk input
+{
+	float: left;
+	display: inline;    
+    width: 20px;
+    border: 0;
+}
+
+form div.values div.chk label
+{
+	width: 230px;
+	float: left;
+	display: inline;
+	padding-left: 10px;
+	font-weight: normal;
+	margin-top: 0;	
+}
+
+form div.values input.btn, .btn
+{
+    width: 100px;
+    float: left;
+    display: inline;
+    padding-bottom: 3px;
+    height: 28px;
+}
+
+form div.values select.many
+{
+	height: 102px;
+}
+
+form div input.hidden
+{
+	display: none; 
+}
+
+form div input.short
+{
+	width: 142px;
+}
+
+form div textarea
+{
+	height: 130px;
+}
+
+form input.btn
+{
+	margin-top: 1px;
+}
+
+form input.readonly, form div.values input.readonly
+{
+	border: 0;
+	background: transparent;
+}
+
+form div
+{
+	clear: both;
+	float: left;
+	display: inline;
+	margin-bottom: 15px;
+	min-height: 22px;
+	width:544px;
+}
+
+form #documentFields div
+{
+	width: 880px;
+}
+
+form #documentFields div div
+{
+	float: left;
+	display: inline;
+	clear: none;
+	width: 372px;
+}
+
+form div span
+{
+	float: left;
+	display: inline;
+	margin-left: 15px;
+	width: 320px;
+}
+
+form div span.helptxt2
+{
+	margin-left:170px;
+	width:372px;
+}
+
+#formerrors
+{
+	float: left;
+	display: inline;
+	background: #999999;
+	width: 825px;
+	padding: 17px 25px;
+	margin: 10px;
+	color: #000;
+}
+
+#formerrors h2
+{
+	padding: 0;
+	color: #fff;
+}
+
+#formerrors ul
+{
+	margin-left: 20px;
+	list-style-type: disc;
+}
+
+button, input.submit
+{
+	width: 100px;
+	height: 28px;
+	padding-bottom: 3px;
+}
+
+
+.man label
+{
+    width: 135px;
+}
+
+label.error
+{
+    width: 372px;
+    color: #c00;
+    margin-left: 170px;    
+}
+
+.man span
+{
+    display: inline;
+    width: 20px;
+    color: #c00;
+    float: left; 
+}
+
+#entry, .formControls    
+{
+    border-top: solid 1px #d0d0d0;
+    margin-top: 10px;
+    padding: 25px 0;
+    width: 100%;
+}
+
+input.btnRight
+{
+	float:right;
+	margin-left:15px;
+	margin-bottom:20px;
+}
+
+/* =======================================================================================================
+Login
+==========================================================================================================*/
+#loginDetails
+{
+	border: 1px solid #999;
+	width: 322px;
+	margin: 112px auto;
+	padding: 37px 25px;
+}
+
+#loginDetails h2
+{
+	font-size: 1.3em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 1.4em;
+	padding: 0;
+}
+
+#loginDetails div
+{
+	width: 240px;
+	display: inline;
+}
+
+#loginDetails label
+{
+	width: 100px;
+}
+
+#loginDetails input
+{
+	width: 114px;
+}
+
+#loginDetails input.btn
+{
+	float: right;
+	display: inline;
+	width: 78px;
+}
+
+#login #inner
+{
+	width: 322px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#login #formerrors
+{
+	float: none;
+	display: block;
+	margin-top: 10px;
+	width: 302px;
+	margin-bottom: -100px;
+}

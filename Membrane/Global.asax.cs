@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Castle.MonoRail.Framework.Routing;
 using Membrane.Commons.Web.MonoRail;
+using Membrane.Core.Services;
+using Membrane.Core.Services.Interfaces;
 
 namespace Membrane
 {
@@ -16,7 +18,7 @@ namespace Membrane
 
 		public override void RegisterApplicationComponents()
 		{
-			
+			container.AddComponent<IAuthenticationService, AuthenticationService>();
 		}
 
 		public override void RegisterRoutes(RoutingEngine rules)

@@ -17,6 +17,8 @@ namespace Membrane.Controllers
 			this.service = service;
 		}
 
+		public void Index(){}
+
 		[AccessibleThrough(Verb.Post)]
 		public void Login([DataBind("login")]AuthenticationRequestDTO authenticationRequest)
 		{

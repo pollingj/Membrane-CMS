@@ -6,9 +6,9 @@ namespace Membrane.Entities
 {
 	public class User : IEntity
 	{
-		public Guid Id { get; set; }
-		public string Username { get; set; }
-		public string Password { get; set; }
-		public UserType Type { get; set; }
+		public virtual Guid Id { get; set; }
+		public virtual string Username { get; set; }
+		public virtual string Password { get; set; }
+		public virtual UserType Type { get; set; }
 	}
 }

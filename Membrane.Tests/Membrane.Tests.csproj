@@ -52,6 +52,7 @@
       <HintPath>..\Libs\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -64,8 +65,14 @@
       <HintPath>..\Libs\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="WatiN.Core, Version=2.0.0.1000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\WatiN.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acceptance\AcceptanceTestBase.cs" />
+    <Compile Include="Acceptance\WhenLoginPageIsRequested.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Queries\Users\UserByUsernameAndPasswordFixture.cs" />
@@ -90,6 +97,9 @@
       <Project>{390BD897-89B6-4D73-8B92-8B66C688004C}</Project>
       <Name>Membrane</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
