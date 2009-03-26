@@ -18,7 +18,7 @@ namespace Membrane.Core.Queries.Users
 
 		public IQueryable<User> Execute(IRepository<User> repository)
 		{
-			return repository.AsQueryable().Where(a => a.Username == username && a.Password == password);
+			return repository.AsQueryable().Where(u => u.Username == username && u.Password == password);
 		}
 	}
 }
