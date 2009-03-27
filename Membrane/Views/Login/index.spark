@@ -22,7 +22,7 @@ ${Form.FormTag(new { id='loginDetails', action='login' })}
 		</div>
 		<div class="values">
             ${Form.LabelFor("login.password", "Password:")}
-            ${Form.PasswordField("loginpassword")}
+            ${Form.PasswordField("login.password")}
 		</div>
 		${Form.Submit("Login", new { id = 'submit' })} 
 	</fieldset>    

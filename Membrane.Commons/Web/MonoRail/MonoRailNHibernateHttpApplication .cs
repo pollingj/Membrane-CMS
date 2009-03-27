@@ -194,8 +194,10 @@ namespace Membrane.Commons.Web.MonoRail
 			model
 				.AddEntityAssembly(assembly)
 				.Where(entity => entity.IsAbstract == false &&
-								 entity.GetInterface("IEntity") != null)
+				                 entity.GetInterface("IEntity") != null)
 				.Configure(configuration);
+			
+
 		}
 
 		/// <summary>

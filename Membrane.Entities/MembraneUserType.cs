@@ -4,11 +4,9 @@ using Membrane.Entities.Enums;
 
 namespace Membrane.Entities
 {
-	public class User : IEntity
+	public class MembraneUserType : IEntity
 	{
 		public virtual Guid Id { get; set; }
-		public virtual string Username { get; set; }
-		public virtual string Password { get; set; }
 		public virtual UserType Type { get; set; }
 	}
 }

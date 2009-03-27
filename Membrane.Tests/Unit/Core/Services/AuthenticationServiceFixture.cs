@@ -15,7 +15,7 @@ namespace Membrane.Tests.Unit.Core.Services
 	public class AuthenticationServiceFixture : BaseFixture
 	{
 		private IAuthenticationService service;
-		private IRepository<User> userRepository;
+		private IRepository<MembraneUser> userRepository;
 
 		private AuthenticationRequestDTO authenticationRequest;
 
@@ -23,7 +23,7 @@ namespace Membrane.Tests.Unit.Core.Services
 		{
 			base.SetUp();
 
-			userRepository = mockery.DynamicMock<IRepository<User>>();
+			userRepository = mockery.DynamicMock<IRepository<MembraneUser>>();
 			service = new AuthenticationService(userRepository);
 
 			authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
@@ -33,7 +33,7 @@ namespace Membrane.Tests.Unit.Core.Services
 		public void CanReturnAuthenicatedUser()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password))).Return(new User { Id = Guid.NewGuid(), Username = "username", Password = "password", Type = UserType.Administrator }));
+				.Expecting(() => Expect.Call(userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password))).Return(new MembraneUser { Id = Guid.NewGuid(), Username = "username", Password = "password", Type = new MembraneUserType { Id = Guid.NewGuid(), Type = UserType.Administrator }}));
 			service.AuthenticateUser(authenticationRequest);
 
 		}

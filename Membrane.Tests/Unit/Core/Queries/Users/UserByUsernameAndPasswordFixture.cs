@@ -14,16 +14,16 @@ namespace Membrane.Tests.Unit.Core.Queries.Users
 		[Test]
 		public void Should_return_matches_from_a_repository()
 		{
-			var users = new List<User>
+			var users = new List<MembraneUser>
                                {
-                                   new User {Username = "andypike", Password = "apass"},
-                                   new User {Username = "johnpolling", Password = "jpass"},
-                                   new User {Username = "someone", Password = "pass"},
-                                   new User {Username = "another", Password = "pass"},
-                                   new User {Username = "onemore", Password = "pass"}
+                                   new MembraneUser {Username = "andypike", Password = "apass"},
+                                   new MembraneUser {Username = "johnpolling", Password = "jpass"},
+                                   new MembraneUser {Username = "someone", Password = "pass"},
+                                   new MembraneUser {Username = "another", Password = "pass"},
+                                   new MembraneUser {Username = "onemore", Password = "pass"}
                                };
 
-			IRepository<User> repository = new InMemoryRepository<User>(users);
+			IRepository<MembraneUser> repository = new InMemoryRepository<MembraneUser>(users);
 			var matches = repository.Find(new UserByUsernameAndPassword("johnpolling", "jpass"));
 
 			Assert.That(matches.Count, Is.EqualTo(1));

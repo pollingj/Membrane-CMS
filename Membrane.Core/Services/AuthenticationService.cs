@@ -11,9 +11,9 @@ namespace Membrane.Core.Services
 {
 	public class AuthenticationService : IAuthenticationService
 	{
-		private readonly IRepository<User> userRepository;
+		private readonly IRepository<MembraneUser> userRepository;
 
-		public AuthenticationService(IRepository<User> userRepository)
+		public AuthenticationService(IRepository<MembraneUser> userRepository)
 		{
 			GuardAgainst.ArgumentNull(userRepository, "userRepository");
 
@@ -26,7 +26,7 @@ namespace Membrane.Core.Services
 
 			var user = userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password));
 
-			return Mapper.Map<User, AuthenticatedUserDTO>(user);
+			return Mapper.Map<MembraneUser, AuthenticatedUserDTO>(user);
 		}
 	}
 }

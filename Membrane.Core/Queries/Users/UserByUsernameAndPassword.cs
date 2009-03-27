@@ -5,7 +5,7 @@ using Membrane.Entities;
 
 namespace Membrane.Core.Queries.Users
 {
-	public class UserByUsernameAndPassword : IQueryCommand<User>
+	public class UserByUsernameAndPassword : IQueryCommand<MembraneUser>
 	{
 		private readonly string username;
 		private readonly string password;
@@ -16,7 +16,7 @@ namespace Membrane.Core.Queries.Users
 			this.password = password;
 		}
 
-		public IQueryable<User> Execute(IRepository<User> repository)
+		public IQueryable<MembraneUser> Execute(IRepository<MembraneUser> repository)
 		{
 			return repository.AsQueryable().Where(u => u.Username == username && u.Password == password);
 		}
