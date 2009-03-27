@@ -30,7 +30,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		public void ShouldAlertUserForInvalidLogin()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(null))
+				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(new AuthenticatedUserDTO()))
 				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.AreEqual(1, controller.Flash.Count, "Flash error is not being populate");

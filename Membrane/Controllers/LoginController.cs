@@ -24,7 +24,7 @@ namespace Membrane.Controllers
 		{
 			var authenticatedUser = service.AuthenticateUser(authenticationRequest);
 
-			if (authenticatedUser != null)
+			if (authenticatedUser.Id != Guid.Empty)
 			{
 				CreateAuthenticationTicket(authenticatedUser);
 
