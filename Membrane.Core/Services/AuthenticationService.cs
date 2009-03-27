@@ -25,6 +25,13 @@ namespace Membrane.Core.Services
 			GuardAgainst.ArgumentNull(authenticationRequest, "authenticationRequest");
 
 			var user = userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password));
+			
+			Mapper.CreateMap<MembraneUser, AuthenticatedUserDTO>()
+				.ForMember(dest => dest.Type, opt => opt.MapFrom(x => x.Type))
+				.ForMember(dest => dest.Identity, opt => opt.Ignore())
+				.ForMember(dest => dest.Name, opt => opt.Ignore())
+				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
+				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 
 			return Mapper.Map<MembraneUser, AuthenticatedUserDTO>(user);
 		}

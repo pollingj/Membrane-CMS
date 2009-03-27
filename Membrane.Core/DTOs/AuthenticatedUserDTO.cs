@@ -1,6 +1,5 @@
 using System;
 using System.Security.Principal;
-using Membrane.Entities;
 using Membrane.Entities.Enums;
 
 namespace Membrane.Core.DTOs
