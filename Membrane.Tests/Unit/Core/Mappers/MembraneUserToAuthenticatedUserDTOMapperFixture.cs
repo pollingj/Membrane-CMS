@@ -18,7 +18,6 @@ namespace Membrane.Tests.Unit.Core.Mappers
 				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 			Mapper.AssertConfigurationIsValid();
-
 		}
 	}
 }
