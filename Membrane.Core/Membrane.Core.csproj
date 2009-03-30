@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
+    <Compile Include="Mappers\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\Users\UserByUsernameAndPassword.cs" />
     <Compile Include="Services\AuthenticationService.cs" />

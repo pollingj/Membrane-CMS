@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMapper.cs" />
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\IEntity.cs" />
