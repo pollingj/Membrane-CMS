@@ -4,7 +4,6 @@ using Membrane.Commons.Persistence.InMemory;
 using Membrane.Core.Queries.Users;
 using Membrane.Entities;
 using NUnit.Framework;
-using NUnit.Framework.SyntaxHelpers;
 
 namespace Membrane.Tests.Unit.Core.Queries.Users
 {
@@ -26,7 +25,7 @@ namespace Membrane.Tests.Unit.Core.Queries.Users
 			IRepository<MembraneUser> repository = new InMemoryRepository<MembraneUser>(users);
 			var matches = repository.Find(new UserByUsernameAndPassword("johnpolling", "jpass"));
 
-			Assert.That(matches.Count, Is.EqualTo(1));
+			Assert.AreEqual(1, matches.Count);
 		}
 
 	}

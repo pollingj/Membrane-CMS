@@ -29,7 +29,7 @@ namespace Membrane.Tests.Acceptance
 
 				// Now check that the error message is shown and we are still on the login index page
 				Assert.AreEqual(BuildUrl("Login", "Index"), browser.Url);
-				Assert.That(browser.ContainsText("Username or Password not recognised"));
+				Assert.IsTrue(browser.ContainsText("Username or Password not recognised"));
 			}
 		}
 
