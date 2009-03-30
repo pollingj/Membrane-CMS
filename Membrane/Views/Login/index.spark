@@ -2,14 +2,13 @@
 <global Title="'Login'"/>
 <h1>Welcome to Membrane</h1>
 
-<!--<if condition='error'>
-<div id="formerrors">
+<div id="formerrors" if="ViewData['error'] != null">
     <h2>There is a problem with this form</h2>
     <ul>
-        <li>$error</li>
+        <li>${ViewData['error']}</li>
     </ul>
 </div>
-</if>-->
+
 
 
 ${Form.FormTag(new { id='loginDetails', action='login' })}

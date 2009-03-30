@@ -29,5 +29,10 @@ namespace Membrane.Tests.Acceptance
 			return string.Format("http://{0}:{1}/{2}/{3}{4}", server, port, controller, action, extension);
 		}
 
+		protected string BuildUrl(string area, string controller, string action)
+		{
+			return string.Format("http://{0}:{1}/{2}/{3}/{4}{5}", server, port, area, controller, action, extension);
+		}
+
 	}
 }

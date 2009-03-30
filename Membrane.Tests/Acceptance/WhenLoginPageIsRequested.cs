@@ -6,7 +6,7 @@ namespace Membrane.Tests.Acceptance
 	[TestFixture, Category("Acceptance")]
 	public class WhenLoginPageIsRequested : AcceptanceTestBase
 	{
-		[Test, Category("Acceptance")]
+		[Test]
 		public void ShouldRenderLoginForm()
 		{
 			using (var browser = new IE(BuildUrl("Login", "Index")))
@@ -17,6 +17,60 @@ namespace Membrane.Tests.Acceptance
 				Assert.AreEqual("Login", browser.Form("loginDetails").Button("submit").Text);
 
 			}
+		}
+
+		[Test]
+		public void CanFailLoginAndDisplayErrorMessage()
+		{
+			using (var browser = new IE(BuildUrl("Login", "Index")))
+			{
+				// Fill in the form
+				CompleteLoginForm(browser, "pollingj", "password2");
+
+				// Now check that the error message is shown and we are still on the login index page
+				Assert.AreEqual(BuildUrl("Login", "Index"), browser.Url);
+				Assert.That(browser.ContainsText("Username or Password not recognised"));
+			}
+		}
+
+		[Test]
+		public void CanLoginAsAdministrator()
+		{
+			using (var browser = new IE(BuildUrl("Login", "Index")))
+			{
+				// Fill in the form
+				CompleteLoginForm(browser, "johnpolling", "password");
+
+				// Now check that the error message is shown and we are still on the login index page
+				Assert.AreEqual(BuildUrl("Administrator", "Home", "Index"), browser.Url);
+			}
+		}
+
+		[Test]
+		public void CanLoginAsUser()
+		{
+			using (var browser = new IE(BuildUrl("Login", "Index")))
+			{
+				// Fill in the form
+				CompleteLoginForm(browser, "andypike", "password");
+
+				// Now check that the error message is shown and we are still on the login index page
+				Assert.AreEqual(BuildUrl("User", "Home", "Index"), browser.Url);
+			}
+		}
+
+		private void CompleteLoginForm(IE browser, string username, string password)
+		{
+			browser.TextField("login_username").Clear();
+			browser.TextField("login_username").TypeText(username);
+			browser.TextField("login_password").Clear();
+			browser.TextField("login_password").TypeText(password);
+
+			// Submit the form
+			browser.Form("loginDetails").Submit();
+
+			// Wait for the post back to complete
+			browser.WaitForComplete();
 		}
 	}
 }
