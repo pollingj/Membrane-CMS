@@ -154,8 +154,8 @@
   <ItemGroup>
     <Content Include="Content\css\layout.css" />
     <Content Include="Content\css\reset.css" />
-    <Content Include="Content\js\jquery-1.2.6.pack.js" />
-    <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Logging.config" />
   </ItemGroup>
   <ItemGroup>

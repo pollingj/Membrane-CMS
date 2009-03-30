@@ -1,4 +1,5 @@
 ﻿<use namespace="Castle.MonoRail.Views.Spark"/> 
+<viewdata combiner="Castle.MonoRail.Framework.ViewComponents.CombineJSViewComponent.CombinerConfig"/>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -10,11 +11,16 @@
 		<meta content="Membrane " name="author" />
 		<meta content="noindex,nofollow" name="robots" />
 		
-		<link href="/Content/css/reset.css" media="screen,projection" type="text/css" rel="stylesheet" />
-		<link href="/Content/css/layout.css" media="screen,projection" type="text/css" rel="stylesheet" />
-		
-		<script type="text/javascript" src="/Content/js/jquery-1.2.6.pack.js"></script>	
-		<script type="text/javascript" src="/Content/js/jquery.validate.min.js"></script>
+		<!--media="screen,projection" type="text/css" rel="stylesheet"-->
+		<JSCombine key="'css'">
+			# combiner.Add("Content/css/reset.css");
+			# combiner.Add("Content/css/layout.css");
+		</JSCombine>
+
+		<JSCombine key="'js'">
+			# combiner.Add("Content/js/jquery.js");
+			# combiner.Add("Content/js/jquery.validate.js");
+	    </JSCombine>
 	    
 		<title>${Title} :: Membrane</title>
 	</head>
