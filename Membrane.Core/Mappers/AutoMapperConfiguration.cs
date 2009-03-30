@@ -1,4 +1,5 @@
 using AutoMapper;
+using Membrane.Core.DTOs;
 using Membrane.Entities;
 
 namespace Membrane.Core.Mappers
@@ -7,9 +8,12 @@ namespace Membrane.Core.Mappers
 	{
 		public static void Configure()
 		{
-			/*var mappers = Mapper.CreateMap<MembraneUser, MembraneUser>();
-			IObjectMapper mapper = new AutoMapper.o
-			var conf = new Configuration(mappers)*/
+			Mapper.CreateMap<MembraneUser, AuthenticatedUserDTO>()
+				.ForMember(dest => dest.Type, opt => opt.MapFrom(source => source.Type.Type))
+				.ForMember(dest => dest.Identity, opt => opt.Ignore())
+				.ForMember(dest => dest.Name, opt => opt.Ignore())
+				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
+				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 		}
 	}
 }

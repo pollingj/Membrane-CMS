@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Castle.MonoRail.Framework.Routing;
 using Membrane.Commons.Web.MonoRail;
+using Membrane.Core.Mappers;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
 
@@ -14,6 +15,7 @@ namespace Membrane
 		public Global()
 			: base(Assembly.Load("Membrane.Entities"))
 		{
+			AutoMapperConfiguration.Configure();
 		}
 
 		public override void RegisterApplicationComponents()

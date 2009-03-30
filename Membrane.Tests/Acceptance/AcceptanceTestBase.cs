@@ -1,9 +1,7 @@
 using System.Configuration;
-using NUnit.Framework;
 
 namespace Membrane.Tests.Acceptance
 {
-	[TestFixture, Category("Acceptance")]
 	public class AcceptanceTestBase
 	{	
 		protected string server;

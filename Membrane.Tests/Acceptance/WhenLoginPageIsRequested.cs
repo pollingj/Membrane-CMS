@@ -3,6 +3,7 @@ using WatiN.Core;
 
 namespace Membrane.Tests.Acceptance
 {
+	[TestFixture, Category("Acceptance")]
 	public class WhenLoginPageIsRequested : AcceptanceTestBase
 	{
 		[Test, Category("Acceptance")]
