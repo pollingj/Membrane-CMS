@@ -1,5 +1,4 @@
 using System;
-using Membrane.Entities.Enums;
 
 namespace Membrane.Core.DTOs
 {

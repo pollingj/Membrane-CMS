@@ -30,7 +30,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 
 			controller = new UserGroupsController(service);
 
-			PrepareController(controller, "Administrator", "UserGroups", "List");
+			PrepareController(controller, "UserGroups");
 
 			userGroupList = new List<UserGroupDTO>
 			               	{
@@ -41,7 +41,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		}
 
 		[Test]
-		public void CanListUserTypesWithNoPagingInformation()
+		public void CanListUserGroupsWithNoPagingInformation()
 		{
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(service.GetPagedUserGroups(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(userGroupList))
@@ -52,7 +52,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 
 
 		[Test]
-		public void CanListUserTypesWithPagingInformation()
+		public void CanListUserGroupsWithPagingInformation()
 		{
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(service.GetPagedUserGroups(anotherPageNumber, anotherPageSize)).Return(userGroupList))
@@ -61,9 +61,45 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			AssertListData();
 		}
 
+		[Test]
+		public void CanShowNewUserGroupPage()
+		{
+			controller.New();
+
+			Assert.AreEqual(typeof(UserGroupDTO), controller.PropertyBag["grouptype"]);
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
+		}
+		
+		[Test]
+		public void CanSuccessfullySubmitNewUserGroup()
+		{
+			var newGroup = new UserGroupDTO {Name = "New User Group"};
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Create(newGroup)).Return(Guid.NewGuid()))
+				.Verify(() => controller.Submit(newGroup));
+
+			Assert.IsNull(controller.Flash["error"]);
+			Assert.AreEqual("/UserGroups/List.castle", Response.RedirectedTo);
+		}
+
+		[Test]
+		public void CanFailSubmitNewUserGroup()
+		{
+			var newGroup = new UserGroupDTO { Name = "New User Group" };
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Create(newGroup)).Return(Guid.Empty))
+				.Verify(() => controller.Submit(newGroup));
+
+			Assert.AreEqual(newGroup, controller.Flash["group"]);
+			Assert.IsNotNull(controller.Flash["error"]);
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
+		}
+
+
+
 		private void AssertListData()
 		{
-			Assert.AreEqual(@"Administrator\UserGroups\List", controller.SelectedViewName, "List view not being used");
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName, "List view not being used");
 			Assert.AreEqual(userGroupList, controller.PropertyBag["groups"], "groups PropertyBag not being set");
 		}
 	}
