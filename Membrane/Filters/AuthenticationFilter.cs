@@ -1,13 +1,10 @@
 using Castle.MonoRail.Framework;
 using Membrane.Core.DTOs;
-using Membrane.Entities.Enums;
 
 namespace Membrane.Filters
 {
 	public class AuthenticationFilter : IFilter
 	{
-		private readonly UserType userType;
-
 		public bool Perform(ExecuteWhen exec, IEngineContext context, IController controller, IControllerContext controllerContext)
 		{
 			// Read previous authenticated principal from session 
