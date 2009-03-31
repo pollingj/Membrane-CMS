@@ -87,6 +87,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LogOffControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Filters\AuthenticationFilterFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">

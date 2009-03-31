@@ -63,6 +63,7 @@ namespace Membrane.Controllers
 				cookie.Expires = ticket.Expiration;
 
 			Context.CurrentUser = user;
+			Context.Session["user"] = user;
 		}
 
 		public void LogOff()
