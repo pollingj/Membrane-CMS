@@ -181,6 +181,7 @@
     <None Include="Views\Administrator\Home\index.spark" />
     <None Include="Views\layouts\default.spark" />
     <None Include="Views\Login\index.spark" />
+    <None Include="Views\shared\adminmenu.spark" />
     <None Include="Views\shared\sharedmenu.spark" />
     <None Include="Views\User\Home\index.spark" />
   </ItemGroup>

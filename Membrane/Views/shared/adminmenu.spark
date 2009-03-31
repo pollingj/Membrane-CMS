@@ -1,0 +1,3 @@
+﻿<ul id="adminMenu">
+	<li>${Url.Link( "User Types", new {area = "Administrator", controller = "UserType", action = "List"}, new { id="UserTypes" })}</li>
+</ul>
