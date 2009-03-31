@@ -137,8 +137,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Administrator\HomeController.cs" />
+    <Compile Include="Controllers\Administrator\UserTypesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogOffController.cs" />
+    <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -173,8 +177,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Administrator\Home\index.spark" />
     <None Include="Views\layouts\default.spark" />
     <None Include="Views\Login\index.spark" />
+    <None Include="Views\shared\sharedmenu.spark" />
+    <None Include="Views\User\Home\index.spark" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewComponents\" />

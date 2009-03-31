@@ -58,19 +58,5 @@ namespace Membrane.Tests.Acceptance
 				Assert.AreEqual(BuildUrl("User", "Home", "Index"), browser.Url);
 			}
 		}
-
-		private void CompleteLoginForm(IE browser, string username, string password)
-		{
-			browser.TextField("login_username").Clear();
-			browser.TextField("login_username").TypeText(username);
-			browser.TextField("login_password").Clear();
-			browser.TextField("login_password").TypeText(password);
-
-			// Submit the form
-			browser.Form("loginDetails").Submit();
-
-			// Wait for the post back to complete
-			browser.WaitForComplete();
-		}
 	}
 }

@@ -1,0 +1,4 @@
+﻿<global Title="'Administrator Home Page'"/>
+<use file="SharedMenu"/>
+
+<SharedMenu />

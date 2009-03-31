@@ -3,6 +3,7 @@ using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
 using Membrane.Commons.Web.MonoRail;
+using Membrane.Controllers;
 using Membrane.Core.Mappers;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
@@ -31,11 +32,19 @@ namespace Membrane
 
 		public override void RegisterRoutes(RoutingEngine rules)
 		{
-			rules.Add(new PatternRoute("[controller]/[action]")
-			          	.DefaultForArea().IsEmpty
-			          	.DefaultForController().Is("Home")
-			          	.DefaultForAction().Is("Index")
-			          	.Restrict("controller").AnythingBut("MonoRail"));
+			rules.Add(new PatternRoute("/")
+				.DefaultForArea().IsEmpty
+				.DefaultForController().Is<LoginController>()
+				.DefaultForAction().Is("index"));
+
+			rules.Add(new PatternRoute("/<controller>/<action>")
+						.DefaultForArea().IsEmpty
+						.Restrict("controller").AnythingBut("MonoRail"));
+
+			rules.Add(new PatternRoute("/<area>/<controller>/<action>")
+				.Restrict("area").AnyOf("Administrator", "User"));
+
+
 			
 		}
 

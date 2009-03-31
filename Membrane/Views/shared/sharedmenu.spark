@@ -1,0 +1,3 @@
+﻿<ul>
+	<li>${Url.Link( "Logout", new {controller = "LogOff", action = "LogOff"}, new { id="LogOff" })}</li>
+</ul>

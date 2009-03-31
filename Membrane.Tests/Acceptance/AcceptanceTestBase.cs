@@ -1,4 +1,5 @@
 using System.Configuration;
+using WatiN.Core;
 
 namespace Membrane.Tests.Acceptance
 {
@@ -34,5 +35,24 @@ namespace Membrane.Tests.Acceptance
 			return string.Format("http://{0}:{1}/{2}/{3}/{4}{5}", server, port, area, controller, action, extension);
 		}
 
+		protected string BuildBaseUrl()
+		{
+			return string.Format("http://{0}:{1}/", server, port);
+		}
+
+
+		protected void CompleteLoginForm(IE browser, string username, string password)
+		{
+			browser.TextField("login_username").Clear();
+			browser.TextField("login_username").TypeText(username);
+			browser.TextField("login_password").Clear();
+			browser.TextField("login_password").TypeText(password);
+
+			// Submit the form
+			browser.Form("loginDetails").Submit();
+
+			// Wait for the post back to complete
+			browser.WaitForComplete();
+		}
 	}
 }
