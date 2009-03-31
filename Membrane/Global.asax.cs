@@ -22,6 +22,7 @@ namespace Membrane
 
 		public override void RegisterApplicationComponents()
 		{
+			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();

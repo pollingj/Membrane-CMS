@@ -82,8 +82,10 @@
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\Users\UserByUsernameAndPasswordFixture.cs" />
     <Compile Include="Unit\Core\Services\AuthenticationServiceFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\LogOffControllerFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">

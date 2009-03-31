@@ -12,6 +12,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 	public class LoginControllerFixture : BaseControllerFixture
 	{
 		private IAuthenticationService service;
+		private IFormsAuthentication formsAuthentication;
 		private LoginController controller;
 
 		private readonly AuthenticationRequestDTO authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
@@ -21,7 +22,8 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 			base.SetUp();
 
 			service = mockery.DynamicMock<IAuthenticationService>();
-			controller = new LoginController(service);
+			formsAuthentication = mockery.Stub<IFormsAuthentication>();
+			controller = new LoginController(service, formsAuthentication);
 
 			PrepareController(controller);
 		}
@@ -52,12 +54,17 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		private void DoSuccessFullLogin(AuthenticatedUserDTO authenticatedUser, UserType role, string redirectPath)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(authenticatedUser))
+				.Expecting(() =>
+					{
+						Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(authenticatedUser);
+						Expect.Call(formsAuthentication.Encrypt(null)).IgnoreArguments();
+					})
 				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.IsTrue(Context.CurrentUser.Identity.IsAuthenticated);
 			Assert.IsTrue(Context.CurrentUser.IsInRole(role.ToString()));
 			Assert.AreEqual(redirectPath, Response.RedirectedTo);
 		}
+
 	}
 }

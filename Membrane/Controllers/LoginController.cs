@@ -11,10 +11,12 @@ namespace Membrane.Controllers
 	public class LoginController : BaseController
 	{
 		private readonly IAuthenticationService service;
+		private readonly IFormsAuthentication formsAuthentication;
 
-		public LoginController(IAuthenticationService service)
+		public LoginController(IAuthenticationService service, IFormsAuthentication formsAuthentication)
 		{
 			this.service = service;
+			this.formsAuthentication = formsAuthentication;
 		}
 
 		public void Index(){}
@@ -54,13 +56,18 @@ namespace Membrane.Controllers
 																			 user.Type.ToString(),
 																			 FormsAuthentication.FormsCookiePath);
 
-			var hash = FormsAuthentication.Encrypt(ticket);
-			var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+			var hash = formsAuthentication.Encrypt(ticket);
+			var cookie = new HttpCookie(formsAuthentication.FormsCookieName, hash);
 
 			if (ticket.IsPersistent)
 				cookie.Expires = ticket.Expiration;
 
 			Context.CurrentUser = user;
+		}
+
+		public void LogOff()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
