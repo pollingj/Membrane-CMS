@@ -47,10 +47,16 @@ namespace Membrane.Controllers.Administrator
 
 					if (newId == Guid.Empty)
 					{
-						var errorSummary = new ErrorSummary();
-						errorSummary.RegisterErrorMessage(string.Empty, "There was a problem inserting this group.");
-						Flash["error"] = errorSummary;
-						submitError = true;
+						submitError = CreateSubmitError("There was a problem inserting this group.");
+					}
+				}
+				else
+				{
+					var updateSuccess = service.Update(group);
+
+					if (!updateSuccess)
+					{
+						submitError = CreateSubmitError("There was a problem updating this group.");
 					}
 				}
 			}
@@ -70,6 +76,19 @@ namespace Membrane.Controllers.Administrator
 				RedirectToAction("List");
 			}
 
+		}
+
+		private bool CreateSubmitError(string errorMessage)
+		{
+			var errorSummary = new ErrorSummary();
+			errorSummary.RegisterErrorMessage(string.Empty, errorMessage);
+			Flash["error"] = errorSummary;
+			return true;
+		}
+
+		public void Edit(Guid id)
+		{
+			PropertyBag["group"] = service.GetUserGroup(id);
 		}
 	}
 }

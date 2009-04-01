@@ -74,27 +74,93 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		public void CanSuccessfullySubmitNewUserGroup()
 		{
 			var newGroup = new UserGroupDTO {Name = "New User Group"};
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Create(newGroup)).Return(Guid.NewGuid()))
-				.Verify(() => controller.Submit(newGroup));
+			NewUserGroupSubmission(newGroup, Guid.NewGuid());
 
+			AssertSubmitSuccess();
+		}
+
+		[Test]
+		public void CanFailValidationOnSubmit()
+		{
+			var newGroup = new UserGroupDTO {Name = ""};
+
+			controller.Submit(newGroup);
+
+			AssertSubmitFailure(newGroup);
+		}
+
+		[Test]
+		public void CanFailSubmitUserGroup()
+		{
+			var newGroup = new UserGroupDTO { Name = "New User Group" };
+
+			NewUserGroupSubmission(newGroup, Guid.Empty);
+
+			AssertSubmitFailure(newGroup);
+		}
+
+		[Test]
+		public void CanShowEditUserGroupPage()
+		{
+			var groupId = Guid.NewGuid();
+			var group = new UserGroupDTO {Id = groupId, Name = "Stored User Group"};
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.GetUserGroup(groupId)).Return(group))
+				.Verify(() => controller.Edit(groupId));
+
+			Assert.AreEqual(group, controller.PropertyBag["group"]);
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);	
+		}
+
+		[Test]
+		public void CanSuccessfullySubmitEdittedUserGroup()
+		{
+			var edittedId = Guid.NewGuid();
+			var edittedGroup = new UserGroupDTO {Id = edittedId, Name = "Editted Group"};
+
+			EditUserGroupSubmission(edittedGroup, true);
+
+			AssertSubmitSuccess();
+		}
+
+		[Test]
+		public void CanFailSubmitEdittedUserGroup()
+		{
+			var edittedId = Guid.NewGuid();
+			var edittedGroup = new UserGroupDTO { Id = edittedId, Name = "Editted Group" };
+
+			EditUserGroupSubmission(edittedGroup, false);
+
+			AssertSubmitFailure(edittedGroup);
+		}
+
+
+		private void NewUserGroupSubmission(UserGroupDTO userGroup, Guid id)
+		{
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Create(userGroup)).Return(id))
+				.Verify(() => controller.Submit(userGroup));
+		}
+
+		private void EditUserGroupSubmission(UserGroupDTO userGroup, bool updateSuccess)
+		{
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Update(userGroup)).Return(updateSuccess))
+				.Verify(() => controller.Submit(userGroup));
+		}
+
+		private void AssertSubmitSuccess()
+		{
 			Assert.IsNull(controller.Flash["error"]);
 			Assert.AreEqual("/UserGroups/List.castle", Response.RedirectedTo);
 		}
 
-		[Test]
-		public void CanFailSubmitNewUserGroup()
+		private void AssertSubmitFailure(UserGroupDTO group)
 		{
-			var newGroup = new UserGroupDTO { Name = "New User Group" };
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Create(newGroup)).Return(Guid.Empty))
-				.Verify(() => controller.Submit(newGroup));
-
-			Assert.AreEqual(newGroup, controller.Flash["group"]);
+			Assert.AreEqual(group, controller.Flash["group"]);
 			Assert.IsNotNull(controller.Flash["error"]);
-			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);			
 		}
-
 
 
 		private void AssertListData()

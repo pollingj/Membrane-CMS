@@ -8,5 +8,7 @@ namespace Membrane.Core.Services.Interfaces
 	{
 		IList<UserGroupDTO> GetPagedUserGroups(int currentPage, int pageSize);
 		Guid Create(UserGroupDTO group);
+		UserGroupDTO GetUserGroup(Guid id);
+		bool Update(UserGroupDTO group);
 	}
 }
