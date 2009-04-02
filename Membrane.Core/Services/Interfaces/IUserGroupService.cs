@@ -10,5 +10,6 @@ namespace Membrane.Core.Services.Interfaces
 		Guid Create(UserGroupDTO group);
 		UserGroupDTO GetUserGroup(Guid id);
 		bool Update(UserGroupDTO group);
+		bool Delete(Guid id);
 	}
 }

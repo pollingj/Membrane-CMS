@@ -47,7 +47,7 @@ namespace Membrane.Controllers.Administrator
 
 					if (newId == Guid.Empty)
 					{
-						submitError = CreateSubmitError("There was a problem inserting this group.");
+						submitError = CreateError("There was a problem inserting this group.");
 					}
 				}
 				else
@@ -56,7 +56,7 @@ namespace Membrane.Controllers.Administrator
 
 					if (!updateSuccess)
 					{
-						submitError = CreateSubmitError("There was a problem updating this group.");
+						submitError = CreateError("There was a problem updating this group.");
 					}
 				}
 			}
@@ -78,17 +78,35 @@ namespace Membrane.Controllers.Administrator
 
 		}
 
-		private bool CreateSubmitError(string errorMessage)
+		public void Edit(Guid id)
+		{
+			PropertyBag["group"] = service.GetUserGroup(id);
+		}
+
+		public void ConfirmDelete(Guid id)
+		{
+			PropertyBag["group"] = service.GetUserGroup(id);
+		}
+
+		public void Delete(Guid id)
+		{
+			if (service.Delete(id))
+			{
+				RedirectToAction("List");
+			}
+			else
+			{
+				CreateError("There was a problem deleting this group");
+				Response.RedirectToReferrer();
+			}
+		}
+
+		private bool CreateError(string errorMessage)
 		{
 			var errorSummary = new ErrorSummary();
 			errorSummary.RegisterErrorMessage(string.Empty, errorMessage);
 			Flash["error"] = errorSummary;
 			return true;
-		}
-
-		public void Edit(Guid id)
-		{
-			PropertyBag["group"] = service.GetUserGroup(id);
 		}
 	}
 }

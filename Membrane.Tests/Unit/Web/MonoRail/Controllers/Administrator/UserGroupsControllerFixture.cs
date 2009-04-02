@@ -76,7 +76,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			var newGroup = new UserGroupDTO {Name = "New User Group"};
 			NewUserGroupSubmission(newGroup, Guid.NewGuid());
 
-			AssertSubmitSuccess();
+			AssertSuccessfulActionAndRedirectedBackToList();
 		}
 
 		[Test]
@@ -120,7 +120,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 
 			EditUserGroupSubmission(edittedGroup, true);
 
-			AssertSubmitSuccess();
+			AssertSuccessfulActionAndRedirectedBackToList();
 		}
 
 		[Test]
@@ -134,6 +134,43 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			AssertSubmitFailure(edittedGroup);
 		}
 
+		[Test]
+		public void CanShowUserGroupForConfirmDelete()
+		{
+			var groupId = Guid.NewGuid();
+			var deleteGroup = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Delete User Group"};
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.GetUserGroup(groupId)).Return(deleteGroup))
+				.Verify(() => controller.ConfirmDelete(groupId));
+
+			Assert.AreEqual(deleteGroup, controller.PropertyBag["group"]);
+			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
+		}
+
+		[Test]
+		public void CanSuccessfullyDeleteUserGroup()
+		{
+			MockDeleteUserGroup(true);
+
+			AssertSuccessfulActionAndRedirectedBackToList();
+		}
+
+		[Test]
+		public void CanFailDeletingUserGroup()
+		{
+			MockDeleteUserGroup(false);
+
+			Assert.IsNotNull(controller.Flash["error"]);
+		}
+
+		private void MockDeleteUserGroup(bool deleteSuccess)
+		{
+			var groupId = Guid.NewGuid();
+
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.Delete(groupId)).Return(deleteSuccess))
+				.Verify(() => controller.Delete(groupId));
+		}
 
 		private void NewUserGroupSubmission(UserGroupDTO userGroup, Guid id)
 		{
@@ -149,7 +186,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 				.Verify(() => controller.Submit(userGroup));
 		}
 
-		private void AssertSubmitSuccess()
+		private void AssertSuccessfulActionAndRedirectedBackToList()
 		{
 			Assert.IsNull(controller.Flash["error"]);
 			Assert.AreEqual("/UserGroups/List.castle", Response.RedirectedTo);
