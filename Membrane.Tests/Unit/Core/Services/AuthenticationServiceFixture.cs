@@ -29,10 +29,12 @@ namespace Membrane.Tests.Unit.Core.Services
 		public void CanReturnAuthenicatedUser()
 		{
 			var authenticationRequest = new AuthenticationRequestDTO { Username = "username", Password = "password" };
+			var result = new AuthenticatedUserDTO();
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password))).IgnoreArguments().Return(new MembraneUser { Id = Guid.NewGuid(), Username = "username", Password = "password", Type = new MembraneUserType { Id = Guid.NewGuid(), Type = UserType.Administrator }}))
-				.Verify(() => service.AuthenticateUser(authenticationRequest));
+				.Verify(() => result = service.AuthenticateUser(authenticationRequest));
 
+			Assert.AreEqual(UserType.Administrator, result.Type);
 		}
 	}
 }

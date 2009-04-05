@@ -1,3 +1,4 @@
+using Membrane.Core.Mappers;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -11,6 +12,8 @@ namespace Membrane.Tests.Unit.Core
 		public virtual void SetUp()
 		{
 			mockery = new MockRepository();
+
+			AutoMapperConfiguration.Configure();
 		}
 
 		[TearDown]
