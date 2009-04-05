@@ -49,6 +49,7 @@
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MembraneUser.cs" />
+    <Compile Include="UserGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">

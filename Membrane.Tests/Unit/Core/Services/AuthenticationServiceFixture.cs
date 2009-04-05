@@ -17,24 +17,21 @@ namespace Membrane.Tests.Unit.Core.Services
 		private IAuthenticationService service;
 		private IRepository<MembraneUser> userRepository;
 
-		private AuthenticationRequestDTO authenticationRequest;
-
 		public override void SetUp()
 		{
 			base.SetUp();
 
 			userRepository = mockery.DynamicMock<IRepository<MembraneUser>>();
 			service = new AuthenticationService(userRepository);
-
-			authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
 		}
 
 		[Test]
 		public void CanReturnAuthenicatedUser()
 		{
+			var authenticationRequest = new AuthenticationRequestDTO { Username = "username", Password = "password" };
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password))).Return(new MembraneUser { Id = Guid.NewGuid(), Username = "username", Password = "password", Type = new MembraneUserType { Id = Guid.NewGuid(), Type = UserType.Administrator }}));
-			service.AuthenticateUser(authenticationRequest);
+				.Expecting(() => Expect.Call(userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, authenticationRequest.Password))).IgnoreArguments().Return(new MembraneUser { Id = Guid.NewGuid(), Username = "username", Password = "password", Type = new MembraneUserType { Id = Guid.NewGuid(), Type = UserType.Administrator }}))
+				.Verify(() => service.AuthenticateUser(authenticationRequest));
 
 		}
 	}

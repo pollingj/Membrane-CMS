@@ -41,6 +41,7 @@ namespace Membrane.Controllers.Administrator
 
 			if (Validator.IsValid(group))
 			{
+				// Are we handling a new or editted user group?
 				if (group.Id == Guid.Empty)
 				{
 					var newId = service.Create(group);

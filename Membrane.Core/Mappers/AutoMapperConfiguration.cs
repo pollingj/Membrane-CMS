@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AutoMapper;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
@@ -14,6 +15,8 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.Name, opt => opt.Ignore())
 				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
+
+			Mapper.CreateMap<UserGroup, UserGroupDTO>();
 		}
 	}
 }
