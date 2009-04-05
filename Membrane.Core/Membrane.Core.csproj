@@ -57,6 +57,7 @@
     <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
     <Compile Include="DTOs\UserGroupDTO.cs" />
+    <Compile Include="Exceptions\RepositoryDeleteException.cs" />
     <Compile Include="Exceptions\RepositorySaveException.cs" />
     <Compile Include="Exceptions\RepositoryUpdateException.cs" />
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />

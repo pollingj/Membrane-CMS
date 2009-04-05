@@ -142,5 +142,35 @@ namespace Membrane.Tests.Unit.Core.Services
 
 			Assert.IsFalse(result);
 		}
+
+		[Test]
+		public void CanSuccessfullyDeleteUserGroup()
+		{
+			var id = Guid.NewGuid();
+
+			var result = false;
+
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Delete(id)))
+				.Verify(() => result = service.Delete(id));
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void CanFailDeletingUserGroup()
+		{
+			var id = Guid.NewGuid();
+
+			var result = false;
+
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Delete(id)).Throw(new RepositoryDeleteException()))
+				.Verify(() => result = service.Delete(id));
+
+			Assert.IsFalse(result);
+
+
+		}
 	}
 }

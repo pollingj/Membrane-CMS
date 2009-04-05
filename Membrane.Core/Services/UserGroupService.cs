@@ -39,7 +39,7 @@ namespace Membrane.Core.Services
 			{
 				userGroupRepository.Save(Mapper.Map<UserGroupDTO, UserGroup>(group));
 			}
-			catch(RepositorySaveException)
+			catch(Exception)
 			{
 				id = Guid.Empty;
 			}
@@ -61,7 +61,7 @@ namespace Membrane.Core.Services
 			{
 				userGroupRepository.Update(Mapper.Map<UserGroupDTO, UserGroup>(group));
 			}
-			catch(RepositoryUpdateException)
+			catch(Exception)
 			{
 				success = false;
 			}
@@ -71,7 +71,18 @@ namespace Membrane.Core.Services
 
 		public bool Delete(Guid id)
 		{
-			throw new System.NotImplementedException();
+			var success = true;
+
+			try
+			{
+				userGroupRepository.Delete(id);
+			}
+			catch(Exception)
+			{
+				success = false;
+			}
+
+			return success;
 		}
 	}
 }

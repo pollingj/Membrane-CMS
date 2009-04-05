@@ -18,6 +18,8 @@ namespace Membrane.Commons.Persistence.NHibernate
 
 		public T FindById(Guid id)
 		{
+			GuardAgainst.ArgumentEmpty(id, "id");
+
 			return sessionLocater.CurrentSession.Load<T>(id);
 		}
 
@@ -57,7 +59,15 @@ namespace Membrane.Commons.Persistence.NHibernate
             return entities.Count > 0 ? entities[0] : null;
         }
 
-	    public ICollection<T> FindAll()
+		public void Delete(Guid id)
+		{
+			GuardAgainst.ArgumentEmpty(id, "id");
+
+			var item = FindById(id);
+			sessionLocater.CurrentSession.Delete(item);
+		}
+
+		public ICollection<T> FindAll()
 		{
 			return sessionLocater.CurrentSession.Linq<T>().ToList();
 		}

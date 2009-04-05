@@ -35,16 +35,7 @@ namespace Membrane.Commons.Persistence.InMemory
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
-			GuardAgainst.ArgumentNull(entity, "entity");
-			T removeItem = null;
-			foreach (var item in entities)
-			{
-				if (item.Id == entity.Id)
-				{
-					removeItem = item;
-					break;
-				}
-			}
+			T removeItem = FindById(entity.Id);
 
 			if (removeItem != null)
 				entities.Remove(removeItem);
@@ -70,6 +61,16 @@ namespace Membrane.Commons.Persistence.InMemory
 			List<T> matches = queryCommand.Execute(this).ToList();
 
 			return matches.Count > 0 ? matches[0] : null;
+		}
+
+		public void Delete(Guid id)
+		{
+			GuardAgainst.ArgumentEmpty(id, "id");
+
+			T removeItem = FindById(id);
+
+			if (removeItem != null)
+				entities.Remove(removeItem);
 		}
 	}
 

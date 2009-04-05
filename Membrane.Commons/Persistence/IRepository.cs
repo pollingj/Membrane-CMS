@@ -12,6 +12,7 @@ namespace Membrane.Commons.Persistence
 		IQueryable<T> AsQueryable();
 		ICollection<T> Find(IQueryCommand<T> queryCommand);
 		T FindOne(IQueryCommand<T> queryCommand);
+		void Delete(Guid id);
 	}
 
 }
