@@ -31,6 +31,26 @@ namespace Membrane.Commons.Persistence.InMemory
 			entities.Add(entity);
 		}
 
+		public void Update(T entity)
+		{
+			GuardAgainst.ArgumentNull(entity, "entity");
+
+			GuardAgainst.ArgumentNull(entity, "entity");
+			T removeItem = null;
+			foreach (var item in entities)
+			{
+				if (item.Id == entity.Id)
+				{
+					removeItem = item;
+					break;
+				}
+			}
+
+			if (removeItem != null)
+				entities.Remove(removeItem);
+			entities.Add(entity);
+		}
+
 		public IQueryable<T> AsQueryable()
 		{
 			return entities.AsQueryable();

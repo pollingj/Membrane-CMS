@@ -2,7 +2,7 @@ using System;
 
 namespace Membrane.Core.Exceptions
 {
-	public class NHibernateSaveException : Exception
+	public class RepositoryUpdateException : Exception
 	{
 		
 	}

@@ -8,10 +8,10 @@ namespace Membrane.Commons.Persistence
 	{
 		T FindById(Guid id);
 		void Save(T entity);
+		void Update(T entity);
 		IQueryable<T> AsQueryable();
 		ICollection<T> Find(IQueryCommand<T> queryCommand);
 		T FindOne(IQueryCommand<T> queryCommand);
-
 	}
 
 }

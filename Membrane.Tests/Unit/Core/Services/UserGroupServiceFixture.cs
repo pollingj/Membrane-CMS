@@ -100,16 +100,47 @@ namespace Membrane.Tests.Unit.Core.Services
 		[Test]
 		public void CanFailSaveUserGroup()
 		{
+			var group = new UserGroup { Name = "News Group" };
+			var groupDTO = new UserGroupDTO { Name = "News Group" };
+
+			var result = Guid.Empty;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Save(group)).IgnoreArguments().Throw(new RepositorySaveException()))
+				.Verify(() => result = service.Create(groupDTO));
+
+			Assert.AreEqual(Guid.Empty, result);
+		}
+
+		[Test]
+		public void CanSuccessfullyUpdateUserGroup()
+		{
 			var id = Guid.NewGuid();
 			var group = new UserGroup { Id = id, Name = "News Group" };
 			var groupDTO = new UserGroupDTO { Id = id, Name = "News Group" };
 
-			Guid result = id;
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => userGroupRepository.Save(group)).IgnoreArguments().Throw(new NHibernateSaveException()))
-				.Verify(() => result = service.Create(groupDTO));
+			var result = false;
 
-			Assert.AreEqual(Guid.Empty, result);
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Update(group)).IgnoreArguments())
+				.Verify(() => result = service.Update(groupDTO));
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void CanFailUpdateUserGroup()
+		{
+			var id = Guid.NewGuid();
+			var group = new UserGroup { Id = id, Name = "News Group" };
+			var groupDTO = new UserGroupDTO { Id = id, Name = "News Group" };
+
+			var result = false;
+
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Update(group)).IgnoreArguments().Throw(new RepositoryUpdateException()))
+				.Verify(() => result = service.Update(groupDTO));
+
+			Assert.IsFalse(result);
 		}
 	}
 }

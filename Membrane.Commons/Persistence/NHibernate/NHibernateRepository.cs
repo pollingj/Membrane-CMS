@@ -26,8 +26,14 @@ namespace Membrane.Commons.Persistence.NHibernate
 			GuardAgainst.ArgumentNull(entity, "entity");
 
 			sessionLocater.CurrentSession.Save(entity);
-			sessionLocater.CurrentSession.Flush();
 
+		}
+
+		public void Update(T entity)
+		{
+			GuardAgainst.ArgumentNull(entity, "entity");
+
+			sessionLocater.CurrentSession.Update(entity);
 		}
 
 		public IQueryable<T> AsQueryable()
