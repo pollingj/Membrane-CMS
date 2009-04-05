@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
+using Membrane.Core.Exceptions;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
@@ -32,12 +33,25 @@ namespace Membrane.Core.Services
 
 		public Guid Create(UserGroupDTO group)
 		{
-			throw new System.NotImplementedException();
+			var id = group.Id = Guid.NewGuid();
+
+			try
+			{
+				userGroupRepository.Save(Mapper.Map<UserGroupDTO, UserGroup>(group));
+			}
+			catch(NHibernateSaveException)
+			{
+				id = Guid.Empty;
+			}
+
+			return id;
 		}
 
 		public UserGroupDTO GetUserGroup(Guid id)
 		{
-			throw new System.NotImplementedException();
+			var group = userGroupRepository.FindById(id);
+
+			return Mapper.Map<UserGroup, UserGroupDTO>(group);
 		}
 
 		public bool Update(UserGroupDTO group)

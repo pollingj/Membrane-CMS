@@ -17,6 +17,7 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 
 			Mapper.CreateMap<UserGroup, UserGroupDTO>();
+			Mapper.CreateMap<UserGroupDTO, UserGroup>();
 		}
 	}
 }

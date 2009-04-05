@@ -57,6 +57,7 @@
     <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
     <Compile Include="DTOs\UserGroupDTO.cs" />
+    <Compile Include="Exceptions\NHibernateSaveException.cs" />
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\UserGroups\PagedUserGroups.cs" />

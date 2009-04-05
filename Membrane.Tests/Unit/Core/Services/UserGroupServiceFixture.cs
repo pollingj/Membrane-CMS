@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
+using Membrane.Core.Exceptions;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
@@ -66,6 +67,49 @@ namespace Membrane.Tests.Unit.Core.Services
 
 				count++;
 			}
+		}
+
+		[Test]
+		public void CanGetUserGroupWithId()
+		{
+			var id = Guid.NewGuid();
+
+			var result = new UserGroupDTO();
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(userGroupRepository.FindById(id)).Return(new UserGroup { Id = id, Name = "Blogging Group"}))
+				.Verify(() => result = service.GetUserGroup(id));
+
+			Assert.AreEqual(id, result.Id);
+			Assert.AreEqual("Blogging Group", result.Name);
+		}
+
+		[Test]
+		public void CanSuccessfullySaveUserGroup()
+		{
+			var group = new UserGroup {Name = "News Group"};
+			var groupDTO = new UserGroupDTO {Name = "News Group"};
+
+			var result = Guid.Empty;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Save(group)).IgnoreArguments())
+				.Verify(() => result = service.Create(groupDTO));
+
+			Assert.AreNotEqual(Guid.Empty, result);
+		}
+
+		[Test]
+		public void CanFailSaveUserGroup()
+		{
+			var id = Guid.NewGuid();
+			var group = new UserGroup { Id = id, Name = "News Group" };
+			var groupDTO = new UserGroupDTO { Id = id, Name = "News Group" };
+
+			Guid result = id;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => userGroupRepository.Save(group)).IgnoreArguments().Throw(new NHibernateSaveException()))
+				.Verify(() => result = service.Create(groupDTO));
+
+			Assert.AreEqual(Guid.Empty, result);
 		}
 	}
 }
