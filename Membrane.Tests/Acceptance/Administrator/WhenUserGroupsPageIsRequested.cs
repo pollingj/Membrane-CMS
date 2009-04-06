@@ -138,7 +138,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 
 			browser.WaitForComplete();
 
-			Assert.Contains(formUrl, browser.Url);
+			Assert.AreEqual(formUrl, browser.Url);
 			Assert.IsTrue(browser.Div("errors").Exists);
 			Assert.IsTrue(browser.ContainsText("There was a problem with the form"));
 		}
