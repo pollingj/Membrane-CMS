@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
-using Membrane.Core.Exceptions;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;

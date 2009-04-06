@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
-using Membrane.Core.Exceptions;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
@@ -39,7 +39,7 @@ namespace Membrane.Core.Services
 			{
 				userGroupRepository.Save(Mapper.Map<UserGroupDTO, UserGroup>(group));
 			}
-			catch(Exception)
+			catch(RepositorySaveException)
 			{
 				id = Guid.Empty;
 			}
@@ -61,7 +61,7 @@ namespace Membrane.Core.Services
 			{
 				userGroupRepository.Update(Mapper.Map<UserGroupDTO, UserGroup>(group));
 			}
-			catch(Exception)
+			catch(RepositoryUpdateException)
 			{
 				success = false;
 			}
@@ -77,7 +77,7 @@ namespace Membrane.Core.Services
 			{
 				userGroupRepository.Delete(id);
 			}
-			catch(Exception)
+			catch(RepositoryDeleteException)
 			{
 				success = false;
 			}

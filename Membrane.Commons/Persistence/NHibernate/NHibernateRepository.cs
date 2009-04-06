@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Membrane.Commons.Persistence.Exceptions;
 using NHibernate.Linq;
 
 namespace Membrane.Commons.Persistence.NHibernate
@@ -27,7 +28,14 @@ namespace Membrane.Commons.Persistence.NHibernate
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
-			sessionLocater.CurrentSession.Save(entity);
+			try
+			{
+				sessionLocater.CurrentSession.Save(entity);
+			}
+			catch
+			{
+				throw new RepositorySaveException();
+			}
 
 		}
 
@@ -35,7 +43,14 @@ namespace Membrane.Commons.Persistence.NHibernate
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
-			sessionLocater.CurrentSession.Update(entity);
+			try
+			{
+				sessionLocater.CurrentSession.Update(entity);
+			}
+			catch
+			{
+				throw new RepositoryUpdateException();
+			}
 		}
 
 		public IQueryable<T> AsQueryable()
@@ -64,7 +79,15 @@ namespace Membrane.Commons.Persistence.NHibernate
 			GuardAgainst.ArgumentEmpty(id, "id");
 
 			var item = FindById(id);
-			sessionLocater.CurrentSession.Delete(item);
+
+			try
+			{
+				sessionLocater.CurrentSession.Delete(item);
+			}
+			catch
+			{
+				throw new RepositoryDeleteException();
+			}
 		}
 
 		public ICollection<T> FindAll()

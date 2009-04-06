@@ -1,6 +1,6 @@
 using System;
 
-namespace Membrane.Core.Exceptions
+namespace Membrane.Commons.Persistence.Exceptions
 {
 	public class RepositoryUpdateException : Exception
 	{
