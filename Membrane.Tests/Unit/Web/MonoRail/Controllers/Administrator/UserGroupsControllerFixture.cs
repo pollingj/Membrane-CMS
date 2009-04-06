@@ -67,7 +67,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			controller.New();
 
 			Assert.AreEqual(typeof(UserGroupDTO), controller.PropertyBag["grouptype"]);
-			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
+			Assert.AreEqual(@"UserGroups\Form", controller.SelectedViewName);
 		}
 		
 		[Test]
@@ -109,7 +109,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 				.Verify(() => controller.Edit(groupId));
 
 			Assert.AreEqual(group, controller.PropertyBag["group"]);
-			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);	
+			Assert.AreEqual(@"UserGroups\Form", controller.SelectedViewName);	
 		}
 
 		[Test]

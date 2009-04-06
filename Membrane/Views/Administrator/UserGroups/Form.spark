@@ -1,0 +1,29 @@
+﻿<viewdata group="UserGroupDTO" />
+<global Title="'User Groups'"/>
+
+<use file="SharedMenu" />
+<use file="AdminMenu" />
+
+
+
+<div id="formerrors" if="ViewData['error'] != null">
+    <h2>There is a problem with this form</h2>
+    <ul>
+        <li>${ViewData['error']}</li>
+    </ul>
+</div>
+
+
+
+${Form.FormTag(new { id='entryForm', action='submit' })}
+	<h2>User Group Form</h2>
+	<fieldset>
+		<legend>User Group Details</legend>
+		<div class="values">
+            ${Form.LabelFor("group.Name", "Name:")}
+            ${Form.TextField("group.Name")}
+		</div>
+		${Form.HiddenField("group.Id")}
+		${Form.Submit("Submit", new { id = 'submit' })} 
+	</fieldset>    
+${Form.EndFormTag()}

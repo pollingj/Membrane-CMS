@@ -183,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Administrator\Home\index.spark" />
+    <None Include="Views\Administrator\UserGroups\ConfirmDelete.spark" />
+    <None Include="Views\Administrator\UserGroups\Form.spark" />
+    <None Include="Views\Administrator\UserGroups\List.spark" />
     <None Include="Views\layouts\default.spark" />
     <None Include="Views\Login\index.spark" />
     <None Include="Views\shared\adminmenu.spark" />
@@ -207,7 +210,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1661</DevelopmentServerPort>
+          <DevelopmentServerPort>2703</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

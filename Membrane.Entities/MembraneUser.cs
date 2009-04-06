@@ -9,5 +9,6 @@ namespace Membrane.Entities
 		public virtual string Username { get; set; }
 		public virtual string Password { get; set; }
 		public virtual MembraneUserType Type { get; set; }
+		public virtual UserGroup Group { get; set; }
 	}
 }

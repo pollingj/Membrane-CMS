@@ -1,0 +1,17 @@
+﻿<viewdata group="UserGroupDTO" />
+<global Title="'User Groups'"/>
+
+<use file="SharedMenu" />
+<use file="AdminMenu" />
+
+<h1>User Group Deletion</h1>
+
+<p>Are you certain you wish to delete '${group.Name}'?</p>
+
+${Form.FormTag(new { id='deleteForm', action='delete' })}
+	<fieldset>
+		<legend>User Group Deletion</legend>
+		${Form.HiddenField("Id")}
+		${Form.Submit("Delete", new { id = 'submit' })} 
+	</fieldset>    
+${Form.EndFormTag()}

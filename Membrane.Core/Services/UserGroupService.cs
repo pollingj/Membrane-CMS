@@ -19,7 +19,7 @@ namespace Membrane.Core.Services
 			this.userGroupRepository = userGroupRepository;
 		}
 
-		public ICollection<UserGroupDTO> GetPagedUserGroups(int currentPage, int pageSize)
+		public IList<UserGroupDTO> GetPagedUserGroups(int currentPage, int pageSize)
 		{
 			var skip = 0;
 
@@ -28,7 +28,7 @@ namespace Membrane.Core.Services
 
 			var groups = userGroupRepository.Find(new PagedUserGroups(skip, pageSize));
 
-			return Mapper.Map<ICollection<UserGroup>, ICollection<UserGroupDTO>>(groups);
+			return Mapper.Map<ICollection<UserGroup>, IList<UserGroupDTO>>(groups);
 		}
 
 		public Guid Create(UserGroupDTO group)

@@ -33,6 +33,8 @@ namespace Membrane.Controllers.Administrator
 		public void New()
 		{
 			PropertyBag["grouptype"] = typeof (UserGroupDTO);
+
+			RenderView("Form");
 		}
 
 		public void Submit([DataBind("group", Validate = true)] UserGroupDTO group)
@@ -82,6 +84,8 @@ namespace Membrane.Controllers.Administrator
 		public void Edit(Guid id)
 		{
 			PropertyBag["group"] = service.GetUserGroup(id);
+
+			RenderView("Form");
 		}
 
 		public void ConfirmDelete(Guid id)

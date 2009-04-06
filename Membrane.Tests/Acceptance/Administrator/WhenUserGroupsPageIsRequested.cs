@@ -16,7 +16,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 		public void TestFixtureSetUp()
 		{
 			browser = new IE(BuildUrl("Login", "Index"));
-			CompleteLoginForm(browser, "pollingj", "password");
+			CompleteLoginForm(browser, "johnpolling", "password");
 
 			listGroupUrl = BuildUrl("Administrator", "UserGroups", "List");
 			newGroupUrl = BuildUrl("Administrator", "UserGroups", "New");
@@ -36,7 +36,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 			browser.WaitForComplete();
 
 			Assert.IsTrue(browser.ContainsText("Blogging Group"));
-			Assert.AreEqual(1, browser.Table("data").TableRows.Length);
+			Assert.AreEqual(1, browser.Table("data").TableBodies[0].TableRows.Length);
 			Assert.AreEqual(listGroupUrl, browser.Url);
 		}
 
@@ -47,8 +47,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 			browser.Link("New").Click();
 			browser.WaitForComplete();
 
-			Assert.IsTrue(browser.ContainsText("New User Group"));
 			Assert.AreEqual(newGroupUrl, browser.Url);
+			Assert.IsTrue(browser.Form("entryForm").Exists);
 		}
 
 		[Test]
@@ -56,13 +56,13 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			browser.GoTo(newGroupUrl);
 
-			browser.TextField("group.Name").TypeText("News Group");
+			browser.TextField("group_Name").TypeText("News Group");
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listGroupUrl, browser.Url);
-			Assert.AreEqual(2, browser.Table("data").TableRows.Length);
+			Assert.AreEqual(2, browser.Table("data").TableBodies[0].TableRows.Length);
 			Assert.IsTrue(browser.ContainsText("News Group"));
 		}
 
@@ -79,8 +79,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			Assert.AreEqual(editGroupUrl, browser.Url);
-			Assert.AreEqual("Blogging Group", browser.TextField("group.Name").Text);
+			Assert.IsTrue(browser.Url.Contains(editGroupUrl));
+			Assert.AreEqual("Blogging Group", browser.TextField("group_Name").Text);
 		}
 
 		[Test]
@@ -88,8 +88,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			browser.TextField("group.Name").Clear();
-			browser.TextField("group.Name").TypeText("Blog Editing Group");
+			browser.TextField("group_Name").Clear();
+			browser.TextField("group_Name").TypeText("Blog Editing Group");
 
 			browser.Button("submit").Click();
 
@@ -105,7 +105,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			browser.TextField("group.Name").Clear();
+			browser.TextField("group_Name").Clear();
 
 			FailFormValidation(editGroupUrl);
 		}
@@ -113,19 +113,39 @@ namespace Membrane.Tests.Acceptance.Administrator
 		[Test]
 		public void AdministratorCanShowDeleteConfirmation()
 		{
-			browser.GoTo(listGroupUrl);
-			browser.Table("data").TableRows[0].Links[1].Click();
+			GoToDeleteConfirmationPage();
+
+			Assert.IsTrue(browser.Url.Contains(BuildUrl("Administrator", "UserGroups", "ConfirmDelete")));
+			Assert.IsTrue(browser.ContainsText("Are you certain you wish to delete"));
+		}
+
+
+
+		[Test]
+		public void AdministratorCanSuccessfullyDeleteGroup()
+		{
+			GoToDeleteConfirmationPage();
+
+			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
-			Assert.AreEqual(BuildUrl("Administrator", "UserGroups", "DeleteConfirmation"), browser.Url);
-			Assert.IsTrue(browser.ContainsText("Are you certain you wish to delete"));
+			Assert.AreEqual(listGroupUrl, browser.Url);
+			Assert.IsFalse(browser.ContainsText("News Group"));
+		}
+
+		private void GoToDeleteConfirmationPage()
+		{
+			browser.GoTo(listGroupUrl);
+			browser.Table("data").TableBodies[0].TableRows[0].Links[1].Click();
+
+			browser.WaitForComplete();
 		}
 
 		private void GoToEditForm()
 		{
 			browser.GoTo(listGroupUrl);
-			browser.Table("data").TableRows[0].Links[0].Click();
+			browser.Table("data").TableBodies[0].TableRows[1].Links[0].Click();
 
 			browser.WaitForComplete();
 		}
@@ -133,14 +153,14 @@ namespace Membrane.Tests.Acceptance.Administrator
 
 		private void FailFormValidation(string formUrl)
 		{
-			browser.TextField("group.Name").Click();
+			browser.TextField("group_Name").Click();
 			browser.Button("submit").Click();
 
-			browser.WaitForComplete();
+			Assert.IsTrue(browser.Url.Contains(formUrl));
+			Assert.AreEqual("error", browser.TextField("group_Name").ClassName);
 
-			Assert.AreEqual(formUrl, browser.Url);
-			Assert.IsTrue(browser.Div("errors").Exists);
-			Assert.IsTrue(browser.ContainsText("There was a problem with the form"));
+			/*Assert.IsTrue(browser.Div("errors").Exists);
+			Assert.IsTrue(browser.ContainsText("There was a problem with the form"));*/
 		}
 	}
 }

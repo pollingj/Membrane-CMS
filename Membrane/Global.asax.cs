@@ -25,6 +25,7 @@ namespace Membrane
 		{
 			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
+			container.AddComponent<IUserGroupService, UserGroupService>();
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));

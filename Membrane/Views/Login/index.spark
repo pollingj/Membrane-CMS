@@ -1,7 +1,6 @@
-﻿<viewdata login="Membrane.Core.DTOs.AuthenticationRequestDTO" />
+﻿<viewdata login="AuthenticationRequestDTO" />
 <global Title="'Login'"/>
 <h1>Welcome to Membrane</h1>
-
 <div id="formerrors" if="ViewData['error'] != null">
     <h2>There is a problem with this form</h2>
     <ul>

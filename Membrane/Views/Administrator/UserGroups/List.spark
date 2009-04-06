@@ -1,0 +1,22 @@
+﻿<viewdata groups="IList<UserGroupDTO>" />
+<global Title="'Administrator Home Page'"/>
+<use file="SharedMenu" />
+<use file="AdminMenu" />
+
+<p>${Url.Link( "Add New", new {area = "Administrator", controller = "UserGroups", action = "New"}, new { id="New"})}</p>
+
+<table id="data">
+	<thead>
+		<tr>
+			<td scope="col">Group Name</td>
+			<td scope="col">Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr each='var group in groups'>
+			<td>${group.Name}</td>
+			<td>${Url.Link( "Edit", new {area = "Administrator", controller = "UserGroups", action = "Edit", querystring = string.Format("id={0}",group.Id)})}</td>
+			<td>${Url.Link( "Delete", new {area = "Administrator", controller = "UserGroups", action = "ConfirmDelete", querystring = string.Format("id={0}",group.Id)})}</td>
+		</tr>
+	</tbody>
+</table>
