@@ -132,6 +132,44 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 			}
 		}
 
+		[Test]
+		public void CanReadSingleAndMultiDropDownListPropertiesWithConfigurations()
+		{
+			IAutoGenerator<NewsArticleDTO> autoGenerator = new AutoGenerator<NewsArticleDTO>();
+			autoGenerator.ReadViewModelProperties();
+
+			Assert.AreEqual(typeof(NewsArticleDTO).GetProperties().Length, autoGenerator.FormFields.Count);
+
+			foreach (var field in autoGenerator.FormFields)
+			{
+				switch (field.Id)
+				{
+					case "Id":
+						AssertFormFieldData("Id", FieldType.Hidden, field);
+						break;
+					case "Headline":
+						AssertFormFieldData("Headline", FieldType.SingleLineTextField, field);
+						break;
+					case "Story":
+						AssertFormFieldData("Story", FieldType.MultiLineTextField, field);
+						break;
+					case "Date":
+						AssertFormFieldData("Date", FieldType.Date, field);
+						break;
+					case "Type":
+						AssertFormFieldData("Type", FieldType.SingleSelectDropDownList, field);
+						Assert.AreEqual("Id", field.OptionValue);
+						Assert.AreEqual("Name", field.OptionText);
+						break;
+					case "Tags":
+						AssertFormFieldData("Tags", FieldType.MultiSelectDropDownList, field);
+						Assert.AreEqual("Id", field.OptionValue);
+						Assert.AreEqual("Tag", field.OptionText);
+						break;
+				}
+			}
+		}
+
 		private void AssertFormFieldData(string expectedLabel, FieldType expectedType, FormField field)
 		{
 			Assert.AreEqual(expectedLabel, field.Label);
@@ -183,6 +221,35 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public decimal Price { get; set; }
 		public IList<ProductDTO> Products { get; set; }
 	}
+
+	public class NewsTypeDTO : IDTO
+	{
+		public Guid Id { get; set; }
+		public bool Archive { get; set; }
+		public string Name { get; set; }
+	}
+
+	public class NewsTagDTO : IDTO
+	{
+		public Guid Id { get; set; }
+		public bool Archive { get; set; }
+		public string Tag { get; set; }
+	}
+
+	public class NewsArticleDTO : IDTO
+	{
+		public Guid Id { get; set; }
+		[FormFieldType(FieldType.SingleSelectDropDownList, "Id", "Name")]
+		public NewsTypeDTO Type { get; set; }
+		[FormFieldType(FieldType.MultiSelectDropDownList, "Id", "Tag")]
+		public IList<NewsTagDTO> Tags { get; set; }
+		public string Headline { get; set; }
+		[FormFieldType(FieldType.MultiLineTextField)]
+		public string Story { get; set; }
+		public DateTime Date { get; set; }
+	}
+
+	
 
 	#endregion
 

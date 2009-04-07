@@ -27,7 +27,11 @@ namespace Membrane.Commons.FormGeneration
 				var formFieldAttributes = propertyInfo.GetCustomAttributes(typeof (FormFieldTypeAttribute), true);
 
 				if (formFieldAttributes.Length > 0)
+				{
 					formField.Type = ((FormFieldTypeAttribute) formFieldAttributes[0]).Type;
+					if (formField.Type == FieldType.SingleSelectDropDownList || formField.Type == FieldType.MultiSelectDropDownList)
+						GetConfigurationBasedOptionsValueAndText((FormFieldTypeAttribute) formFieldAttributes[0], formField);
+				}
 				else
 					GetConventionBasedFields(formField, propertyInfo.PropertyType);
 					
@@ -89,6 +93,12 @@ namespace Membrane.Commons.FormGeneration
 
 			field.OptionValue = relatedDTOProperties[0].Name;
 			field.OptionText = relatedDTOProperties[1].Name;
+		}
+
+		private void GetConfigurationBasedOptionsValueAndText(FormFieldTypeAttribute attribute, FormField field)
+		{
+			field.OptionValue = attribute.OptionValue;
+			field.OptionText = attribute.OptionText;
 		}
 
 
