@@ -2,7 +2,7 @@
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
-using Membrane.Commons.CRUD;
+using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Membrane.Commons.CRUD;
+using Membrane.Commons.CRUD.Services;
 using Membrane.Controllers.Administrator;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;

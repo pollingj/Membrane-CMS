@@ -1,4 +1,4 @@
-using Membrane.Commons.CRUD;
+using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.Persistence;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
