@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Membrane.Commons.CRUD;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
@@ -15,7 +16,8 @@ namespace Membrane.Tests.Unit.Core.Services
 	[TestFixture]
 	public class UserGroupServiceFixture : BaseFixture
 	{
-		private IUserGroupService service;
+		//private IUserGroupService service;
+		private ICRUDService<UserGroupDTO, UserGroup> service;
 		private IRepository<UserGroup> userGroupRepository;
 
 		public override void SetUp()
@@ -51,7 +53,7 @@ namespace Membrane.Tests.Unit.Core.Services
 
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(userGroupRepository.Find(new PagedUserGroups(skip, take))).IgnoreArguments().Return(pagedGroups))
-				.Verify(() => result = service.GetPagedUserGroups(currentPage, pageSize));
+				.Verify(() => result = service.GetPagedItems(currentPage, pageSize));
 
 			Assert.AreEqual(pageSize, result.Count);
 
@@ -77,7 +79,7 @@ namespace Membrane.Tests.Unit.Core.Services
 			var result = new UserGroupDTO();
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(userGroupRepository.FindById(id)).Return(new UserGroup { Id = id, Name = "Blogging Group"}))
-				.Verify(() => result = service.GetUserGroup(id));
+				.Verify(() => result = service.GetItem(id));
 
 			Assert.AreEqual(id, result.Id);
 			Assert.AreEqual("Blogging Group", result.Name);

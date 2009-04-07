@@ -1,88 +1,15 @@
-using System;
-using System.Collections.Generic;
-using AutoMapper;
+using Membrane.Commons.CRUD;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
-using Membrane.Core.Queries.UserGroups;
-using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
 
 namespace Membrane.Core.Services
 {
-	public class UserGroupService : IUserGroupService
+	public class UserGroupService : CRUDService<UserGroupDTO, UserGroup>
 	{
-		private IRepository<UserGroup> userGroupRepository;
-
-		public UserGroupService(IRepository<UserGroup> userGroupRepository)
+		public UserGroupService(IRepository<UserGroup> repository) : base(repository)
 		{
-			this.userGroupRepository = userGroupRepository;
-		}
-
-		public IList<UserGroupDTO> GetPagedUserGroups(int currentPage, int pageSize)
-		{
-			var skip = 0;
-
-			if (currentPage > 1)
-				skip = pageSize*(currentPage - 1);
-
-			var groups = userGroupRepository.Find(new PagedUserGroups(skip, pageSize));
-
-			return Mapper.Map<ICollection<UserGroup>, IList<UserGroupDTO>>(groups);
-		}
-
-		public Guid Create(UserGroupDTO group)
-		{
-			var id = group.Id = Guid.NewGuid();
-
-			try
-			{
-				userGroupRepository.Save(Mapper.Map<UserGroupDTO, UserGroup>(group));
-			}
-			catch(RepositorySaveException)
-			{
-				id = Guid.Empty;
-			}
-
-			return id;
-		}
-
-		public UserGroupDTO GetUserGroup(Guid id)
-		{
-			var group = userGroupRepository.FindById(id);
-
-			return Mapper.Map<UserGroup, UserGroupDTO>(group);
-		}
-
-		public bool Update(UserGroupDTO group)
-		{
-			var success = true;
-			try
-			{
-				userGroupRepository.Update(Mapper.Map<UserGroupDTO, UserGroup>(group));
-			}
-			catch(RepositoryUpdateException)
-			{
-				success = false;
-			}
-
-			return success;
-		}
-
-		public bool Delete(Guid id)
-		{
-			var success = true;
-
-			try
-			{
-				userGroupRepository.Delete(id);
-			}
-			catch(RepositoryDeleteException)
-			{
-				success = false;
-			}
-
-			return success;
 		}
 	}
+
 }

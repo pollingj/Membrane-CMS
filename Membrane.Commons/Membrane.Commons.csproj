@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=0.3.0.54, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Components.Validator, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.Components.Validator.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Core.dll</HintPath>
@@ -95,8 +103,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMapper.cs" />
-    <Compile Include="IMembraneController.cs" />
+    <Compile Include="CRUD\CRUDController.cs" />
+    <Compile Include="CRUD\CRUDService.cs" />
+    <Compile Include="CRUD\ICRUDController.cs" />
+    <Compile Include="CRUD\ICRUDService.cs" />
+    <Compile Include="CRUD\IDTO.cs" />
+    <Compile Include="CRUD\PagedItems.cs" />
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\Exceptions\RepositoryDeleteException.cs" />

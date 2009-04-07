@@ -1,5 +1,4 @@
-﻿<viewdata group="UserGroupDTO" />
-<global Title="'User Groups'"/>
+﻿<global Title="'User Groups'"/>
 
 <use file="SharedMenu" />
 <use file="AdminMenu" />
@@ -20,10 +19,10 @@ ${Form.FormTag(new { id='entryForm', action='submit' })}
 	<fieldset>
 		<legend>User Group Details</legend>
 		<div class="values">
-            ${Form.LabelFor("group.Name", "Name:")}
-            ${Form.TextField("group.Name")}
+            ${Form.LabelFor("item.Name", "Name:")}
+            ${Form.TextField("item.Name")}
 		</div>
-		${Form.HiddenField("group.Id")}
+		${Form.HiddenField("item.Id")}
 		${Form.Submit("Submit", new { id = 'submit' })} 
 	</fieldset>    
 ${Form.EndFormTag()}

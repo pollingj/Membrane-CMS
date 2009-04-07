@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Membrane.Commons.CRUD;
 using Membrane.Controllers.Administrator;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
+using Membrane.Entities;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -12,7 +14,8 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 	public class UserGroupsControllerFixture : BaseControllerFixture
 	{
 		private UserGroupsController controller;
-		private IUserGroupService service;
+		private ICRUDService<UserGroupDTO, UserGroup> service;
+		//private IUserGroupService service;
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
@@ -26,7 +29,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		{
 			base.SetUp();
 
-			service = mockery.DynamicMock<IUserGroupService>();
+			service = mockery.DynamicMock<ICRUDService<UserGroupDTO, UserGroup>>();
 
 			controller = new UserGroupsController(service);
 
@@ -44,7 +47,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		public void CanListUserGroupsWithNoPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedUserGroups(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(userGroupList))
+				.Expecting(() => Expect.Call(service.GetPagedItems(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(userGroupList))
 				.Verify(() => controller.List());
 
 			AssertListData();
@@ -55,7 +58,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		public void CanListUserGroupsWithPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedUserGroups(anotherPageNumber, anotherPageSize)).Return(userGroupList))
+				.Expecting(() => Expect.Call(service.GetPagedItems(anotherPageNumber, anotherPageSize)).Return(userGroupList))
 				.Verify(() => controller.List(anotherPageNumber, anotherPageSize));
 
 			AssertListData();
@@ -66,7 +69,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		{
 			controller.New();
 
-			Assert.AreEqual(typeof(UserGroupDTO), controller.PropertyBag["grouptype"]);
+			Assert.AreEqual(typeof(UserGroupDTO), controller.PropertyBag["itemtype"]);
 			Assert.AreEqual(@"UserGroups\Form", controller.SelectedViewName);
 		}
 		
@@ -105,10 +108,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			var groupId = Guid.NewGuid();
 			var group = new UserGroupDTO {Id = groupId, Name = "Stored User Group"};
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetUserGroup(groupId)).Return(group))
+				.Expecting(() => Expect.Call(service.GetItem(groupId)).Return(group))
 				.Verify(() => controller.Edit(groupId));
 
-			Assert.AreEqual(group, controller.PropertyBag["group"]);
+			Assert.AreEqual(group, controller.PropertyBag["item"]);
 			Assert.AreEqual(@"UserGroups\Form", controller.SelectedViewName);	
 		}
 
@@ -140,10 +143,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			var groupId = Guid.NewGuid();
 			var deleteGroup = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Delete User Group"};
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetUserGroup(groupId)).Return(deleteGroup))
+				.Expecting(() => Expect.Call(service.GetItem(groupId)).Return(deleteGroup))
 				.Verify(() => controller.ConfirmDelete(groupId));
 
-			Assert.AreEqual(deleteGroup, controller.PropertyBag["group"]);
+			Assert.AreEqual(deleteGroup, controller.PropertyBag["item"]);
 			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);
 		}
 
@@ -194,7 +197,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 
 		private void AssertSubmitFailure(UserGroupDTO group)
 		{
-			Assert.AreEqual(group, controller.Flash["group"]);
+			Assert.AreEqual(group, controller.Flash["item"]);
 			Assert.IsNotNull(controller.Flash["error"]);
 			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName);			
 		}
@@ -203,7 +206,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		private void AssertListData()
 		{
 			Assert.AreEqual(@"UserGroups\Action", controller.SelectedViewName, "List view not being used");
-			Assert.AreEqual(userGroupList, controller.PropertyBag["groups"], "groups PropertyBag not being set");
+			Assert.AreEqual(userGroupList, controller.PropertyBag["items"], "groups PropertyBag not being set");
 		}
 	}
 }

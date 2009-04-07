@@ -56,7 +56,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			browser.GoTo(newGroupUrl);
 
-			browser.TextField("group_Name").TypeText("News Group");
+			browser.TextField("item_Name").TypeText("News Group");
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
@@ -80,7 +80,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 			GoToEditForm();
 
 			Assert.IsTrue(browser.Url.Contains(editGroupUrl));
-			Assert.AreEqual("Blogging Group", browser.TextField("group_Name").Text);
+			Assert.AreEqual("Blogging Group", browser.TextField("item_Name").Text);
 		}
 
 		[Test]
@@ -88,8 +88,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			browser.TextField("group_Name").Clear();
-			browser.TextField("group_Name").TypeText("Blog Editing Group");
+			browser.TextField("item_Name").Clear();
+			browser.TextField("item_Name").TypeText("Blog Editing Group");
 
 			browser.Button("submit").Click();
 
@@ -105,7 +105,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			browser.TextField("group_Name").Clear();
+			browser.TextField("item_Name").Clear();
 
 			FailFormValidation(editGroupUrl);
 		}
@@ -153,11 +153,11 @@ namespace Membrane.Tests.Acceptance.Administrator
 
 		private void FailFormValidation(string formUrl)
 		{
-			browser.TextField("group_Name").Click();
+			browser.TextField("item_Name").Click();
 			browser.Button("submit").Click();
 
 			Assert.IsTrue(browser.Url.Contains(formUrl));
-			Assert.AreEqual("error", browser.TextField("group_Name").ClassName);
+			Assert.AreEqual("error", browser.TextField("item_Name").ClassName);
 
 			/*Assert.IsTrue(browser.Div("errors").Exists);
 			Assert.IsTrue(browser.ContainsText("There was a problem with the form"));*/

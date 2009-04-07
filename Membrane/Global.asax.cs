@@ -2,6 +2,7 @@
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
+using Membrane.Commons.CRUD;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
@@ -26,6 +27,7 @@ namespace Membrane
 			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
 			container.AddComponent<IUserGroupService, UserGroupService>();
+			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));

@@ -1,4 +1,4 @@
-﻿<viewdata group="UserGroupDTO" />
+﻿<viewdata item="UserGroupDTO" />
 <global Title="'User Groups'"/>
 
 <use file="SharedMenu" />
@@ -6,7 +6,7 @@
 
 <h1>User Group Deletion</h1>
 
-<p>Are you certain you wish to delete '${group.Name}'?</p>
+<p>Are you certain you wish to delete '${item.Name}'?</p>
 
 ${Form.FormTag(new { id='deleteForm', action='delete' })}
 	<fieldset>

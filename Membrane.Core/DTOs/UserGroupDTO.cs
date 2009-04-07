@@ -1,9 +1,10 @@
 using System;
 using Castle.Components.Validator;
+using Membrane.Commons.CRUD;
 
 namespace Membrane.Core.DTOs
 {
-	public class UserGroupDTO
+	public class UserGroupDTO : IDTO
 	{
 		public Guid Id { get; set; }
 
