@@ -66,6 +66,10 @@ namespace Membrane.Commons.FormGeneration
 					case "String":
 					case "Decimal":
 					case "Double":
+					case "Float":
+					case "Int16":
+					case "Int32":
+					case "Int64":
 						field.Type = FieldType.SingleLineTextField;
 						break;
 

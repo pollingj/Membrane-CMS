@@ -93,6 +93,9 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 					case "Price":
 						AssertFormFieldData("Price", FieldType.SingleLineTextField, field);
 						break;
+					case "StockCount":
+						AssertFormFieldData("Stock Count", FieldType.SingleLineTextField, field);
+						break;
 					case "Type":
 						AssertFormFieldData("Type", FieldType.SingleSelectDropDownList, field);
 						Assert.AreEqual("Id", field.OptionValue);
@@ -211,6 +214,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public decimal Price { get; set; }
+		public int StockCount { get; set; }
 		public ProductTypeDTO Type { get; set; }
 	}
 
