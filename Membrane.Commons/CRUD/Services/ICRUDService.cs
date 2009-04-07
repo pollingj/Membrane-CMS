@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Membrane.Commons.CRUD
+namespace Membrane.Commons.CRUD.Services
 {
 	public interface ICRUDService<DTO, Entity>
 	{

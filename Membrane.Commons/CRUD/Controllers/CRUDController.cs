@@ -1,9 +1,10 @@
 using System;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
+using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.Persistence;
 
-namespace Membrane.Commons.CRUD
+namespace Membrane.Commons.CRUD.Controllers
 {
 	[Layout("default"), Rescue("generalerror")]
 	public class CRUDController<DTO, Entity> : SmartDispatcherController, ICRUDController<DTO, Entity> 

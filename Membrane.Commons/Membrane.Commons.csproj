@@ -103,12 +103,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\CRUDController.cs" />
-    <Compile Include="CRUD\CRUDService.cs" />
-    <Compile Include="CRUD\ICRUDController.cs" />
-    <Compile Include="CRUD\ICRUDService.cs" />
+    <Compile Include="CRUD\Controllers\CRUDController.cs" />
+    <Compile Include="CRUD\Services\CRUDService.cs" />
+    <Compile Include="CRUD\Controllers\ICRUDController.cs" />
+    <Compile Include="CRUD\Services\ICRUDService.cs" />
     <Compile Include="CRUD\IDTO.cs" />
-    <Compile Include="CRUD\PagedItems.cs" />
+    <Compile Include="CRUD\Queries\PagedItems.cs" />
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\Exceptions\RepositoryDeleteException.cs" />

@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Membrane.Commons.CRUD.Queries;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
 
-namespace Membrane.Commons.CRUD
+namespace Membrane.Commons.CRUD.Services
 {
 	public class CRUDService<DTO, Entity> : ICRUDService<DTO, Entity> 
 		where DTO : IDTO

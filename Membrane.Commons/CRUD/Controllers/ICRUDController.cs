@@ -1,6 +1,6 @@
 using System;
 
-namespace Membrane.Commons.CRUD
+namespace Membrane.Commons.CRUD.Controllers
 {
 	public interface ICRUDController<DTO, Entity>
 	{
