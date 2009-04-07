@@ -80,6 +80,7 @@
     <Compile Include="Acceptance\WhenLoginPageIsRequested.cs" />
     <Compile Include="Acceptance\WhenUserLogsOff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\Commons\FormGeneration\AutoGeneratorFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\UserGroups\PagedUserGroupsFixture.cs" />

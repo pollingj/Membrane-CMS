@@ -109,6 +109,10 @@
     <Compile Include="CRUD\Services\ICRUDService.cs" />
     <Compile Include="CRUD\IDTO.cs" />
     <Compile Include="CRUD\Queries\PagedItems.cs" />
+    <Compile Include="FormGeneration\AutoGenerator.cs" />
+    <Compile Include="FormGeneration\Enums\FieldType.cs" />
+    <Compile Include="FormGeneration\FormField.cs" />
+    <Compile Include="FormGeneration\Interfaces\IAutoGenerator.cs" />
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\Exceptions\RepositoryDeleteException.cs" />
