@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Interfaces;
 
@@ -18,30 +20,40 @@ namespace Membrane.Commons.FormGeneration
 		{
 			foreach (var propertyInfo in typeof(T).GetProperties())
 			{
-				var formField = new FormField { Label = CreateLabel(propertyInfo.Name) };
+				var formField = new FormField { Id = propertyInfo.Name, Label = CreateLabel(propertyInfo.Name)};
 
-				switch (propertyInfo.PropertyType.Name)
-				{
-					case "Guid":
-						formField.Type = FieldType.Hidden;
-						break;
-					case "String":
-					case "Decimal":
-					case "Double":
-						formField.Type = FieldType.SingleLineTextField;
-						break;
+				var formFieldAttributes = propertyInfo.GetCustomAttributes(typeof (FormFieldTypeAttribute), true);
+				formField.Type = formFieldAttributes.Length > 0 ? ((FormFieldTypeAttribute) formFieldAttributes[0]).Type : GetConventionFieldType(propertyInfo.PropertyType.Name);
 
-					case "DateTime":
-						formField.Type = FieldType.Date;
-						break;
-
-					case "Boolean":
-						formField.Type = FieldType.CheckBox;
-						break;
-				}
-
-				FormFields.Add(formField);
+				if (formField.Type != FieldType.Ignore)
+					FormFields.Add(formField);
 			}
+		}
+
+		private FieldType GetConventionFieldType(string name)
+		{
+			var type = new FieldType();
+			switch (name)
+			{
+				case "Guid":
+					type = FieldType.Hidden;
+					break;
+				case "String":
+				case "Decimal":
+				case "Double":
+					type = FieldType.SingleLineTextField;
+					break;
+
+				case "DateTime":
+					type = FieldType.Date;
+					break;
+
+				case "Boolean":
+					type = FieldType.CheckBox;
+					break;
+			}
+
+			return type;
 		}
 
 

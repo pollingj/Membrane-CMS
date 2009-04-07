@@ -4,7 +4,10 @@ namespace Membrane.Commons.FormGeneration.Enums
 	{
 		Hidden,
 		SingleLineTextField,
+		MultiLineTextField,
 		Date,
-		CheckBox
+		CheckBox,
+		FileUpload,
+		Ignore
 	}
 }
