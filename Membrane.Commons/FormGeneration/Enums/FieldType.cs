@@ -8,6 +8,8 @@ namespace Membrane.Commons.FormGeneration.Enums
 		Date,
 		CheckBox,
 		FileUpload,
-		Ignore
+		Ignore,
+		SingleSelectDropDownList,
+		MultiSelectDropDownList
 	}
 }
