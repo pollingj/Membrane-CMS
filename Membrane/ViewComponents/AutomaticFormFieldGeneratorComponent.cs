@@ -13,6 +13,9 @@ namespace Membrane.ViewComponents
 		[ViewComponentParam(Required = true)]
 		public IList<FormField> Fields { get; set; }
 
+		[ViewComponentParam]
+		public string FieldPrefix { get; set; }
+
 		private FormHelper formHelper;
 
 		public override void Initialize()
@@ -20,6 +23,15 @@ namespace Membrane.ViewComponents
 			if (Fields == null)
 			{
 				throw new ViewComponentException("The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance");
+			}
+
+			//  Has a FieldPrefix been supplied? If so apply it to all of the field ids
+			if (FieldPrefix != null)
+			{
+				foreach (var field in Fields)
+				{
+					field.Id = string.Format("{0}.{1}", FieldPrefix, field.Id);
+				}
 			}
 		}
 
@@ -36,17 +48,33 @@ namespace Membrane.ViewComponents
 					case FieldType.SingleLineTextField:
 						RenderSingleLineTextField(field, writer);
 						break;
+					case FieldType.MultiLineTextField:
+						RenderMultiLineTextField(field, writer);
+						break;
+					case FieldType.Hidden:
+						RenderHiddenField(field, writer);
+						break;
 				}
 			}
 
-			RenderBody(writer);
+			RenderText(writer.ToString());
 		}
 
 		private void RenderSingleLineTextField(FormField field, StringWriter writer)
 		{
-			var fieldId = string.Format("item.{0}", field.Id);
-			writer.WriteLine(formHelper.LabelFor(fieldId, field.Label));
-			writer.WriteLine(formHelper.TextField(fieldId));
+			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
+			writer.WriteLine(formHelper.TextField(field.Id));
+		}
+
+		private void RenderMultiLineTextField(FormField field, StringWriter writer)
+		{
+			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
+			writer.WriteLine(formHelper.TextArea(field.Id));
+		}
+
+		private void RenderHiddenField(FormField field, StringWriter writer)
+		{
+			writer.WriteLine(formHelper.HiddenField(field.Id));
 		}
 	}
 }

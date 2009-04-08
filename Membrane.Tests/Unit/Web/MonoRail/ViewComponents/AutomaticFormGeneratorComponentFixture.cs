@@ -16,10 +16,19 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 	{
 		private AutomaticFormFieldGeneratorComponent component;
 
+		private List<FormField> formFields;
+
 		[SetUp]
 		public void SetUp()
 		{
 			component = new AutomaticFormFieldGeneratorComponent();
+
+			formFields = new List<FormField>
+			                 	{
+			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
+			                 		new FormField {Id = "Name", Label = "Name", Type = FieldType.SingleLineTextField},
+			                 		new FormField {Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
+			                 	};
 		}
 
 		[TearDown]
@@ -36,16 +45,24 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		}
 
 		[Test]
+		public void CanApplyFormFieldPrefix()
+		{
+			component.FieldPrefix = "data";
+			component.Fields = formFields;
+			component.Initialize();
+
+			foreach (var field in component.Fields)
+			{
+				Assert.IsTrue(field.Id.Contains(component.FieldPrefix));
+			}
+		}
+
+		[Test]
 		public void CanDisplaySimpleFormFields()
 		{
 
 			var actions = new List<string>();
-			var formFields = new List<FormField>
-			                 	{
-			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
-			                 		new FormField {Id = "Name", Label = "Name", Type = FieldType.SingleLineTextField},
-			                 		new FormField {Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
-			                 	};
+
 			SectionRender["FormRow"] = ((context, writer) => actions.Add("row"));
 		
 			component.Fields = formFields;
