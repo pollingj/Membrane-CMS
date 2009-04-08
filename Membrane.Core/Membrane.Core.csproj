@@ -65,7 +65,6 @@
     <Compile Include="Services\FormsAuthenticationWrapper.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\IFormsAuthentication.cs" />
-    <Compile Include="Services\Interfaces\IUserGroupService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
   </ItemGroup>
   <ItemGroup>

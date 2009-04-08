@@ -10,6 +10,7 @@ using Rhino.Mocks;
 
 namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 {
+	[TestFixture]
 	public class CRUDControllerFixture<DTO, Entity> : BaseControllerFixture
 		where DTO : IDTO
 		where Entity : IEntity
@@ -22,11 +23,11 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		private const int anotherPageNumber = 2;
 		private const int anotherPageSize = 20;
 
-		public IList<DTO> listDTO { private get; set; }
-		public DTO newDTO { private get; set; }
-		public DTO invalidDTO { private get; set; }
-		public DTO editDTO { private get; set; }
-		public DTO deleteDTO { private get; set; }
+		public IList<DTO> ListDTO { private get; set; }
+		public DTO NewDTO { private get; set; }
+		public DTO InvalidDTO { private get; set; }
+		public DTO EditDTO { private get; set; }
+		public DTO DeleteDTO { private get; set; }
 
 		[SetUp]
 		public override void SetUp()
@@ -42,10 +43,10 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		}
 
 		[Test]
-		public void CanListUserGroupsWithNoPagingInformation()
+		public virtual void CanListItemsWithNoPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedItems(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(listDTO))
+				.Expecting(() => Expect.Call(service.GetPagedItems(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(ListDTO))
 				.Verify(() => controller.List());
 
 			AssertListData();
@@ -53,17 +54,17 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 
 
 		[Test]
-		public void CanListUserGroupsWithPagingInformation()
+		public virtual void CanListItemsWithPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedItems(anotherPageNumber, anotherPageSize)).Return(listDTO))
+				.Expecting(() => Expect.Call(service.GetPagedItems(anotherPageNumber, anotherPageSize)).Return(ListDTO))
 				.Verify(() => controller.List(anotherPageNumber, anotherPageSize));
 
 			AssertListData();
 		}
 
 		[Test]
-		public void CanShowNewUserGroupPage()
+		public virtual void CanShowNewItemPage()
 		{
 			controller.New();
 
@@ -72,7 +73,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		}
 
 		[Test]
-		public void CanSuccessfullySubmitNewUserGroup()
+		public virtual void CanSuccessfullySubmitNewItem()
 		{
 			NewDTOSubmission(Guid.NewGuid());
 
@@ -80,34 +81,34 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		}
 
 		[Test]
-		public void CanFailValidationOnSubmit()
+		public virtual void CanFailValidationOnSubmit()
 		{
-			controller.Submit(invalidDTO);
+			controller.Submit(InvalidDTO);
 
-			AssertSubmitFailure(invalidDTO);
+			AssertSubmitFailure(InvalidDTO);
 		}
 
 		[Test]
-		public void CanFailSubmitUserGroup()
+		public virtual void CanFailSubmitItem()
 		{
 			NewDTOSubmission(Guid.Empty);
 
-			AssertSubmitFailure(newDTO);
+			AssertSubmitFailure(NewDTO);
 		}
 
 		[Test]
-		public void CanShowEditDTOPage()
+		public virtual void CanShowEditItemPage()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetItem(editDTO.Id)).Return(editDTO))
-				.Verify(() => controller.Edit(editDTO.Id));
+				.Expecting(() => Expect.Call(service.GetItem(EditDTO.Id)).Return(EditDTO))
+				.Verify(() => controller.Edit(EditDTO.Id));
 
-			Assert.AreEqual(editDTO, controller.PropertyBag["item"]);
+			Assert.AreEqual(EditDTO, controller.PropertyBag["item"]);
 			Assert.AreEqual(@"Controller\Form", controller.SelectedViewName);
 		}
 
 		[Test]
-		public void CanSuccessfullySubmitEdittedUserGroup()
+		public virtual void CanSuccessfullySubmitEdittedItem()
 		{
 			EditDTOSubmission(true);
 
@@ -115,41 +116,41 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		}
 
 		[Test]
-		public void CanFailSubmitEdittedUserGroup()
+		public virtual void CanFailSubmitEdittedItem()
 		{
 			EditDTOSubmission(false);
 
-			AssertSubmitFailure(editDTO);
+			AssertSubmitFailure(EditDTO);
 		}
 
 		[Test]
-		public void CanShowUserGroupForConfirmDelete()
+		public virtual void CanShowItemForConfirmDelete()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetItem(deleteDTO.Id)).Return(deleteDTO))
-				.Verify(() => controller.ConfirmDelete(deleteDTO.Id));
+				.Expecting(() => Expect.Call(service.GetItem(DeleteDTO.Id)).Return(DeleteDTO))
+				.Verify(() => controller.ConfirmDelete(DeleteDTO.Id));
 
-			Assert.AreEqual(deleteDTO, controller.PropertyBag["item"]);
+			Assert.AreEqual(DeleteDTO, controller.PropertyBag["item"]);
 			Assert.AreEqual(@"Controller\Action", controller.SelectedViewName);
 		}
 
 		[Test]
-		public void CanSuccessfullyDeleteUserGroup()
+		public virtual void CanSuccessfullyDeleteItem()
 		{
-			MockDeleteUserGroup(true);
+			MockDeleteItem(true);
 
 			AssertSuccessfulActionAndRedirectedBackToList();
 		}
 
 		[Test]
-		public void CanFailDeletingUserGroup()
+		public virtual void CanFailDeletingItem()
 		{
-			MockDeleteUserGroup(false);
+			MockDeleteItem(false);
 
 			Assert.IsNotNull(controller.Flash["error"]);
 		}
 
-		private void MockDeleteUserGroup(bool deleteSuccess)
+		private void MockDeleteItem(bool deleteSuccess)
 		{
 			var groupId = Guid.NewGuid();
 
@@ -161,15 +162,15 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		private void NewDTOSubmission(Guid id)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Create(newDTO)).Return(id))
-				.Verify(() => controller.Submit(newDTO));
+				.Expecting(() => Expect.Call(service.Create(NewDTO)).Return(id))
+				.Verify(() => controller.Submit(NewDTO));
 		}
 
 		private void EditDTOSubmission(bool updateSuccess)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Update(editDTO)).Return(updateSuccess))
-				.Verify(() => controller.Submit(editDTO));
+				.Expecting(() => Expect.Call(service.Update(EditDTO)).Return(updateSuccess))
+				.Verify(() => controller.Submit(EditDTO));
 		}
 
 		private void AssertSuccessfulActionAndRedirectedBackToList()
@@ -189,7 +190,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		private void AssertListData()
 		{
 			Assert.AreEqual(@"Controller\Action", controller.SelectedViewName, "List view not being used");
-			Assert.AreEqual(listDTO, controller.PropertyBag["items"], "groups PropertyBag not being set");
+			Assert.AreEqual(ListDTO, controller.PropertyBag["items"], "groups PropertyBag not being set");
 		}
 	}
 }

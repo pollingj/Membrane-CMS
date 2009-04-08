@@ -27,7 +27,6 @@ namespace Membrane
 		{
 			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
-			container.AddComponent<IUserGroupService, UserGroupService>();
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
 

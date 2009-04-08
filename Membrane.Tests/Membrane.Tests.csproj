@@ -85,6 +85,7 @@
     <Compile Include="Acceptance\WhenUserLogsOff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Commons\CRUD\Controllers\CRUDControllerFixture.cs" />
+    <Compile Include="Unit\Commons\CRUD\Services\CRUDServiceFixture.cs" />
     <Compile Include="Unit\Commons\FormGeneration\AutoGeneratorFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
