@@ -1,14 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.TestSupport;
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
-using Membrane.Controllers.Administrator;
-using Membrane.Core.DTOs;
-using Membrane.Entities;
 using Membrane.ViewComponents;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -70,15 +65,25 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 
 			var actions = new List<string>();
 
-			SectionRender["startrow"] = ((context, writer) => actions.Add("startrow"));
-			SectionRender["endrow"] = ((context, writer) => actions.Add("endrow"));
-
+			//SectionRender["startrow"] = ((context, writer) => actions.Add("startrow"));
+			//SectionRender["endrow"] = ((context, writer) => actions.Add("endrow"));
+			SectionRender["startrow"] = ((context, writer) =>
+			                             	{
+			                             		actions.Add("startrow");
+			                             		writer.WriteLine("<div>");
+			                             	});
+			SectionRender["endrow"] = ((context, writer) =>
+											{
+												actions.Add("endrow");
+												writer.WriteLine("</div>");
+											});
 
 			component.FieldPrefix = "item";
 			component.Fields = formFields;
 
 			PrepareViewComponent(component);
-
+			//component.Context.ComponentParameters["startrow"] = null;
+			//component.Context.ComponentParameters["endrow"] = null;
 			// Must provide a ControllerContext.  
 			Context.CurrentControllerContext = mockery.Stub<IControllerContext>();
 			Context.CurrentControllerContext.PropertyBag = new Hashtable();
