@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Castle.MonoRail.Framework;
 using Castle.MonoRail.TestSupport;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
@@ -16,8 +19,6 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		public void SetUp()
 		{
 			component = new AutomaticFormFieldGeneratorComponent();
-
-			PrepareViewComponent(component);
 		}
 
 		[TearDown]
@@ -26,9 +27,17 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			CleanUp();
 		}
 
+		[Test, ExpectedException(typeof(ViewComponentException), "The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance")]
+		public void ThrowsExceptionIfNoFieldsParameterIsSupplied()
+		{
+			component.Fields = null;
+			component.Initialize();
+		}
+
 		[Test]
 		public void CanDisplaySimpleFormFields()
 		{
+
 			var actions = new List<string>();
 			var formFields = new List<FormField>
 			                 	{
@@ -36,15 +45,14 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			                 		new FormField {Id = "Name", Label = "Name", Type = FieldType.SingleLineTextField},
 			                 		new FormField {Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
 			                 	};
-
-			component.Context.ComponentParameters["source"] = formFields;
-
-			//SectionRender[""]
-			
+			SectionRender["FormRow"] = ((context, writer) => actions.Add("row"));
+		
+			component.Fields = formFields;
+			PrepareViewComponent(component);
+			//component.Context.ComponentParameters["item"] = new {Id = 1, Name = "Test", Description = "wwrwer"};
 			component.Render();
 
-
-			//Assert.AreEqual(actions.);
+			Assert.AreEqual(3, actions.Count);
 
 		}
 	}
