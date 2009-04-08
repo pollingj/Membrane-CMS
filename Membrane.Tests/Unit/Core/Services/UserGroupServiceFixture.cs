@@ -6,7 +6,6 @@ using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services;
-using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -16,7 +15,6 @@ namespace Membrane.Tests.Unit.Core.Services
 	[TestFixture]
 	public class UserGroupServiceFixture : BaseFixture
 	{
-		//private IUserGroupService service;
 		private ICRUDService<UserGroupDTO, UserGroup> service;
 		private IRepository<UserGroup> userGroupRepository;
 

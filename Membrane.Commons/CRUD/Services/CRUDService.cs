@@ -18,9 +18,16 @@ namespace Membrane.Commons.CRUD.Services
 		public CRUDService(IRepository<Entity> repository)
 		{
 			this.repository = repository;
+			RegisterMappings();
 		}
 
-		public IList<DTO> GetPagedItems(int currentPage, int pageSize)
+		public virtual void RegisterMappings()
+		{
+			Mapper.CreateMap<Entity, DTO>();
+			Mapper.CreateMap<DTO, Entity>();
+		}
+
+		public virtual IList<DTO> GetPagedItems(int currentPage, int pageSize)
 		{
 			var skip = 0;
 
@@ -32,14 +39,14 @@ namespace Membrane.Commons.CRUD.Services
 			return Mapper.Map<ICollection<Entity>, IList<DTO>>(items);
 		}
 
-		public DTO GetItem(Guid id)
+		public virtual DTO GetItem(Guid id)
 		{
 			var group = repository.FindById(id);
 
 			return Mapper.Map<Entity, DTO>(group);
 		}
 
-		public Guid Create(DTO item)
+		public virtual Guid Create(DTO item)
 		{
 			var id = item.Id = Guid.NewGuid();
 
@@ -55,7 +62,7 @@ namespace Membrane.Commons.CRUD.Services
 			return id;
 		}
 
-		public bool Update(DTO item)
+		public virtual bool Update(DTO item)
 		{
 			var success = true;
 			try
@@ -70,7 +77,7 @@ namespace Membrane.Commons.CRUD.Services
 			return success;
 		}
 
-		public bool Delete(Guid id)
+		public virtual bool Delete(Guid id)
 		{
 			var success = true;
 
@@ -85,74 +92,5 @@ namespace Membrane.Commons.CRUD.Services
 
 			return success;
 		}
-
-		/*
-		 * 
-		 * 		public IList<UserGroupDTO> GetPagedUserGroups(int currentPage, int pageSize)
-		{
-			var skip = 0;
-
-			if (currentPage > 1)
-				skip = pageSize*(currentPage - 1);
-
-			var groups = userGroupRepository.Find(new PagedUserGroups(skip, pageSize));
-
-			return Mapper.Map<ICollection<UserGroup>, IList<UserGroupDTO>>(groups);
-		}
-
-		public Guid Create(UserGroupDTO group)
-		{
-			var id = group.Id = Guid.NewGuid();
-
-			try
-			{
-				userGroupRepository.Save(Mapper.Map<UserGroupDTO, UserGroup>(group));
-			}
-			catch(RepositorySaveException)
-			{
-				id = Guid.Empty;
-			}
-
-			return id;
-		}
-
-		public UserGroupDTO GetUserGroup(Guid id)
-		{
-			var group = userGroupRepository.FindById(id);
-
-			return Mapper.Map<UserGroup, UserGroupDTO>(group);
-		}
-
-		public bool Update(UserGroupDTO group)
-		{
-			var success = true;
-			try
-			{
-				userGroupRepository.Update(Mapper.Map<UserGroupDTO, UserGroup>(group));
-			}
-			catch(RepositoryUpdateException)
-			{
-				success = false;
-			}
-
-			return success;
-		}
-
-		public bool Delete(Guid id)
-		{
-			var success = true;
-
-			try
-			{
-				userGroupRepository.Delete(id);
-			}
-			catch(RepositoryDeleteException)
-			{
-				success = false;
-			}
-
-			return success;
-		}
-	}*/
 	}
 }
