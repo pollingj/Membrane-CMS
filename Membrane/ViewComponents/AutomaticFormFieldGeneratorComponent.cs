@@ -20,30 +20,34 @@ namespace Membrane.ViewComponents
 			{
 				throw new ViewComponentException("The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance");
 			}
+
+			FormHelper.
 		}
 
 		public override void Render()
 		{
 			var writer = new StringWriter();
-			formHelper = new FormHelper(EngineContext);
-			formHelper.UseJQueryValidation();
+			//formHelper = (FormHelper)Context.ContextVars["FormHelper"];
+			//formHelper.UseJQueryValidation();
 
 			foreach (var field in Fields)
 			{
 				switch(field.Type)
 				{
 					case FieldType.SingleLineTextField:
-						RenderSingleTextField(field, writer);
+						RenderSingleLineTextField(field, writer);
 						break;
 				}
 			}
+
+			RenderBody(writer);
 		}
 
-		private void RenderSingleTextField(FormField field, StringWriter writer)
+		private void RenderSingleLineTextField(FormField field, StringWriter writer)
 		{
 			var fieldId = string.Format("item.{0}", field.Id);
 			writer.WriteLine(formHelper.LabelFor(fieldId, field.Label));
-			writer.WriteLine(formHelper.TextField(fieldId, DictHelper.Create(new string[] {"maxlength = 100"})));
+			writer.WriteLine(formHelper.TextField(fieldId));
 		}
 	}
 }

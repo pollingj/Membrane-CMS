@@ -7,6 +7,7 @@ using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.ViewComponents;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 {
@@ -49,7 +50,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		
 			component.Fields = formFields;
 			PrepareViewComponent(component);
-			//component.Context.ComponentParameters["item"] = new {Id = 1, Name = "Test", Description = "wwrwer"};
+			//controllerContext.PropertyBag["item"]= new {Id = 1, Name = "Test", Description = "wwrwer"};
 			component.Render();
 
 			Assert.AreEqual(3, actions.Count);

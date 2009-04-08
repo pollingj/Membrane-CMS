@@ -26,3 +26,4 @@ ${Form.FormTag(new { id='entryForm', action='submit' })}
 		${Form.Submit("Submit", new { id = 'submit' })} 
 	</fieldset>    
 ${Form.EndFormTag()}
+<FormGenerator Fields="ViewData['fields']" />

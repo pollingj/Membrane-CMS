@@ -8,6 +8,7 @@ using Membrane.Controllers;
 using Membrane.Core.Mappers;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
+using Membrane.ViewComponents;
 
 namespace Membrane
 {
@@ -28,6 +29,7 @@ namespace Membrane
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
 			container.AddComponent<IUserGroupService, UserGroupService>();
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
+			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));

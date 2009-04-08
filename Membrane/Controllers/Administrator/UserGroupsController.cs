@@ -4,6 +4,8 @@ using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.CRUD.Controllers;
 using Membrane.Commons.CRUD.Services;
+using Membrane.Commons.FormGeneration;
+using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
@@ -17,6 +19,18 @@ namespace Membrane.Controllers.Administrator
 	{
 		public UserGroupsController(ICRUDService<UserGroupDTO, UserGroup> service) : base(service)
 		{
+		}
+
+		public override void New()
+		{
+			PropertyBag["fields"] = new List<FormField>()
+			                        	{
+			                        		new FormField {Id = "Test", Label = "Test", Type = FieldType.SingleLineTextField}
+			                        	};
+
+			base.New();
+
+
 		}
 	}
 }
