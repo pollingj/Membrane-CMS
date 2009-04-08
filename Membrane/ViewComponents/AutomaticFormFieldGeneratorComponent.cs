@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Helpers;
+using Castle.MonoRail.ViewComponents;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 
@@ -20,15 +21,13 @@ namespace Membrane.ViewComponents
 			{
 				throw new ViewComponentException("The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance");
 			}
-
-			FormHelper.
 		}
 
 		public override void Render()
 		{
 			var writer = new StringWriter();
-			//formHelper = (FormHelper)Context.ContextVars["FormHelper"];
-			//formHelper.UseJQueryValidation();
+			formHelper = new FormHelper(EngineContext);
+			formHelper.UseJQueryValidation();
 
 			foreach (var field in Fields)
 			{
