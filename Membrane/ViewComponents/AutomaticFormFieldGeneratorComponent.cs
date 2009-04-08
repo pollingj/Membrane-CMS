@@ -2,14 +2,21 @@ using System.Collections.Generic;
 using System.IO;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Helpers;
-using Castle.MonoRail.ViewComponents;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 
 namespace Membrane.ViewComponents
 {
+	[ViewComponentDetails("FormGenerator", Sections = "startrow,endrow")]
 	public class AutomaticFormFieldGeneratorComponent : ViewComponent
 	{
+		private const string StartRowSection = "startrow";
+		private const string EndRowSection = "endrow";
+
+		private const string DefaultStartRow = "<div>";
+		private const string DefaultEndRow = "</div>";
+
+
 		[ViewComponentParam(Required = true)]
 		public IList<FormField> Fields { get; set; }
 
@@ -43,6 +50,8 @@ namespace Membrane.ViewComponents
 
 			foreach (var field in Fields)
 			{
+				// Render Start Row
+				RenderRowSection(StartRowSection, writer, DefaultStartRow);
 				switch(field.Type)
 				{
 					case FieldType.SingleLineTextField:
@@ -55,9 +64,21 @@ namespace Membrane.ViewComponents
 						RenderHiddenField(field, writer);
 						break;
 				}
+
+				// Render End Row
+				RenderRowSection(StartRowSection, writer, DefaultEndRow);
 			}
 
 			RenderText(writer.ToString());
+		}
+
+		private void RenderRowSection(string section, StringWriter writer, string defaultHTML)
+		{
+			var startString = defaultHTML;
+			if (Context.HasSection(section))
+				Context.RenderSection(section, writer);
+
+			writer.WriteLine(startString);
 		}
 
 		private void RenderSingleLineTextField(FormField field, StringWriter writer)

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.TestSupport;
+using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
+using Membrane.Controllers.Administrator;
+using Membrane.Core.DTOs;
+using Membrane.Entities;
 using Membrane.ViewComponents;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -15,12 +19,14 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 	public class AutomaticFormGeneratorComponentFixture : BaseViewComponentTest
 	{
 		private AutomaticFormFieldGeneratorComponent component;
+		private MockRepository mockery;
 
 		private List<FormField> formFields;
 
 		[SetUp]
 		public void SetUp()
 		{
+			mockery = new MockRepository();
 			component = new AutomaticFormFieldGeneratorComponent();
 
 			formFields = new List<FormField>
@@ -29,6 +35,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			                 		new FormField {Id = "Name", Label = "Name", Type = FieldType.SingleLineTextField},
 			                 		new FormField {Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
 			                 	};
+
 		}
 
 		[TearDown]
@@ -58,19 +65,27 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		}
 
 		[Test]
-		public void CanDisplaySimpleFormFields()
+		public void CanDisplaySectionsCorrectly()
 		{
 
 			var actions = new List<string>();
 
-			SectionRender["FormRow"] = ((context, writer) => actions.Add("row"));
-		
+			SectionRender["startrow"] = ((context, writer) => actions.Add("startrow"));
+			SectionRender["endrow"] = ((context, writer) => actions.Add("endrow"));
+
+
+			component.FieldPrefix = "item";
 			component.Fields = formFields;
+
 			PrepareViewComponent(component);
-			//controllerContext.PropertyBag["item"]= new {Id = 1, Name = "Test", Description = "wwrwer"};
+
+			// Must provide a ControllerContext.  
+			Context.CurrentControllerContext = mockery.Stub<IControllerContext>();
+			Context.CurrentControllerContext.PropertyBag = new Hashtable();
+
 			component.Render();
 
-			Assert.AreEqual(3, actions.Count);
+			Assert.AreEqual(formFields.Count * 2, actions.Count);
 
 		}
 	}
