@@ -2,6 +2,7 @@ using System;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.CRUD.Services;
+using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
 
 namespace Membrane.Commons.CRUD.Controllers
@@ -12,12 +13,14 @@ namespace Membrane.Commons.CRUD.Controllers
 		where Entity : IEntity
 	{
 		private readonly ICRUDService<DTO, Entity> service;
+		private readonly IAutoGenerator<DTO> autoGenerator;
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
 		 
-		public CRUDController(ICRUDService<DTO, Entity> service)
+		public CRUDController(ICRUDService<DTO, Entity> service, IAutoGenerator<DTO> autoGenerator)
 		{
-			this.service = service;	
+			this.service = service;
+			this.autoGenerator = autoGenerator;
 		}
 
 		public virtual void List()
@@ -33,14 +36,16 @@ namespace Membrane.Commons.CRUD.Controllers
 		public virtual void New()
 		{
 			PropertyBag["itemtype"] = typeof(DTO);
-
+			GetFormFields();
 			RenderView("Form");
 		}
+
+
 
 		public virtual void Edit(Guid id)
 		{
 			PropertyBag["item"] = service.GetItem(id);
-
+			GetFormFields();
 			RenderView("Form");
 		}
 
@@ -113,6 +118,12 @@ namespace Membrane.Commons.CRUD.Controllers
 			errorSummary.RegisterErrorMessage(string.Empty, errorMessage);
 			Flash["error"] = errorSummary;
 			return true;
+		}
+
+		private void GetFormFields()
+		{
+			autoGenerator.ReadViewModelProperties();
+			PropertyBag["fields"] = autoGenerator.FormFields;
 		}
 	}
 }

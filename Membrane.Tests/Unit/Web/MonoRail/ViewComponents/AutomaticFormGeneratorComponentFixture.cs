@@ -65,7 +65,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		}
 
 		[Test]
-		public void CanDisplaySectionsCorrectly()
+		public void CanDisplaySimpleFormFields()
 		{
 
 			var actions = new List<string>();
@@ -86,6 +86,8 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			component.Render();
 
 			Assert.AreEqual(formFields.Count * 2, actions.Count);
+
+			Assert.AreEqual("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n", Output);
 
 		}
 	}

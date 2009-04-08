@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Membrane.Commons.CRUD;
 using Membrane.Commons.CRUD.Controllers;
 using Membrane.Commons.CRUD.Services;
+using Membrane.Commons.FormGeneration;
+using Membrane.Commons.FormGeneration.Enums;
+using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
 using Membrane.Tests.Unit.Web.MonoRail.Controllers;
 using NUnit.Framework;
@@ -17,6 +20,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 	{
 		private CRUDController<DTO, Entity> controller;
 		private ICRUDService<DTO, Entity> service;
+		private IAutoGenerator<DTO> autoGenerator; 
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
@@ -29,16 +33,27 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public DTO EditDTO { private get; set; }
 		public DTO DeleteDTO { private get; set; }
 
+		private IList<FormField> formFields;
+
 		[SetUp]
 		public override void SetUp()
 		{
 			base.SetUp();
 
 			service = mockery.DynamicMock<ICRUDService<DTO, Entity>>();
+			autoGenerator = mockery.DynamicMock<IAutoGenerator<DTO>>();
 
-			controller = new CRUDController<DTO, Entity>(service);
+			controller = new CRUDController<DTO, Entity>(service, autoGenerator);
 
 			PrepareController(controller);
+
+			formFields = new List<FormField>
+			                 	{
+			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
+			                 		new FormField {Id = "ProductName", Label = "Product Name", Type = FieldType.SingleLineTextField},
+			                 		new FormField {Id = "Price", Label = "Price", Type = FieldType.SingleLineTextField},
+									new FormField { Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
+			                 	};
 
 		}
 
@@ -66,8 +81,16 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		[Test]
 		public virtual void CanShowNewItemPage()
 		{
-			controller.New();
 
+			With.Mocks(mockery)
+				.Expecting(() =>
+				           	{
+				           		Expect.Call(() => autoGenerator.ReadViewModelProperties());
+								Expect.Call(autoGenerator.FormFields).Return(formFields);
+				           	})
+				.Verify(() => controller.New());
+
+			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
 			Assert.AreEqual(typeof(DTO), controller.PropertyBag["itemtype"]);
 			Assert.AreEqual(@"Controller\Form", controller.SelectedViewName);
 		}
@@ -100,9 +123,15 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public virtual void CanShowEditItemPage()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetItem(EditDTO.Id)).Return(EditDTO))
+				.Expecting(() =>
+				{
+					Expect.Call(service.GetItem(EditDTO.Id)).Return(EditDTO);
+					Expect.Call(() => autoGenerator.ReadViewModelProperties());
+					Expect.Call(autoGenerator.FormFields).Return(formFields);
+				})
 				.Verify(() => controller.Edit(EditDTO.Id));
 
+			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
 			Assert.AreEqual(EditDTO, controller.PropertyBag["item"]);
 			Assert.AreEqual(@"Controller\Form", controller.SelectedViewName);
 		}

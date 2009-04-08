@@ -90,7 +90,7 @@ namespace Membrane.ViewComponents
 		private void RenderMultiLineTextField(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
-			writer.WriteLine(formHelper.TextArea(field.Id));
+			writer.WriteLine(formHelper.TextArea(field.Id, DictHelper.Create(new [] { "cols=20", "rows=50"})));
 		}
 
 		private void RenderHiddenField(FormField field, StringWriter writer)

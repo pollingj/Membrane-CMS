@@ -3,6 +3,8 @@ using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
 using Membrane.Commons.CRUD.Services;
+using Membrane.Commons.FormGeneration;
+using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
@@ -27,6 +29,7 @@ namespace Membrane
 		{
 			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
+			container.AddComponent("autogenerator", typeof(IAutoGenerator<>), typeof(AutoGenerator<>));
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
 
