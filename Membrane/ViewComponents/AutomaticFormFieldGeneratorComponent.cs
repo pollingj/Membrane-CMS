@@ -66,7 +66,7 @@ namespace Membrane.ViewComponents
 				}
 
 				// Render End Row
-				RenderRowSection(StartRowSection, writer, DefaultEndRow);
+				RenderRowSection(EndRowSection, writer, DefaultEndRow);
 			}
 
 			RenderText(writer.ToString());

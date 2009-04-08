@@ -12,13 +12,9 @@ namespace Membrane.Commons.FormGeneration
 	{
 		public IList<FormField> FormFields { get; set; }
 
-		public AutoGenerator()
-		{
-			FormFields = new List<FormField>();
-		}
-
 		public void ReadViewModelProperties()
 		{
+			FormFields = new List<FormField>();
 			foreach (var propertyInfo in typeof(T).GetProperties())
 			{
 				var formField = new FormField { Id = propertyInfo.Name, Label = CreateLabel(propertyInfo.Name)};
