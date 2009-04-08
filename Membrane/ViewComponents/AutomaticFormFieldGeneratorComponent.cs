@@ -63,6 +63,9 @@ namespace Membrane.ViewComponents
 					case FieldType.Hidden:
 						RenderHiddenField(field, writer);
 						break;
+					case FieldType.SingleSelectDropDownList:
+						RenderSelectList(field, writer);
+						break;
 				}
 
 				// Render End Row
@@ -96,6 +99,12 @@ namespace Membrane.ViewComponents
 		private void RenderHiddenField(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.HiddenField(field.Id));
+		}
+
+		private void RenderSelectList(FormField field, StringWriter writer)
+		{
+			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
+			//writer.WriteLine(formHelper.Select(field.Id, data, DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText)})));
 		}
 	}
 }

@@ -62,28 +62,42 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		[Test]
 		public void CanDisplaySimpleFormFields()
 		{
+			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n");
+		}
 
+
+		[Test]
+		public void CanDisplaySingleSelectDropDownList()
+		{
+	
+			formFields.Add(new FormField { Id = "ProductType", Label = "Product Type", OptionValue = "Id", OptionText = "Name", Type = FieldType.SingleSelectDropDownList});
+
+			// Need to make sure a call to load the related data is called.
+
+			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<select id=\"item.ProductType\">\r\n</select>\r\n</div>\r\n");
+
+		}
+
+		private void RunAndCheckViewComponentOutput(string expectedHTML)
+		{
 			var actions = new List<string>();
 
-			//SectionRender["startrow"] = ((context, writer) => actions.Add("startrow"));
-			//SectionRender["endrow"] = ((context, writer) => actions.Add("endrow"));
 			SectionRender["startrow"] = ((context, writer) =>
-			                             	{
-			                             		actions.Add("startrow");
-			                             		writer.WriteLine("<div>");
-			                             	});
+			{
+				actions.Add("startrow");
+				writer.WriteLine("<div>");
+			});
 			SectionRender["endrow"] = ((context, writer) =>
-											{
-												actions.Add("endrow");
-												writer.WriteLine("</div>");
-											});
+			{
+				actions.Add("endrow");
+				writer.WriteLine("</div>");
+			});
 
 			component.FieldPrefix = "item";
 			component.Fields = formFields;
 
 			PrepareViewComponent(component);
-			//component.Context.ComponentParameters["startrow"] = null;
-			//component.Context.ComponentParameters["endrow"] = null;
+
 			// Must provide a ControllerContext.  
 			Context.CurrentControllerContext = mockery.Stub<IControllerContext>();
 			Context.CurrentControllerContext.PropertyBag = new Hashtable();
@@ -91,9 +105,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			component.Render();
 
 			Assert.AreEqual(formFields.Count * 2, actions.Count);
-
-			Assert.AreEqual("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n", Output);
-
+			Assert.AreEqual(expectedHTML, Output);
 		}
 	}
 
