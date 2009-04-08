@@ -74,11 +74,11 @@ namespace Membrane.ViewComponents
 
 		private void RenderRowSection(string section, StringWriter writer, string defaultHTML)
 		{
-			var startString = defaultHTML;
 			if (Context.HasSection(section))
 				Context.RenderSection(section, writer);
-
-			writer.WriteLine(startString);
+			else
+				writer.WriteLine(defaultHTML);
+			
 		}
 
 		private void RenderSingleLineTextField(FormField field, StringWriter writer)
