@@ -66,6 +66,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		}
 
 
+		/// <summary>
+		/// Tests if a Single Select Drop Down List can be displayed
+		/// </summary>
 		[Test]
 		public void CanDisplaySingleSelectDropDownList()
 		{
@@ -78,7 +81,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 
 		}
 
-		private void RunAndCheckViewComponentOutput(string expectedHTML)
+		private void RunAndCheckViewComponentOutput(string expectedHtml)
 		{
 			var actions = new List<string>();
 
@@ -96,16 +99,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			component.FieldPrefix = "item";
 			component.Fields = formFields;
 
+			// Must provide a ControllerContext.  
 			PrepareViewComponent(component);
 
-			// Must provide a ControllerContext.  
 			Context.CurrentControllerContext = mockery.Stub<IControllerContext>();
 			Context.CurrentControllerContext.PropertyBag = new Hashtable();
 
 			component.Render();
 
 			Assert.AreEqual(formFields.Count * 2, actions.Count);
-			Assert.AreEqual(expectedHTML, Output);
+			Assert.AreEqual(expectedHtml, Output);
 		}
 	}
 
