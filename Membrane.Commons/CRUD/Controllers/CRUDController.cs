@@ -7,6 +7,11 @@ using Membrane.Commons.Persistence;
 
 namespace Membrane.Commons.CRUD.Controllers
 {
+	/// <summary>
+	/// Basic CRUDController that is inherited by the other editor controllers.  It can be overwritten if required.
+	/// </summary>
+	/// <typeparam name="TDto">The DTO type</typeparam>
+	/// <typeparam name="TEntity">The Entity type</typeparam>
 	[Layout("default"), Rescue("generalerror")]
 	public class CRUDController<TDto, TEntity> : SmartDispatcherController, ICRUDController<TDto, TEntity> 
 		where TDto : IDTO 
@@ -23,11 +28,19 @@ namespace Membrane.Commons.CRUD.Controllers
 			this.autoGenerator = autoGenerator;
 		}
 
+		/// <summary>
+		/// The basic List action (no paging information supplied)
+		/// </summary>
 		public virtual void List()
 		{
 			List(defaultPageNumber, defaultPageSize);
 		}
 
+		/// <summary>
+		/// The paging List action
+		/// </summary>
+		/// <param name="currentPage">The current page number</param>
+		/// <param name="pageSize">The page size</param>
 		public virtual void List(int currentPage, int pageSize)
 		{
 			PropertyBag["items"] = service.GetPagedItems(currentPage, pageSize);
@@ -35,6 +48,9 @@ namespace Membrane.Commons.CRUD.Controllers
 			RenderView(@"\Shared\List");
 		}
 
+		/// <summary>
+		/// The New action for when a new item is required
+		/// </summary>
 		public virtual void New()
 		{
 			PropertyBag["itemtype"] = typeof(TDto);
@@ -42,8 +58,10 @@ namespace Membrane.Commons.CRUD.Controllers
 			RenderView(@"\Shared\Form");
 		}
 
-
-
+        /// <summary>
+        /// The Edit action
+        /// </summary>
+        /// <param name="id">The id of the item to be edited</param>
 		public virtual void Edit(Guid id)
 		{
 			PropertyBag["item"] = service.GetItem(id);
@@ -51,6 +69,11 @@ namespace Membrane.Commons.CRUD.Controllers
 			RenderView(@"\Shared\Form");
 		}
 
+		/// <summary>
+		/// The Submit action (both New and Edit forms post to this)
+		/// </summary>
+		/// <param name="item">The item that is posted</param>
+		[AccessibleThrough(Verb.Post)]
 		public virtual void Submit([DataBind("item", Validate = true)] TDto item)
 		{
 			var submitError = false;
@@ -95,7 +118,10 @@ namespace Membrane.Commons.CRUD.Controllers
 
 		}
 
-
+		/// <summary>
+		/// Action to confirm is a item should be deleted or not
+		/// </summary>
+		/// <param name="id">The id of the item</param>
 		public virtual void ConfirmDelete(Guid id)
 		{
 			PropertyBag["Item"] = service.GetItem(id);
@@ -103,6 +129,10 @@ namespace Membrane.Commons.CRUD.Controllers
 			RenderView(@"\Shared\ConfirmDelete");
 		}
 
+		/// <summary>
+		/// The Delete action
+		/// </summary>
+		/// <param name="id">The id of the item to be deleted</param>
 		public virtual void Delete(Guid id)
 		{
 			if (service.Delete(id))
@@ -116,6 +146,7 @@ namespace Membrane.Commons.CRUD.Controllers
 			}
 		}
 
+		
 		private bool CreateError(string errorMessage)
 		{
 			var errorSummary = new ErrorSummary();
