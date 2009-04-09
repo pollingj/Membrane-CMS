@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Castle.MonoRail.Framework;
@@ -104,7 +105,7 @@ namespace Membrane.ViewComponents
 		private void RenderSelectList(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
-			//writer.WriteLine(formHelper.Select(field.Id, data, DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText)})));
+			writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText) })));
 		}
 	}
 }

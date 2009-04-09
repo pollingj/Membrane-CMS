@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.TestSupport;
+using Membrane.Commons.CRUD;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.ViewComponents;
@@ -80,11 +82,12 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		public void CanDisplaySingleSelectDropDownList()
 		{
 	
-			formFields.Add(new FormField { Id = "ProductType", Label = "Product Type", OptionValue = "Id", OptionText = "Name", Type = FieldType.SingleSelectDropDownList});
+			formFields.Add(new FormField { Id = "ProductType", Label = "Product Type", OptionValue = "Id", OptionText = "Name", Type = FieldType.SingleSelectDropDownList, RelatedTypeName = "ProductTypeDTO"});
 
 			// Need to make sure a call to load the related data is called.
+			//Context.CurrentControllerContext.PropertyBag["support.ProductTypeDTO"];
 
-			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<label for=\"item_ProductType\">Product Type</label>\r\n<select id=\"item.ProductType\" name=\"item_ProductType\">\r\n</select>\r\n</div>\r\n");
+			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<label for=\"item_ProductType\">Product Type</label>\r\n<select id=\"item_ProductType\" name=\"item.ProductType\" >\r\n</select>\r\n</div>\r\n");
 
 		}
 
