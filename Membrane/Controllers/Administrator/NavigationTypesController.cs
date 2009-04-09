@@ -20,13 +20,6 @@ namespace Membrane.Controllers.Administrator
 	{
 		public NavigationTypesController(ICRUDService<NavigationTypeDTO, NavigationType> service, IAutoGenerator<NavigationTypeDTO> autoGenerator) : base(service, autoGenerator)
 		{
-			NavigationTypeDTO type = new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "test"};
-
-			var newtype = (IDTO)type;
-
-			IList<NavigationTypeDTO> list = new IList<NavigationTypeDTO>();
-
-			IList<IDTO> newList = list;
 		}
 	}
 }

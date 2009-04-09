@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acceptance\AcceptanceTestBase.cs" />
+    <Compile Include="Acceptance\Administrator\WhenNavigationTypesPageIsRequested.cs" />
     <Compile Include="Acceptance\Administrator\WhenUserGroupsPageIsRequested.cs" />
     <Compile Include="Acceptance\WhenLoginPageIsRequested.cs" />
     <Compile Include="Acceptance\WhenUserLogsOff.cs" />

@@ -2,7 +2,7 @@
 <use file="SharedMenu" />
 <use file="AdminMenu" />
 
-<p>${Url.Link( "Add New", new {area = "Administrator", controller = "UserGroups", action = "New"}, new { id="New"})}</p>
+<p>${Url.Link( "Add New", new {action = "New"}, new { id="New"})}</p>
 <table id="data">
 	<thead>
 		<tr>
