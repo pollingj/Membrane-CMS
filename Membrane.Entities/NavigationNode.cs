@@ -5,6 +5,7 @@ namespace Membrane.Entities
 {
 	public class NavigationNode : IEntity
 	{
-		public Guid Id { get; set; }
+		public virtual Guid Id { get; set; }
+		public virtual string Name { get; set; }
 	}
 }
