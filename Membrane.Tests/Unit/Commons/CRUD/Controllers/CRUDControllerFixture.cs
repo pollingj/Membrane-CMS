@@ -15,12 +15,14 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 {
 	[TestFixture]
 	public class CRUDControllerFixture<DTO, Entity> : BaseControllerFixture
-		where DTO : IDTO
+		where DTO : IDto
 		where Entity : IEntity
 	{
-		private CRUDController<DTO, Entity> controller;
-		private ICRUDService<DTO, Entity> service;
-		private IAutoGenerator<DTO> autoGenerator; 
+
+
+		public CRUDController<DTO, Entity> Controller { get; set; }
+		public ICRUDService<DTO, Entity> Service { get; set; }
+		public IAutoGenerator<DTO> AutoGenerator { get; set; }
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
@@ -32,22 +34,19 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public DTO InvalidDTO { private get; set; }
 		public DTO EditDTO { private get; set; }
 		public DTO DeleteDTO { private get; set; }
-
-		private IList<FormField> formFields;
+		public IList<FormField> FormFields { private get; set; }
 
 		[SetUp]
 		public override void SetUp()
 		{
 			base.SetUp();
 
-			service = mockery.DynamicMock<ICRUDService<DTO, Entity>>();
-			autoGenerator = mockery.DynamicMock<IAutoGenerator<DTO>>();
+			Service = mockery.DynamicMock<ICRUDService<DTO, Entity>>();
+			AutoGenerator = mockery.DynamicMock<IAutoGenerator<DTO>>();
 
-			controller = new CRUDController<DTO, Entity>(service, autoGenerator);
 
-			PrepareController(controller);
 
-			formFields = new List<FormField>
+			FormFields = new List<FormField>
 			                 	{
 			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
 			                 		new FormField {Id = "ProductName", Label = "Product Name", Type = FieldType.SingleLineTextField},
@@ -61,8 +60,8 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public virtual void CanListItemsWithNoPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedItems(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(ListDTO))
-				.Verify(() => controller.List());
+				.Expecting(() => Expect.Call(Service.GetPagedItems(defaultCurrentPageNumber, defaultCurrentPageSize)).Return(ListDTO))
+				.Verify(() => Controller.List());
 
 			AssertListData();
 		}
@@ -72,8 +71,8 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public virtual void CanListItemsWithPagingInformation()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetPagedItems(anotherPageNumber, anotherPageSize)).Return(ListDTO))
-				.Verify(() => controller.List(anotherPageNumber, anotherPageSize));
+				.Expecting(() => Expect.Call(Service.GetPagedItems(anotherPageNumber, anotherPageSize)).Return(ListDTO))
+				.Verify(() => Controller.List(anotherPageNumber, anotherPageSize));
 
 			AssertListData();
 		}
@@ -85,14 +84,14 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 			With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
-				           		Expect.Call(() => autoGenerator.ReadViewModelProperties());
-								Expect.Call(autoGenerator.FormFields).Return(formFields);
+								Expect.Call(() => AutoGenerator.ReadViewModelProperties());
+								Expect.Call(AutoGenerator.FormFields).Return(FormFields);
 				           	})
-				.Verify(() => controller.New());
+				.Verify(() => Controller.New());
 
-			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
-			Assert.AreEqual(typeof(DTO), controller.PropertyBag["itemtype"]);
-			Assert.AreEqual(@"\Shared\Form", controller.SelectedViewName);
+			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);
+			Assert.AreEqual(typeof(DTO), Controller.PropertyBag["itemtype"]);
+			Assert.AreEqual(@"\Shared\Form", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -106,7 +105,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		[Test]
 		public virtual void CanFailValidationOnSubmit()
 		{
-			controller.Submit(InvalidDTO);
+			Controller.Submit(InvalidDTO);
 
 			AssertSubmitFailure(InvalidDTO);
 		}
@@ -125,15 +124,15 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 			With.Mocks(mockery)
 				.Expecting(() =>
 				{
-					Expect.Call(service.GetItem(EditDTO.Id)).Return(EditDTO);
-					Expect.Call(() => autoGenerator.ReadViewModelProperties());
-					Expect.Call(autoGenerator.FormFields).Return(formFields);
+					Expect.Call(Service.GetItem(EditDTO.Id)).Return(EditDTO);
+					Expect.Call(() => AutoGenerator.ReadViewModelProperties());
+					Expect.Call(AutoGenerator.FormFields).Return(FormFields);
 				})
-				.Verify(() => controller.Edit(EditDTO.Id));
+				.Verify(() => Controller.Edit(EditDTO.Id));
 
-			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
-			Assert.AreEqual(EditDTO, controller.PropertyBag["item"]);
-			Assert.AreEqual(@"\Shared\Form", controller.SelectedViewName);
+			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);
+			Assert.AreEqual(EditDTO, Controller.PropertyBag["item"]);
+			Assert.AreEqual(@"\Shared\Form", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -156,11 +155,11 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		public virtual void CanShowItemForConfirmDelete()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.GetItem(DeleteDTO.Id)).Return(DeleteDTO))
-				.Verify(() => controller.ConfirmDelete(DeleteDTO.Id));
+				.Expecting(() => Expect.Call(Service.GetItem(DeleteDTO.Id)).Return(DeleteDTO))
+				.Verify(() => Controller.ConfirmDelete(DeleteDTO.Id));
 
-			Assert.AreEqual(DeleteDTO, controller.PropertyBag["item"]);
-			Assert.AreEqual(@"\Shared\ConfirmDelete", controller.SelectedViewName);
+			Assert.AreEqual(DeleteDTO, Controller.PropertyBag["item"]);
+			Assert.AreEqual(@"\Shared\ConfirmDelete", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -176,7 +175,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		{
 			MockDeleteItem(false);
 
-			Assert.IsNotNull(controller.Flash["error"]);
+			Assert.IsNotNull(Controller.Flash["error"]);
 		}
 
 		private void MockDeleteItem(bool deleteSuccess)
@@ -184,42 +183,42 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 			var groupId = Guid.NewGuid();
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Delete(groupId)).Return(deleteSuccess))
-				.Verify(() => controller.Delete(groupId));
+				.Expecting(() => Expect.Call(Service.Delete(groupId)).Return(deleteSuccess))
+				.Verify(() => Controller.Delete(groupId));
 		}
 
 		private void NewDTOSubmission(Guid id)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Create(NewDTO)).Return(id))
-				.Verify(() => controller.Submit(NewDTO));
+				.Expecting(() => Expect.Call(Service.Create(NewDTO)).Return(id))
+				.Verify(() => Controller.Submit(NewDTO));
 		}
 
 		private void EditDTOSubmission(bool updateSuccess)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.Update(EditDTO)).Return(updateSuccess))
-				.Verify(() => controller.Submit(EditDTO));
+				.Expecting(() => Expect.Call(Service.Update(EditDTO)).Return(updateSuccess))
+				.Verify(() => Controller.Submit(EditDTO));
 		}
 
 		private void AssertSuccessfulActionAndRedirectedBackToList()
 		{
-			Assert.IsNull(controller.Flash["error"]);
+			Assert.IsNull(Controller.Flash["error"]);
 			Assert.AreEqual(@"/Controller/List.castle", Response.RedirectedTo);
 		}
 
 		private void AssertSubmitFailure(DTO failedDTO)
 		{
-			Assert.AreEqual(failedDTO, controller.Flash["item"]);
-			Assert.IsNotNull(controller.Flash["error"]);
-			Assert.AreEqual(@"Controller\Action", controller.SelectedViewName);
+			Assert.AreEqual(failedDTO, Controller.Flash["item"]);
+			Assert.IsNotNull(Controller.Flash["error"]);
+			Assert.AreEqual(@"Controller\Action", Controller.SelectedViewName);
 		}
 
 
 		private void AssertListData()
 		{
-			Assert.AreEqual(@"\Shared\List", controller.SelectedViewName, "List view not being used");
-			Assert.AreEqual(ListDTO, controller.PropertyBag["items"], "groups PropertyBag not being set");
+			Assert.AreEqual(@"\Shared\List", Controller.SelectedViewName, "List view not being used");
+			Assert.AreEqual(ListDTO, Controller.PropertyBag["items"], "groups PropertyBag not being set");
 		}
 	}
 }

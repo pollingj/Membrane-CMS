@@ -14,7 +14,7 @@ namespace Membrane.Commons.CRUD.Services
 	/// <typeparam name="TDto">The DTO type</typeparam>
 	/// <typeparam name="TEntity">The Entity type</typeparam>
 	public class CRUDService<TDto, TEntity> : ICRUDService<TDto, TEntity> 
-		where TDto : IDTO
+		where TDto : IDto
 		where TEntity : IEntity
 	{
 
@@ -53,6 +53,13 @@ namespace Membrane.Commons.CRUD.Services
 				skip = pageSize * (currentPage - 1);
 
 			var items = repository.Find(new PagedItems<TEntity>(skip, pageSize));
+
+			return Mapper.Map<ICollection<TEntity>, IList<TDto>>(items);
+		}
+
+		public IList<TDto> GetItems()
+		{
+			var items = repository.Find(new QueryItems<TEntity>());
 
 			return Mapper.Map<ICollection<TEntity>, IList<TDto>>(items);
 		}

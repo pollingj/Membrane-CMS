@@ -1,4 +1,5 @@
 using System;
+using Membrane.Controllers.Administrator;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 using Membrane.Tests.Unit.Commons.CRUD.Controllers;
@@ -9,11 +10,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 	{
 		public override void SetUp()
 		{
+			base.SetUp();
 			NewDTO = new UserGroupDTO {Name = "New Group"};
 			EditDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Edit Group"};
 			InvalidDTO = new UserGroupDTO {Id = Guid.NewGuid()};
 			DeleteDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Delete Group"};
-			base.SetUp();
+			
+
+			Controller = new UserGroupsController(Service, AutoGenerator);
+
+			PrepareController(Controller);
 		}
 	}
 }

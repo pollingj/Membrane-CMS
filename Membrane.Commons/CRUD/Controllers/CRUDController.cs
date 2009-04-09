@@ -1,9 +1,11 @@
 using System;
+using System.Reflection;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.NHibernate;
 
 namespace Membrane.Commons.CRUD.Controllers
 {
@@ -14,7 +16,7 @@ namespace Membrane.Commons.CRUD.Controllers
 	/// <typeparam name="TEntity">The Entity type</typeparam>
 	[Layout("default"), Rescue("generalerror")]
 	public class CRUDController<TDto, TEntity> : SmartDispatcherController, ICRUDController<TDto, TEntity> 
-		where TDto : IDTO 
+		where TDto : IDto 
 		where TEntity : IEntity
 	{
 		private readonly ICRUDService<TDto, TEntity> service;
@@ -146,6 +148,11 @@ namespace Membrane.Commons.CRUD.Controllers
 			}
 		}
 
+		public virtual void LoadSupportiveData()
+		{
+
+		}
+
 		
 		private bool CreateError(string errorMessage)
 		{
@@ -159,6 +166,7 @@ namespace Membrane.Commons.CRUD.Controllers
 		{
 			autoGenerator.ReadViewModelProperties();
 			PropertyBag["fields"] = autoGenerator.FormFields;
+			LoadSupportiveData();
 		}
 	}
 }

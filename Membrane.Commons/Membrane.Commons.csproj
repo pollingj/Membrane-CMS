@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUD\Controllers\CRUDController.cs" />
+    <Compile Include="CRUD\Queries\QueryItems.cs" />
     <Compile Include="CRUD\Services\CRUDService.cs" />
     <Compile Include="CRUD\Controllers\ICRUDController.cs" />
     <Compile Include="CRUD\Services\ICRUDService.cs" />

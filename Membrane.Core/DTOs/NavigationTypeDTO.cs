@@ -4,7 +4,7 @@ using Membrane.Commons.CRUD;
 
 namespace Membrane.Core.DTOs
 {
-	public class NavigationTypeDTO : IDTO
+	public class NavigationTypeDTO : IDto
 	{
 		public Guid Id { get; set; }
 		[ValidateNonEmpty]

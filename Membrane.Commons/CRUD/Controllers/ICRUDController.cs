@@ -11,5 +11,6 @@ namespace Membrane.Commons.CRUD.Controllers
 		void Submit(DTO item);
 		void ConfirmDelete(Guid id);
 		void Delete(Guid id);
+		void LoadSupportiveData();
 	}
 }

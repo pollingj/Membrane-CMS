@@ -7,9 +7,11 @@ namespace Membrane.Commons.CRUD.Services
 	{
 		void RegisterMappings();
 		IList<TDto> GetPagedItems(int currentPage, int pageSize);
+		IList<TDto> GetItems();
 		TDto GetItem(Guid id);
 		Guid Create(TDto group);
 		bool Update(TDto group);
 		bool Delete(Guid id);
+		
 	}
 }

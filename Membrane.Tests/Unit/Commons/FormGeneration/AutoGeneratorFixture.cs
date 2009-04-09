@@ -15,10 +15,10 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadSimpleConventionBasedDTOProperties()
 		{
-			IAutoGenerator<TestSimpleConventionDTO> autoGenerator = new AutoGenerator<TestSimpleConventionDTO>();
+			IAutoGenerator<TestSimpleConventionDto> autoGenerator = new AutoGenerator<TestSimpleConventionDto>();
 			autoGenerator.ReadViewModelProperties();
 
-			Assert.AreEqual(typeof (TestSimpleConventionDTO).GetProperties().Length, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof (TestSimpleConventionDto).GetProperties().Length, autoGenerator.FormFields.Count);
 
 			foreach (var field in autoGenerator.FormFields)
 			{
@@ -100,6 +100,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 						AssertFormFieldData("Type", FieldType.SingleSelectDropDownList, field);
 						Assert.AreEqual("Id", field.OptionValue);
 						Assert.AreEqual("Name", field.OptionText);
+						Assert.AreEqual("ProductTypeDTO", field.RelatedTypeName);
 						break;
 				}
 			}
@@ -182,7 +183,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 
 	#region Test DTOs
 
-	public class TestSimpleConventionDTO : IDTO
+	public class TestSimpleConventionDto : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
@@ -191,7 +192,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public bool ShowOnHomePage { get; set; }
 	}
 
-	public class TestSimpleConfigurationDTO : IDTO
+	public class TestSimpleConfigurationDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
@@ -204,13 +205,13 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public string IgnoreMeField { get; set; }
 	}
 
-	public class ProductTypeDTO : IDTO
+	public class ProductTypeDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
 	}
 
-	public class ProductDTO : IDTO
+	public class ProductDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
@@ -219,7 +220,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public ProductTypeDTO Type { get; set; }
 	}
 
-	public class AccessoryDTO : IDTO
+	public class AccessoryDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
@@ -227,14 +228,14 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public IList<ProductDTO> Products { get; set; }
 	}
 
-	public class NewsTypeDTO : IDTO
+	public class NewsTypeDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public bool Archive { get; set; }
 		public string Name { get; set; }
 	}
 
-	public class NewsTagDTO : IDTO
+	public class NewsTagDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
@@ -242,7 +243,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public string Tag { get; set; }
 	}
 
-	public class NewsArticleDTO : IDTO
+	public class NewsArticleDTO : IDto
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }

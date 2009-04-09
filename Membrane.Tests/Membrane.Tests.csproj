@@ -100,6 +100,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LogOffControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\User\NavigationControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Filters\AuthenticationFilterFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\ViewComponents\AutomaticFormGeneratorComponentFixture.cs" />
   </ItemGroup>
@@ -123,9 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Unit\Web\MonoRail\Controllers\User\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

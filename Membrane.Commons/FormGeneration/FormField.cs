@@ -9,5 +9,6 @@ namespace Membrane.Commons.FormGeneration
 		public FieldType Type { get; set; }
 		public string OptionValue { get; set; }
 		public string OptionText { get; set; }
+		public string RelatedTypeName { get; set; }
 	}
 }

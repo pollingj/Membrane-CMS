@@ -12,12 +12,17 @@ namespace Membrane.Commons.FormGeneration
 	{
 		public IList<FormField> FormFields { get; set; }
 
+		/// <summary>
+		/// Reads all of the properties found in a object.
+		/// If a <see cref="FormFieldTypeAttribute"/> is found then the parameters of the attribute are used to set up the <see cref="FormField"/>.
+		/// If no attribute is found then a number of conventions are adhered to create the <see cref="FormField"/> object.
+		/// </summary>
 		public void ReadViewModelProperties()
 		{
 			FormFields = new List<FormField>();
 			foreach (var propertyInfo in typeof(T).GetProperties())
 			{
-				var formField = new FormField { Id = propertyInfo.Name, Label = CreateLabel(propertyInfo.Name)};
+				var formField = new FormField { Id = propertyInfo.Name, Label = createLabel(propertyInfo.Name)};
 
 				var formFieldAttributes = propertyInfo.GetCustomAttributes(typeof (FormFieldTypeAttribute), true);
 
@@ -25,10 +30,10 @@ namespace Membrane.Commons.FormGeneration
 				{
 					formField.Type = ((FormFieldTypeAttribute) formFieldAttributes[0]).Type;
 					if (formField.Type == FieldType.SingleSelectDropDownList || formField.Type == FieldType.MultiSelectDropDownList)
-						GetConfigurationBasedOptionsValueAndText((FormFieldTypeAttribute) formFieldAttributes[0], formField);
+						getConfigurationBasedOptionsValueAndText((FormFieldTypeAttribute) formFieldAttributes[0], formField);
 				}
 				else
-					GetConventionBasedFields(formField, propertyInfo.PropertyType);
+					getConventionBasedFields(formField, propertyInfo.PropertyType);
 					
 					
 				if (formField.Type != FieldType.Ignore)
@@ -36,20 +41,21 @@ namespace Membrane.Commons.FormGeneration
 			}
 		}
 
-		private void GetConventionBasedFields(FormField field, Type propertyType)
+		private void getConventionBasedFields(FormField field, Type propertyType)
 		{
 			// Are we handling a BelongsTo relationship?
 			// Assume that the first and second properties in the related property are the option value and text fields respectively
-			if (propertyType.GetInterface("IDTO") != null)
+			if (propertyType.GetInterface("IDto") != null)
 			{
 				field.Type = FieldType.SingleSelectDropDownList;
-				GetConventionBasedOptionsValueAndText(propertyType, field);
+				getConventionBasedOptionsValueAndText(propertyType, field);
+				field.RelatedTypeName = propertyType.Name;
 			}
 			else if (propertyType.Name.Contains("List") && propertyType.IsGenericType)
 			{
 				// Assume we are handling a has and belong to many relationship
 				field.Type = FieldType.MultiSelectDropDownList;
-				GetConventionBasedOptionsValueAndText(propertyType.GetGenericArguments()[0], field);
+				getConventionBasedOptionsValueAndText(propertyType.GetGenericArguments()[0], field);
 			}
 			else
 			{
@@ -83,7 +89,7 @@ namespace Membrane.Commons.FormGeneration
 
 		}
 
-		private void GetConventionBasedOptionsValueAndText(Type propertyType, FormField field)
+		private void getConventionBasedOptionsValueAndText(Type propertyType, FormField field)
 		{
 			var relatedDTOProperties = propertyType.GetProperties();
 
@@ -94,7 +100,7 @@ namespace Membrane.Commons.FormGeneration
 			field.OptionText = relatedDTOProperties[1].Name;
 		}
 
-		private void GetConfigurationBasedOptionsValueAndText(FormFieldTypeAttribute attribute, FormField field)
+		private void getConfigurationBasedOptionsValueAndText(FormFieldTypeAttribute attribute, FormField field)
 		{
 			field.OptionValue = attribute.OptionValue;
 			field.OptionText = attribute.OptionText;
@@ -106,7 +112,7 @@ namespace Membrane.Commons.FormGeneration
 		/// </summary>
 		/// <param name="propertyName">The Property Name</param>
 		/// <returns>A space delimited string</returns>
-		private static string CreateLabel(string propertyName)
+		private string createLabel(string propertyName)
 		{
 			var r = new Regex("([A-Z]+[a-z]+)");
 			var label = r.Replace(propertyName, m => m.Value + " ");

@@ -16,11 +16,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		/// </summary>
 		public override void SetUp()
 		{
+			base.SetUp();
 			NewDTO = new NavigationTypeDTO { Name = "Primary Navigation" };
 			EditDTO = new NavigationTypeDTO { Id = Guid.NewGuid(), Name = "Secondary Navigation" };
 			InvalidDTO = new NavigationTypeDTO { Id = Guid.NewGuid() };
 			DeleteDTO = new NavigationTypeDTO { Id = Guid.NewGuid(), Name = "Tertiary Navigation" };
-			base.SetUp();
+
+			Controller = new NavigationTypesController(Service, AutoGenerator);
+
+			PrepareController(Controller);
+
 		}
 	}
 }
