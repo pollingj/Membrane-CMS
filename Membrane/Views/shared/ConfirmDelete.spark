@@ -1,4 +1,4 @@
-﻿<viewdata item="UserGroupDTO" />
+﻿<viewdata item="IDTO" />
 <global Title="'User Groups'"/>
 
 <use file="SharedMenu" />

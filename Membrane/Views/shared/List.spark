@@ -13,8 +13,8 @@
 	<tbody>
 		<tr each='IDTO item in (IList)ViewData["items"]'>
 			<td>${item.Name}</td>
-			<td>${Url.Link( "Edit", new {area = "Administrator", controller = "UserGroups", action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
-			<td>${Url.Link( "Delete", new {area = "Administrator", controller = "UserGroups", action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
+			<td>${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
+			<td>${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
 		</tr>
 	</tbody>
 </table>
