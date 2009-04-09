@@ -13,23 +13,23 @@ using Rhino.Mocks;
 namespace Membrane.Tests.Unit.Commons.CRUD.Services
 {
 	[TestFixture]
-	public class CRUDServiceFixture<DTO, Entity> : BaseFixture
-		where DTO : IDTO
-		where Entity : IEntity
+	public class CRUDServiceFixture<TDto, TEntity> : BaseFixture
+		where TDto : IDto
+		where TEntity : IEntity
 	{
-		private IRepository<Entity> repository;
-		private ICRUDService<DTO, Entity> service;
+		private IRepository<TEntity> repository;
+		private ICRUDService<TDto, TEntity> service;
 
-		public List<Entity> ListEntity { private get; set; }
-		public Entity SingleEntity { private get; set; }
-		public DTO SingleDTO { private get; set; }
+		public List<TEntity> ListEntity { private get; set; }
+		public TEntity SingleEntity { private get; set; }
+		public TDto SingleDTO { private get; set; }
 
 		public override void SetUp()
 		{
 			base.SetUp();
 
-			repository = mockery.DynamicMock<IRepository<Entity>>();
-			service = new CRUDService<DTO, Entity>(repository);
+			repository = mockery.DynamicMock<IRepository<TEntity>>();
+			service = new CRUDService<TDto, TEntity>(repository);
 		}
 
 		[Test]
@@ -50,10 +50,10 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Services
 
 			var pagedEntities = ListEntity.GetRange(skip, take);
 
-			ICollection<DTO> result = new List<DTO>();
+			ICollection<TDto> result = new List<TDto>();
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(repository.Find(new PagedItems<Entity>(skip, take))).IgnoreArguments().Return(pagedEntities))
+				.Expecting(() => Expect.Call(repository.Find(new PagedItems<TEntity>(skip, take))).IgnoreArguments().Return(pagedEntities))
 				.Verify(() => result = service.GetPagedItems(currentPage, pageSize));
 
 			Assert.AreEqual(pageSize, result.Count);
@@ -62,7 +62,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Services
 		[Test]
 		public virtual void CanGetUserGroupWithId()
 		{
-			var result = default(DTO);
+			var result = default(TDto);
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(repository.FindById(SingleEntity.Id)).Return(SingleEntity))
 				.Verify(() => result = service.GetItem(SingleEntity.Id));

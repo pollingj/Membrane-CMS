@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Castle.MonoRail.Framework;
@@ -31,7 +32,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			                 	{
 			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
 			                 		new FormField {Id = "Name", Label = "Name", Type = FieldType.SingleLineTextField},
-			                 		new FormField {Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
+			                 		new FormField {Id = "Link", Label = "Link", Type = FieldType.MultiLineTextField}
 			                 	};
 
 		}
@@ -68,7 +69,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		[Test]
 		public void CanDisplaySimpleFormFields()
 		{
-			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n");
+			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Link\">Link</label>\r\n<textarea id=\"item_Link\" name=\"item.Link\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n");
 		}
 
 
@@ -80,13 +81,15 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		public void CanDisplaySingleSelectDropDownList()
 		{
 	
-			formFields.Add(new FormField { Id = "ProductType", Label = "Product Type", OptionValue = "Id", OptionText = "Name", Type = FieldType.SingleSelectDropDownList, RelatedTypeName = "ProductTypeDTO"});
+			formFields.Add(new FormField { Id = "NavigationType", Label = "Navigation Type", OptionValue = "Id", OptionText = "Name", Type = FieldType.SingleSelectDropDownList, RelatedTypeName = "NavigationTypeDTO"});
 
 			// Need to make sure a call to load the related data is called.
-			Context.CurrentControllerContext.PropertyBag["support.ProductTypeDTO"] = new List()
+			Context.CurrentControllerContext.PropertyBag["support.NavigationTypeDTO"] = new ArrayList
 			                                                                         	{
-			                                                                         		
-			                                                                         	}
+																							new { Id = Guid.NewGuid(), Type = "Primary Navigation"},
+																							new { Id = Guid.NewGuid(), Type = "Secondary Navigation"},
+																							new { Id = Guid.NewGuid(), Type = "Tertiary Navigation"}
+			                                                                         	};
 
 			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Description\">Description</label>\r\n<textarea id=\"item_Description\" name=\"item.Description\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<label for=\"item_ProductType\">Product Type</label>\r\n<select id=\"item_ProductType\" name=\"item.ProductType\" >\r\n</select>\r\n</div>\r\n");
 
