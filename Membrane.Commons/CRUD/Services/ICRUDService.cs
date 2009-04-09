@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Membrane.Commons.CRUD.Services
 {
-	public interface ICRUDService<DTO, Entity>
+	public interface ICRUDService<TDto, TEntity>
 	{
 		void RegisterMappings();
-		IList<DTO> GetPagedItems(int currentPage, int pageSize);
-		DTO GetItem(Guid id);
-		Guid Create(DTO group);
-		bool Update(DTO group);
+		IList<TDto> GetPagedItems(int currentPage, int pageSize);
+		TDto GetItem(Guid id);
+		Guid Create(TDto group);
+		bool Update(TDto group);
 		bool Delete(Guid id);
 	}
 }

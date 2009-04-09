@@ -5,5 +5,6 @@ namespace Membrane.Commons.CRUD
 	public interface IDTO
 	{
 		Guid Id { get; set; }
+		string Name { get; set; }
 	}
 }

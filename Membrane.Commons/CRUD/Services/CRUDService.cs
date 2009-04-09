@@ -8,14 +8,14 @@ using Membrane.Commons.Persistence.Exceptions;
 
 namespace Membrane.Commons.CRUD.Services
 {
-	public class CRUDService<DTO, Entity> : ICRUDService<DTO, Entity> 
-		where DTO : IDTO
-		where Entity : IEntity
+	public class CRUDService<TDto, TEntity> : ICRUDService<TDto, TEntity> 
+		where TDto : IDTO
+		where TEntity : IEntity
 	{
 
-		private readonly IRepository<Entity> repository;
+		private readonly IRepository<TEntity> repository;
 
-		public CRUDService(IRepository<Entity> repository)
+		public CRUDService(IRepository<TEntity> repository)
 		{
 			this.repository = repository;
 			RegisterMappings();
@@ -23,36 +23,36 @@ namespace Membrane.Commons.CRUD.Services
 
 		public virtual void RegisterMappings()
 		{
-			Mapper.CreateMap<Entity, DTO>();
-			Mapper.CreateMap<DTO, Entity>();
+			Mapper.CreateMap<TEntity, TDto>();
+			Mapper.CreateMap<TDto, TEntity>();
 		}
 
-		public virtual IList<DTO> GetPagedItems(int currentPage, int pageSize)
+		public virtual IList<TDto> GetPagedItems(int currentPage, int pageSize)
 		{
 			var skip = 0;
 
 			if (currentPage > 1)
 				skip = pageSize * (currentPage - 1);
 
-			var items = repository.Find(new PagedItems<Entity>(skip, pageSize));
+			var items = repository.Find(new PagedItems<TEntity>(skip, pageSize));
 
-			return Mapper.Map<ICollection<Entity>, IList<DTO>>(items);
+			return Mapper.Map<ICollection<TEntity>, IList<TDto>>(items);
 		}
 
-		public virtual DTO GetItem(Guid id)
+		public virtual TDto GetItem(Guid id)
 		{
 			var group = repository.FindById(id);
 
-			return Mapper.Map<Entity, DTO>(group);
+			return Mapper.Map<TEntity, TDto>(group);
 		}
 
-		public virtual Guid Create(DTO item)
+		public virtual Guid Create(TDto item)
 		{
 			var id = item.Id = Guid.NewGuid();
 
 			try
 			{
-				repository.Save(Mapper.Map<DTO, Entity>(item));
+				repository.Save(Mapper.Map<TDto, TEntity>(item));
 			}
 			catch (RepositorySaveException)
 			{
@@ -62,12 +62,12 @@ namespace Membrane.Commons.CRUD.Services
 			return id;
 		}
 
-		public virtual bool Update(DTO item)
+		public virtual bool Update(TDto item)
 		{
 			var success = true;
 			try
 			{
-				repository.Update(Mapper.Map<DTO, Entity>(item));
+				repository.Update(Mapper.Map<TDto, TEntity>(item));
 			}
 			catch (RepositoryUpdateException)
 			{

@@ -50,7 +50,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 			autoGenerator.ReadViewModelProperties();
 
 			// Remember the 1 ignore field
-			Assert.AreEqual(typeof (TestSimpleConventionDTO).GetProperties().Length - 1, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(TestSimpleConfigurationDTO).GetProperties().Length - 1, autoGenerator.FormFields.Count);
 
 			foreach (var field in autoGenerator.FormFields)
 			{
@@ -185,7 +185,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 	public class TestSimpleConventionDTO : IDTO
 	{
 		public Guid Id { get; set; }
-		public string ProductName { get; set; }
+		public string Name { get; set; }
 		public decimal Price { get; set; }
 		public DateTime ExpiresOn { get; set; }
 		public bool ShowOnHomePage { get; set; }
@@ -194,6 +194,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 	public class TestSimpleConfigurationDTO : IDTO
 	{
 		public Guid Id { get; set; }
+		public string Name { get; set; }
 		public string Title { get; set; }
 		[FormFieldType(FieldType.MultiLineTextField)]
 		public string ShortDescription { get; set; }
@@ -236,6 +237,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 	public class NewsTagDTO : IDTO
 	{
 		public Guid Id { get; set; }
+		public string Name { get; set; }
 		public bool Archive { get; set; }
 		public string Tag { get; set; }
 	}
@@ -243,6 +245,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 	public class NewsArticleDTO : IDTO
 	{
 		public Guid Id { get; set; }
+		public string Name { get; set; }
 		[FormFieldType(FieldType.SingleSelectDropDownList, "Id", "Name")]
 		public NewsTypeDTO Type { get; set; }
 		[FormFieldType(FieldType.MultiSelectDropDownList, "Id", "Tag")]

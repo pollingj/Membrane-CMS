@@ -94,6 +94,7 @@
     <Compile Include="Unit\Core\Services\AuthenticationServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserGroupServiceFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\NavigationTypesControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\UserGroupsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />

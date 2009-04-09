@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Administrator\HomeController.cs" />
+    <Compile Include="Controllers\Administrator\NavigationTypesController.cs" />
     <Compile Include="Controllers\Administrator\UserGroupsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -184,12 +185,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Administrator\Home\index.spark" />
-    <None Include="Views\Administrator\UserGroups\ConfirmDelete.spark" />
-    <None Include="Views\Administrator\UserGroups\Form.spark" />
-    <None Include="Views\Administrator\UserGroups\List.spark" />
     <None Include="Views\layouts\default.spark" />
     <None Include="Views\Login\index.spark" />
     <None Include="Views\shared\adminmenu.spark" />
+    <None Include="Views\shared\ConfirmDelete.spark" />
+    <None Include="Views\shared\Form.spark" />
+    <None Include="Views\shared\List.spark" />
     <None Include="Views\shared\sharedmenu.spark" />
     <None Include="Views\User\Home\index.spark" />
   </ItemGroup>

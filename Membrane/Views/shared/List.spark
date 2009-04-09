@@ -1,10 +1,8 @@
-﻿<viewdata items="IList<UserGroupDTO>" />
-<global Title="'Administrator Home Page'"/>
+﻿<global Title="'Administrator Home Page'"/>
 <use file="SharedMenu" />
 <use file="AdminMenu" />
 
 <p>${Url.Link( "Add New", new {area = "Administrator", controller = "UserGroups", action = "New"}, new { id="New"})}</p>
-
 <table id="data">
 	<thead>
 		<tr>
@@ -13,7 +11,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr each='var item in items'>
+		<tr each='IDTO item in (IList)ViewData["items"]'>
 			<td>${item.Name}</td>
 			<td>${Url.Link( "Edit", new {area = "Administrator", controller = "UserGroups", action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
 			<td>${Url.Link( "Delete", new {area = "Administrator", controller = "UserGroups", action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>

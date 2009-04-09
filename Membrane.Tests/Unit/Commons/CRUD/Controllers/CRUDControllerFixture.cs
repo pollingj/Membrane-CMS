@@ -92,7 +92,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 
 			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
 			Assert.AreEqual(typeof(DTO), controller.PropertyBag["itemtype"]);
-			Assert.AreEqual(@"Controller\Form", controller.SelectedViewName);
+			Assert.AreEqual(@"\Shared\Form", controller.SelectedViewName);
 		}
 
 		[Test]
@@ -133,7 +133,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 
 			Assert.AreEqual(formFields, controller.PropertyBag["fields"]);
 			Assert.AreEqual(EditDTO, controller.PropertyBag["item"]);
-			Assert.AreEqual(@"Controller\Form", controller.SelectedViewName);
+			Assert.AreEqual(@"\Shared\Form", controller.SelectedViewName);
 		}
 
 		[Test]
@@ -160,7 +160,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 				.Verify(() => controller.ConfirmDelete(DeleteDTO.Id));
 
 			Assert.AreEqual(DeleteDTO, controller.PropertyBag["item"]);
-			Assert.AreEqual(@"Controller\Action", controller.SelectedViewName);
+			Assert.AreEqual(@"\Shared\ConfirmDelete", controller.SelectedViewName);
 		}
 
 		[Test]
@@ -205,7 +205,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		private void AssertSuccessfulActionAndRedirectedBackToList()
 		{
 			Assert.IsNull(controller.Flash["error"]);
-			Assert.AreEqual("/Controller/List.castle", Response.RedirectedTo);
+			Assert.AreEqual(@"/Controller/List.castle", Response.RedirectedTo);
 		}
 
 		private void AssertSubmitFailure(DTO failedDTO)
@@ -218,7 +218,7 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 
 		private void AssertListData()
 		{
-			Assert.AreEqual(@"Controller\Action", controller.SelectedViewName, "List view not being used");
+			Assert.AreEqual(@"\Shared\List", controller.SelectedViewName, "List view not being used");
 			Assert.AreEqual(ListDTO, controller.PropertyBag["items"], "groups PropertyBag not being set");
 		}
 	}

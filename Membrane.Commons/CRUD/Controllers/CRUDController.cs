@@ -8,16 +8,16 @@ using Membrane.Commons.Persistence;
 namespace Membrane.Commons.CRUD.Controllers
 {
 	[Layout("default"), Rescue("generalerror")]
-	public class CRUDController<DTO, Entity> : SmartDispatcherController, ICRUDController<DTO, Entity> 
-		where DTO : IDTO 
-		where Entity : IEntity
+	public class CRUDController<TDto, TEntity> : SmartDispatcherController, ICRUDController<TDto, TEntity> 
+		where TDto : IDTO 
+		where TEntity : IEntity
 	{
-		private readonly ICRUDService<DTO, Entity> service;
-		private readonly IAutoGenerator<DTO> autoGenerator;
+		private readonly ICRUDService<TDto, TEntity> service;
+		private readonly IAutoGenerator<TDto> autoGenerator;
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
 		 
-		public CRUDController(ICRUDService<DTO, Entity> service, IAutoGenerator<DTO> autoGenerator)
+		public CRUDController(ICRUDService<TDto, TEntity> service, IAutoGenerator<TDto> autoGenerator)
 		{
 			this.service = service;
 			this.autoGenerator = autoGenerator;
@@ -31,13 +31,15 @@ namespace Membrane.Commons.CRUD.Controllers
 		public virtual void List(int currentPage, int pageSize)
 		{
 			PropertyBag["items"] = service.GetPagedItems(currentPage, pageSize);
+
+			RenderView(@"\Shared\List");
 		}
 
 		public virtual void New()
 		{
-			PropertyBag["itemtype"] = typeof(DTO);
+			PropertyBag["itemtype"] = typeof(TDto);
 			GetFormFields();
-			RenderView("Form");
+			RenderView(@"\Shared\Form");
 		}
 
 
@@ -46,10 +48,10 @@ namespace Membrane.Commons.CRUD.Controllers
 		{
 			PropertyBag["item"] = service.GetItem(id);
 			GetFormFields();
-			RenderView("Form");
+			RenderView(@"\Shared\Form");
 		}
 
-		public virtual void Submit([DataBind("item", Validate = true)] DTO item)
+		public virtual void Submit([DataBind("item", Validate = true)] TDto item)
 		{
 			var submitError = false;
 
@@ -97,6 +99,8 @@ namespace Membrane.Commons.CRUD.Controllers
 		public virtual void ConfirmDelete(Guid id)
 		{
 			PropertyBag["Item"] = service.GetItem(id);
+
+			RenderView(@"\Shared\ConfirmDelete");
 		}
 
 		public virtual void Delete(Guid id)

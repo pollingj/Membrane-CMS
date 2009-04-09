@@ -19,7 +19,7 @@ namespace Membrane.Controllers.Administrator
 		/// <summary>
 		/// Constructor that sets up all of the <see cref="CRUDService"/> and <see cref="AutoGenerator"/> references
 		/// </summary>
-		/// <param name="service">The base CRUDService with the relevant DTO and Entities referenced</param>
+		/// <param name="service">The base CRUDService with the relevant TDto and Entities referenced</param>
 		/// <param name="autoGenerator"></param>
 		public UserGroupsController(ICRUDService<UserGroupDTO, UserGroup> service, IAutoGenerator<UserGroupDTO> autoGenerator)
 			: base(service, autoGenerator)

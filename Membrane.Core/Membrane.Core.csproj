@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
+    <Compile Include="DTOs\NavigationTypeDTO.cs" />
     <Compile Include="DTOs\UserGroupDTO.cs" />
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
