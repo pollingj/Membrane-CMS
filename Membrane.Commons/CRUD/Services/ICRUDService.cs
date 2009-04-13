@@ -11,7 +11,6 @@ namespace Membrane.Commons.CRUD.Services
 		TDto GetItem(Guid id);
 		Guid Create(TDto group);
 		bool Update(TDto group);
-		bool Delete(Guid id);
-		
+		bool Delete(Guid id);	
 	}
 }
