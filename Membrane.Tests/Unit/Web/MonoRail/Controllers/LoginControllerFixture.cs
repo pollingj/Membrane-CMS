@@ -48,7 +48,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		[Test]
 		public void SuccessfulUserLoginShouldRedirectToUserArea()
 		{
-			DoSuccessFullLogin(new AuthenticatedUserDTO { Id = Guid.NewGuid(), Type = UserType.User }, UserType.User, "/User/Home/Index.castle");
+			DoSuccessFullLogin(new AuthenticatedUserDTO { Id = Guid.NewGuid(), Type = UserType.User }, UserType.User, "/Home/Index.castle");
 		}
 
 		private void DoSuccessFullLogin(AuthenticatedUserDTO authenticatedUser, UserType role, string redirectPath)

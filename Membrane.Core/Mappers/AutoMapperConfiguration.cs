@@ -16,11 +16,6 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 
-			/*Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
-			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
-			//Mapper.CreateMap<NavigationNode, NavigationNodeDTO>();
-			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>();*/
-
 			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();

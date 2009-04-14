@@ -52,7 +52,7 @@ namespace Membrane.Controllers
 						Redirect("Administrator", "Home", "Index");
 						break;
 					case UserType.User:
-						Redirect("User", "Home", "Index");
+						Redirect("Home", "Index");
 						break;
 				}
 			}

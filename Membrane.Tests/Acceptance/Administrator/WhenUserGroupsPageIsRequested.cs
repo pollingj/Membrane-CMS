@@ -89,15 +89,15 @@ namespace Membrane.Tests.Acceptance.Administrator
 			GoToEditForm();
 
 			browser.TextField("item_Name").Clear();
-			browser.TextField("item_Name").TypeText("New Primary Navigation");
+			browser.TextField("item_Name").TypeText("New Pri Navigation");
 
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavTypeUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("Primary Navigationp"));
-			Assert.IsTrue(browser.ContainsText("New Primary Navigation"));
+			Assert.IsFalse(browser.ContainsText("Primary Navigation"));
+			Assert.IsTrue(browser.ContainsText("New Pri Navigation"));
 		}
 
 		[Test]

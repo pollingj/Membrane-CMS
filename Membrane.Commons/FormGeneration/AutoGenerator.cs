@@ -65,6 +65,7 @@ namespace Membrane.Commons.FormGeneration
 						field.Type = FieldType.Hidden;
 						break;
 					case "String":
+					case "Char":
 					case "Decimal":
 					case "Double":
 					case "Float":

@@ -23,10 +23,11 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		public override void SetUp()
 		{
 			base.SetUp();
-			NewDTO = new NavigationNodeDTO { Name = "Home" };
-			EditDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "About Us" };
+			var type = new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Primary Navigation"};
+			NewDTO = new NavigationNodeDTO { Name = "Home", AccessKey = '1', Title = "Visit our home page", Type = type};
+			EditDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "About Us", AccessKey = '2', Title = "More info about us", Type = type};
 			InvalidDTO = new NavigationNodeDTO { Id = Guid.NewGuid() };
-			DeleteDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "Contact Us" };
+			DeleteDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "Contact Us", AccessKey = '3', Title="Feel free to contact us", Type = type};
 
 			navTypeService = mockery.DynamicMock<ICRUDService<NavigationTypeDTO, NavigationType>>();
 

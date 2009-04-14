@@ -55,7 +55,7 @@ namespace Membrane.Tests.Acceptance
 				CompleteLoginForm(browser, "andypike", "password");
 
 				// Now check that the error message is shown and we are still on the login index page
-				Assert.AreEqual(BuildUrl("User", "Home", "Index"), browser.Url);
+				Assert.AreEqual(BuildUrl("Home", "Index"), browser.Url);
 			}
 		}
 	}

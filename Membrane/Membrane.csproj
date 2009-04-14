@@ -193,7 +193,7 @@
     <None Include="Views\shared\Form.spark" />
     <None Include="Views\shared\List.spark" />
     <None Include="Views\shared\sharedmenu.spark" />
-    <None Include="Views\User\Home\index.spark" />
+    <None Include="Views\Home\index.spark" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
