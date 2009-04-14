@@ -65,8 +65,12 @@ namespace Membrane.ViewComponents
 						RenderHiddenField(field, writer);
 						break;
 					case FieldType.SingleSelectDropDownList:
-						RenderSelectList(field, writer);
+						RenderSelectList(field, writer, false);
 						break;
+					case FieldType.MultiSelectDropDownList:
+						RenderSelectList(field, writer, true);
+						break;
+						
 				}
 
 				// Render End Row
@@ -102,10 +106,13 @@ namespace Membrane.ViewComponents
 			writer.WriteLine(formHelper.HiddenField(field.Id));
 		}
 
-		private void RenderSelectList(FormField field, StringWriter writer)
+		private void RenderSelectList(FormField field, StringWriter writer, bool isMultiple)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
-			writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText) })));
+			if (isMultiple)
+				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText), "multiple=multiple" })));
+			else
+				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText) })));
 		}
 	}
 }
