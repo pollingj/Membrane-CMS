@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Castle.MonoRail.Framework;
+using Castle.MonoRail.Framework.Helpers;
 using Castle.MonoRail.TestSupport;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
@@ -41,7 +42,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			BuildEngineContext("Area", "Controller", "Action");
 			Context.CurrentControllerContext = mockery.Stub<IControllerContext>();
 			Context.CurrentControllerContext.PropertyBag = new Hashtable();
-			
+			Context.CurrentControllerContext.PropertyBag.Add("item", null);
+			Context.CurrentControllerContext.Helpers = new HelperDictionary();
+			Context.CurrentControllerContext.Helpers.Add(new FormHelper(Context));
 		}
 
 		[TearDown]

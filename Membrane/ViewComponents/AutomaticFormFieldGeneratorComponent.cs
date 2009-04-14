@@ -46,9 +46,8 @@ namespace Membrane.ViewComponents
 		public override void Render()
 		{
 			var writer = new StringWriter();
-			formHelper = new FormHelper(EngineContext);
+			formHelper = (FormHelper) EngineContext.CurrentControllerContext.Helpers["Form"];
 			formHelper.UseJQueryValidation();
-
 			foreach (var field in Fields)
 			{
 				// Render Start Row
