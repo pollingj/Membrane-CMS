@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Membrane.Commons.Persistence.Exceptions;
 using NHibernate.Linq;
 
@@ -28,6 +29,8 @@ namespace Membrane.Commons.Persistence.NHibernate
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
+			cleanRelatedData(entity);
+
 			try
 			{
 				sessionLocater.CurrentSession.Save(entity);
@@ -43,6 +46,8 @@ namespace Membrane.Commons.Persistence.NHibernate
 		public void Update(T entity)
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
+
+			cleanRelatedData(entity);
 
 			try
 			{
@@ -98,7 +103,23 @@ namespace Membrane.Commons.Persistence.NHibernate
 			return sessionLocater.CurrentSession.Linq<T>().ToList();
 		}
 
-
+		/// <summary>
+		/// Looks through the related entity data and checks for an Guid.Empty value in the related entity id and sets the entity to null if required
+		/// </summary>
+		/// <remarks>This may be a little risky and may be better suited somewhere else, but works for the moment</remarks>
+		/// <param name="item">The object to be cleaned</param>
+		private void cleanRelatedData(IEntity item)
+		{
+			foreach (var property in item.GetType().GetProperties())
+			{
+				if (property.PropertyType.GetInterface("IEntity") != null)
+				{
+					var relatedObjectValues = property.GetValue(item, BindingFlags.Instance | BindingFlags.Public, null, null, null);
+					if (((IEntity)relatedObjectValues).Id == Guid.Empty)
+						property.SetValue(item, null, null);
+				}
+			}
+		}
 
 
 	}

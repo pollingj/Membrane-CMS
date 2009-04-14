@@ -9,6 +9,7 @@ namespace Membrane.Core.DTOs
 		public Guid Id { get; set; }
 		[ValidateNonEmpty]
 		public string Name { get; set; }
+		[ValidateNonEmpty]
 		public NavigationTypeDTO Type { get; set; }
 		public NavigationNodeDTO Parent { get; set; }
 		[ValidateNonEmpty]

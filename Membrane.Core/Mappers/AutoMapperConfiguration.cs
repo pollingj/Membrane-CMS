@@ -21,7 +21,8 @@ namespace Membrane.Core.Mappers
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
 
 			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>()
-				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
+				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent))
+				.ForMember(dest => dest.Parent, opt => opt.FormatNullValueAs(null));
 			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
 		}
 	}
