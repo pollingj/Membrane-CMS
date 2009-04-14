@@ -5,6 +5,7 @@ using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Interfaces;
+using Membrane.Commons.Persistence;
 using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Commons.FormGeneration

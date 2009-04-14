@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+
 using AutoMapper;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
@@ -16,8 +16,18 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 
-			/*Mapper.CreateMap<UserGroup, UserGroupDTO>();
-			Mapper.CreateMap<UserGroupDTO, UserGroup>();*/
+			/*Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
+			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
+			//Mapper.CreateMap<NavigationNode, NavigationNodeDTO>();
+			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>();*/
+
+			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
+				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
+			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
+
+			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>()
+				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
+			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
 		}
 	}
 }

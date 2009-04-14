@@ -19,6 +19,7 @@ namespace Membrane.Controllers.User
 		public override void LoadSupportiveData()
 		{
 			PropertyBag["support.NavigationTypeDTO"] = navTypeService.GetItems();
+			PropertyBag["support.NavigationNodeDTO"] = Service.GetItems();
 		}
 	}
 }

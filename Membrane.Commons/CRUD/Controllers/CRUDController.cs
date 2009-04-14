@@ -1,11 +1,10 @@
 using System;
-using System.Reflection;
+using Castle.Components.Binder;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Persistence.NHibernate;
 
 namespace Membrane.Commons.CRUD.Controllers
 {
@@ -19,14 +18,14 @@ namespace Membrane.Commons.CRUD.Controllers
 		where TDto : IDto 
 		where TEntity : IEntity
 	{
-		private readonly ICRUDService<TDto, TEntity> service;
+		public ICRUDService<TDto, TEntity> Service { get; private set; }
 		private readonly IAutoGenerator<TDto> autoGenerator;
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
 		 
 		public CRUDController(ICRUDService<TDto, TEntity> service, IAutoGenerator<TDto> autoGenerator)
 		{
-			this.service = service;
+			Service = service;
 			this.autoGenerator = autoGenerator;
 		}
 
@@ -45,7 +44,7 @@ namespace Membrane.Commons.CRUD.Controllers
 		/// <param name="pageSize">The page size</param>
 		public virtual void List(int currentPage, int pageSize)
 		{
-			PropertyBag["items"] = service.GetPagedItems(currentPage, pageSize);
+			PropertyBag["items"] = Service.GetPagedItems(currentPage, pageSize);
 
 			RenderView(@"\Shared\List");
 		}
@@ -66,7 +65,7 @@ namespace Membrane.Commons.CRUD.Controllers
         /// <param name="id">The id of the item to be edited</param>
 		public virtual void Edit(Guid id)
 		{
-			PropertyBag["item"] = service.GetItem(id);
+			PropertyBag["item"] = Service.GetItem(id);
 			GetFormFields();
 			RenderView(@"\Shared\Form");
 		}
@@ -79,13 +78,14 @@ namespace Membrane.Commons.CRUD.Controllers
 		public virtual void Submit([DataBind("item", Validate = true)] TDto item)
 		{
 			var submitError = false;
+			ErrorList errors = GetDataBindErrors(item);
 
 			if (Validator.IsValid(item))
 			{
 				// Are we handling a new or editted user group?
 				if (item.Id == Guid.Empty)
 				{
-					var newId = service.Create(item);
+					var newId = Service.Create(item);
 
 					if (newId == Guid.Empty)
 					{
@@ -94,7 +94,7 @@ namespace Membrane.Commons.CRUD.Controllers
 				}
 				else
 				{
-					var updateSuccess = service.Update(item);
+					var updateSuccess = Service.Update(item);
 
 					if (!updateSuccess)
 					{
@@ -126,7 +126,7 @@ namespace Membrane.Commons.CRUD.Controllers
 		/// <param name="id">The id of the item</param>
 		public virtual void ConfirmDelete(Guid id)
 		{
-			PropertyBag["Item"] = service.GetItem(id);
+			PropertyBag["Item"] = Service.GetItem(id);
 
 			RenderView(@"\Shared\ConfirmDelete");
 		}
@@ -137,7 +137,7 @@ namespace Membrane.Commons.CRUD.Controllers
 		/// <param name="id">The id of the item to be deleted</param>
 		public virtual void Delete(Guid id)
 		{
-			if (service.Delete(id))
+			if (Service.Delete(id))
 			{
 				RedirectToAction("List");
 			}

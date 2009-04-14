@@ -122,11 +122,17 @@ namespace Membrane.ViewComponents
 
 		private void renderSelectList(FormField field, StringWriter writer, bool isMultiple)
 		{
-			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
+
 			if (isMultiple)
+			{
+				writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
 				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText), "multiple=multiple" })));
+			}
 			else
-				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText) })));
+			{
+				writer.WriteLine(formHelper.LabelFor(string.Format("{0}.Id", field.Id), field.Label));
+				writer.WriteLine(formHelper.Select(string.Format("{0}.Id", field.Id), (IList) PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] {string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText), "firstoption=Please select", "firstoptionvalue="})));
+			}
 		}
 
 		private void renderCheckBox(FormField field, StringWriter writer)

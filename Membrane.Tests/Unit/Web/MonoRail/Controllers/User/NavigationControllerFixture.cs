@@ -44,11 +44,25 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 			               		new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Secondary Navigation"},
 			               		new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Tertiary Navigation"}
 			               	};
+
+			var navNodes = new List<NavigationNodeDTO>
+			               	{
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Home"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "News"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
+			               	};
+
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(navTypeService.GetItems()).Return(navTypes))
+				.Expecting(() =>
+				           	{
+				           		Expect.Call(navTypeService.GetItems()).Return(navTypes);
+								Expect.Call(Service.GetItems()).Return(navNodes);
+				           	})
 				.Verify(() => Controller.LoadSupportiveData());
 
 			Assert.AreEqual(navTypes, Controller.PropertyBag["support.NavigationTypeDTO"]);
+			Assert.AreEqual(navNodes, Controller.PropertyBag["support.NavigationNodeDTO"]);
 		}
 	}
 }

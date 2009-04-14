@@ -101,7 +101,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 																							new { Id = 3, Type = "Tertiary Navigation"}
 			                                                                         	};
 
-			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType\">Navigation Type</label>\r\n<select id=\"item_NavigationType\" name=\"item.NavigationType\" >\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
+			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType_Id\">Navigation Type</label>\r\n<select id=\"item_NavigationType_Id\" name=\"item.NavigationType.Id\" >\r\n<option value=\"\">Please select</option>\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
 		}
 
 		[Test]
@@ -141,7 +141,6 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			SetupViewComponent();
 
 			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_ExpiresOn\">Expires On</label>\r\n<input type=\"text\" id=\"item_ExpiresOn\" name=\"item.ExpiresOn\" value=\"\" class=\"datePicker\" />\r\n</div>\r\n", Basicfieldhtml));
-
 		}
 
 		private void SetupViewComponent()
