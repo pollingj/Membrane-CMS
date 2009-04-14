@@ -66,7 +66,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 						AssertFormFieldData("Short Description", FieldType.MultiLineTextField, field);
 						break;
 					case "NewsImage":
-						AssertFormFieldData("News Image", FieldType.FileUpload, field);
+						AssertFormFieldData("News Image", FieldType.Asset, field);
 						break;
 				}
 			}
@@ -199,7 +199,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public string Title { get; set; }
 		[FormFieldType(FieldType.MultiLineTextField)]
 		public string ShortDescription { get; set; }
-		[FormFieldType(FieldType.FileUpload)]
+		[FormFieldType(FieldType.Asset)]
 		public string NewsImage { get; set; }
 		[FormFieldType(FieldType.Ignore)]
 		public string IgnoreMeField { get; set; }

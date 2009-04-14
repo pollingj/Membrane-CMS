@@ -7,7 +7,7 @@ namespace Membrane.Commons.FormGeneration.Enums
 		MultiLineTextField,
 		Date,
 		CheckBox,
-		FileUpload,
+		Asset,
 		Ignore,
 		SingleSelectDropDownList,
 		MultiSelectDropDownList

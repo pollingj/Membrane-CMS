@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Castle.MonoRail.Framework;
@@ -120,6 +119,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 
 			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Link\">Link</label>\r\n<textarea id=\"item_Link\" name=\"item.Link\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<label for=\"item_NavigationType\">Navigation Type</label>\r\n<select id=\"item_NavigationType\" name=\"item.NavigationType\" multiple=\"multiple\" >\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n");
 
+		}
+
+		[Test]
+		public void CanDisplayCheckBoxForBooleanValues()
+		{
+			formFields.Add(new FormField { Id = "IsLive", Label="Is Live", Type = FieldType.CheckBox });
+
+			SetupViewComponent();
+
+			RunAndCheckViewComponentOutput("<div>\r\n<input type=\"hidden\" id=\"item_Id\" name=\"item.Id\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Name\">Name</label>\r\n<input type=\"text\" id=\"item_Name\" name=\"item.Name\" value=\"\" />\r\n</div>\r\n<div>\r\n<label for=\"item_Link\">Link</label>\r\n<textarea id=\"item_Link\" name=\"item.Link\" cols=\"20\" rows=\"50\" ></textarea>\r\n</div>\r\n<div>\r\n<label for=\"item_IsLive\">Is Live</label>\r\n<input type=\"checkbox\" id=\"item_IsLive\" name=\"item.IsLive\" value=\"true\" /><input type=\"hidden\" id=\"item_IsLiveH\" name=\"item.IsLive\" value=\"false\" />\r\n</div>\r\n");
 		}
 
 		private void SetupViewComponent()

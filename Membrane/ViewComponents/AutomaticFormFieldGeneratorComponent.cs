@@ -52,35 +52,38 @@ namespace Membrane.ViewComponents
 			foreach (var field in Fields)
 			{
 				// Render Start Row
-				RenderRowSection(StartRowSection, writer, DefaultStartRow);
+				renderRowSection(StartRowSection, writer, DefaultStartRow);
 				switch(field.Type)
 				{
 					case FieldType.SingleLineTextField:
-						RenderSingleLineTextField(field, writer);
+						renderSingleLineTextField(field, writer);
 						break;
 					case FieldType.MultiLineTextField:
-						RenderMultiLineTextField(field, writer);
+						renderMultiLineTextField(field, writer);
 						break;
 					case FieldType.Hidden:
-						RenderHiddenField(field, writer);
+						renderHiddenField(field, writer);
 						break;
 					case FieldType.SingleSelectDropDownList:
-						RenderSelectList(field, writer, false);
+						renderSelectList(field, writer, false);
 						break;
 					case FieldType.MultiSelectDropDownList:
-						RenderSelectList(field, writer, true);
+						renderSelectList(field, writer, true);
+						break;
+					case FieldType.CheckBox:
+						renderCheckBox(field, writer);
 						break;
 						
 				}
 
 				// Render End Row
-				RenderRowSection(EndRowSection, writer, DefaultEndRow);
+				renderRowSection(EndRowSection, writer, DefaultEndRow);
 			}
 
 			RenderText(writer.ToString());
 		}
 
-		private void RenderRowSection(string section, StringWriter writer, string defaultHTML)
+		private void renderRowSection(string section, StringWriter writer, string defaultHTML)
 		{
 			if (Context.HasSection(section))
 				Context.RenderSection(section, writer);
@@ -89,30 +92,36 @@ namespace Membrane.ViewComponents
 			
 		}
 
-		private void RenderSingleLineTextField(FormField field, StringWriter writer)
+		private void renderSingleLineTextField(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
 			writer.WriteLine(formHelper.TextField(field.Id));
 		}
 
-		private void RenderMultiLineTextField(FormField field, StringWriter writer)
+		private void renderMultiLineTextField(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
 			writer.WriteLine(formHelper.TextArea(field.Id, DictHelper.Create(new [] { "cols=20", "rows=50"})));
 		}
 
-		private void RenderHiddenField(FormField field, StringWriter writer)
+		private void renderHiddenField(FormField field, StringWriter writer)
 		{
 			writer.WriteLine(formHelper.HiddenField(field.Id));
 		}
 
-		private void RenderSelectList(FormField field, StringWriter writer, bool isMultiple)
+		private void renderSelectList(FormField field, StringWriter writer, bool isMultiple)
 		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
 			if (isMultiple)
 				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText), "multiple=multiple" })));
 			else
 				writer.WriteLine(formHelper.Select(field.Id, (IList)PropertyBag[string.Format("support.{0}", field.RelatedTypeName)], DictHelper.Create(new[] { string.Format("value={0}", field.OptionValue), string.Format("text={0}", field.OptionText) })));
+		}
+
+		private void renderCheckBox(FormField field, StringWriter writer)
+		{
+			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
+			writer.WriteLine(formHelper.CheckboxField(field.Id));
 		}
 	}
 }
