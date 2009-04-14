@@ -73,6 +73,9 @@ namespace Membrane.ViewComponents
 					case FieldType.CheckBox:
 						renderCheckBox(field, writer);
 						break;
+					case FieldType.Date:
+						renderSingleLineTextField(field, writer, "datePicker");
+						break;
 						
 				}
 
@@ -94,8 +97,16 @@ namespace Membrane.ViewComponents
 
 		private void renderSingleLineTextField(FormField field, StringWriter writer)
 		{
+			renderSingleLineTextField(field, writer, null);
+		}
+
+		private void renderSingleLineTextField(FormField field, StringWriter writer, string cssClass)
+		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
-			writer.WriteLine(formHelper.TextField(field.Id));
+			if (string.IsNullOrEmpty(cssClass))
+				writer.WriteLine(formHelper.TextField(field.Id));
+			else
+				writer.WriteLine(formHelper.TextField(field.Id, DictHelper.Create(new[] { string.Format("class={0}", cssClass) })));
 		}
 
 		private void renderMultiLineTextField(FormField field, StringWriter writer)
