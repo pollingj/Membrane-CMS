@@ -30,7 +30,7 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void UserCanViewNavigationTypesList()
+		public void UserCanViewNavigationList()
 		{
 			browser.Link("Navigation").Click();
 			browser.WaitForComplete();
@@ -41,7 +41,7 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void UserCanViewNewNavigationTypeForm()
+		public void UserCanViewNewNavigationForm()
 		{
 			browser.GoTo(listNavUrl);
 			browser.Link("New").Click();
@@ -52,7 +52,7 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void UserCanSuccessfullyCompleteNewNavigationTypeForm()
+		public void UserCanSuccessfullyCompleteNewNavigationForm()
 		{
 			browser.GoTo(newNavUrl);
 
@@ -70,7 +70,7 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void NewNavigationTypeFormCanFailValidation()
+		public void NewNavigationFormCanFailValidation()
 		{
 			browser.GoTo(newNavUrl);
 
@@ -93,6 +93,10 @@ namespace Membrane.Tests.Acceptance.User
 
 			browser.TextField("item_Name").Clear();
 			browser.TextField("item_Name").TypeText("About Them");
+			browser.TextField("item_Title").Clear();
+			browser.TextField("item_Title").TypeText("Find out more about them");
+			browser.TextField("item_AccessKey").Clear();
+			browser.TextField("item_AccessKey").TypeText("3");
 
 			browser.Button("submit").Click();
 
@@ -104,7 +108,7 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void EditNavigationTypeFormCanFailValidation()
+		public void EditNavigationFormCanFailValidation()
 		{
 			GoToEditForm();
 
@@ -125,7 +129,7 @@ namespace Membrane.Tests.Acceptance.User
 
 
 		[Test]
-		public void UserCanSuccessfullyDeleteGroup()
+		public void UserCanSuccessfullyDeleteNavigation()
 		{
 			GoToDeleteConfirmationPage();
 
@@ -140,7 +144,7 @@ namespace Membrane.Tests.Acceptance.User
 		private void GoToDeleteConfirmationPage()
 		{
 			browser.GoTo(listNavUrl);
-			browser.Table("data").TableBodies[0].TableRows[0].Links[1].Click();
+			browser.Table("data").TableBodies[0].TableRows[1].Links[1].Click();
 
 			browser.WaitForComplete();
 		}

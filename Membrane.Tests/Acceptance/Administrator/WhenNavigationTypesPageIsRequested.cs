@@ -4,13 +4,13 @@ using WatiN.Core;
 namespace Membrane.Tests.Acceptance.Administrator
 {
 	[TestFixture, Category("Acceptance")]
-	public class WhenUserGroupsPageIsRequested : AcceptanceTestBase
+	public class WhenNavigationTypesPageIsRequested : AcceptanceTestBase
 	{
 		private IE browser;
 
-		private string newGroupUrl;
-		private string editGroupUrl;
-		private string listGroupUrl;
+		private string newNavTypeUrl;
+		private string editNavTypeUrl;
+		private string listNavTypeUrl;
 
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
@@ -18,9 +18,9 @@ namespace Membrane.Tests.Acceptance.Administrator
 			browser = new IE(BuildUrl("Login", "Index"));
 			CompleteLoginForm(browser, "johnpolling", "password");
 
-			listGroupUrl = BuildUrl("Administrator", "UserGroups", "List");
-			newGroupUrl = BuildUrl("Administrator", "UserGroups", "New");
-			editGroupUrl = BuildUrl("Administrator", "UserGroups", "Edit");
+			listNavTypeUrl = BuildUrl("Administrator", "NavigationTypes", "List");
+			newNavTypeUrl = BuildUrl("Administrator", "NavigationTypes", "New");
+			editNavTypeUrl = BuildUrl("Administrator", "NavigationTypes", "Edit");
 		}
 
 		[TestFixtureTearDown]
@@ -30,48 +30,48 @@ namespace Membrane.Tests.Acceptance.Administrator
 		}
 
 		[Test]
-		public void AdministratorCanViewUserGroupsList()
+		public void AdministratorCanViewNavigationTypesList()
 		{
-			browser.Link("UserGroups").Click();
+			browser.Link("NavigationTypes").Click();
 			browser.WaitForComplete();
 
-			Assert.IsTrue(browser.ContainsText("Blogging Group"));
+			Assert.IsTrue(browser.ContainsText("Primary Navigation"));
 			Assert.AreEqual(1, browser.Table("data").TableBodies[0].TableRows.Length);
-			Assert.AreEqual(listGroupUrl, browser.Url);
+			Assert.AreEqual(listNavTypeUrl, browser.Url);
 		}
 
 		[Test]
-		public void AdministratorCanViewNewUserGroupForm()
+		public void AdministratorCanViewNewNavigationTypeForm()
 		{
-			browser.GoTo(listGroupUrl);
+			browser.GoTo(listNavTypeUrl);
 			browser.Link("New").Click();
 			browser.WaitForComplete();
 
-			Assert.AreEqual(newGroupUrl, browser.Url);
+			Assert.AreEqual(newNavTypeUrl, browser.Url);
 			Assert.IsTrue(browser.Form("entryForm").Exists);
 		}
 
 		[Test]
-		public void AdministratorCanSuccessfullyCompleteNewUserGroupForm()
+		public void AdministratorCanSuccessfullyCompleteNewNavigationTypeForm()
 		{
-			browser.GoTo(newGroupUrl);
+			browser.GoTo(newNavTypeUrl);
 
-			browser.TextField("item_Name").TypeText("News Group");
+			browser.TextField("item_Name").TypeText("Secondary Navigation");
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
-			Assert.AreEqual(listGroupUrl, browser.Url);
+			Assert.AreEqual(listNavTypeUrl, browser.Url);
 			Assert.AreEqual(2, browser.Table("data").TableBodies[0].TableRows.Length);
-			Assert.IsTrue(browser.ContainsText("News Group"));
+			Assert.IsTrue(browser.ContainsText("Secondary Navigation"));
 		}
 
 		[Test]
-		public void NewUserGroupFormCanFailValidation()
+		public void NewNavigationTypeFormCanFailValidation()
 		{
-			browser.GoTo(newGroupUrl);
+			browser.GoTo(newNavTypeUrl);
 
-			FailFormValidation(newGroupUrl);
+			FailFormValidation(newNavTypeUrl);
 		}
 
 		[Test]
@@ -79,8 +79,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToEditForm();
 
-			Assert.IsTrue(browser.Url.Contains(editGroupUrl));
-			Assert.AreEqual("Blogging Group", browser.TextField("item_Name").Text);
+			Assert.IsTrue(browser.Url.Contains(editNavTypeUrl));
+			Assert.AreEqual("Primary Navigation", browser.TextField("item_Name").Text);
 		}
 
 		[Test]
@@ -89,25 +89,25 @@ namespace Membrane.Tests.Acceptance.Administrator
 			GoToEditForm();
 
 			browser.TextField("item_Name").Clear();
-			browser.TextField("item_Name").TypeText("Blog Editing Group");
+			browser.TextField("item_Name").TypeText("New Pri Navigation");
 
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
-			Assert.AreEqual(listGroupUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("Blogging Group"));
-			Assert.IsTrue(browser.ContainsText("Blog Editing Group"));
+			Assert.AreEqual(listNavTypeUrl, browser.Url);
+			Assert.IsFalse(browser.ContainsText("Primary Navigation"));
+			Assert.IsTrue(browser.ContainsText("New Pri Navigation"));
 		}
 
 		[Test]
-		public void EditUserGroupFormCanFailValidation()
+		public void EditNavigationTypeFormCanFailValidation()
 		{
 			GoToEditForm();
 
 			browser.TextField("item_Name").Clear();
 
-			FailFormValidation(editGroupUrl);
+			FailFormValidation(editNavTypeUrl);
 		}
 
 		[Test]
@@ -115,14 +115,14 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			GoToDeleteConfirmationPage();
 
-			Assert.IsTrue(browser.Url.Contains(BuildUrl("Administrator", "UserGroups", "ConfirmDelete")));
+			Assert.IsTrue(browser.Url.Contains(BuildUrl("Administrator", "NavigationTypes", "ConfirmDelete")));
 			Assert.IsTrue(browser.ContainsText("Are you certain you wish to delete"));
 		}
 
 
 
 		[Test]
-		public void AdministratorCanSuccessfullyDeleteGroup()
+		public void AdministratorCanSuccessfullyDeleteNavigationType()
 		{
 			GoToDeleteConfirmationPage();
 
@@ -130,22 +130,22 @@ namespace Membrane.Tests.Acceptance.Administrator
 
 			browser.WaitForComplete();
 
-			Assert.AreEqual(listGroupUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("News Group"));
+			Assert.AreEqual(listNavTypeUrl, browser.Url);
+			Assert.IsFalse(browser.ContainsText("Secondary Navigation"));
 		}
 
 		private void GoToDeleteConfirmationPage()
 		{
-			browser.GoTo(listGroupUrl);
-			browser.Table("data").TableBodies[0].TableRows[0].Links[1].Click();
+			browser.GoTo(listNavTypeUrl);
+			browser.Table("data").TableBodies[0].TableRows[1].Links[1].Click();
 
 			browser.WaitForComplete();
 		}
 
 		private void GoToEditForm()
 		{
-			browser.GoTo(listGroupUrl);
-			browser.Table("data").TableBodies[0].TableRows[1].Links[0].Click();
+			browser.GoTo(listNavTypeUrl);
+			browser.Table("data").TableBodies[0].TableRows[0].Links[0].Click();
 
 			browser.WaitForComplete();
 		}
