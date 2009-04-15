@@ -95,6 +95,7 @@
     <Compile Include="Unit\Core\Queries\Users\UserByUsernameAndPasswordFixture.cs" />
     <Compile Include="Unit\Core\Services\AuthenticationServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserGroupServiceFixture.cs" />
+    <Compile Include="Unit\Plugins\News\NewsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\NavigationTypesControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\UserGroupsControllerFixture.cs" />
@@ -117,6 +118,10 @@
     <ProjectReference Include="..\Membrane.Entities\Membrane.Entities.csproj">
       <Project>{252BEF52-0747-49C1-95AE-4AFEBB259F73}</Project>
       <Name>Membrane.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Plugins\Membrane.Plugins.csproj">
+      <Project>{C9B4E161-F91B-4019-B53D-83F706020E0A}</Project>
+      <Name>Membrane.Plugins</Name>
     </ProjectReference>
     <ProjectReference Include="..\Membrane\Membrane.csproj">
       <Project>{390BD897-89B6-4D73-8B92-8B66C688004C}</Project>

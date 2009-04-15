@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Commons", "Membran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Entities", "Membrane.Entities\Membrane.Entities.csproj", "{252BEF52-0747-49C1-95AE-4AFEBB259F73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Plugins", "Membrane.Plugins\Membrane.Plugins.csproj", "{C9B4E161-F91B-4019-B53D-83F706020E0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{252BEF52-0747-49C1-95AE-4AFEBB259F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252BEF52-0747-49C1-95AE-4AFEBB259F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{252BEF52-0747-49C1-95AE-4AFEBB259F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B4E161-F91B-4019-B53D-83F706020E0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B4E161-F91B-4019-B53D-83F706020E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B4E161-F91B-4019-B53D-83F706020E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B4E161-F91B-4019-B53D-83F706020E0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

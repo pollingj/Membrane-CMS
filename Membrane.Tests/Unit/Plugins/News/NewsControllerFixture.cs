@@ -1,0 +1,26 @@
+using System;
+using Membrane.Plugins.Controllers;
+using Membrane.Plugins.DTOs;
+using Membrane.Plugins.Entities;
+using Membrane.Tests.Unit.Commons.CRUD.Controllers;
+
+namespace Membrane.Tests.Unit.Plugins.News
+{
+	public class NewsControllerFixture : CRUDControllerFixture<NewsArticleDTO, NewsArticle>
+	{
+		public override void SetUp()
+		{
+			base.SetUp();
+
+			NewDTO = new NewsArticleDTO { Name = "New Site Launch", Story = "<p>We now have a new website</p>", CreationDate = DateTime.Now };
+			EditDTO = new NewsArticleDTO { Id = Guid.NewGuid(), Name = "New Site Launch Edited", Story = "<p>We now have a new website edited</p>", CreationDate = DateTime.Now };
+			InvalidDTO = new NewsArticleDTO { Id = Guid.NewGuid() };
+			DeleteDTO = new NewsArticleDTO { Id = Guid.NewGuid(), Name = "New Site Launch Deleted", Story = "<p>We now have a new website deleted</p>", CreationDate = DateTime.Now };
+
+
+			Controller = new NewsController(Service, AutoGenerator);
+
+			PrepareController(Controller);
+		}
+	}
+}

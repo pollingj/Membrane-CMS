@@ -78,7 +78,6 @@ namespace Membrane.Commons.CRUD.Controllers
 		public virtual void Submit([DataBind("item", Validate = true)] TDto item)
 		{
 			var submitError = false;
-			ErrorList errors = GetDataBindErrors(item);
 
 			if (Validator.IsValid(item))
 			{
