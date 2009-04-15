@@ -1,7 +1,7 @@
 using System;
-using Membrane.Plugins.Controllers;
-using Membrane.Plugins.DTOs;
-using Membrane.Plugins.Entities;
+using Membrane.Plugins.News.Controllers;
+using Membrane.Plugins.News.DTOs;
+using Membrane.Plugins.News.Entities;
 using Membrane.Tests.Unit.Commons.CRUD.Controllers;
 
 namespace Membrane.Tests.Unit.Plugins.News

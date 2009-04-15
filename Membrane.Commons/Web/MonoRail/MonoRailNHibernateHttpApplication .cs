@@ -13,12 +13,15 @@ using Castle.MonoRail.Framework.Helpers.ValidationStrategy;
 using Castle.MonoRail.Framework.JSGeneration;
 using Castle.MonoRail.Framework.JSGeneration.jQuery;
 using Castle.MonoRail.Framework.Routing;
+using Castle.MonoRail.Views.Spark;
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using FluentNHibernate.AutoMap;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
 using NHibernate;
+using Spark;
+using Spark.FileSystem;
 using Configuration=NHibernate.Cfg.Configuration;
 
 namespace Membrane.Commons.Web.MonoRail
@@ -55,7 +58,9 @@ namespace Membrane.Commons.Web.MonoRail
 
 			if (Directory.Exists(pluginFolder))
 				ResolveEntityPluginDlls();
+
 			ConfigureNHibernate();
+
 		}
 
 		public void Application_OnEnd()
@@ -74,28 +79,31 @@ namespace Membrane.Commons.Web.MonoRail
 
 			foreach (var pluginFilePath in pluginFilePaths)
 			{
-				var pluginAssembly = Assembly.LoadFile(pluginFilePath);
+				var pluginAssembly = getAssembly(pluginFilePath);
 
-				try
+				if (!pluginAssembly.FullName.Contains("Membrane.Commons"))
 				{
-					var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof (IMembranePlugin).IsAssignableFrom(t)).ToList();
-
-					if (pluginTypes.Count > 0)
+					try
 					{
-						pluginAssemblies.Add(pluginAssembly);
+						var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof (IMembranePlugin).IsAssignableFrom(t)).ToList();
 
-						foreach (var pluginType in pluginTypes)
+						if (pluginTypes.Count > 0)
 						{
-							var plugin = (IMembranePlugin) Activator.CreateInstance(pluginType);
+							pluginAssemblies.Add(pluginAssembly);
 
-							plugin.Initialize();
-							plugin.RegisterComponents(container);
+							foreach (var pluginType in pluginTypes)
+							{
+								var plugin = (IMembranePlugin) Activator.CreateInstance(pluginType);
+
+								plugin.Initialize();
+								plugin.RegisterComponents(container);
+							}
 						}
 					}
-				}
-				catch (ReflectionTypeLoadException)
-				{
-					//There was a reflection error, ignore for now but probably need to at least log this info
+					catch (ReflectionTypeLoadException)
+					{
+						//There was a reflection error, ignore for now but probably need to at least log this info
+					}
 				}
 			}
 		}
@@ -210,10 +218,33 @@ namespace Membrane.Commons.Web.MonoRail
 			_assemblyList = new Dictionary<string, Assembly>(dlls.Length);
 			foreach (var fileName in dlls)
 			{
-				var asm = Assembly.LoadFrom(fileName);
+				var asm = getAssembly(fileName);
+	
 				_assemblyList.Add(asm.FullName.Split(',')[0], asm);
 			}
-		} 
+		}
+
+		private Assembly getAssembly(string fileName)
+		{
+			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			Assembly foundAssembly = null;
+			foreach (Assembly assembly in assemblies)
+			{
+				if (assembly.FullName == AssemblyName.GetAssemblyName(fileName).FullName)
+				{
+					foundAssembly = assembly;
+					break;
+				}
+			}
+
+			if (foundAssembly == null)
+			{
+				var assemblyBytes = File.ReadAllBytes(fileName);
+				foundAssembly = Assembly.Load(assemblyBytes);
+			}
+
+			return foundAssembly;
+		}
 
 		/// <summary>
 		/// Resolves the dependancies when RegisterEntitiesAssembly is called for the plugin entities

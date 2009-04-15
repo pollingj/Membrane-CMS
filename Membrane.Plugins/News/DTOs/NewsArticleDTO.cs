@@ -1,7 +1,7 @@
 using System;
 using Membrane.Commons.CRUD;
 
-namespace Membrane.Plugins.DTOs
+namespace Membrane.Plugins.News.DTOs
 {
 	public class NewsArticleDTO : IDto
 	{

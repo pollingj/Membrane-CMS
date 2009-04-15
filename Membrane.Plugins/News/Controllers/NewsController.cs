@@ -1,10 +1,10 @@
 ﻿using Membrane.Commons.CRUD.Controllers;
 using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration.Interfaces;
-using Membrane.Plugins.DTOs;
-using Membrane.Plugins.Entities;
+using Membrane.Plugins.News.DTOs;
+using Membrane.Plugins.News.Entities;
 
-namespace Membrane.Plugins.Controllers
+namespace Membrane.Plugins.News.Controllers
 {
 	public class NewsController : CRUDController<NewsArticleDTO, NewsArticle>
 	{
