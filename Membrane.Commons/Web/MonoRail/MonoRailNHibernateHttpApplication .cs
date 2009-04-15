@@ -13,15 +13,12 @@ using Castle.MonoRail.Framework.Helpers.ValidationStrategy;
 using Castle.MonoRail.Framework.JSGeneration;
 using Castle.MonoRail.Framework.JSGeneration.jQuery;
 using Castle.MonoRail.Framework.Routing;
-using Castle.MonoRail.Views.Spark;
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using FluentNHibernate.AutoMap;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
 using NHibernate;
-using Spark;
-using Spark.FileSystem;
 using Configuration=NHibernate.Cfg.Configuration;
 
 namespace Membrane.Commons.Web.MonoRail

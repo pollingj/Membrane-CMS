@@ -141,6 +141,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Administrator\ContentTypesController.cs" />
     <Compile Include="Controllers\Administrator\HomeController.cs" />
     <Compile Include="Controllers\Administrator\NavigationTypesController.cs" />
     <Compile Include="Controllers\Administrator\UserGroupsController.cs" />
