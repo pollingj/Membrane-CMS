@@ -1,5 +1,5 @@
 using Membrane.Controllers;
-using Membrane.Core.Services.Interfaces;
+using Membrane.Core.Wrappers.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 

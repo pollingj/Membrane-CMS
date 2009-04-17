@@ -39,6 +39,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.MicroKernel.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.MonoRail.Framework, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.Framework.dll</HintPath>
@@ -50,6 +54,10 @@
     <Reference Include="Castle.MonoRail.ViewComponents, Version=1.0.3068.15453, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.ViewComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -98,6 +106,7 @@
     <Compile Include="Unit\Plugins\News\NewsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\NavigationTypesControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\PluginsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\UserGroupsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />

@@ -176,7 +176,7 @@ namespace Membrane.Commons.Web.MonoRail
 				RegisterEntitiesAssembly(configuration, pluginAssembly);
 			}
 
-			
+
 			ISessionFactory sessionFactory = configuration.BuildSessionFactory();
 			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
 		}

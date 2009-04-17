@@ -64,9 +64,11 @@
     <Compile Include="Queries\UserGroups\PagedUserGroups.cs" />
     <Compile Include="Queries\Users\UserByUsernameAndPassword.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\FormsAuthenticationWrapper.cs" />
+    <Compile Include="Wrappers\FormsAuthenticationWrapper.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
-    <Compile Include="Services\Interfaces\IFormsAuthentication.cs" />
+    <Compile Include="Wrappers\Interfaces\IDirectory.cs" />
+    <Compile Include="Wrappers\Interfaces\IFormsAuthentication.cs" />
+    <Compile Include="Services\Interfaces\IPluginsService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
   </ItemGroup>
   <ItemGroup>

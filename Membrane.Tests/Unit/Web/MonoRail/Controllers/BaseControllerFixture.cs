@@ -10,7 +10,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 {
 	public class BaseControllerFixture : BaseControllerTest
 	{
-		private const string referrer = "http://www.project.com/index.castle";
+		public string Referrer = "http://www.project.com/index.castle";
 
 		public MockRepository mockery;
 
@@ -29,7 +29,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		protected override IMockRequest BuildRequest()
 		{
 			StubRequest request = new StubRequest(Cookies);
-			request.UrlReferrer = referrer;
+			request.UrlReferrer = Referrer;
 
 			return request;
 		}
@@ -41,7 +41,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 											new DefaultUrlBuilder(),
 											new StubServerUtility(),
 											new RouteMatch(),
-											referrer);
+											Referrer);
 			return response;
 		}
 	}

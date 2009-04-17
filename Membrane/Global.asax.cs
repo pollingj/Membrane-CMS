@@ -11,6 +11,8 @@ using Membrane.Controllers;
 using Membrane.Core.Mappers;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
+using Membrane.Core.Wrappers;
+using Membrane.Core.Wrappers.Interfaces;
 using Membrane.ViewComponents;
 
 namespace Membrane

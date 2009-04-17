@@ -2,6 +2,7 @@ using System;
 using Membrane.Controllers;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
+using Membrane.Core.Wrappers.Interfaces;
 using Membrane.Entities.Enums;
 using NUnit.Framework;
 using Rhino.Mocks;

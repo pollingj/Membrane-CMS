@@ -1,8 +1,8 @@
 using System;
 using System.Web.Security;
-using Membrane.Core.Services.Interfaces;
+using Membrane.Core.Wrappers.Interfaces;
 
-namespace Membrane.Core.Services
+namespace Membrane.Core.Wrappers
 {
 	public class FormsAuthenticationWrapper : IFormsAuthentication
 	{

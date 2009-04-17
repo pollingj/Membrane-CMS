@@ -144,6 +144,7 @@
     <Compile Include="Controllers\Administrator\ContentTypesController.cs" />
     <Compile Include="Controllers\Administrator\HomeController.cs" />
     <Compile Include="Controllers\Administrator\NavigationTypesController.cs" />
+    <Compile Include="Controllers\Administrator\PluginsController.cs" />
     <Compile Include="Controllers\Administrator\UserGroupsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
