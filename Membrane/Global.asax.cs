@@ -2,6 +2,7 @@
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
+using Castle.MonoRail.WindsorExtension;
 using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Interfaces;

@@ -8,6 +8,10 @@ namespace Membrane.Commons
 
 	    void Initialize();
 		void RegisterComponents(IWindsorContainer container);
+
+		void Install();
+		void Uninstall();
+		void Upgrade();
 	}
 
 }
