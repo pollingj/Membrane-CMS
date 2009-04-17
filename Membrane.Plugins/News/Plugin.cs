@@ -21,12 +21,16 @@ namespace Membrane.Plugins.News
 
 		public void Install()
 		{
-			throw new NotImplementedException();
+			// Run sql install scripts
+
+            // Register any relevants componets with the container.
 		}
 
 		public void Uninstall()
 		{
-			throw new NotImplementedException();
+			// Run sql uninstall scripts
+
+			// Remove any relevant components from the container.
 		}
 
 		public void Upgrade()
