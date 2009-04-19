@@ -11,7 +11,7 @@ using Membrane.Tests.Unit.Web.MonoRail.Controllers;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
+namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 {
 	[TestFixture]
 	public class CRUDControllerFixture<DTO, Entity> : BaseControllerFixture
@@ -47,12 +47,12 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 
 
 			FormFields = new List<FormField>
-			                 	{
-			                 		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
-			                 		new FormField {Id = "ProductName", Label = "Product Name", Type = FieldType.SingleLineTextField},
-			                 		new FormField {Id = "Price", Label = "Price", Type = FieldType.SingleLineTextField},
-									new FormField { Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
-			                 	};
+			             	{
+			             		new FormField {Id = "Id", Label = "Id", Type = FieldType.Hidden},
+			             		new FormField {Id = "ProductName", Label = "Product Name", Type = FieldType.SingleLineTextField},
+			             		new FormField {Id = "Price", Label = "Price", Type = FieldType.SingleLineTextField},
+			             		new FormField { Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
+			             	};
 
 		}
 
@@ -84,8 +84,8 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 			With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
-								Expect.Call(() => AutoGenerator.ReadViewModelProperties());
-								Expect.Call(AutoGenerator.FormFields).Return(FormFields);
+				           		Expect.Call(() => AutoGenerator.ReadViewModelProperties());
+				           		Expect.Call(AutoGenerator.FormFields).Return(FormFields);
 				           	})
 				.Verify(() => Controller.New());
 
@@ -123,11 +123,11 @@ namespace Membrane.Tests.Unit.Commons.CRUD.Controllers
 		{
 			With.Mocks(mockery)
 				.Expecting(() =>
-				{
-					Expect.Call(Service.GetItem(EditDTO.Id)).Return(EditDTO);
-					Expect.Call(() => AutoGenerator.ReadViewModelProperties());
-					Expect.Call(AutoGenerator.FormFields).Return(FormFields);
-				})
+				           	{
+				           		Expect.Call(Service.GetItem(EditDTO.Id)).Return(EditDTO);
+				           		Expect.Call(() => AutoGenerator.ReadViewModelProperties());
+				           		Expect.Call(AutoGenerator.FormFields).Return(FormFields);
+				           	})
 				.Verify(() => Controller.Edit(EditDTO.Id));
 
 			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);

@@ -10,7 +10,7 @@ using Membrane.Tests.Unit.Core;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Membrane.Tests.Unit.Commons.CRUD.Services
+namespace Membrane.Tests.Unit.Commons.Plugin.Services
 {
 	[TestFixture]
 	public class CRUDServiceFixture<TDto, TEntity> : BaseFixture

@@ -4,7 +4,7 @@ using Membrane.Commons.Plugin.Services;
 using Membrane.Controllers.User;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
-using Membrane.Tests.Unit.Commons.CRUD.Controllers;
+using Membrane.Tests.Unit.Commons.Plugin.Controllers;
 using NUnit.Framework;
 using Rhino.Mocks;
 

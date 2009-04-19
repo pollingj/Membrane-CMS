@@ -6,7 +6,7 @@ using Membrane.Core.DTOs;
 using Membrane.Core.Queries.UserGroups;
 using Membrane.Core.Services;
 using Membrane.Entities;
-using Membrane.Tests.Unit.Commons.CRUD.Services;
+using Membrane.Tests.Unit.Commons.Plugin.Services;
 using NUnit.Framework;
 using Rhino.Mocks;
 
