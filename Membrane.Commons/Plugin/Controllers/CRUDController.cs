@@ -1,12 +1,11 @@
 using System;
-using Castle.Components.Binder;
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Services;
 
-namespace Membrane.Commons.CRUD.Controllers
+namespace Membrane.Commons.Plugin.Controllers
 {
 	/// <summary>
 	/// Basic CRUDController that is inherited by the other editor controllers.  It can be overwritten if required.
@@ -59,10 +58,10 @@ namespace Membrane.Commons.CRUD.Controllers
 			RenderView(@"\Shared\Form");
 		}
 
-        /// <summary>
-        /// The Edit action
-        /// </summary>
-        /// <param name="id">The id of the item to be edited</param>
+		/// <summary>
+		/// The Edit action
+		/// </summary>
+		/// <param name="id">The id of the item to be edited</param>
 		public virtual void Edit(Guid id)
 		{
 			PropertyBag["item"] = Service.GetItem(id);

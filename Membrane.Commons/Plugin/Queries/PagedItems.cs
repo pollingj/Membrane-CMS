@@ -1,7 +1,7 @@
 using System.Linq;
 using Membrane.Commons.Persistence;
 
-namespace Membrane.Commons.CRUD.Queries
+namespace Membrane.Commons.Plugin.Queries
 {
 	public class PagedItems<T> : IQueryCommand<T> where T : IEntity
 	{

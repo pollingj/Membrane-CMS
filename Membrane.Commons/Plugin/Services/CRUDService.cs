@@ -1,13 +1,11 @@
-
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using AutoMapper;
-using Membrane.Commons.CRUD.Queries;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
+using Membrane.Commons.Plugin.Queries;
 
-namespace Membrane.Commons.CRUD.Services
+namespace Membrane.Commons.Plugin.Services
 {
 	/// <summary>
 	/// Basic CRUDService that is used as standard in the CRUDController.  It can be overwritten if required.

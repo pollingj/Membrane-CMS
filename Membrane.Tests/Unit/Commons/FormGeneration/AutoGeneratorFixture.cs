@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Membrane.Commons.CRUD;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin;
 using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Commons.FormGeneration

@@ -1,5 +1,5 @@
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 

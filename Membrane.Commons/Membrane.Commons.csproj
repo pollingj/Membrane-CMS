@@ -115,13 +115,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUD\Controllers\CRUDController.cs" />
-    <Compile Include="CRUD\Queries\QueryItems.cs" />
-    <Compile Include="CRUD\Services\CRUDService.cs" />
-    <Compile Include="CRUD\Controllers\ICRUDController.cs" />
-    <Compile Include="CRUD\Services\ICRUDService.cs" />
-    <Compile Include="CRUD\IDTO.cs" />
-    <Compile Include="CRUD\Queries\PagedItems.cs" />
+    <Compile Include="Plugin\Controllers\CRUDController.cs" />
+    <Compile Include="Plugin\Queries\QueryItems.cs" />
+    <Compile Include="Plugin\Services\CRUDService.cs" />
+    <Compile Include="Plugin\Controllers\ICRUDController.cs" />
+    <Compile Include="Plugin\Services\ICRUDService.cs" />
+    <Compile Include="Plugin\IDTO.cs" />
+    <Compile Include="Plugin\Queries\PagedItems.cs" />
     <Compile Include="FormGeneration\Attributes\FormFieldTypeAttribute.cs" />
     <Compile Include="FormGeneration\AutoGenerator.cs" />
     <Compile Include="FormGeneration\Enums\FieldType.cs" />

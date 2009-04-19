@@ -1,7 +1,7 @@
 using Castle.MonoRail.Framework;
-using Membrane.Commons.CRUD.Controllers;
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration.Interfaces;
+using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 using Membrane.Filters;

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using Membrane.Commons.CRUD;
-using Membrane.Commons.CRUD.Queries;
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
+using Membrane.Commons.Plugin;
+using Membrane.Commons.Plugin.Queries;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Tests.Unit.Core;
 using NUnit.Framework;
 using Rhino.Mocks;

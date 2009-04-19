@@ -1,6 +1,6 @@
 using System;
 
-namespace Membrane.Commons.CRUD
+namespace Membrane.Commons.Plugin
 {
 	public interface IDto
 	{

@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Membrane.Commons.CRUD;
-using Membrane.Commons.CRUD.Controllers;
-using Membrane.Commons.CRUD.Services;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Interfaces;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin;
+using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Tests.Unit.Web.MonoRail.Controllers;
 using NUnit.Framework;
 using Rhino.Mocks;

@@ -1,6 +1,6 @@
-﻿using Membrane.Commons.CRUD.Controllers;
-using Membrane.Commons.CRUD.Services;
-using Membrane.Commons.FormGeneration.Interfaces;
+﻿using Membrane.Commons.FormGeneration.Interfaces;
+using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Plugins.News.DTOs;
 using Membrane.Plugins.News.Entities;
 
