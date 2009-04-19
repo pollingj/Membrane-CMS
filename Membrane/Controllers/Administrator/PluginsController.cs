@@ -1,6 +1,6 @@
 using System;
 using Castle.Components.Validator;
-using Membrane.Core.Services.Interfaces;
+using Membrane.Commons.Plugin.Services;
 
 namespace Membrane.Controllers.Administrator
 {

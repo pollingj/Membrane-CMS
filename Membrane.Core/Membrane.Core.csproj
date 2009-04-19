@@ -68,7 +68,6 @@
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Wrappers\Interfaces\IDirectory.cs" />
     <Compile Include="Wrappers\Interfaces\IFormsAuthentication.cs" />
-    <Compile Include="Services\Interfaces\IPluginsService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
   </ItemGroup>
   <ItemGroup>

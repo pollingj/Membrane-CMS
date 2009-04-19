@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Membrane.Commons;
 
-namespace Membrane.Core.Services.Interfaces
+namespace Membrane.Commons.Plugin.Services
 {
 	public interface IPluginsService
 	{

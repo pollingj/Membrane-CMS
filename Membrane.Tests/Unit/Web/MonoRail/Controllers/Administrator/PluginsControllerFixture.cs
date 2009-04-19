@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Castle.Windsor;
 using Membrane.Commons;
+using Membrane.Commons.Plugin.Services;
 using Membrane.Controllers.Administrator;
-using Membrane.Core.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
