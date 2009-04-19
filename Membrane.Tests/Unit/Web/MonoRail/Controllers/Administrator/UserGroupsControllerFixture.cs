@@ -15,9 +15,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			EditDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Edit Group"};
 			InvalidDTO = new UserGroupDTO {Id = Guid.NewGuid()};
 			DeleteDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Delete Group"};
-			
 
-			Controller = new UserGroupsController(Service, AutoGenerator);
+
+			Controller = new UserGroupsController(Service, PropertyReaderService);
 
 			PrepareController(Controller);
 		}

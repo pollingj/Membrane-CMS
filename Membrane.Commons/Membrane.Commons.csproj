@@ -123,11 +123,11 @@
     <Compile Include="Plugin\IDTO.cs" />
     <Compile Include="Plugin\Queries\PagedItems.cs" />
     <Compile Include="FormGeneration\Attributes\FormFieldTypeAttribute.cs" />
-    <Compile Include="FormGeneration\AutoGenerator.cs" />
+    <Compile Include="FormGeneration\PropertyReaderService.cs" />
     <Compile Include="FormGeneration\Enums\FieldType.cs" />
     <Compile Include="FormGeneration\Exceptions\RelatedDTONeedsAtLeastTwoPropertiesException.cs" />
     <Compile Include="FormGeneration\FormField.cs" />
-    <Compile Include="FormGeneration\Interfaces\IAutoGenerator.cs" />
+    <Compile Include="FormGeneration\Interfaces\IPropertyReaderService.cs" />
     <Compile Include="IMembranePlugin.cs" />
     <Compile Include="GuardAgainst.cs" />
     <Compile Include="Persistence\Exceptions\RepositoryDeleteException.cs" />

@@ -17,12 +17,12 @@ namespace Membrane.Controllers.Administrator
 	public class UserGroupsController : CRUDController<UserGroupDTO, UserGroup>
 	{
 		/// <summary>
-		/// Constructor that sets up all of the <see cref="CRUDService{TDto,TEntity}"/> and <see cref="AutoGenerator"/> references
+		/// Constructor that sets up all of the <see cref="CRUDService{TDto,TEntity}"/> and <see cref="PropertyReaderService"/> references
 		/// </summary>
 		/// <param name="service">The base CRUDService with the relevant TDto and Entities referenced</param>
-		/// <param name="autoGenerator"></param>
-		public UserGroupsController(ICRUDService<UserGroupDTO, UserGroup> service, IAutoGenerator<UserGroupDTO> autoGenerator)
-			: base(service, autoGenerator)
+		/// <param name="propertyReaderService"></param>
+		public UserGroupsController(ICRUDService<UserGroupDTO, UserGroup> service, IPropertyReaderService<UserGroupDTO> propertyReaderService)
+			: base(service, propertyReaderService)
 		{
 		}
 	}

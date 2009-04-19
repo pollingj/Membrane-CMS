@@ -16,12 +16,12 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadSimpleConventionBasedDTOProperties()
 		{
-			IAutoGenerator<TestSimpleConventionDto> autoGenerator = new AutoGenerator<TestSimpleConventionDto>();
-			autoGenerator.ReadViewModelProperties();
+			IPropertyReaderService<TestSimpleConventionDto> propertyReaderService = new PropertyReaderService<TestSimpleConventionDto>();
+			propertyReaderService.ReadViewModelProperties();
 
-			Assert.AreEqual(typeof (TestSimpleConventionDto).GetProperties().Length, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(TestSimpleConventionDto).GetProperties().Length, propertyReaderService.FormFields.Count);
 
-			foreach (var field in autoGenerator.FormFields)
+			foreach (var field in propertyReaderService.FormFields)
 			{
 				switch (field.Id)
 				{
@@ -47,13 +47,13 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadSimpleConfigurationDTOProperties()
 		{
-			IAutoGenerator<TestSimpleConfigurationDTO> autoGenerator = new AutoGenerator<TestSimpleConfigurationDTO>();
-			autoGenerator.ReadViewModelProperties();
+			IPropertyReaderService<TestSimpleConfigurationDTO> propertyReaderService = new PropertyReaderService<TestSimpleConfigurationDTO>();
+			propertyReaderService.ReadViewModelProperties();
 
 			// Remember the 1 ignore field
-			Assert.AreEqual(typeof(TestSimpleConfigurationDTO).GetProperties().Length - 1, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(TestSimpleConfigurationDTO).GetProperties().Length - 1, propertyReaderService.FormFields.Count);
 
-			foreach (var field in autoGenerator.FormFields)
+			foreach (var field in propertyReaderService.FormFields)
 			{
 				switch (field.Id)
 				{
@@ -76,12 +76,12 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadBelongsToDTOPropertiesWithConventions()
 		{
-			IAutoGenerator<ProductDTO> autoGenerator = new AutoGenerator<ProductDTO>();
-			autoGenerator.ReadViewModelProperties();
+			IPropertyReaderService<ProductDTO> propertyReaderService = new PropertyReaderService<ProductDTO>();
+			propertyReaderService.ReadViewModelProperties();
 
-			Assert.AreEqual(typeof(ProductDTO).GetProperties().Length, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(ProductDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
 
-			foreach (var field in autoGenerator.FormFields)
+			foreach (var field in propertyReaderService.FormFields)
 			{
 				switch (field.Id)
 				{
@@ -110,12 +110,12 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadHasAndBelongsToManyDTOPropertiesWithConventions()
 		{
-			IAutoGenerator<AccessoryDTO> autoGenerator = new AutoGenerator<AccessoryDTO>();
-			autoGenerator.ReadViewModelProperties();
+			IPropertyReaderService<AccessoryDTO> propertyReaderService = new PropertyReaderService<AccessoryDTO>();
+			propertyReaderService.ReadViewModelProperties();
 
-			Assert.AreEqual(typeof(AccessoryDTO).GetProperties().Length, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(AccessoryDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
 
-			foreach (var field in autoGenerator.FormFields)
+			foreach (var field in propertyReaderService.FormFields)
 			{
 				switch (field.Id)
 				{
@@ -140,12 +140,12 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		[Test]
 		public void CanReadSingleAndMultiDropDownListPropertiesWithConfigurations()
 		{
-			IAutoGenerator<NewsArticleDTO> autoGenerator = new AutoGenerator<NewsArticleDTO>();
-			autoGenerator.ReadViewModelProperties();
+			IPropertyReaderService<NewsArticleDTO> propertyReaderService = new PropertyReaderService<NewsArticleDTO>();
+			propertyReaderService.ReadViewModelProperties();
 
-			Assert.AreEqual(typeof(NewsArticleDTO).GetProperties().Length, autoGenerator.FormFields.Count);
+			Assert.AreEqual(typeof(NewsArticleDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
 
-			foreach (var field in autoGenerator.FormFields)
+			foreach (var field in propertyReaderService.FormFields)
 			{
 				switch (field.Id)
 				{

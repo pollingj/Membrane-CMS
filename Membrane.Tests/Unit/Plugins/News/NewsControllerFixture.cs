@@ -18,7 +18,7 @@ namespace Membrane.Tests.Unit.Plugins.News
 			DeleteDTO = new NewsArticleDTO { Id = Guid.NewGuid(), Name = "New Site Launch Deleted", Story = "<p>We now have a new website deleted</p>", CreationDate = DateTime.Now };
 
 
-			Controller = new NewsController(Service, AutoGenerator);
+			Controller = new NewsController(Service, PropertyReaderService);
 
 			PrepareController(Controller);
 		}

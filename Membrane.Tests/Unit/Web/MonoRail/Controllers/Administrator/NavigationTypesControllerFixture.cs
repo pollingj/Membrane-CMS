@@ -22,7 +22,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			InvalidDTO = new NavigationTypeDTO { Id = Guid.NewGuid() };
 			DeleteDTO = new NavigationTypeDTO { Id = Guid.NewGuid(), Name = "Tertiary Navigation" };
 
-			Controller = new NavigationTypesController(Service, AutoGenerator);
+			Controller = new NavigationTypesController(Service, PropertyReaderService);
 
 			PrepareController(Controller);
 

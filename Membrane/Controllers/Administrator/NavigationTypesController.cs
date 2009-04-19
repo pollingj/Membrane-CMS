@@ -15,7 +15,8 @@ namespace Membrane.Controllers.Administrator
 	[Filter(ExecuteWhen.BeforeAction, typeof(AuthenticationFilter))]
 	public class NavigationTypesController : CRUDController<NavigationTypeDTO, NavigationType>
 	{
-		public NavigationTypesController(ICRUDService<NavigationTypeDTO, NavigationType> service, IAutoGenerator<NavigationTypeDTO> autoGenerator) : base(service, autoGenerator)
+		public NavigationTypesController(ICRUDService<NavigationTypeDTO, NavigationType> service, IPropertyReaderService<NavigationTypeDTO> propertyReaderService)
+			: base(service, propertyReaderService)
 		{
 		}
 	}

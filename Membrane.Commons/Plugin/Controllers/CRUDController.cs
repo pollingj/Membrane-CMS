@@ -18,14 +18,14 @@ namespace Membrane.Commons.Plugin.Controllers
 		where TEntity : IEntity
 	{
 		public ICRUDService<TDto, TEntity> Service { get; private set; }
-		private readonly IAutoGenerator<TDto> autoGenerator;
+		private readonly IPropertyReaderService<TDto> propertyReaderService;
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
-		 
-		public CRUDController(ICRUDService<TDto, TEntity> service, IAutoGenerator<TDto> autoGenerator)
+
+		public CRUDController(ICRUDService<TDto, TEntity> service, IPropertyReaderService<TDto> propertyReaderService)
 		{
 			Service = service;
-			this.autoGenerator = autoGenerator;
+			this.propertyReaderService = propertyReaderService;
 		}
 
 		/// <summary>
@@ -162,8 +162,8 @@ namespace Membrane.Commons.Plugin.Controllers
 
 		private void GetFormFields()
 		{
-			autoGenerator.ReadViewModelProperties();
-			PropertyBag["fields"] = autoGenerator.FormFields;
+			propertyReaderService.ReadViewModelProperties();
+			PropertyBag["fields"] = propertyReaderService.FormFields;
 			LoadSupportiveData();
 		}
 	}

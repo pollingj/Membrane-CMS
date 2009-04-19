@@ -8,7 +8,8 @@ namespace Membrane.Plugins.News.Controllers
 {
 	public class NewsController : CRUDController<NewsArticleDTO, NewsArticle>
 	{
-		public NewsController(ICRUDService<NewsArticleDTO, NewsArticle> service, IAutoGenerator<NewsArticleDTO> autoGenerator) : base(service, autoGenerator)
+		public NewsController(ICRUDService<NewsArticleDTO, NewsArticle> service, IPropertyReaderService<NewsArticleDTO> propertyReaderService)
+			: base(service, propertyReaderService)
 		{
 		}
 	}

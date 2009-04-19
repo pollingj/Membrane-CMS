@@ -8,7 +8,7 @@ using Membrane.Commons.FormGeneration.Interfaces;
 
 namespace Membrane.Commons.FormGeneration
 {
-	public class AutoGenerator<T> : IAutoGenerator<T>
+	public class PropertyReaderService<T> : IPropertyReaderService<T>
 	{
 		public IList<FormField> FormFields { get; set; }
 

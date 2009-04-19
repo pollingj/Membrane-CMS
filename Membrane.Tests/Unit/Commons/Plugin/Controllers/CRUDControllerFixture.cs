@@ -22,7 +22,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 		public CRUDController<DTO, Entity> Controller { get; set; }
 		public ICRUDService<DTO, Entity> Service { get; set; }
-		public IAutoGenerator<DTO> AutoGenerator { get; set; }
+		public IPropertyReaderService<DTO> PropertyReaderService { get; set; }
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
@@ -42,7 +42,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			base.SetUp();
 
 			Service = mockery.DynamicMock<ICRUDService<DTO, Entity>>();
-			AutoGenerator = mockery.DynamicMock<IAutoGenerator<DTO>>();
+			PropertyReaderService = mockery.DynamicMock<IPropertyReaderService<DTO>>();
 
 
 
@@ -84,8 +84,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
-				           		Expect.Call(() => AutoGenerator.ReadViewModelProperties());
-				           		Expect.Call(AutoGenerator.FormFields).Return(FormFields);
+								Expect.Call(() => PropertyReaderService.ReadViewModelProperties());
+								Expect.Call(PropertyReaderService.FormFields).Return(FormFields);
 				           	})
 				.Verify(() => Controller.New());
 
@@ -125,8 +125,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 				.Expecting(() =>
 				           	{
 				           		Expect.Call(Service.GetItem(EditDTO.Id)).Return(EditDTO);
-				           		Expect.Call(() => AutoGenerator.ReadViewModelProperties());
-				           		Expect.Call(AutoGenerator.FormFields).Return(FormFields);
+								Expect.Call(() => PropertyReaderService.ReadViewModelProperties());
+								Expect.Call(PropertyReaderService.FormFields).Return(FormFields);
 				           	})
 				.Verify(() => Controller.Edit(EditDTO.Id));
 
