@@ -1,6 +1,6 @@
 using Castle.MonoRail.Framework;
-using Membrane.Commons.FormGeneration;
-using Membrane.Commons.FormGeneration.Interfaces;
+using Membrane.Commons.FormGeneration.Services;
+using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Plugin.Controllers;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Core.DTOs;
@@ -17,7 +17,7 @@ namespace Membrane.Controllers.Administrator
 	public class UserGroupsController : CRUDController<UserGroupDTO, UserGroup>
 	{
 		/// <summary>
-		/// Constructor that sets up all of the <see cref="CRUDService{TDto,TEntity}"/> and <see cref="PropertyReaderService"/> references
+		/// Constructor that sets up all of the <see cref="CRUDService{TDto,TEntity}"/> and <see cref="PropertyReaderService{T}"/> references
 		/// </summary>
 		/// <param name="service">The base CRUDService with the relevant TDto and Entities referenced</param>
 		/// <param name="propertyReaderService"></param>

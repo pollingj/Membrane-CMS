@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Membrane.Commons.FormGeneration.Interfaces
+namespace Membrane.Commons.FormGeneration.Services.Interfaces
 {
 	public interface IPropertyReaderService<T>
 	{

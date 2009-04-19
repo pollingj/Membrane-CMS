@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Exceptions;
-using Membrane.Commons.FormGeneration.Interfaces;
+using Membrane.Commons.FormGeneration.Services.Interfaces;
 
-namespace Membrane.Commons.FormGeneration
+namespace Membrane.Commons.FormGeneration.Services
 {
 	public class PropertyReaderService<T> : IPropertyReaderService<T>
 	{
@@ -122,6 +122,4 @@ namespace Membrane.Commons.FormGeneration
 			return label.Remove(label.Length-1);
 		}
 	}
-
-
 }
