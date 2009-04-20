@@ -145,7 +145,7 @@
     <Compile Include="Persistence\NHibernate\NHibernateTransactionInterceptor.cs" />
     <Compile Include="Persistence\NHibernate\NHibernateWebSessionModule.cs" />
     <Compile Include="Plugin\Services\IPluginsService.cs" />
-    <Compile Include="Plugin\Services\PluginService.cs" />
+    <Compile Include="Plugin\Services\PluginsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\HttpContextFacade .cs" />
     <Compile Include="Web\IHttpContext.cs" />
