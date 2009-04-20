@@ -1,5 +1,5 @@
 using System.Web.Security;
-using Membrane.Core.Wrappers.Interfaces;
+using Membrane.Commons.Wrappers.Interfaces;
 
 namespace Membrane.Controllers
 {

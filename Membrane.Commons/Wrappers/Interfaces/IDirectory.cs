@@ -1,4 +1,4 @@
-namespace Membrane.Core.Wrappers.Interfaces
+namespace Membrane.Commons.Wrappers.Interfaces
 {
 	public interface IDirectory
 	{

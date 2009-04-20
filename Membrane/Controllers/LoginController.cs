@@ -2,9 +2,9 @@ using System;
 using System.Web;
 using System.Web.Security;
 using Castle.MonoRail.Framework;
+using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
-using Membrane.Core.Wrappers.Interfaces;
 using Membrane.Entities.Enums;
 
 namespace Membrane.Controllers

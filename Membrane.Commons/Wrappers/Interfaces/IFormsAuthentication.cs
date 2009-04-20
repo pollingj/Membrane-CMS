@@ -1,6 +1,6 @@
 using System.Web.Security;
 
-namespace Membrane.Core.Wrappers.Interfaces
+namespace Membrane.Commons.Wrappers.Interfaces
 {
 	public interface IFormsAuthentication
 	{

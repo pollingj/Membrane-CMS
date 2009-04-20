@@ -7,12 +7,12 @@ using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Commons.Web.MonoRail;
+using Membrane.Commons.Wrappers;
+using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
 using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
-using Membrane.Core.Wrappers;
-using Membrane.Core.Wrappers.Interfaces;
 using Membrane.ViewComponents;
 
 namespace Membrane
