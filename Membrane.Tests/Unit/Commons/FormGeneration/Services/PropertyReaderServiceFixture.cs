@@ -5,14 +5,13 @@ using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
-using Membrane.Commons.Persistence;
 using Membrane.Commons.Plugin;
 using NUnit.Framework;
 
-namespace Membrane.Tests.Unit.Commons.FormGeneration
+namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 {
 	[TestFixture]
-	public class AutoGeneratorFixture
+	public class PropertyReaderServiceFixture
 	{
 		[Test]
 		public void CanReadSimpleConventionBasedDTOProperties()
@@ -183,8 +182,6 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		}
 	}
 
-	#region Test DTOs
-
 	public class TestSimpleConventionDto : IDto
 	{
 		public Guid Id { get; set; }
@@ -258,10 +255,4 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration
 		public string Story { get; set; }
 		public DateTime Date { get; set; }
 	}
-
-	
-
-	#endregion
-
-
 }

@@ -96,7 +96,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Commons\Plugin\Controllers\CRUDControllerFixture.cs" />
     <Compile Include="Unit\Commons\Plugin\Services\CRUDServiceFixture.cs" />
-    <Compile Include="Unit\Commons\FormGeneration\AutoGeneratorFixture.cs" />
+    <Compile Include="Unit\Commons\FormGeneration\Services\PropertyReaderServiceFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\UserGroups\PagedUserGroupsFixture.cs" />
