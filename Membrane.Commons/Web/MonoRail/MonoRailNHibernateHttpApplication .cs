@@ -78,7 +78,7 @@ namespace Membrane.Commons.Web.MonoRail
 			{
 				var pluginAssembly = getAssembly(pluginFilePath);
 
-				if (!pluginAssembly.FullName.Contains("Membrane.Commons"))
+				if (pluginAssembly != Assembly.GetExecutingAssembly())
 				{
 					try
 					{
