@@ -1,7 +1,8 @@
 namespace Membrane.Commons.Wrappers.Interfaces
 {
-	public interface IDirectory
+	public interface IFileSystem
 	{
 		string[] GetFiles(string path, string searchPattern);
+		byte[] ReadAllBytes(string path);
 	}
 }

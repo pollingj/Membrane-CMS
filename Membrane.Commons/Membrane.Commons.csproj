@@ -151,8 +151,8 @@
     <Compile Include="Web\IHttpContext.cs" />
     <Compile Include="Web\MonoRail\MonoRailNHibernateHttpApplication .cs" />
     <Compile Include="Wrappers\FormsAuthenticationWrapper.cs" />
-    <Compile Include="Wrappers\Interfaces\IAssembly.cs" />
-    <Compile Include="Wrappers\Interfaces\IDirectory.cs" />
+    <Compile Include="Wrappers\Interfaces\IAssemblyLoader.cs" />
+    <Compile Include="Wrappers\Interfaces\IFileSystem.cs" />
     <Compile Include="Wrappers\Interfaces\IFormsAuthentication.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

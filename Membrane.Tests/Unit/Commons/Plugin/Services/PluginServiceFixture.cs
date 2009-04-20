@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using Membrane.Commons;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Commons.Wrappers.Interfaces;
@@ -11,8 +12,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 	[TestFixture]
 	public class PluginServiceFixture : BaseFixture
 	{
-		private IDirectory directory;
-		private IAssembly assembly;
+		private IAssemblyLoader assemblyLoader;
+		private IFileSystem fileSystem;
 
 		private IPluginsService service;
 
@@ -23,10 +24,10 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		{
 			base.SetUp();
 
-			directory = mockery.DynamicMock<IDirectory>();
-			assembly = mockery.DynamicMock<IAssembly>();
+			assemblyLoader = mockery.Stub<IAssemblyLoader>();
+			fileSystem = mockery.Stub<IFileSystem>();
 
-			service = new PluginsService(assembly, directory);
+			service = new PluginsService(assemblyLoader, fileSystem);
 		}
 
 		[Test]
@@ -34,14 +35,18 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		{
 			var pluginLibraries = new string[] {"blog.dll", "news.dll"};
 			IList<IMembranePlugin> result = null;
-			var executingAssembly = mockery.Stub<IAssembly>();
-			executingAssembly.FullName = "Membrane.Commons";
+			var bytes = new byte[4];
+			var name = "Membrane.Plugins";
+			var assemblyName = new AssemblyName("blog");
+			var executingAssembly = mockery.Stub<IAssemblyLoader>();
 
 			With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
-				           		Expect.Call(directory.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).Return(pluginLibraries);
-				           		Expect.Call(assembly.GetExecutingAssembly()).Return(executingAssembly);
+								Expect.Call(fileSystem.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
+								Expect.Call(fileSystem.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
+				           		Expect.Call(assemblyLoader.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(assemblyName);
+								Expect.Call(assemblyLoader.GetExecutingAssembly()).Return(executingAssembly);
 				           	})
 				.Verify(() => result = service.FindAvailablePlugins());
 

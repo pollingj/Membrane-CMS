@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using Castle.Windsor;
@@ -11,30 +10,31 @@ namespace Membrane.Commons.Plugin.Services
 {
 	public class PluginsService : IPluginsService
 	{
-		private IAssembly assembly;
-		private IDirectory directory;
+		private IAssemblyLoader assemblyLoader;
+		private IFileSystem fileSystem;
 		private IWindsorContainer container;
 
 		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
 		private string pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 		private Dictionary<string, Assembly> _assemblyList;
 
-		public PluginsService(IAssembly assembly, IDirectory directory)
+		public PluginsService(IAssemblyLoader assemblyLoader, IFileSystem fileSystem)
 		{
-			this.assembly = assembly;
-			this.directory = directory;
+			this.assemblyLoader = assemblyLoader;
+			this.fileSystem = fileSystem;
 		}
+
 
 		public List<IMembranePlugin> FindAvailablePlugins()
 		{
-			var pluginFilePaths = Directory.GetFiles(pluginFolder, "*.dll");
+			var pluginFilePaths = fileSystem.GetFiles(pluginFolder, "*.dll");
 			var foundPlugins = new List<IMembranePlugin>();
 
 			foreach (var pluginFilePath in pluginFilePaths)
 			{
 				var pluginAssembly = getAssembly(pluginFilePath);
 
-				if (pluginAssembly != Assembly.GetExecutingAssembly())
+				if (pluginAssembly != assemblyLoader.GetExecutingAssembly())
 				{
 					try
 					{
@@ -86,7 +86,8 @@ namespace Membrane.Commons.Plugin.Services
 			Assembly foundAssembly = null;
 			foreach (Assembly assembly in assemblies)
 			{
-				if (assembly.FullName == AssemblyName.GetAssemblyName(fileName).FullName)
+				//var assemblyName = ;
+				if (assembly.FullName == assemblyLoader.GetAssemblyName(fileName).FullName)
 				{
 					foundAssembly = assembly;
 					break;
@@ -95,7 +96,7 @@ namespace Membrane.Commons.Plugin.Services
 
 			if (foundAssembly == null)
 			{
-				var assemblyBytes = File.ReadAllBytes(fileName);
+				var assemblyBytes = fileSystem.ReadAllBytes(fileName);
 				foundAssembly = Assembly.Load(assemblyBytes);
 			}
 
