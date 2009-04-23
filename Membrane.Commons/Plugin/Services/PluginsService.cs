@@ -10,9 +10,9 @@ namespace Membrane.Commons.Plugin.Services
 {
 	public class PluginsService : IPluginsService
 	{
-		private IAssemblyLoader assemblyLoader;
-		private IFileSystem fileSystem;
-		private IWindsorContainer container;
+		private readonly IAssemblyLoader assemblyLoader;
+		private readonly IFileSystem fileSystem;
+		private readonly IWindsorContainer container;
 
 		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
 		private string pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
@@ -84,7 +84,7 @@ namespace Membrane.Commons.Plugin.Services
 		{
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			Assembly foundAssembly = null;
-			foreach (Assembly assembly in assemblies)
+			foreach (var assembly in assemblies)
 			{
 				//var assemblyName = ;
 				if (assembly.FullName == assemblyLoader.GetAssemblyName(fileName).FullName)
@@ -97,7 +97,7 @@ namespace Membrane.Commons.Plugin.Services
 			if (foundAssembly == null)
 			{
 				var assemblyBytes = fileSystem.ReadAllBytes(fileName);
-				foundAssembly = Assembly.Load(assemblyBytes);
+				foundAssembly = assemblyLoader.Load(assemblyBytes);
 			}
 
 			return foundAssembly;

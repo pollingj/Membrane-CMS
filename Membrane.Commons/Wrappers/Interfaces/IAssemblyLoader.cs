@@ -7,6 +7,6 @@ namespace Membrane.Commons.Wrappers.Interfaces
 		string FullName { get; }
 		IAssemblyLoader GetExecutingAssembly();
 		AssemblyName GetAssemblyName(string assemblyFile);
-		IAssemblyLoader Load(byte[] bytes);
+		Assembly Load(byte[] bytes);
 	}
 }

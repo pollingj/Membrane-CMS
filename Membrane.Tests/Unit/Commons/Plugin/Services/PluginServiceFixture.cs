@@ -34,6 +34,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		public void CanCreateListOfAllCurrentlyFoundPlugins()
 		{
 			var pluginLibraries = new string[] {"blog.dll", "news.dll"};
+			
 			IList<IMembranePlugin> result = null;
 			var bytes = new byte[4];
 			var name = "Membrane.Plugins";
