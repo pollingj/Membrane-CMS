@@ -17,26 +17,26 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		where TDto : IDto
 		where TEntity : IEntity
 	{
-		private IRepository<TEntity> repository;
-		private ICRUDService<TDto, TEntity> service;
+		protected IRepository<TEntity> Repository;
+		protected ICRUDService<TDto, TEntity> Service;
 
 		public List<TEntity> ListEntity { get; set; }
 		public TEntity SingleEntity { private get; set; }
 		public TDto SingleDTO { private get; set; }
-		public List<TDto> ListDTO { private get; set; }
+		public List<TDto> ListDTO { get; set; }
 
 		public override void SetUp()
 		{
 			base.SetUp();
 
-			repository = mockery.DynamicMock<IRepository<TEntity>>();
-			service = new CRUDService<TDto, TEntity>(repository);
+			Repository = mockery.DynamicMock<IRepository<TEntity>>();
+			Service = new CRUDService<TDto, TEntity>(Repository);
 		}
 
 		[Test]
 		public virtual void CanMapSuccessfullyBetweenDTOAndEntity()
 		{
-			service.RegisterMappings();
+			Service.RegisterMappings();
 			Mapper.AssertConfigurationIsValid();
 		}
 
@@ -54,8 +54,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 			ICollection<TDto> result = new List<TDto>();
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(repository.Find(new PagedItems<TEntity>(skip, take))).IgnoreArguments().Return(pagedEntities))
-				.Verify(() => result = service.GetPagedItems(currentPage, pageSize));
+				.Expecting(() => Expect.Call(Repository.Find(new PagedItems<TEntity>(skip, take))).IgnoreArguments().Return(pagedEntities))
+				.Verify(() => result = Service.GetPagedItems(currentPage, pageSize));
 
 			Assert.AreEqual(pageSize, result.Count);
 		}
@@ -65,30 +65,30 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		{
 			var result = default(TDto);
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(repository.FindById(SingleEntity.Id)).Return(SingleEntity))
-				.Verify(() => result = service.GetItem(SingleEntity.Id));
+				.Expecting(() => Expect.Call(Repository.FindById(SingleEntity.Id)).Return(SingleEntity))
+				.Verify(() => result = Service.GetItem(SingleEntity.Id));
 
 			Assert.AreEqual(SingleEntity.Id, result.Id);
 		}
 
 		[Test]
-		public virtual void CanSuccessfullySaveUserGroup()
+		public virtual void CanSuccessfullyEntity()
 		{
 			var result = Guid.Empty;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Save(SingleEntity)).IgnoreArguments())
-				.Verify(() => result = service.Create(SingleDTO));
+				.Expecting(() => Expect.Call(() => Repository.Save(SingleEntity)).IgnoreArguments())
+				.Verify(() => result = Service.Create(SingleDTO));
 
 			Assert.AreNotEqual(Guid.Empty, result);
 		}
 
 		[Test]
-		public virtual void CanFailSaveUserGroup()
+		public virtual void CanFailSaveEntity()
 		{
 			var result = Guid.Empty;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Save(SingleEntity)).IgnoreArguments().Throw(new RepositorySaveException()))
-				.Verify(() => result = service.Create(SingleDTO));
+				.Expecting(() => Expect.Call(() => Repository.Save(SingleEntity)).IgnoreArguments().Throw(new RepositorySaveException()))
+				.Verify(() => result = Service.Create(SingleDTO));
 
 			Assert.AreEqual(Guid.Empty, result);
 		}
@@ -99,8 +99,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 			var result = false;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(SingleEntity)).IgnoreArguments())
-				.Verify(() => result = service.Update(SingleDTO));
+				.Expecting(() => Expect.Call(() => Repository.Update(SingleEntity)).IgnoreArguments())
+				.Verify(() => result = Service.Update(SingleDTO));
 
 			Assert.IsTrue(result);
 		}
@@ -111,76 +111,38 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 			var result = false;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(SingleEntity)).IgnoreArguments().Throw(new RepositoryUpdateException()))
-				.Verify(() => result = service.Update(SingleDTO));
+				.Expecting(() => Expect.Call(() => Repository.Update(SingleEntity)).IgnoreArguments().Throw(new RepositoryUpdateException()))
+				.Verify(() => result = Service.Update(SingleDTO));
 
 			Assert.IsFalse(result);
 		}
 
 		[Test]
-		public virtual void CanSuccessfullyDeleteUserGroup()
+		public virtual void CanSuccessfullyDeleteEntity()
 		{
 			var id = Guid.NewGuid();
 
 			var result = false;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Delete(id)))
-				.Verify(() => result = service.Delete(id));
+				.Expecting(() => Expect.Call(() => Repository.Delete(id)))
+				.Verify(() => result = Service.Delete(id));
 
 			Assert.IsTrue(result);
 		}
 
 		[Test]
-		public virtual void CanFailDeletingUserGroup()
+		public virtual void CanFailDeletingEntity()
 		{
 			var id = Guid.NewGuid();
 
 			var result = false;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Delete(id)).Throw(new RepositoryDeleteException()))
-				.Verify(() => result = service.Delete(id));
+				.Expecting(() => Expect.Call(() => Repository.Delete(id)).Throw(new RepositoryDeleteException()))
+				.Verify(() => result = Service.Delete(id));
 
 			Assert.IsFalse(result);
-		}
-
-		[Test]
-		public virtual void CanMoveItemDownOnePlace()
-		{
-			var newOrderList = new List<TDto>(ListDTO);
-			newOrderList[0] = ListDTO[1];
-			newOrderList[1] = ListDTO[0];
-
-			var result = service.MoveItemDown(ListDTO[0].Id, ListDTO);
-
-			Assert.AreNotEqual(ListDTO[0], result[0]);
-			Assert.AreNotEqual(ListDTO[1], result[1]);
-			Assert.AreEqual(newOrderList.Count, result.Count);
-		
-			for (var count = 0; count < result.Count; count++)
-			{
-				Assert.AreEqual(newOrderList[count], result[count]);
-			}
-		}
-
-		[Test]
-		public virtual void CanMoveItemUpOnePlace()
-		{
-			var newOrderList = new List<TDto>(ListDTO);
-			newOrderList[5] = ListDTO[4];
-			newOrderList[4] = ListDTO[5];
-
-			var result = service.MoveItemUp(ListDTO[5].Id, ListDTO);
-
-			Assert.AreNotEqual(ListDTO[4], result[4]);
-			Assert.AreNotEqual(ListDTO[5], result[5]);
-			Assert.AreEqual(newOrderList.Count, result.Count);
-
-			for (var count = 0; count < result.Count; count++)
-			{
-				Assert.AreEqual(newOrderList[count], result[count]);
-			}
 		}
 	}
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Plugin;
 using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.Services;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -12,6 +13,13 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		where TEntity : IEntity
 	{
 		private OrderCRUDController<TDto, TEntity> controller;
+		private IOrderCRUDService<TDto, TEntity> service;
+		public IOrderCRUDService<TDto, TEntity> Service
+		{
+			get { return service; }
+			set { base.Service = service = value; }
+		}
+
 		public OrderCRUDController<TDto, TEntity> Controller
 		{
 			get { return controller; }

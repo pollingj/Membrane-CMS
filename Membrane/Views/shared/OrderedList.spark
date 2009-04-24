@@ -10,11 +10,16 @@
 			<td scope="col">Actions</td>
 		</tr>
 	</thead>
-	<tbody>
-		<tr each='IDto item in (IList)ViewData["items"]'>
-			<td>${item.Name}</td>
-			<td>${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
-			<td>${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
-		</tr>
+	<tbody
+		<var count='0' lastItem='((IList)ViewData["items"]).Count-1'>
+			<tr each='IDto item in (IList)ViewData["items"]'>
+				<td>${item.Name}</td>
+				<td if='count<lastItem'>${Url.Link( "Move Down", new {action = "MoveItemDown", querystring = string.Format("id={0}",item.Id)})}</td>
+				<td if='count>0'>${Url.Link( "Move Up", new {action = "MoveItemUp", querystring = string.Format("id={0}",item.Id)})}</td>
+				<td>${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
+				<td>${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
+				<set count='count+1' />
+			</tr>
+		</var>
 	</tbody>
 </table>

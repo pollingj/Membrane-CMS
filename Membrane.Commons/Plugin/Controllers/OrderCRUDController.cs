@@ -10,12 +10,13 @@ namespace Membrane.Commons.Plugin.Controllers
 		where TDto : IDto
 		where TEntity : IEntity
 	{
+		private readonly IOrderCRUDService<TDto, TEntity> OrderService;
 		private readonly IPropertyReaderService<TDto> propertyReaderService;
 
-		public OrderCRUDController(ICRUDService<TDto, TEntity> service, IPropertyReaderService<TDto> propertyReaderService) : base(service, propertyReaderService)
+		public OrderCRUDController(IOrderCRUDService<TDto, TEntity> service, IPropertyReaderService<TDto> propertyReaderService) : base(service, propertyReaderService)
 		{
 			this.propertyReaderService = propertyReaderService;
-			Service = service;
+			Service = OrderService = service;
 
 			ListView = @"\Shared\OrderedList";
 		}
@@ -23,17 +24,19 @@ namespace Membrane.Commons.Plugin.Controllers
 
 		public void MoveItemDown(Guid id)
 		{
-			Flash["items"] = Service.MoveItemDown(id, (IList<TDto>)Flash["items"]);
+			Flash["items"] = OrderService.MoveItemDown(id, (IList<TDto>)Flash["items"]);
+			RenderView(ListView);
 		}
 
 		public void MoveItemUp(Guid id)
 		{
-			Flash["items"] = Service.MoveItemUp(id, (IList<TDto>)Flash["items"]);
+			Flash["items"] = OrderService.MoveItemUp(id, (IList<TDto>)Flash["items"]);
+			RenderView(ListView);
 		}
 
 		public void SaveOrder()
 		{
-			var success = Service.SaveItemsOrder((IList<TDto>)Flash["items"]);
+			var success = OrderService.SaveItemsOrder((IList<TDto>)Flash["items"]);
 
 			if (!success)
 				CreateError("Could not save list order");

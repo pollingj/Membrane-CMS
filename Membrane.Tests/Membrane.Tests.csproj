@@ -98,6 +98,7 @@
     <Compile Include="Unit\Commons\Plugin\Controllers\OrderCRUDControllerFixture.cs" />
     <Compile Include="Unit\Commons\Plugin\Services\CRUDServiceFixture.cs" />
     <Compile Include="Unit\Commons\FormGeneration\Services\PropertyReaderServiceFixture.cs" />
+    <Compile Include="Unit\Commons\Plugin\Services\OrderCRUDServiceFixture.cs" />
     <Compile Include="Unit\Commons\Plugin\Services\PluginServiceFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />

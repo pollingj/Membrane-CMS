@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistence\IOrderedEntity.cs" />
     <Compile Include="Plugin\Controllers\CRUDController.cs" />
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
     <Compile Include="Plugin\Controllers\OrderCRUDController.cs" />
@@ -146,7 +147,9 @@
     <Compile Include="Persistence\NHibernate\NHibernateTransactionFacility .cs" />
     <Compile Include="Persistence\NHibernate\NHibernateTransactionInterceptor.cs" />
     <Compile Include="Persistence\NHibernate\NHibernateWebSessionModule.cs" />
+    <Compile Include="Plugin\Services\IOrderCRUDService.cs" />
     <Compile Include="Plugin\Services\IPluginsService.cs" />
+    <Compile Include="Plugin\Services\OrderCRUDService.cs" />
     <Compile Include="Plugin\Services\PluginsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\HttpContextFacade .cs" />

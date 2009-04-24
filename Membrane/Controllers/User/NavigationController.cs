@@ -13,7 +13,7 @@ namespace Membrane.Controllers.User
 	{
 		private readonly ICRUDService<NavigationTypeDTO, NavigationType> navTypeService;
 
-		public NavigationController(ICRUDService<NavigationNodeDTO, NavigationNode> service, IPropertyReaderService<NavigationNodeDTO> propertyReaderService, ICRUDService<NavigationTypeDTO, NavigationType> navTypeService)
+		public NavigationController(IOrderCRUDService<NavigationNodeDTO, NavigationNode> service, IPropertyReaderService<NavigationNodeDTO> propertyReaderService, ICRUDService<NavigationTypeDTO, NavigationType> navTypeService)
 			: base(service, propertyReaderService)
 		{
 			this.navTypeService = navTypeService;
