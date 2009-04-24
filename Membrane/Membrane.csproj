@@ -192,6 +192,7 @@
     <None Include="Views\Login\index.spark" />
     <None Include="Views\shared\adminmenu.spark" />
     <None Include="Views\shared\ConfirmDelete.spark" />
+    <None Include="Views\shared\OrderedList.spark" />
     <None Include="Views\shared\Form.spark" />
     <None Include="Views\shared\List.spark" />
     <None Include="Views\shared\sharedmenu.spark" />

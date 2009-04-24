@@ -16,6 +16,8 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			this.propertyReaderService = propertyReaderService;
 			Service = service;
+
+			ListView = @"\Shared\OrderedList";
 		}
 
 

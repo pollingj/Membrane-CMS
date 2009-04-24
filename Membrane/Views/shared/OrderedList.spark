@@ -1,0 +1,20 @@
+﻿<global Title="'Administrator Home Page'"/>
+<use file="SharedMenu" />
+<use file="AdminMenu" />
+
+<p>${Url.Link( "Add New", new {action = "New"}, new { id="New"})}</p>
+<table id="data">
+	<thead>
+		<tr>
+			<td scope="col">Group Name</td>
+			<td scope="col">Actions</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr each='IDto item in (IList)ViewData["items"]'>
+			<td>${item.Name}</td>
+			<td>${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
+			<td>${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
+		</tr>
+	</tbody>
+</table>

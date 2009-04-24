@@ -29,6 +29,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		private const int anotherPageNumber = 2;
 		private const int anotherPageSize = 20;
 
+		protected string ListView = @"\Shared\List";
+
 		public IList<TDto> ListDTO { private get; set; }
 		public TDto NewDTO { private get; set; }
 		public TDto InvalidDTO { private get; set; }
@@ -217,7 +219,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 		private void AssertListData()
 		{
-			Assert.AreEqual(@"\Shared\List", Controller.SelectedViewName, "List view not being used");
+			Assert.AreEqual(ListView, Controller.SelectedViewName, "List view not being used");
 			Assert.AreEqual(ListDTO, Controller.PropertyBag["items"], "groups PropertyBag not being set");
 		}
 	}

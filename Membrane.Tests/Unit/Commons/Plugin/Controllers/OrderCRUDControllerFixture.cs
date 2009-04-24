@@ -24,6 +24,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		public override void SetUp()
 		{
 			base.SetUp();
+
+			ListView = @"\Shared\OrderedList";
 		}
 
 		[Test]
