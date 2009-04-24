@@ -27,7 +27,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		}
 
 		[Test]
-		public void CanSuccessfullyMoveTopItemDownOnePlace()
+		public virtual void CanSuccessfullyMoveTopItemDownOnePlace()
 		{
 			var newOrder = new List<TDto>(OrderedList);
 			Controller.Flash["items"] = OrderedList;
@@ -44,7 +44,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		}
 
 		[Test]
-		public void CanSuccessfullyMoveBootomItemUpOnePlace()
+		public virtual void CanSuccessfullyMoveBootomItemUpOnePlace()
 		{
 			var newOrder = new List<TDto>(OrderedList);
 			Controller.Flash["items"] = OrderedList;
@@ -61,7 +61,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		}
 
 		[Test]
-		public void CanSuccessfullySaveCurrentOrder()
+		public virtual void CanSuccessfullySaveCurrentOrder()
 		{
 			MockSavingItemOrder(true);
 
@@ -70,7 +70,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		}
 
 		[Test]
-		public void CanFailSaveCurrentOrder()
+		public virtual void CanFailSaveCurrentOrder()
 		{
 			MockSavingItemOrder(false);
 

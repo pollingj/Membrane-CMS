@@ -20,9 +20,10 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		private IRepository<TEntity> repository;
 		private ICRUDService<TDto, TEntity> service;
 
-		public List<TEntity> ListEntity { private get; set; }
+		public List<TEntity> ListEntity { get; set; }
 		public TEntity SingleEntity { private get; set; }
 		public TDto SingleDTO { private get; set; }
+		public List<TDto> ListDTO { private get; set; }
 
 		public override void SetUp()
 		{
@@ -142,8 +143,44 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 				.Verify(() => result = service.Delete(id));
 
 			Assert.IsFalse(result);
+		}
 
+		[Test]
+		public virtual void CanMoveItemDownOnePlace()
+		{
+			var newOrderList = new List<TDto>(ListDTO);
+			newOrderList[0] = ListDTO[1];
+			newOrderList[1] = ListDTO[0];
 
+			var result = service.MoveItemDown(ListDTO[0].Id, ListDTO);
+
+			Assert.AreNotEqual(ListDTO[0], result[0]);
+			Assert.AreNotEqual(ListDTO[1], result[1]);
+			Assert.AreEqual(newOrderList.Count, result.Count);
+		
+			for (var count = 0; count < result.Count; count++)
+			{
+				Assert.AreEqual(newOrderList[count], result[count]);
+			}
+		}
+
+		[Test]
+		public virtual void CanMoveItemUpOnePlace()
+		{
+			var newOrderList = new List<TDto>(ListDTO);
+			newOrderList[5] = ListDTO[4];
+			newOrderList[4] = ListDTO[5];
+
+			var result = service.MoveItemUp(ListDTO[5].Id, ListDTO);
+
+			Assert.AreNotEqual(ListDTO[4], result[4]);
+			Assert.AreNotEqual(ListDTO[5], result[5]);
+			Assert.AreEqual(newOrderList.Count, result.Count);
+
+			for (var count = 0; count < result.Count; count++)
+			{
+				Assert.AreEqual(newOrderList[count], result[count]);
+			}
 		}
 	}
 }

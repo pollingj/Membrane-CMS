@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
@@ -143,10 +144,14 @@ namespace Membrane.Commons.Plugin.Services
 		/// <param name="guid">The id of the item to be moved</param>
 		/// <param name="items">The current list of items</param>
 		/// <returns>A newly ordered list of items</returns>
-		public IList<TDto> MoveItemDown(Guid guid, IList<TDto> items)
+		public IList<TDto> MoveItemDown(Guid id, IList<TDto> items)
 		{
-			throw new NotImplementedException();
+			var listPosition = getListPosition(id, items);
+
+			return swapListPositions(items, listPosition, listPosition + 1);
 		}
+
+
 
 		/// <summary>
 		/// Moves a specified item Up one level in the list
@@ -154,9 +159,11 @@ namespace Membrane.Commons.Plugin.Services
 		/// <param name="guid">The id of the item to be moved</param>
 		/// <param name="items">The current list of items</param>
 		/// <returns>A newly ordered list of items</returns>
-		public IList<TDto> MoveItemUp(Guid guid, IList<TDto> items)
+		public IList<TDto> MoveItemUp(Guid id, IList<TDto> items)
 		{
-			throw new NotImplementedException();
+			var listPosition = getListPosition(id, items);
+
+			return swapListPositions(items, listPosition, listPosition - 1);
 		}
 
 		/// <summary>
@@ -167,6 +174,32 @@ namespace Membrane.Commons.Plugin.Services
 		public bool SaveItemsOrder(IList<TDto> items)
 		{
 			throw new NotImplementedException();
+		}
+
+		private int getListPosition(Guid id, IList<TDto> items)
+		{
+			var pos = -1;
+			var count = 0;
+			foreach (var item in items)
+			{
+				if (item.Id == id)
+				{
+					pos = count;
+					break;
+				}
+				count++;
+			}
+
+			return pos;
+		}
+
+		private IList<TDto> swapListPositions(IList<TDto> items, int listPosition, int newPosition)
+		{
+			var newOrderedList = new List<TDto>(items);
+			newOrderedList[listPosition] = items[newPosition];
+			newOrderedList[newPosition] = items[listPosition];
+
+			return newOrderedList;
 		}
 	}
 }
