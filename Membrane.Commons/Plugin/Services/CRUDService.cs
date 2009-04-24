@@ -137,6 +137,36 @@ namespace Membrane.Commons.Plugin.Services
 			return success;
 		}
 
-	
+		/// <summary>
+		/// Moves a specified item down one level in the list
+		/// </summary>
+		/// <param name="guid">The id of the item to be moved</param>
+		/// <param name="items">The current list of items</param>
+		/// <returns>A newly ordered list of items</returns>
+		public IList<TDto> MoveItemDown(Guid guid, IList<TDto> items)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Moves a specified item Up one level in the list
+		/// </summary>
+		/// <param name="guid">The id of the item to be moved</param>
+		/// <param name="items">The current list of items</param>
+		/// <returns>A newly ordered list of items</returns>
+		public IList<TDto> MoveItemUp(Guid guid, IList<TDto> items)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Saves the current order of list items
+		/// </summary>
+		/// <param name="items">The current list items in the correct order</param>
+		/// <returns>If successful or not (bool)</returns>
+		public bool SaveItemsOrder(IList<TDto> items)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -9,7 +9,7 @@ using Membrane.Filters;
 namespace Membrane.Controllers.User
 {
 	[Filter(ExecuteWhen.BeforeAction, typeof(AuthenticationFilter))]
-	public class NavigationController : CRUDController<NavigationNodeDTO, NavigationNode>
+	public class NavigationController : OrderCRUDController<NavigationNodeDTO, NavigationNode>
 	{
 		private readonly ICRUDService<NavigationTypeDTO, NavigationType> navTypeService;
 

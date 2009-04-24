@@ -17,7 +17,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		where TDto : IDto 
 		where TEntity : IEntity
 	{
-		public ICRUDService<TDto, TEntity> Service { get; private set; }
+		public ICRUDService<TDto, TEntity> Service { get; set; }
 		private readonly IPropertyReaderService<TDto> propertyReaderService;
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
@@ -43,7 +43,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		/// <param name="pageSize">The page size</param>
 		public virtual void List(int currentPage, int pageSize)
 		{
-			PropertyBag["items"] = Service.GetPagedItems(currentPage, pageSize);
+			Flash["items"] = Service.GetPagedItems(currentPage, pageSize);
 
 			RenderView(@"\Shared\List");
 		}
@@ -152,7 +152,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		}
 
 		
-		private bool CreateError(string errorMessage)
+		protected bool CreateError(string errorMessage)
 		{
 			var errorSummary = new ErrorSummary();
 			errorSummary.RegisterErrorMessage(string.Empty, errorMessage);

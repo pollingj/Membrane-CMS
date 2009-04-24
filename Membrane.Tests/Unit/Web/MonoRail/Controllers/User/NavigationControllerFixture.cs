@@ -13,9 +13,11 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 	/// <summary>
 	/// Test fixture for the <see cref="NavigationController"/>
 	/// </summary>
-	public class NavigationControllerFixture : CRUDControllerFixture<NavigationNodeDTO, NavigationNode>
+	public class NavigationControllerFixture : OrderCRUDControllerFixture<NavigationNodeDTO, NavigationNode>
 	{
 		private ICRUDService<NavigationTypeDTO, NavigationType> navTypeService;
+
+		
 
 		/// <summary>
 		/// Overriding the base SetUp to set up the relevant TDto objects
@@ -28,6 +30,14 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 			EditDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "About Us", AccessKey = '2', Title = "More info about us", Type = type};
 			InvalidDTO = new NavigationNodeDTO { Id = Guid.NewGuid() };
 			DeleteDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "Contact Us", AccessKey = '3', Title="Feel free to contact us", Type = type};
+
+			OrderedList = new List<NavigationNodeDTO>
+			               	{
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Home"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "News"},
+			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
+			               	};
 
 			navTypeService = mockery.DynamicMock<ICRUDService<NavigationTypeDTO, NavigationType>>();
 
@@ -46,24 +56,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 			               		new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Tertiary Navigation"}
 			               	};
 
-			var navNodes = new List<NavigationNodeDTO>
-			               	{
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Home"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "News"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
-			               	};
-
 			With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
 				           		Expect.Call(navTypeService.GetItems()).Return(navTypes);
-								Expect.Call(Service.GetItems()).Return(navNodes);
+								Expect.Call(Service.GetItems()).Return(OrderedList);
 				           	})
 				.Verify(() => Controller.LoadSupportiveData());
 
 			Assert.AreEqual(navTypes, Controller.PropertyBag["support.NavigationTypeDTO"]);
-			Assert.AreEqual(navNodes, Controller.PropertyBag["support.NavigationNodeDTO"]);
+			Assert.AreEqual(OrderedList, Controller.PropertyBag["support.NavigationNodeDTO"]);
 		}
 	}
 }

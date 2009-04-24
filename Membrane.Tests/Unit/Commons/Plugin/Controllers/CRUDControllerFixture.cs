@@ -14,26 +14,26 @@ using Rhino.Mocks;
 namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 {
 	[TestFixture]
-	public class CRUDControllerFixture<DTO, Entity> : BaseControllerFixture
-		where DTO : IDto
-		where Entity : IEntity
+	public class CRUDControllerFixture<TDto, TEntity> : BaseControllerFixture
+		where TDto : IDto
+		where TEntity : IEntity
 	{
 
 
-		public CRUDController<DTO, Entity> Controller { get; set; }
-		public ICRUDService<DTO, Entity> Service { get; set; }
-		public IPropertyReaderService<DTO> PropertyReaderService { get; set; }
+		public CRUDController<TDto, TEntity> Controller { get; set; }
+		public ICRUDService<TDto, TEntity> Service { get; set; }
+		public IPropertyReaderService<TDto> PropertyReaderService { get; set; }
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
 		private const int anotherPageNumber = 2;
 		private const int anotherPageSize = 20;
 
-		public IList<DTO> ListDTO { private get; set; }
-		public DTO NewDTO { private get; set; }
-		public DTO InvalidDTO { private get; set; }
-		public DTO EditDTO { private get; set; }
-		public DTO DeleteDTO { private get; set; }
+		public IList<TDto> ListDTO { private get; set; }
+		public TDto NewDTO { private get; set; }
+		public TDto InvalidDTO { private get; set; }
+		public TDto EditDTO { private get; set; }
+		public TDto DeleteDTO { private get; set; }
 		public IList<FormField> FormFields { private get; set; }
 
 		[SetUp]
@@ -41,8 +41,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		{
 			base.SetUp();
 
-			Service = mockery.DynamicMock<ICRUDService<DTO, Entity>>();
-			PropertyReaderService = mockery.DynamicMock<IPropertyReaderService<DTO>>();
+			Service = mockery.DynamicMock<ICRUDService<TDto, TEntity>>();
+			PropertyReaderService = mockery.DynamicMock<IPropertyReaderService<TDto>>();
 
 
 
@@ -90,7 +90,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 				.Verify(() => Controller.New());
 
 			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);
-			Assert.AreEqual(typeof(DTO), Controller.PropertyBag["itemtype"]);
+			Assert.AreEqual(typeof(TDto), Controller.PropertyBag["itemtype"]);
 			Assert.AreEqual(@"\Shared\Form", Controller.SelectedViewName);
 		}
 
@@ -207,7 +207,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			Assert.AreEqual(@"/Controller/List.castle", Response.RedirectedTo);
 		}
 
-		private void AssertSubmitFailure(DTO failedDTO)
+		private void AssertSubmitFailure(TDto failedDTO)
 		{
 			Assert.AreEqual(failedDTO, Controller.Flash["item"]);
 			Assert.IsNotNull(Controller.Flash["error"]);

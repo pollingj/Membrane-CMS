@@ -11,6 +11,9 @@ namespace Membrane.Commons.Plugin.Services
 		TDto GetItem(Guid id);
 		Guid Create(TDto group);
 		bool Update(TDto group);
-		bool Delete(Guid id);	
+		bool Delete(Guid id);
+		IList<TDto> MoveItemDown(Guid guid, IList<TDto> items);
+		IList<TDto> MoveItemUp(Guid guid, IList<TDto> items);
+		bool SaveItemsOrder(IList<TDto> items);
 	}
 }
