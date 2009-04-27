@@ -43,7 +43,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 
 			navTypeService = mockery.DynamicMock<ICRUDService<NavigationTypeDTO, NavigationType>>();
 
-			Controller = new NavigationController(Service, PropertyReaderService, navTypeService);
+			Controller = new NavigationController(OrderedService, PropertyReaderService, navTypeService);
 
 			PrepareController(Controller);
 		}

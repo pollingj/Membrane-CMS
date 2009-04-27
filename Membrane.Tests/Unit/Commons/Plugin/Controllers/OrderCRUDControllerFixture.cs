@@ -14,7 +14,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 	{
 		private OrderCRUDController<TDto, TEntity> controller;
 		private IOrderCRUDService<TDto, TEntity> service;
-		public IOrderCRUDService<TDto, TEntity> Service
+		public IOrderCRUDService<TDto, TEntity> OrderedService
 		{
 			get { return service; }
 			set { base.Service = service = value; }
@@ -31,7 +31,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		public override void TestFixtureSetUp()
 		{
 			base.TestFixtureSetUp();
-			service = (IOrderCRUDService<TDto, TEntity>)mockery.DynamicMultiMock(typeof(IOrderCRUDService<TDto, TEntity>), typeof(ICRUDService<TDto, TEntity>));
+			OrderedService = mockery.DynamicMock<IOrderCRUDService<TDto, TEntity>>();
 			ListView = @"\Shared\OrderedList";
 		}
 
@@ -45,7 +45,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			newOrder[1] = OrderedList[0];
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(Service.MoveItemDown(OrderedList[0].Id, OrderedList)).Return(newOrder))
+				.Expecting(() => Expect.Call(service.MoveItemDown(OrderedList[0].Id, OrderedList)).Return(newOrder))
 				.Verify(() => Controller.MoveItemDown(OrderedList[0].Id));
 
 			Assert.AreNotEqual(OrderedList, Controller.Flash["items"]);
@@ -62,7 +62,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			newOrder[3] = OrderedList[2];
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(Service.MoveItemUp(OrderedList[3].Id, OrderedList)).Return(newOrder))
+				.Expecting(() => Expect.Call(service.MoveItemUp(OrderedList[3].Id, OrderedList)).Return(newOrder))
 				.Verify(() => Controller.MoveItemUp(OrderedList[3].Id));
 
 			Assert.AreNotEqual(OrderedList, Controller.Flash["items"]);
@@ -92,7 +92,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			Controller.Flash["items"] = OrderedList;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(Service.SaveItemsOrder(OrderedList)).Return(success))
+				.Expecting(() => Expect.Call(service.SaveItemsOrder(OrderedList)).Return(success))
 				.Verify(() => Controller.SaveOrder());
 		}
 	}
