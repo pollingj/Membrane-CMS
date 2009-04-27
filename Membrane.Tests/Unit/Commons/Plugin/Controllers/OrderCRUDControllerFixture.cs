@@ -28,11 +28,10 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 		protected IList<TDto> OrderedList;
 
-		[SetUp]
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
-			service = mockery.DynamicMock<OrderCRUDService<TDto, TEntity>>();
+			base.TestFixtureSetUp();
+			service = (IOrderCRUDService<TDto, TEntity>)mockery.DynamicMultiMock(typeof(IOrderCRUDService<TDto, TEntity>), typeof(ICRUDService<TDto, TEntity>));
 			ListView = @"\Shared\OrderedList";
 		}
 

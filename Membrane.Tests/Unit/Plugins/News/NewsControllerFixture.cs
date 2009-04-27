@@ -8,9 +8,9 @@ namespace Membrane.Tests.Unit.Plugins.News
 {
 	public class NewsControllerFixture : CRUDControllerFixture<NewsArticleDTO, NewsArticle>
 	{
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 
 			NewDTO = new NewsArticleDTO { Name = "New Site Launch", Story = "<p>We now have a new website</p>", CreationDate = DateTime.Now };
 			EditDTO = new NewsArticleDTO { Id = Guid.NewGuid(), Name = "New Site Launch Edited", Story = "<p>We now have a new website edited</p>", CreationDate = DateTime.Now };

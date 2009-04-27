@@ -16,10 +16,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 
 		private const string PLUGINNAME = "Blog";
 
-		[SetUp]
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 
 			Referrer = "Plugins/List";
 

@@ -18,9 +18,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 
 		private readonly AuthenticationRequestDTO authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
 
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 
 			service = mockery.DynamicMock<IAuthenticationService>();
 			formsAuthentication = mockery.Stub<IFormsAuthentication>();

@@ -9,9 +9,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 {
 	public class UserGroupsControllerFixture : CRUDControllerFixture<UserGroupDTO, UserGroup>
 	{
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 			NewDTO = new UserGroupDTO {Name = "New Group"};
 			EditDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Edit Group"};
 			InvalidDTO = new UserGroupDTO {Id = Guid.NewGuid()};

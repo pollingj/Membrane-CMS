@@ -14,9 +14,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		/// <summary>
 		/// Overriding the base SetUp to set up the relevant TDto objects
 		/// </summary>
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 			NewDTO = new NavigationTypeDTO { Name = "Primary Navigation" };
 			EditDTO = new NavigationTypeDTO { Id = Guid.NewGuid(), Name = "Secondary Navigation" };
 			InvalidDTO = new NavigationTypeDTO { Id = Guid.NewGuid() };

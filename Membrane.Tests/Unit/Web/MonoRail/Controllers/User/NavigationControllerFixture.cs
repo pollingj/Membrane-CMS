@@ -22,9 +22,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		/// <summary>
 		/// Overriding the base SetUp to set up the relevant TDto objects
 		/// </summary>
-		public override void SetUp()
+		public override void TestFixtureSetUp()
 		{
-			base.SetUp();
+			base.TestFixtureSetUp();
 			var type = new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Primary Navigation"};
 			NewDTO = new NavigationNodeDTO { Name = "Home", AccessKey = '1', Title = "Visit our home page", Type = type};
 			EditDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "About Us", AccessKey = '2', Title = "More info about us", Type = type};
