@@ -1,6 +1,6 @@
 using System;
 
-namespace Membrane.Commons.Plugin
+namespace Membrane.Commons.Plugin.DTOs
 {
 	public interface IDto
 	{

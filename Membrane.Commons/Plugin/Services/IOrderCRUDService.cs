@@ -1,12 +1,12 @@
 using System;
-using System.Collections.Generic;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Commons.Plugin.Services
 {
 	public interface IOrderCRUDService<TDto, TEntity> : ICRUDService<TDto, TEntity>
 	{
-		IList<TDto> MoveItemDown(Guid id, IList<TDto> items);
-		IList<TDto> MoveItemUp(Guid id, IList<TDto> items);
-		bool SaveItemsOrder(IList<TDto> items);
+		ItemOrderResponseDTO MoveItemDown(ItemOrderRequestDTO currentItemOrder, Guid id);
+		ItemOrderResponseDTO MoveItemUp(ItemOrderRequestDTO currentItemOrder, Guid id);
+		bool SaveItemsOrder(ItemOrderRequestDTO currentItemOrder);
 	}
 }

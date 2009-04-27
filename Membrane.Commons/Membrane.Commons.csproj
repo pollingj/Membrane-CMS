@@ -119,12 +119,14 @@
     <Compile Include="Plugin\Controllers\CRUDController.cs" />
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
     <Compile Include="Plugin\Controllers\OrderCRUDController.cs" />
-    <Compile Include="Plugin\IOrderedDTO.cs" />
+    <Compile Include="Plugin\DTOs\ItemOrderRequestDTO.cs" />
+    <Compile Include="Plugin\DTOs\IOrderedDTO.cs" />
+    <Compile Include="Plugin\DTOs\ItemOrderResponseDTO.cs" />
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />
     <Compile Include="Plugin\Controllers\ICRUDController.cs" />
     <Compile Include="Plugin\Services\ICRUDService.cs" />
-    <Compile Include="Plugin\IDTO.cs" />
+    <Compile Include="Plugin\DTOs\IDTO.cs" />
     <Compile Include="Plugin\Queries\PagedItems.cs" />
     <Compile Include="FormGeneration\Attributes\FormFieldTypeAttribute.cs" />
     <Compile Include="FormGeneration\Services\PropertyReaderService.cs" />

@@ -1,4 +1,4 @@
-namespace Membrane.Commons.Plugin
+namespace Membrane.Commons.Plugin.DTOs
 {
 	public interface IOrderedDto : IDto
 	{

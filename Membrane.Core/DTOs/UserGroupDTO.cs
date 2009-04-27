@@ -1,6 +1,6 @@
 using System;
 using Castle.Components.Validator;
-using Membrane.Commons.Plugin;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Core.DTOs
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Queries;
 
 namespace Membrane.Commons.Plugin.Services
@@ -18,11 +19,11 @@ namespace Membrane.Commons.Plugin.Services
 		where TEntity : IEntity
 	{
 
-		private readonly IRepository<TEntity> repository;
+		protected readonly IRepository<TEntity> Repository;
 
 		public CRUDService(IRepository<TEntity> repository)
 		{
-			this.repository = repository;
+			Repository = repository;
 			RegisterMappings();
 		}
 
@@ -52,14 +53,14 @@ namespace Membrane.Commons.Plugin.Services
 			if (currentPage > 1)
 				skip = pageSize * (currentPage - 1);
 
-			var items = repository.Find(new PagedItems<TEntity>(skip, pageSize));
+			var items = Repository.Find(new PagedItems<TEntity>(skip, pageSize));
 
 			return Mapper.Map<ICollection<TEntity>, IList<TDto>>(items);
 		}
 
 		public IList<TDto> GetItems()
 		{
-			var items = repository.Find(new QueryItems<TEntity>());
+			var items = Repository.Find(new QueryItems<TEntity>());
 
 			return Mapper.Map<ICollection<TEntity>, IList<TDto>>(items);
 		}
@@ -71,7 +72,7 @@ namespace Membrane.Commons.Plugin.Services
 		/// <returns>The item</returns>
 		public virtual TDto GetItem(Guid id)
 		{
-			var group = repository.FindById(id);
+			var group = Repository.FindById(id);
 
 			return Mapper.Map<TEntity, TDto>(group);
 		}
@@ -87,7 +88,7 @@ namespace Membrane.Commons.Plugin.Services
 
 			try
 			{
-				repository.Save(Mapper.Map<TDto, TEntity>(item));
+				Repository.Save(Mapper.Map<TDto, TEntity>(item));
 			}
 			catch (RepositorySaveException)
 			{
@@ -107,7 +108,7 @@ namespace Membrane.Commons.Plugin.Services
 			var success = true;
 			try
 			{
-				repository.Update(Mapper.Map<TDto, TEntity>(item));
+				Repository.Update(Mapper.Map<TDto, TEntity>(item));
 			}
 			catch (RepositoryUpdateException)
 			{
@@ -128,7 +129,7 @@ namespace Membrane.Commons.Plugin.Services
 
 			try
 			{
-				repository.Delete(id);
+				Repository.Delete(id);
 			}
 			catch (RepositoryDeleteException)
 			{

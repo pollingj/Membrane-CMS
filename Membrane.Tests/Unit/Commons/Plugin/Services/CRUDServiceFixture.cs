@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
-using Membrane.Commons.Plugin;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Queries;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Tests.Unit.Core;
@@ -21,8 +21,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		protected ICRUDService<TDto, TEntity> Service;
 
 		public List<TEntity> ListEntity { get; set; }
-		public TEntity SingleEntity { private get; set; }
-		public TDto SingleDTO { private get; set; }
+		public TEntity SingleEntity { get; set; }
+		public TDto SingleDTO { get; set; }
 		public List<TDto> ListDTO { get; set; }
 
 		public override void SetUp()

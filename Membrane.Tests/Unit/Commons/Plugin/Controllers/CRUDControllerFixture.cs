@@ -4,8 +4,8 @@ using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Plugin;
 using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Tests.Unit.Web.MonoRail.Controllers;
 using NUnit.Framework;
@@ -31,12 +31,12 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 		protected string ListView = @"\Shared\List";
 
-		public IList<TDto> ListDTO { private get; set; }
-		public TDto NewDTO { private get; set; }
-		public TDto InvalidDTO { private get; set; }
-		public TDto EditDTO { private get; set; }
-		public TDto DeleteDTO { private get; set; }
-		public IList<FormField> FormFields { private get; set; }
+		public IList<TDto> ListDTO { get; set; }
+		public TDto NewDTO { get; set; }
+		public TDto InvalidDTO { get; set; }
+		public TDto EditDTO { get; set; }
+		public TDto DeleteDTO { get; set; }
+		public IList<FormField> FormFields { get; set; }
 
 
 		public override void TestFixtureSetUp()

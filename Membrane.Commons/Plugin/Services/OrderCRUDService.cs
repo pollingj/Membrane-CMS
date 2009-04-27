@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Commons.Plugin.Services
 {
@@ -15,14 +16,14 @@ namespace Membrane.Commons.Plugin.Services
 		/// <summary>
 		/// Moves a specified item down one level in the list
 		/// </summary>
+		/// <param name="currentItemsOrder">The current list of items</param>
 		/// <param name="id">The id of the item to be moved</param>
-		/// <param name="items">The current list of items</param>
 		/// <returns>A newly ordered list of items</returns>
-		public IList<TDto> MoveItemDown(Guid id, IList<TDto> items)
+		public ItemOrderResponseDTO MoveItemDown(ItemOrderRequestDTO currentItemsOrder, Guid id)
 		{
-			var listPosition = getListPosition(id, items);
+			var listPosition = getListPosition(currentItemsOrder, id);
 
-			return swapListPositions(items, listPosition, listPosition + 1);
+			return swapListPositions(currentItemsOrder, listPosition, listPosition + 1);
 		}
 
 
@@ -30,39 +31,50 @@ namespace Membrane.Commons.Plugin.Services
 		/// <summary>
 		/// Moves a specified item Up one level in the list
 		/// </summary>
+		/// <param name="currentItemsOrder">The current list of items</param>
 		/// <param name="id">The id of the item to be moved</param>
-		/// <param name="items">The current list of items</param>
 		/// <returns>A newly ordered list of items</returns>
-		public IList<TDto> MoveItemUp(Guid id, IList<TDto> items)
+		public ItemOrderResponseDTO MoveItemUp(ItemOrderRequestDTO currentItemsOrder, Guid id)
 		{
-			var listPosition = getListPosition(id, items);
+			var listPosition = getListPosition(currentItemsOrder, id);
 
-			return swapListPositions(items, listPosition, listPosition - 1);
+			return swapListPositions(currentItemsOrder, listPosition, listPosition - 1);
 		}
 
 		/// <summary>
 		/// Saves the current order of list items
 		/// </summary>
-		/// <param name="items">The current list items in the correct order</param>
+		/// <param name="currentItemsOrder">The current list items in the correct order</param>
 		/// <returns>If successful or not (bool)</returns>
-		public bool SaveItemsOrder(IList<TDto> items)
+		public bool SaveItemsOrder(ItemOrderRequestDTO currentItemsOrder)
 		{
-			var success = false;
-			foreach (var item in items)
+			var success = true;
+			var positionCount = 1;
+			try
 			{
-				success = Update(item);
-			}
+				foreach (var id in currentItemsOrder.Ids)
+				{
+					var item = Repository.FindById(id);
+					item.OrderPosition = positionCount;
+					Repository.Update(item);
 
+					positionCount++;
+				}
+			}
+			catch (Exception)
+			{
+				success = false;
+			}
 			return success;
 		}
 
-		private int getListPosition(Guid id, IList<TDto> items)
+		private int getListPosition(ItemOrderRequestDTO currentItemsOrder, Guid id)
 		{
 			var pos = -1;
 			var count = 0;
-			foreach (var item in items)
+			foreach (var item in currentItemsOrder.Ids)
 			{
-				if (item.Id == id)
+				if (item == id)
 				{
 					pos = count;
 					break;
@@ -73,15 +85,15 @@ namespace Membrane.Commons.Plugin.Services
 			return pos;
 		}
 
-		private IList<TDto> swapListPositions(IList<TDto> items, int listPosition, int newPosition)
+		private ItemOrderResponseDTO swapListPositions(ItemOrderRequestDTO currentItemsOrder, int listPosition, int newPosition)
 		{
-			GuardAgainst.ArgumentOutsideRange(listPosition, "List Position", 0, items.Count - 1);
+			GuardAgainst.ArgumentOutsideRange(listPosition, "List Position", 0, currentItemsOrder.Ids.Length - 1);
 
-			var newOrderedList = new List<TDto>(items);
-			newOrderedList[listPosition] = items[newPosition];
-			newOrderedList[newPosition] = items[listPosition];
+			var newOrderedList = new List<Guid>(currentItemsOrder.Ids);
+			newOrderedList[listPosition] = currentItemsOrder.Ids[newPosition];
+			newOrderedList[newPosition] = currentItemsOrder.Ids[listPosition];
 
-			return newOrderedList;
+			return new ItemOrderResponseDTO { Ids = newOrderedList.ToArray() };
 		}
 	}
 }

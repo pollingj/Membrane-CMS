@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Controllers.User;
 using Membrane.Core.DTOs;
@@ -17,7 +18,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 	{
 		private ICRUDService<NavigationTypeDTO, NavigationType> navTypeService;
 
-		
+
 
 		/// <summary>
 		/// Overriding the base SetUp to set up the relevant TDto objects
@@ -26,20 +27,29 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		{
 			base.TestFixtureSetUp();
 			var type = new NavigationTypeDTO {Id = Guid.NewGuid(), Name = "Primary Navigation"};
-			NewDTO = new NavigationNodeDTO { Name = "Home", AccessKey = '1', Title = "Visit our home page", Type = type};
-			EditDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "About Us", AccessKey = '2', Title = "More info about us", Type = type};
-			InvalidDTO = new NavigationNodeDTO { Id = Guid.NewGuid() };
-			DeleteDTO = new NavigationNodeDTO { Id = Guid.NewGuid(), Name = "Contact Us", AccessKey = '3', Title="Feel free to contact us", Type = type};
+			NewDTO = new NavigationNodeDTO {Name = "Home", AccessKey = '1', Title = "Visit our home page", Type = type};
+			EditDTO = new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us", AccessKey = '2', Title = "More info about us", Type = type};
+			InvalidDTO = new NavigationNodeDTO {Id = Guid.NewGuid()};
+			DeleteDTO = new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us", AccessKey = '3', Title = "Feel free to contact us", Type = type};
+			ListDTO = new List<NavigationNodeDTO>
+			{
+				new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Home"},
+				new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us"},
+				new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "News"},
+				new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
+			};
 
-			OrderedList = new List<NavigationNodeDTO>
-			               	{
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Home"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "About Us"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "News"},
-			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
-			               	};
 
-			ListDTO = new List<NavigationNodeDTO>(OrderedList);
+			OrderedList = new ItemOrderRequestDTO
+			              	{
+			              		Ids = new[]
+			              		      	{
+			              		      		Guid.NewGuid(),
+			              		      		Guid.NewGuid(),
+			              		      		Guid.NewGuid(),
+			              		      		Guid.NewGuid()
+			              		      	}
+			              	};
 
 			navTypeService = mockery.DynamicMock<ICRUDService<NavigationTypeDTO, NavigationType>>();
 
@@ -62,12 +72,12 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 				.Expecting(() =>
 				           	{
 				           		Expect.Call(navTypeService.GetItems()).Return(navTypes);
-								Expect.Call(Service.GetItems()).Return(OrderedList);
+								Expect.Call(Service.GetItems()).Return(ListDTO);
 				           	})
 				.Verify(() => Controller.LoadSupportiveData());
 
 			Assert.AreEqual(navTypes, Controller.PropertyBag["support.NavigationTypeDTO"]);
-			Assert.AreEqual(OrderedList, Controller.PropertyBag["support.NavigationNodeDTO"]);
+			Assert.AreEqual(ListDTO, Controller.PropertyBag["support.NavigationNodeDTO"]);
 		}
 	}
 }

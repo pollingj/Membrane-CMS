@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Plugin;
 using Membrane.Commons.Plugin.Controllers;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Services;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -17,7 +18,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		public IOrderCRUDService<TDto, TEntity> OrderedService
 		{
 			get { return service; }
-			set { base.Service = service = value; }
+			set { Service = service = value; }
 		}
 
 		public OrderCRUDController<TDto, TEntity> Controller
@@ -26,7 +27,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			set { base.Controller = controller = value; }
 		}
 
-		protected IList<TDto> OrderedList;
+		public ItemOrderRequestDTO OrderedList { get; set; }
 
 		public override void TestFixtureSetUp()
 		{
@@ -38,35 +39,33 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		[Test]
 		public virtual void CanSuccessfullyMoveTopItemDownOnePlace()
 		{
-			var newOrder = new List<TDto>(OrderedList);
-			Controller.Flash["items"] = OrderedList;
+			var newOrder = new ItemOrderResponseDTO { Ids = new List<Guid>(OrderedList.Ids).ToArray() };
 
-			newOrder[0] = OrderedList[1];
-			newOrder[1] = OrderedList[0];
+			newOrder.Ids[0] = OrderedList.Ids[1];
+			newOrder.Ids[1] = OrderedList.Ids[0];
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.MoveItemDown(OrderedList[0].Id, OrderedList)).Return(newOrder))
-				.Verify(() => Controller.MoveItemDown(OrderedList[0].Id));
+				.Expecting(() => Expect.Call(service.MoveItemDown(OrderedList, OrderedList.Ids[0])).Return(newOrder))
+				.Verify(() => Controller.MoveItemDown(OrderedList, OrderedList.Ids[0]));
 
-			Assert.AreNotEqual(OrderedList, Controller.Flash["items"]);
-			Assert.AreEqual(newOrder, Controller.Flash["items"]);
+			Assert.AreNotEqual(OrderedList, Controller.PropertyBag["items"]);
+			Assert.AreEqual(newOrder, Controller.PropertyBag["items"]);
 		}
 
 		[Test]
 		public virtual void CanSuccessfullyMoveBootomItemUpOnePlace()
 		{
-			var newOrder = new List<TDto>(OrderedList);
-			Controller.Flash["items"] = OrderedList;
+			var newOrder = new ItemOrderResponseDTO { Ids = new List<Guid>(OrderedList.Ids).ToArray() };
 
-			newOrder[2] = OrderedList[3];
-			newOrder[3] = OrderedList[2];
+			newOrder.Ids[2] = OrderedList.Ids[3];
+			newOrder.Ids[3] = OrderedList.Ids[2];
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.MoveItemUp(OrderedList[3].Id, OrderedList)).Return(newOrder))
-				.Verify(() => Controller.MoveItemUp(OrderedList[3].Id));
+				.Expecting(() => Expect.Call(service.MoveItemUp(OrderedList, OrderedList.Ids[3])).Return(newOrder))
+				.Verify(() => Controller.MoveItemUp(OrderedList, OrderedList.Ids[3]));
 
-			Assert.AreNotEqual(OrderedList, Controller.Flash["items"]);
-			Assert.AreEqual(newOrder, Controller.Flash["items"]);
+			Assert.AreNotEqual(OrderedList, Controller.PropertyBag["items"]);
+			Assert.AreEqual(newOrder, Controller.PropertyBag["items"]);
 		}
 
 		[Test]
@@ -93,7 +92,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(service.SaveItemsOrder(OrderedList)).Return(success))
-				.Verify(() => Controller.SaveOrder());
+				.Verify(() => Controller.SaveOrder(OrderedList));
 		}
 	}
 }

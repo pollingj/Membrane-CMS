@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Services;
 
 namespace Membrane.Commons.Plugin.Controllers
@@ -11,32 +11,30 @@ namespace Membrane.Commons.Plugin.Controllers
 		where TEntity : IOrderedEntity
 	{
 		private readonly IOrderCRUDService<TDto, TEntity> service;
-		private readonly IPropertyReaderService<TDto> propertyReaderService;
 
 		public OrderCRUDController(IOrderCRUDService<TDto, TEntity> service, IPropertyReaderService<TDto> propertyReaderService) : base(service, propertyReaderService)
 		{
-			this.propertyReaderService = propertyReaderService;
 			this.service = service;
 
 			ListView = @"\Shared\OrderedList";
 		}
 
 
-		public void MoveItemDown(Guid id)
+		public void MoveItemDown(ItemOrderRequestDTO currentOrder, Guid id)
 		{
-			Flash["items"] = service.MoveItemDown(id, (IList<TDto>)Flash["items"]);
+			PropertyBag["items"] = service.MoveItemDown(currentOrder, id);
 			RenderView(ListView);
 		}
 
-		public void MoveItemUp(Guid id)
+		public void MoveItemUp(ItemOrderRequestDTO currentOrder, Guid id)
 		{
-			Flash["items"] = service.MoveItemUp(id, (IList<TDto>)Flash["items"]);
+			PropertyBag["items"] = service.MoveItemUp(currentOrder, id);
 			RenderView(ListView);
 		}
 
-		public void SaveOrder()
+		public void SaveOrder(ItemOrderRequestDTO currentOrder)
 		{
-			var success = service.SaveItemsOrder((IList<TDto>)Flash["items"]);
+			var success = service.SaveItemsOrder(currentOrder);
 
 			if (!success)
 				CreateError("Could not save list order");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 using Membrane.Tests.Unit.Commons.Plugin.Services;
@@ -31,6 +32,19 @@ namespace Membrane.Tests.Unit.Core.Services
 			                 		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Blog"},
 									new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "History"}
 			             	};
+
+			CurrentItemOrder = new ItemOrderRequestDTO
+							{
+								Ids = new[]
+      		      					{
+      		      						Guid.NewGuid(),
+      		      						Guid.NewGuid(),
+      		      						Guid.NewGuid(),
+      		      						Guid.NewGuid(),
+      		      						Guid.NewGuid(),
+      		      						Guid.NewGuid()
+      		      					}
+							};
 
 			base.SetUp();
 		}
