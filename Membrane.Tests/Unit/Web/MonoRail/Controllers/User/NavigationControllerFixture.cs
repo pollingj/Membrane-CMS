@@ -39,6 +39,8 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 			               		new NavigationNodeDTO {Id = Guid.NewGuid(), Name = "Contact Us"}
 			               	};
 
+			ListDTO = new List<NavigationNodeDTO>(OrderedList);
+
 			navTypeService = mockery.DynamicMock<ICRUDService<NavigationTypeDTO, NavigationType>>();
 
 			Controller = new NavigationController(Service, PropertyReaderService, navTypeService);

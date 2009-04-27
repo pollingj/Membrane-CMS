@@ -7,8 +7,8 @@ using Membrane.Commons.Plugin.Services;
 namespace Membrane.Commons.Plugin.Controllers
 {
 	public class OrderCRUDController<TDto, TEntity> : CRUDController<TDto, TEntity>, IOrderCRUDController<TDto, TEntity>
-		where TDto : IDto
-		where TEntity : IEntity
+		where TDto : IOrderedDto
+		where TEntity : IOrderedEntity
 	{
 		private readonly IOrderCRUDService<TDto, TEntity> OrderService;
 		private readonly IPropertyReaderService<TDto> propertyReaderService;

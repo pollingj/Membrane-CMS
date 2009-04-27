@@ -4,7 +4,7 @@ using Membrane.Commons.Plugin;
 
 namespace Membrane.Core.DTOs
 {
-	public class NavigationNodeDTO : IDto
+	public class NavigationNodeDTO : IOrderedDto
 	{
 		public Guid Id { get; set; }
 		[ValidateNonEmpty]
@@ -17,5 +17,6 @@ namespace Membrane.Core.DTOs
 		[ValidateLength(0, 1)]
 		public char AccessKey { get; set; }
 		public string ExternalUrl { get; set; }
+		public int OrderPosition { get; set; }
 	}
 }

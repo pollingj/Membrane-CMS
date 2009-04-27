@@ -119,6 +119,7 @@
     <Compile Include="Plugin\Controllers\CRUDController.cs" />
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
     <Compile Include="Plugin\Controllers\OrderCRUDController.cs" />
+    <Compile Include="Plugin\IOrderedDTO.cs" />
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />
     <Compile Include="Plugin\Controllers\ICRUDController.cs" />

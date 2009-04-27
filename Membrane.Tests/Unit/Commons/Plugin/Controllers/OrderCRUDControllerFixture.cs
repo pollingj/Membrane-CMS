@@ -9,8 +9,8 @@ using Rhino.Mocks;
 namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 {
 	public class OrderCRUDControllerFixture<TDto, TEntity> : CRUDControllerFixture<TDto, TEntity>
-		where TDto : IDto
-		where TEntity : IEntity
+		where TDto : IOrderedDto
+		where TEntity : IOrderedEntity
 	{
 		private OrderCRUDController<TDto, TEntity> controller;
 		private IOrderCRUDService<TDto, TEntity> service;
@@ -32,7 +32,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		public override void SetUp()
 		{
 			base.SetUp();
-
+			service = mockery.DynamicMock<OrderCRUDService<TDto, TEntity>>();
 			ListView = @"\Shared\OrderedList";
 		}
 

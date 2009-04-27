@@ -6,7 +6,7 @@ using Membrane.Tests.Unit.Commons.Plugin.Services;
 
 namespace Membrane.Tests.Unit.Core.Services
 {
-	public class NavigationNodeServiceFixture : CRUDServiceFixture<NavigationNodeDTO, NavigationNode>
+	public class NavigationNodeServiceFixture : OrderCRUDServiceFixture<NavigationNodeDTO, NavigationNode>
 	{
 		public override void SetUp()
 		{

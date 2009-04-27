@@ -47,7 +47,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		/// <param name="pageSize">The page size</param>
 		public virtual void List(int currentPage, int pageSize)
 		{
-			Flash["items"] = Service.GetPagedItems(currentPage, pageSize);
+			PropertyBag["items"] = Service.GetPagedItems(currentPage, pageSize);
 
 			RenderView(ListView);
 		}

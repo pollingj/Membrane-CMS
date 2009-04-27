@@ -8,7 +8,7 @@ using Rhino.Mocks;
 namespace Membrane.Tests.Unit.Commons.Plugin.Services
 {
 	public class OrderCRUDServiceFixture<TDto, TEntity> : CRUDServiceFixture<TDto, TEntity>
-		where TDto : IDto
+		where TDto : IOrderedDto
 		where TEntity : IOrderedEntity
 	{
 		private IOrderCRUDService<TDto, TEntity> service;
@@ -61,8 +61,12 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		[Test]
 		public virtual void CanSuccessfullySaveOrderedList()
 		{
-			/*With.Mocks(mockery)
-				.Expecting(() => Expect.Call Repository.Update)*/
+			var result = false;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => Repository.Update(ListEntity[0])).IgnoreArguments().Repeat.Times(ListEntity.Count))
+				.Verify(() => result = service.SaveItemsOrder(ListDTO));
+
+			Assert.IsTrue(result);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using Membrane.Commons.Persistence;
 
 namespace Membrane.Entities
 {
-	public class NavigationNode : IEntity
+	public class NavigationNode : IOrderedEntity
 	{
 		public virtual Guid Id { get; set; }
 		public virtual NavigationType Type { get; set; }
@@ -12,6 +12,6 @@ namespace Membrane.Entities
 		public virtual string Title { get; set; }
 		public virtual char AccessKey { get; set; }
 		public virtual string ExternalUrl { get; set; }
-        
+		public int OrderPosition { get; set; }
 	}
 }
