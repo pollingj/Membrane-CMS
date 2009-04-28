@@ -12,6 +12,6 @@ namespace Membrane.Entities
 		public virtual string Title { get; set; }
 		public virtual char AccessKey { get; set; }
 		public virtual string ExternalUrl { get; set; }
-		public int OrderPosition { get; set; }
+		public virtual int OrderPosition { get; set; }
 	}
 }

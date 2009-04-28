@@ -33,7 +33,7 @@ namespace Membrane.ViewComponents
 				throw new ViewComponentException("The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance");
 			}
 
-			//  Has a FieldPrefix been supplied? If so apply it to all of the field ids
+			//  Has a FieldPrefix been supplied? If so apply it to all of the field Ids
 			if (FieldPrefix != null)
 			{
 				foreach (var field in Fields)

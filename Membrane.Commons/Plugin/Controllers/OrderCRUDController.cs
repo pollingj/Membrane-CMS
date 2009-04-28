@@ -1,4 +1,5 @@
 using System;
+using Castle.MonoRail.Framework;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Plugin.DTOs;
@@ -19,20 +20,19 @@ namespace Membrane.Commons.Plugin.Controllers
 			ListView = @"\Shared\OrderedList";
 		}
 
-
-		public void MoveItemDown(ItemOrderRequestDTO currentOrder, Guid id)
+		public void MoveItemDown([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder, Guid id)
 		{
 			PropertyBag["items"] = service.MoveItemDown(currentOrder, id);
 			RenderView(ListView);
 		}
 
-		public void MoveItemUp(ItemOrderRequestDTO currentOrder, Guid id)
+		public void MoveItemUp([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder, Guid id)
 		{
 			PropertyBag["items"] = service.MoveItemUp(currentOrder, id);
 			RenderView(ListView);
 		}
 
-		public void SaveOrder(ItemOrderRequestDTO currentOrder)
+		public void SaveOrder([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder)
 		{
 			var success = service.SaveItemsOrder(currentOrder);
 

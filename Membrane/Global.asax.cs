@@ -34,6 +34,7 @@ namespace Membrane
 			container.AddComponent<IAuthenticationService, AuthenticationService>();
 			container.AddComponent("autogenerator", typeof(IPropertyReaderService<>), typeof(PropertyReaderService<>));
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
+			container.AddComponent("ordercrudservice", typeof(IOrderCRUDService<,>), typeof(OrderCRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();

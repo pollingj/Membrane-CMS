@@ -23,3 +23,19 @@
 		</var>
 	</tbody>
 </table>
+
+${Form.FormTag(new { id='ItemOrdering', action='submit' })}
+	<fieldset>
+		<legend>Item Ordering</legend>
+		
+		<var count='0'>
+			<for each='IDto item in (IList)ViewData["items"]'>
+				${Form.HiddenField(string.Format("ordereditems.Ids[{0}]", count), new { value = item.Id })}
+				<set count='count+1' />
+			</for>
+		</var>
+
+		
+		${Form.Submit("Submit", new { id = 'submit' })} 
+	</fieldset>    
+${Form.EndFormTag()}

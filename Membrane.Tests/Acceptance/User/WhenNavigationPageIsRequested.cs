@@ -30,13 +30,17 @@ namespace Membrane.Tests.Acceptance.User
 		}
 
 		[Test]
-		public void UserCanViewNavigationList()
+		public void UserCanViewNavigationListAndItemOrderForm()
 		{
 			browser.Link("Navigation").Click();
 			browser.WaitForComplete();
 
 			Assert.IsTrue(browser.ContainsText("Home"));
 			Assert.AreEqual(1, browser.Table("data").TableBodies[0].TableRows.Length);
+
+			Assert.IsTrue(browser.Form("ItemOrdering").Exists);
+			Assert.AreEqual(browser.Table("data").TableBodies[0].TableRows.Length, browser.Form("ItemOrdering").TextFields.Length);
+
 			Assert.AreEqual(listNavUrl, browser.Url);
 		}
 
