@@ -1,4 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Castle.Components.Binder;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Persistence;
@@ -20,20 +24,29 @@ namespace Membrane.Commons.Plugin.Controllers
 			ListView = @"\Shared\OrderedList";
 		}
 
-		public void MoveItemDown([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder, Guid id)
+		public override void List(int currentPage, int pageSize)
 		{
-			PropertyBag["items"] = service.MoveItemDown(currentOrder, id);
+			Flash["items"] = service.GetPagedItems(currentPage, pageSize);
+
 			RenderView(ListView);
 		}
 
-		public void MoveItemUp([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder, Guid id)
+		public void MoveItemDown(Guid id)
 		{
-			PropertyBag["items"] = service.MoveItemUp(currentOrder, id);
+			Flash["items"] = service.MoveItemDown((IList<TDto>)Flash["items"], id);
+			RenderView(ListView);
+		}
+
+		public void MoveItemUp(Guid id)
+		{
+			Flash["items"] = service.MoveItemUp((IList<TDto>)Flash["items"], id);
 			RenderView(ListView);
 		}
 
 		public void SaveOrder([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder)
 		{
+			ErrorList errors = GetDataBindErrors(currentOrder);
+
 			var success = service.SaveItemsOrder(currentOrder);
 
 			if (!success)

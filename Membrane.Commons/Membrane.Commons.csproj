@@ -122,6 +122,7 @@
     <Compile Include="Plugin\DTOs\ItemOrderRequestDTO.cs" />
     <Compile Include="Plugin\DTOs\IOrderedDTO.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderResponseDTO.cs" />
+    <Compile Include="Plugin\Queries\OrderedPagedItems.cs" />
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />
     <Compile Include="Plugin\Controllers\ICRUDController.cs" />

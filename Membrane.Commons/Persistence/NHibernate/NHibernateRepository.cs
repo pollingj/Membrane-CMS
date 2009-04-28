@@ -115,7 +115,7 @@ namespace Membrane.Commons.Persistence.NHibernate
 				if (property.PropertyType.GetInterface("IEntity") != null)
 				{
 					var relatedObjectValues = property.GetValue(item, BindingFlags.Instance | BindingFlags.Public, null, null, null);
-					if (((IEntity)relatedObjectValues).Id == Guid.Empty)
+					if (relatedObjectValues != null && ((IEntity)relatedObjectValues).Id == Guid.Empty)
 						property.SetValue(item, null, null);
 				}
 			}

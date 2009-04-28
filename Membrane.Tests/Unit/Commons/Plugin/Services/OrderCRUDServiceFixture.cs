@@ -25,38 +25,38 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		[Test]
 		public virtual void CanMoveItemDownOnePlace()
 		{
-			var newOrderList = new List<Guid>(CurrentItemOrder.Ids);
-			newOrderList[0] = CurrentItemOrder.Ids[1];
-			newOrderList[1] = CurrentItemOrder.Ids[0];
+			var newOrderList = new List<TDto>(ListDTO);
+			newOrderList[0] = ListDTO[1];
+			newOrderList[1] = ListDTO[0];
 
-			var result = service.MoveItemDown(CurrentItemOrder, CurrentItemOrder.Ids[0]);
+			var result = service.MoveItemDown(ListDTO, ListDTO[0].Id);
 
-			Assert.AreNotEqual(CurrentItemOrder.Ids[0], result.Ids[0]);
-			Assert.AreNotEqual(CurrentItemOrder.Ids[1], result.Ids[1]);
-			Assert.AreEqual(newOrderList.Count, result.Ids.Length);
+			Assert.AreNotEqual(ListDTO[0], result[0]);
+			Assert.AreNotEqual(ListDTO[1], result[1]);
+			Assert.AreEqual(newOrderList.Count, result.Count);
 
-			for (var count = 0; count < result.Ids.Length; count++)
+			for (var count = 0; count < result.Count; count++)
 			{
-				Assert.AreEqual(newOrderList[count], result.Ids[count]);
+				Assert.AreEqual(newOrderList[count], result[count]);
 			}
 		}
 
 		[Test]
 		public virtual void CanMoveItemUpOnePlace()
 		{
-			var newOrderList = new List<Guid>(CurrentItemOrder.Ids);
-			newOrderList[5] = CurrentItemOrder.Ids[4];
-			newOrderList[4] = CurrentItemOrder.Ids[5];
+			var newOrderList = new List<TDto>(ListDTO);
+			newOrderList[5] = ListDTO[4];
+			newOrderList[4] = ListDTO[5];
 
-			var result = service.MoveItemUp(CurrentItemOrder, CurrentItemOrder.Ids[5]);
+			var result = service.MoveItemUp(ListDTO, ListDTO[5].Id);
 
-			Assert.AreNotEqual(CurrentItemOrder.Ids[4], result.Ids[4]);
-			Assert.AreNotEqual(CurrentItemOrder.Ids[5], result.Ids[5]);
-			Assert.AreEqual(newOrderList.Count, result.Ids.Length);
+			Assert.AreNotEqual(ListDTO[4], result[4]);
+			Assert.AreNotEqual(ListDTO[5], result[5]);
+			Assert.AreEqual(newOrderList.Count, result.Count);
 
-			for (var count = 0; count < result.Ids.Length; count++)
+			for (var count = 0; count < result.Count; count++)
 			{
-				Assert.AreEqual(newOrderList[count], result.Ids[count]);
+				Assert.AreEqual(newOrderList[count], result[count]);
 			}
 		}
 

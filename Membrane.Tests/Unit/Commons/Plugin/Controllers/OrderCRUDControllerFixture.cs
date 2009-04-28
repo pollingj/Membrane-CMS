@@ -39,33 +39,23 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		[Test]
 		public virtual void CanSuccessfullyMoveTopItemDownOnePlace()
 		{
-			var newOrder = new ItemOrderResponseDTO { Ids = new List<Guid>(OrderedList.Ids).ToArray() };
+			var newOrder = new List<TDto>(ListDTO);
 
-			newOrder.Ids[0] = OrderedList.Ids[1];
-			newOrder.Ids[1] = OrderedList.Ids[0];
+			newOrder[0] = ListDTO[1];
+			newOrder[1] = ListDTO[0];
 
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.MoveItemDown(OrderedList, OrderedList.Ids[0])).Return(newOrder))
-				.Verify(() => Controller.MoveItemDown(OrderedList, OrderedList.Ids[0]));
-
-			Assert.AreNotEqual(OrderedList, Controller.PropertyBag["items"]);
-			Assert.AreEqual(newOrder, Controller.PropertyBag["items"]);
+			MockMovingItemsWithinList(newOrder, ListDTO[0].Id);
 		}
 
 		[Test]
-		public virtual void CanSuccessfullyMoveBootomItemUpOnePlace()
+		public virtual void CanSuccessfullyMoveBottomItemUpOnePlace()
 		{
-			var newOrder = new ItemOrderResponseDTO { Ids = new List<Guid>(OrderedList.Ids).ToArray() };
+			var newOrder = new List<TDto>(ListDTO);
 
-			newOrder.Ids[2] = OrderedList.Ids[3];
-			newOrder.Ids[3] = OrderedList.Ids[2];
+			newOrder[2] = ListDTO[3];
+			newOrder[3] = ListDTO[2];
 
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.MoveItemUp(OrderedList, OrderedList.Ids[3])).Return(newOrder))
-				.Verify(() => Controller.MoveItemUp(OrderedList, OrderedList.Ids[3]));
-
-			Assert.AreNotEqual(OrderedList, Controller.PropertyBag["items"]);
-			Assert.AreEqual(newOrder, Controller.PropertyBag["items"]);
+			MockMovingItemsWithinList(newOrder, ListDTO[3].Id);
 		}
 
 		[Test]
@@ -93,6 +83,18 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			With.Mocks(mockery)
 				.Expecting(() => Expect.Call(service.SaveItemsOrder(OrderedList)).Return(success))
 				.Verify(() => Controller.SaveOrder(OrderedList));
+		}
+
+		private void MockMovingItemsWithinList(List<TDto> newOrder, Guid id)
+		{
+			Controller.Flash["items"] = ListDTO;
+
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(service.MoveItemUp(ListDTO, id)).Return(newOrder))
+				.Verify(() => Controller.MoveItemUp(id));
+
+			Assert.AreNotEqual(OrderedList, Controller.Flash["items"]);
+			Assert.AreEqual(newOrder, Controller.Flash["items"]);
 		}
 	}
 }

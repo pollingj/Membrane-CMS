@@ -220,7 +220,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		private void AssertListData()
 		{
 			Assert.AreEqual(ListView, Controller.SelectedViewName, "List view not being used");
-			Assert.AreEqual(ListDTO, Controller.PropertyBag["items"], "groups PropertyBag not being set");
+			Assert.AreEqual(ListDTO, Controller.Flash["items"], "groups PropertyBag not being set");
 		}
 	}
 }

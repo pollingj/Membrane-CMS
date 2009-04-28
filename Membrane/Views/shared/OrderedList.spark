@@ -2,6 +2,14 @@
 <use file="SharedMenu" />
 <use file="AdminMenu" />
 
+<div id="formerrors" if="ViewData['error'] != null">
+    <h2>There is a problem</h2>
+    <ul each='var item in ((Castle.Components.Validator.ErrorSummary)ViewData["error"]).ErrorMessages'>
+        <li>${item}</li>
+    </ul>
+</div>
+
+
 <p>${Url.Link( "Add New", new {action = "New"}, new { id="New"})}</p>
 <table id="data">
 	<thead>
@@ -24,18 +32,18 @@
 	</tbody>
 </table>
 
-${Form.FormTag(new { id='ItemOrdering', action='submit' })}
+${Form.FormTag(new { id='ItemOrdering', action='SaveOrder' })}
 	<fieldset>
 		<legend>Item Ordering</legend>
 		
 		<var count='0'>
 			<for each='IDto item in (IList)ViewData["items"]'>
-				${Form.HiddenField(string.Format("ordereditems.Ids[{0}]", count), new { value = item.Id })}
+				${Form.HiddenField(string.Format("ordereditems.Ids[{0}]", count), item.Id )}
 				<set count='count+1' />
 			</for>
 		</var>
 
 		
-		${Form.Submit("Submit", new { id = 'submit' })} 
+		${Form.Submit("Reorder", new { id = 'submit' })} 
 	</fieldset>    
 ${Form.EndFormTag()}
