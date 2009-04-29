@@ -40,6 +40,9 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 					case "ShowOnHomePage":
 						AssertFormFieldData("Show On Home Page", FieldType.CheckBox, field);
 						break;
+					case "OrderPosition":
+						AssertFormFieldData("Order Position", FieldType.Hidden, field);
+						break;
 				}
 			}
 		}
@@ -189,6 +192,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 		public decimal Price { get; set; }
 		public DateTime ExpiresOn { get; set; }
 		public bool ShowOnHomePage { get; set; }
+		public int OrderPosition { get; set; }
 	}
 
 	public class TestSimpleConfigurationDTO : IDto

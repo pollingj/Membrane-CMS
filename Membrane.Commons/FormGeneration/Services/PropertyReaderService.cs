@@ -57,6 +57,11 @@ namespace Membrane.Commons.FormGeneration.Services
 				field.Type = FieldType.MultiSelectDropDownList;
 				getConventionBasedOptionsValueAndText(propertyType.GetGenericArguments()[0], field);
 			}
+			// The OrderPosition property needs to be set 
+			else if (field.Id == "OrderPosition")
+			{
+				field.Type = FieldType.Hidden;
+			}
 			else
 			{
 				switch (propertyType.Name)
