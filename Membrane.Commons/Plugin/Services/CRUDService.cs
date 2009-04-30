@@ -72,9 +72,9 @@ namespace Membrane.Commons.Plugin.Services
 		/// <returns>The item</returns>
 		public virtual TDto GetItem(Guid id)
 		{
-			var group = Repository.FindById(id);
+			var item = Repository.FindById(id);
 
-			return Mapper.Map<TEntity, TDto>(group);
+			return Mapper.Map<TEntity, TDto>(item);
 		}
 
 		/// <summary>

@@ -8,6 +8,8 @@ namespace Membrane.Core.DTOs
 		[ValidateGuid(false)]
 		public Guid Id { get; set; }
 		[ValidateNonEmpty]
+		public string Username { get; set; }
+		[ValidateNonEmpty]
 		public string Name { get; set; }
 		[ValidateEmail]
 		public string Email { get; set; }

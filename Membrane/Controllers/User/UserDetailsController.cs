@@ -1,6 +1,7 @@
 
 using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
+using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
 
@@ -8,23 +9,27 @@ namespace Membrane.Controllers.User
 {
 	public class UserDetailsController : BaseController
 	{
-		private IUserService service;
+		private readonly IUserService userService;
+		private readonly IPropertyReaderService<UserDetailsRequestDTO> readerService;
 
-		public UserDetailsController(IUserService service)
+		public UserDetailsController(IUserService userService, IPropertyReaderService<UserDetailsRequestDTO> readerService)
 		{
-			this.service = service;
+			this.userService = userService;
+			this.readerService = readerService;
 		}
 
 		public void Show()
 		{
-			PropertyBag["details"] = service.LoadDetails(((AuthenticatedUserDTO) Session["user"]).Id);
+			PropertyBag["details"] = userService.LoadDetails(((AuthenticatedUserDTO) Session["user"]).Id);
+			readerService.ReadViewModelProperties();
+			PropertyBag["fields"] = readerService.FormFields;
 		}
 
 		public void Update([DataBind("details", Validate = true)] UserDetailsRequestDTO details)
 		{
 			if (Validator.IsValid(details))
 			{
-				var success = service.UpdateDetails(details);
+				var success = userService.UpdateDetails(details);
 
 				if (!success)
 				{

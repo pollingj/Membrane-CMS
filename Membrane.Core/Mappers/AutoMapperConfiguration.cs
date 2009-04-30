@@ -16,6 +16,11 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.AuthenticationType, opt => opt.Ignore())
 				.ForMember(dest => dest.IsAuthenticated, opt => opt.Ignore());
 
+			Mapper.CreateMap<MembraneUser, UserDetailsResponseDTO>();
+			Mapper.CreateMap<UserDetailsRequestDTO, MembraneUser>()
+				.ForMember(dest => dest.Group, opt => opt.Ignore())
+				.ForMember(dest => dest.Type, opt => opt.Ignore());
+
 			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
