@@ -151,6 +151,7 @@
     <Compile Include="Controllers\LogOffController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Controllers\User\NavigationController.cs" />
+    <Compile Include="Controllers\User\UserDetailsController.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>

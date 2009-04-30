@@ -22,3 +22,7 @@ values (NewId(), 'Primary Navigation')
 
 insert into NavigationNode (Id, Type_Id, Name, Title, AccessKey, OrderPosition)
 select NewId(), (Select Id From NavigationType WHERE Name = 'Primary Navigation'), 'Home',  'Visit the site home page', '1', 1
+insert into NavigationNode (Id, Type_Id, Name, Title, AccessKey, OrderPosition)
+select NewId(), (Select Id From NavigationType WHERE Name = 'Primary Navigation'), 'About Us',  'Find out more about us', '2', 2
+insert into NavigationNode (Id, Type_Id, Name, Title, AccessKey, OrderPosition)
+select NewId(), (Select Id From NavigationType WHERE Name = 'Primary Navigation'), 'Contact Us',  'Find out how to contact us', '3', 3

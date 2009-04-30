@@ -58,6 +58,8 @@
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
     <Compile Include="DTOs\NavigationNodeDTO.cs" />
     <Compile Include="DTOs\NavigationTypeDTO.cs" />
+    <Compile Include="DTOs\UserDetailsRequestDTO.cs" />
+    <Compile Include="DTOs\UserDetailsResponseDTO.cs" />
     <Compile Include="DTOs\UserGroupDTO.cs" />
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Queries\Users\UserByUsernameAndPassword.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
   </ItemGroup>
   <ItemGroup>
