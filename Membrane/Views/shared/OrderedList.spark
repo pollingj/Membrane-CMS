@@ -32,8 +32,8 @@
 	</tbody>
 </table>
 
-${Form.FormTag(new { id='ItemOrdering', action='SaveOrder' })}
-	<fieldset>
+${Form.FormTag(new { id='itemOrdering', action='SaveOrder' })}
+<fieldset>
 		<legend>Item Ordering</legend>
 		
 		<var count='0'>

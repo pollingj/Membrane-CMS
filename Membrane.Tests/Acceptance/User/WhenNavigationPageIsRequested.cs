@@ -36,12 +36,22 @@ namespace Membrane.Tests.Acceptance.User
 			browser.WaitForComplete();
 
 			Assert.IsTrue(browser.ContainsText("Home"));
-			Assert.AreEqual(1, browser.Table("data").TableBodies[0].TableRows.Length);
+			Assert.AreEqual(3, browser.Table("data").TableBodies[0].TableRows.Length);
 
-			Assert.IsTrue(browser.Form("ItemOrdering").Exists);
+			Assert.IsTrue(browser.Form("itemOrdering").Exists);
 			Assert.AreEqual(browser.Table("data").TableBodies[0].TableRows.Length, browser.Form("ItemOrdering").TextFields.Length);
+			Assert.IsTrue(browser.Form("itemOrdering").Button("submit").Exists);
 
 			Assert.AreEqual(listNavUrl, browser.Url);
+		}
+
+		[Test]
+		public void UserCanOnlyMoveDownTopItem()
+		{
+			//browser.Link("Navigation").Click();
+			//browser.WaitForComplete();
+
+			//Assert.IsTrue(browser.Table("data").TableBodies[0]);
 		}
 
 		[Test]
@@ -60,17 +70,17 @@ namespace Membrane.Tests.Acceptance.User
 		{
 			browser.GoTo(newNavUrl);
 
-			browser.TextField("item_Name").TypeText("About Us");
+			browser.TextField("item_Name").TypeText("How to Find Us");
 			browser.SelectList("item_Type_Id").Select("Primary Navigation");
-			browser.TextField("item_Title").TypeText("Find out more about us");
-			browser.TextField("item_AccessKey").TypeText("2");
+			browser.TextField("item_Title").TypeText("Find out where we are");
+			browser.TextField("item_AccessKey").TypeText("4");
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavUrl, browser.Url);
 			Assert.AreEqual(2, browser.Table("data").TableBodies[0].TableRows.Length);
-			Assert.IsTrue(browser.ContainsText("About Us"));
+			Assert.IsTrue(browser.ContainsText("How to Find Us"));
 		}
 
 		[Test]
@@ -148,7 +158,7 @@ namespace Membrane.Tests.Acceptance.User
 		private void GoToDeleteConfirmationPage()
 		{
 			browser.GoTo(listNavUrl);
-			browser.Table("data").TableBodies[0].TableRows[1].Links[1].Click();
+			browser.Table("data").TableBodies[0].TableRow(Find.ByText("How to Find Us")).Link(Find.ByText("Delete")).Click();
 
 			browser.WaitForComplete();
 		}
@@ -156,7 +166,7 @@ namespace Membrane.Tests.Acceptance.User
 		private void GoToEditForm()
 		{
 			browser.GoTo(listNavUrl);
-			browser.Table("data").TableBodies[0].TableRows[1].Links[0].Click();
+			browser.Table("data").TableBodies[0].TableRow(Find.ByText("How to Find Us")).Link(Find.ByText("Edit")).Click();
 
 			browser.WaitForComplete();
 		}
