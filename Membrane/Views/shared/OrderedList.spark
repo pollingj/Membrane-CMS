@@ -11,26 +11,28 @@
 
 
 <p>${Url.Link( "Add New", new {action = "New"}, new { id="New"})}</p>
-<table id="data">
-	<thead>
-		<tr>
-			<td scope="col">Group Name</td>
-			<td scope="col">Actions</td>
-		</tr>
-	</thead>
-	<tbody
-		<var count='0' lastItem='((IList)ViewData["items"]).Count-1'>
-			<tr each='IDto item in (IList)ViewData["items"]'>
-				<td>${item.Name}</td>
-				<td if='count<lastItem'>${Url.Link( "Move Down", new {action = "MoveItemDown", querystring = string.Format("id={0}",item.Id)})}</td>
-				<td if='count>0'>${Url.Link( "Move Up", new {action = "MoveItemUp", querystring = string.Format("id={0}",item.Id)})}</td>
-				<td>${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}</td>
-				<td>${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}</td>
-				<set count='count+1' />
-			</tr>
-		</var>
-	</tbody>
-</table>
+<ul id="data">
+	<var count='0' lastItem='((IList)ViewData["items"]).Count-1'>
+		<li each='IDto item in (IList)ViewData["items"]'>
+			<p>${item.Name}</p>
+			<ul class="actions">
+				<li if='count < lastItem'>
+					${Url.Link( "Move Down", new {action = "MoveItemDown", querystring = string.Format("id={0}",item.Id)})}
+				</li>
+				<li if='count>0'>
+					${Url.Link( "Move Up", new {action = "MoveItemUp", querystring = string.Format("id={0}",item.Id)})}
+				</li>
+				<li>
+					${Url.Link( "Edit", new {action = "Edit", querystring = string.Format("id={0}",item.Id)})}
+				</li>
+				<li>
+					${Url.Link( "Delete", new {action = "ConfirmDelete", querystring = string.Format("id={0}",item.Id)})}
+				</li>
+			</ul>
+			<set count='count+1' />
+		</li>
+	</var>
+</ul>
 
 ${Form.FormTag(new { id='itemOrdering', action='SaveOrder' })}
 <fieldset>
