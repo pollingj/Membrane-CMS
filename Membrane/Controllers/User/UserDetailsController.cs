@@ -4,9 +4,11 @@ using Castle.MonoRail.Framework;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
+using Membrane.Filters;
 
 namespace Membrane.Controllers.User
 {
+	[Filter(ExecuteWhen.BeforeAction, typeof(AuthenticationFilter))]
 	public class UserDetailsController : BaseController
 	{
 		private readonly IUserService userService;
@@ -23,6 +25,8 @@ namespace Membrane.Controllers.User
 			PropertyBag["details"] = userService.LoadDetails(((AuthenticatedUserDTO) Session["user"]).Id);
 			readerService.ReadViewModelProperties();
 			PropertyBag["fields"] = readerService.FormFields;
+
+			RenderView("/Shared/Form");
 		}
 
 		public void Update([DataBind("details", Validate = true)] UserDetailsRequestDTO details)

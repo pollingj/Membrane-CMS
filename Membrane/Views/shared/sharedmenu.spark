@@ -1,4 +1,5 @@
 ﻿<ul>
 	<li>${Url.Link( "Navigation", new {controller = "Navigation", action = "List"}, new { id="Navigation" })}</li>
+	<li>${Url.Link( "My Details", new {controller = "UserDetails", action = "Show"}, new { id="MyDetails" })}</li>
 	<li>${Url.Link( "Logout", new {controller = "LogOff", action = "LogOff"}, new { id="LogOff" })}</li>
 </ul>
