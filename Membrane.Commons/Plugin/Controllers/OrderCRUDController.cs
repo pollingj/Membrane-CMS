@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Castle.Components.Binder;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
@@ -21,7 +19,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			this.service = service;
 
-			ListView = @"\Shared\OrderedList";
+			ListView = "/Shared/OrderedList";
 		}
 
 		public override void List(int currentPage, int pageSize)
