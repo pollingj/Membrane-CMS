@@ -36,7 +36,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 			browser.WaitForComplete();
 
 			Assert.IsTrue(browser.ContainsText("Primary Navigation"));
-			Assert.AreEqual(1, browser.Table("data").TableBodies[0].TableRows.Length);
+			CheckDataListLILength(browser, 3);
 			Assert.AreEqual(listNavTypeUrl, browser.Url);
 		}
 
@@ -51,6 +51,8 @@ namespace Membrane.Tests.Acceptance.Administrator
 			Assert.IsTrue(browser.Form("entryForm").Exists);
 		}
 
+
+
 		[Test]
 		public void AdministratorCanSuccessfullyCompleteNewNavigationTypeForm()
 		{
@@ -62,7 +64,7 @@ namespace Membrane.Tests.Acceptance.Administrator
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavTypeUrl, browser.Url);
-			Assert.AreEqual(2, browser.Table("data").TableBodies[0].TableRows.Length);
+			CheckDataListLILength(browser, 6);
 			Assert.IsTrue(browser.ContainsText("Secondary Navigation"));
 		}
 
@@ -71,49 +73,49 @@ namespace Membrane.Tests.Acceptance.Administrator
 		{
 			browser.GoTo(newNavTypeUrl);
 
-			FailFormValidation(newNavTypeUrl);
+			failFormValidation(newNavTypeUrl);
 		}
 
 		[Test]
 		public void AdministratorCanViewEditForm()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "Secondary Navigation", listNavTypeUrl);
 
 			Assert.IsTrue(browser.Url.Contains(editNavTypeUrl));
-			Assert.AreEqual("Primary Navigation", browser.TextField("item_Name").Text);
+			Assert.AreEqual("Secondary Navigation", browser.TextField("item_Name").Text);
 		}
 
 		[Test]
 		public void AdministratorCanSuccessfullyCompleteEditForm()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "Secondary Navigation", listNavTypeUrl);
 
 			browser.TextField("item_Name").Clear();
-			browser.TextField("item_Name").TypeText("New Pri Navigation");
+			browser.TextField("item_Name").TypeText("Tertiary Navigation");
 
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavTypeUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("Primary Navigation"));
-			Assert.IsTrue(browser.ContainsText("New Pri Navigation"));
+			Assert.IsFalse(browser.ContainsText("Secondary Navigation"));
+			Assert.IsTrue(browser.ContainsText("Tertiary Navigation"));
 		}
 
 		[Test]
 		public void EditNavigationTypeFormCanFailValidation()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "Tertiary Navigation", listNavTypeUrl);
 
 			browser.TextField("item_Name").Clear();
 
-			FailFormValidation(editNavTypeUrl);
+			failFormValidation(editNavTypeUrl);
 		}
 
 		[Test]
 		public void AdministratorCanShowDeleteConfirmation()
 		{
-			GoToDeleteConfirmationPage();
+			GoToAction(browser, "Delete", "Tertiary Navigation", listNavTypeUrl);
 
 			Assert.IsTrue(browser.Url.Contains(BuildUrl("Administrator", "NavigationTypes", "ConfirmDelete")));
 			Assert.IsTrue(browser.ContainsText("Are you certain you wish to delete"));
@@ -124,43 +126,25 @@ namespace Membrane.Tests.Acceptance.Administrator
 		[Test]
 		public void AdministratorCanSuccessfullyDeleteNavigationType()
 		{
-			GoToDeleteConfirmationPage();
+			GoToAction(browser, "Delete", "Tertiary Navigation", listNavTypeUrl);
 
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavTypeUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("Secondary Navigation"));
+			Assert.IsFalse(browser.ContainsText("Tertiary Navigation"));
 		}
 
-		private void GoToDeleteConfirmationPage()
-		{
-			browser.GoTo(listNavTypeUrl);
-			browser.Table("data").TableBodies[0].TableRows[1].Links[1].Click();
-
-			browser.WaitForComplete();
-		}
-
-		private void GoToEditForm()
-		{
-			browser.GoTo(listNavTypeUrl);
-			browser.Table("data").TableBodies[0].TableRows[0].Links[0].Click();
-
-			browser.WaitForComplete();
-		}
-
-
-		private void FailFormValidation(string formUrl)
+		private void failFormValidation(string formUrl)
 		{
 			browser.TextField("item_Name").Click();
 			browser.Button("submit").Click();
 
 			Assert.IsTrue(browser.Url.Contains(formUrl));
 			Assert.AreEqual("error", browser.TextField("item_Name").ClassName);
-
-			/*Assert.IsTrue(browser.Div("errors").Exists);
-			Assert.IsTrue(browser.ContainsText("There was a problem with the form"));*/
 		}
+
+
 	}
 }

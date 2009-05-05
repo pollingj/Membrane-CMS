@@ -36,10 +36,8 @@ namespace Membrane.Tests.Acceptance.User
 			browser.WaitForComplete();
 
 			Assert.IsTrue(browser.ContainsText("Home"));
-			Assert.AreEqual(3, browser.Table("data").TableBodies[0].TableRows.Length);
 
 			Assert.IsTrue(browser.Form("itemOrdering").Exists);
-			Assert.AreEqual(browser.Table("data").TableBodies[0].TableRows.Length, browser.Form("ItemOrdering").TextFields.Length);
 			Assert.IsTrue(browser.Form("itemOrdering").Button("submit").Exists);
 
 			Assert.AreEqual(listNavUrl, browser.Url);
@@ -79,7 +77,6 @@ namespace Membrane.Tests.Acceptance.User
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavUrl, browser.Url);
-			Assert.AreEqual(2, browser.Table("data").TableBodies[0].TableRows.Length);
 			Assert.IsTrue(browser.ContainsText("How to Find Us"));
 		}
 
@@ -94,37 +91,37 @@ namespace Membrane.Tests.Acceptance.User
 		[Test]
 		public void UserCanViewEditForm()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "How to Find Us", listNavUrl);
 
 			Assert.IsTrue(browser.Url.Contains(editNavUrl));
-			Assert.AreEqual("About Us", browser.TextField("item_Name").Text);
+			Assert.AreEqual("How to Find Us", browser.TextField("item_Name").Text);
 		}
 
 		[Test]
 		public void UserCanSuccessfullyCompleteEditForm()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "How to Find Us", listNavUrl);
 
 			browser.TextField("item_Name").Clear();
-			browser.TextField("item_Name").TypeText("About Them");
+			browser.TextField("item_Name").TypeText("How to Find Them");
 			browser.TextField("item_Title").Clear();
-			browser.TextField("item_Title").TypeText("Find out more about them");
+			browser.TextField("item_Title").TypeText("Find out where they are");
 			browser.TextField("item_AccessKey").Clear();
-			browser.TextField("item_AccessKey").TypeText("3");
+			browser.TextField("item_AccessKey").TypeText("5");
 
 			browser.Button("submit").Click();
 
 			browser.WaitForComplete();
 
 			Assert.AreEqual(listNavUrl, browser.Url);
-			Assert.IsFalse(browser.ContainsText("About Us"));
-			Assert.IsTrue(browser.ContainsText("About Them"));
+			Assert.IsFalse(browser.ContainsText("How to Find Us"));
+			Assert.IsTrue(browser.ContainsText("How to Find Them"));
 		}
 
 		[Test]
 		public void EditNavigationFormCanFailValidation()
 		{
-			GoToEditForm();
+			GoToAction(browser, "Edit", "How to Find Them", listNavUrl);
 
 			browser.TextField("item_Name").Clear();
 
@@ -134,7 +131,7 @@ namespace Membrane.Tests.Acceptance.User
 		[Test]
 		public void UserCanShowDeleteConfirmation()
 		{
-			GoToDeleteConfirmationPage();
+			GoToAction(browser, "Delete", "How to Find Them", listNavUrl);
 
 			Assert.IsTrue(browser.Url.Contains(BuildUrl("Navigation", "ConfirmDelete")));
 			Assert.IsTrue(browser.ContainsText("Are you certain you wish to delete"));
@@ -145,7 +142,7 @@ namespace Membrane.Tests.Acceptance.User
 		[Test]
 		public void UserCanSuccessfullyDeleteNavigation()
 		{
-			GoToDeleteConfirmationPage();
+			GoToAction(browser, "Delete", "How to Find Them", listNavUrl);
 
 			browser.Button("submit").Click();
 
