@@ -58,8 +58,6 @@ namespace Membrane.Tests.Unit.Core.Services
 		[Test]
 		public void CanSuccessfullyUpdateUserDetailsWithNoPassword()
 		{
-			var result = false;
-
 			var user = new MembraneUser
 			           	{
 			           		Id = userDetails.Id,
@@ -68,12 +66,10 @@ namespace Membrane.Tests.Unit.Core.Services
 			           		Email = "john@theusualsuspect.com"
 						};
 
-			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(user)).IgnoreArguments())
-				.Verify(() => result = service.UpdateDetails(userDetails));
-
-			Assert.IsTrue(result);
+			MockUpdatingUserDetails(user);
 		}
+
+
 
 		[Test]
 		public void CanFailUpdatingUserDetails()
@@ -87,5 +83,31 @@ namespace Membrane.Tests.Unit.Core.Services
 			Assert.IsFalse(result);
 		}
 
+		[Test]
+		public void CanSuccessfullyUpdateUserDetailsWithPassword()
+		{
+			var user = new MembraneUser
+			           	{
+			           		Id = userDetails.Id,
+			           		Username = "johnpolling",
+			           		Name = "John Polling",
+			           		Email = "john@theusualsuspect.com",
+			           		Password = "password"
+						};
+
+			userDetails.ConfirmPassword = userDetails.Password = "newpassword";
+
+			MockUpdatingUserDetails(user);
+		}
+
+		private void MockUpdatingUserDetails(MembraneUser user)
+		{
+			var result = false;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => repository.Update(user)).IgnoreArguments())
+				.Verify(() => result = service.UpdateDetails(userDetails));
+
+			Assert.IsTrue(result);
+		}
 	}
 }
