@@ -3,6 +3,7 @@ using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services;
+using Membrane.Core.Services.Interfaces;
 using Membrane.Entities;
 using Membrane.Entities.Enums;
 using NUnit.Framework;
@@ -14,6 +15,7 @@ namespace Membrane.Tests.Unit.Core.Services
 	public class UserServiceFixture : BaseFixture
 	{
 		private UserService service;
+		private IEncryptionService encryptionService;
 		private IRepository<MembraneUser> repository;
 
 		private UserDetailsRequestDTO userDetails;
@@ -23,8 +25,9 @@ namespace Membrane.Tests.Unit.Core.Services
 			base.SetUp();
 
 			repository = mockery.DynamicMock<IRepository<MembraneUser>>();
+			encryptionService = mockery.DynamicMock<IEncryptionService>();
 
-			service = new UserService(repository);
+			service = new UserService(repository, encryptionService);
 
 			userDetails = new UserDetailsRequestDTO { Id = Guid.NewGuid(), Username = "johnpolling", Name = "John Polling", Email = "john@theusualsuspect.com" };
 
@@ -66,7 +69,12 @@ namespace Membrane.Tests.Unit.Core.Services
 			           		Email = "john@theusualsuspect.com"
 						};
 
-			MockUpdatingUserDetails(user);
+			var result = false;
+			With.Mocks(mockery)
+				.Expecting(() => Expect.Call(() => repository.Update(user)).IgnoreArguments())
+				.Verify(() => result = service.UpdateDetails(userDetails));
+
+			Assert.IsTrue(result);
 		}
 
 
@@ -92,19 +100,18 @@ namespace Membrane.Tests.Unit.Core.Services
 			           		Username = "johnpolling",
 			           		Name = "John Polling",
 			           		Email = "john@theusualsuspect.com",
-			           		Password = "asd"
+							Password = "7D-D2-9A-9C-96-43-FD-52-4E-1B-43-60-96-4B-89-CE-59-91-4E-68-D1-FD-1A-B0-4D-D6-1F-BA-AA-BC-58-E5-79-DC-FF-B5-B7-45-4A-B0-1E-58-6C-8A-E9-8E-53-8B-5D-6E-0F-F3-AE-7D-D4-42-DE-73-33-48-6D-C9-DF-1A"
 						};
 
 			userDetails.ConfirmPassword = userDetails.Password = "newpassword";
 
-			MockUpdatingUserDetails(user);
-		}
-
-		private void MockUpdatingUserDetails(MembraneUser user)
-		{
 			var result = false;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(user)))
+				.Expecting(() => 
+					{
+						Expect.Call(encryptionService.Encrypt("newpassword")).Return("7D-D2-9A-9C-96-43-FD-52-4E-1B-43-60-96-4B-89-CE-59-91-4E-68-D1-FD-1A-B0-4D-D6-1F-BA-AA-BC-58-E5-79-DC-FF-B5-B7-45-4A-B0-1E-58-6C-8A-E9-8E-53-8B-5D-6E-0F-F3-AE-7D-D4-42-DE-73-33-48-6D-C9-DF-1A");
+						Expect.Call(() => repository.Update(user)).IgnoreArguments();
+					})
 				.Verify(() => result = service.UpdateDetails(userDetails));
 
 			Assert.IsTrue(result);

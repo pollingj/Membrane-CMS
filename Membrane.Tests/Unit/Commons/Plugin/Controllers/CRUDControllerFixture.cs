@@ -29,7 +29,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		private const int anotherPageNumber = 2;
 		private const int anotherPageSize = 20;
 
-		protected string ListView = @"\Shared\List";
+		protected string ListView = "/Shared/List";
 
 		public IList<TDto> ListDTO { get; set; }
 		public TDto NewDTO { get; set; }
@@ -93,7 +93,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);
 			Assert.AreEqual(typeof(TDto), Controller.PropertyBag["itemtype"]);
-			Assert.AreEqual(@"\Shared\Form", Controller.SelectedViewName);
+			Assert.AreEqual("/Shared/Form", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -134,7 +134,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 
 			Assert.AreEqual(FormFields, Controller.PropertyBag["fields"]);
 			Assert.AreEqual(EditDTO, Controller.PropertyBag["item"]);
-			Assert.AreEqual(@"\Shared\Form", Controller.SelectedViewName);
+			Assert.AreEqual("/Shared/Form", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -161,7 +161,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 				.Verify(() => Controller.ConfirmDelete(DeleteDTO.Id));
 
 			Assert.AreEqual(DeleteDTO, Controller.PropertyBag["item"]);
-			Assert.AreEqual(@"\Shared\ConfirmDelete", Controller.SelectedViewName);
+			Assert.AreEqual("/Shared/ConfirmDelete", Controller.SelectedViewName);
 		}
 
 		[Test]
@@ -206,7 +206,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		private void AssertSuccessfulActionAndRedirectedBackToList()
 		{
 			Assert.IsNull(Controller.Flash["error"]);
-			Assert.AreEqual(@"/Controller/List.castle", Response.RedirectedTo);
+			Assert.AreEqual("/Controller/List.castle", Response.RedirectedTo);
 		}
 
 		private void AssertSubmitFailure(TDto failedDTO)

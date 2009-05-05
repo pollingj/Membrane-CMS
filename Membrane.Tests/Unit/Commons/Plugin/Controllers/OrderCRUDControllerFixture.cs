@@ -33,7 +33,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		{
 			base.TestFixtureSetUp();
 			OrderedService = mockery.DynamicMock<IOrderCRUDService<TDto, TEntity>>();
-			ListView = @"\Shared\OrderedList";
+			ListView = "/Shared/OrderedList";
 		}
 
 		[Test]

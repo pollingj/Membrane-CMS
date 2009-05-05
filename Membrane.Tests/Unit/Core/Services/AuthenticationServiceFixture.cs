@@ -15,6 +15,7 @@ namespace Membrane.Tests.Unit.Core.Services
 	public class AuthenticationServiceFixture : BaseFixture
 	{
 		private IAuthenticationService service;
+		private IEncryptionService encryptionService;
 		private IRepository<MembraneUser> userRepository;
 
 		public override void SetUp()
@@ -22,7 +23,8 @@ namespace Membrane.Tests.Unit.Core.Services
 			base.SetUp();
 
 			userRepository = mockery.DynamicMock<IRepository<MembraneUser>>();
-			service = new AuthenticationService(userRepository);
+			encryptionService = mockery.DynamicMock<IEncryptionService>();
+			service = new AuthenticationService(userRepository, encryptionService);
 		}
 
 		[Test]

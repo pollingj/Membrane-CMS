@@ -105,6 +105,7 @@
     <Compile Include="Unit\Core\Queries\UserGroups\PagedUserGroupsFixture.cs" />
     <Compile Include="Unit\Core\Queries\Users\UserByUsernameAndPasswordFixture.cs" />
     <Compile Include="Unit\Core\Services\AuthenticationServiceFixture.cs" />
+    <Compile Include="Unit\Core\Services\EncryptionServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\NavigationNodeServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserGroupServiceFixture.cs" />

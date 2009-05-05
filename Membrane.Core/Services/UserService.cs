@@ -8,13 +8,15 @@ using Membrane.Entities;
 
 namespace Membrane.Core.Services
 {
-	public class UserService : BaseUserService, IUserService
+	public class UserService : IUserService
 	{
+		private IEncryptionService encryptionService;
 		private	IRepository<MembraneUser> repository;
 
-		public UserService(IRepository<MembraneUser> repository)
+		public UserService(IRepository<MembraneUser> repository, IEncryptionService encryptionService)
 		{
 			this.repository = repository;
+			this.encryptionService = encryptionService;
 		}
 
 		public UserDetailsResponseDTO LoadDetails(Guid id)
@@ -31,7 +33,7 @@ namespace Membrane.Core.Services
 			{
 				if (details.Password != string.Empty)
 				{
-					details.Password = Hash(details.Password);
+					details.Password = encryptionService.Encrypt(details.Password);
 				}
 				var user = Mapper.Map<UserDetailsRequestDTO, MembraneUser>(details);
 				repository.Update(user);

@@ -66,9 +66,9 @@
     <Compile Include="Queries\UserGroups\PagedUserGroups.cs" />
     <Compile Include="Queries\Users\UserByUsernameAndPassword.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\BaseUserService.cs" />
+    <Compile Include="Services\EncryptionService.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
-    <Compile Include="Services\Interfaces\IBaseUserService.cs" />
+    <Compile Include="Services\Interfaces\IEncryptionService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
     <Compile Include="Services\UserService.cs" />

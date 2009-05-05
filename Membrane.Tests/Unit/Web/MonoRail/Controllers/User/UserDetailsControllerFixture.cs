@@ -59,7 +59,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 
 			Assert.AreEqual(userDetails, controller.PropertyBag["details"]);
 			Assert.AreEqual(fields, controller.PropertyBag["fields"]);
-			Assert.AreEqual(@"UserDetails\Action", controller.SelectedViewName);
+			Assert.AreEqual("/Shared/Form", controller.SelectedViewName);
 		}
 
 		[Test]

@@ -8,22 +8,25 @@ using Membrane.Entities;
 
 namespace Membrane.Core.Services
 {
-	public class AuthenticationService : BaseUserService, IAuthenticationService
+	public class AuthenticationService : IAuthenticationService
 	{
+		private readonly IEncryptionService encryptionService;
 		private readonly IRepository<MembraneUser> userRepository;
 
-		public AuthenticationService(IRepository<MembraneUser> userRepository)
+		public AuthenticationService(IRepository<MembraneUser> userRepository, IEncryptionService encryptionService)
 		{
 			GuardAgainst.ArgumentNull(userRepository, "userRepository");
+			GuardAgainst.ArgumentNull(encryptionService, "encryptionService");
 
 			this.userRepository = userRepository;
+			this.encryptionService = encryptionService;
 		}
 
 		public AuthenticatedUserDTO AuthenticateUser(AuthenticationRequestDTO authenticationRequest)
 		{
 			GuardAgainst.ArgumentNull(authenticationRequest, "authenticationRequest");
 
-			var user = userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, Hash(authenticationRequest.Password)));
+			var user = userRepository.FindOne(new UserByUsernameAndPassword(authenticationRequest.Username, encryptionService.Encrypt(authenticationRequest.Password)));
 
 			return Mapper.Map<MembraneUser, AuthenticatedUserDTO>(user);
 		}

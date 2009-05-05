@@ -5,14 +5,14 @@ using Membrane.Core.Services.Interfaces;
 
 namespace Membrane.Core.Services
 {
-	public class BaseUserService : IBaseUserService
+	public class EncryptionService : IEncryptionService
 	{
 		/// <summary>
 		/// Method to Hash any given value.  
 		/// </summary>
 		/// <param name="valueToHash">What needs hashing?</param>
 		/// <returns>Hashed value (string)</returns>
-		public string Hash(string valueToHash)
+		public string Encrypt(string valueToHash)
 		{
 			SHA512 sha = new SHA512Managed();
 			var hashed = string.Empty;
