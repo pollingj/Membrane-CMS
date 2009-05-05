@@ -8,7 +8,7 @@ using Membrane.Entities;
 
 namespace Membrane.Core.Services
 {
-	public class UserService : IUserService
+	public class UserService : BaseUserService, IUserService
 	{
 		private	IRepository<MembraneUser> repository;
 
@@ -29,6 +29,10 @@ namespace Membrane.Core.Services
 			var success = true;
 			try
 			{
+				if (details.Password != string.Empty)
+				{
+					details.Password = Hash(details.Password);
+				}
 				var user = Mapper.Map<UserDetailsRequestDTO, MembraneUser>(details);
 				repository.Update(user);
 			}

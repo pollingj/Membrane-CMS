@@ -92,7 +92,7 @@ namespace Membrane.Tests.Unit.Core.Services
 			           		Username = "johnpolling",
 			           		Name = "John Polling",
 			           		Email = "john@theusualsuspect.com",
-			           		Password = "password"
+			           		Password = "asd"
 						};
 
 			userDetails.ConfirmPassword = userDetails.Password = "newpassword";
@@ -104,7 +104,7 @@ namespace Membrane.Tests.Unit.Core.Services
 		{
 			var result = false;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(user)).IgnoreArguments())
+				.Expecting(() => Expect.Call(() => repository.Update(user)))
 				.Verify(() => result = service.UpdateDetails(userDetails));
 
 			Assert.IsTrue(result);
