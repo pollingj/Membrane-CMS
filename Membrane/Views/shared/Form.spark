@@ -19,7 +19,9 @@ ${Form.FormTag(new { id='entryForm', action='submit' })}
 	<fieldset>
 		<legend>User Group Details</legend>
 		
-		<FormGenerator FieldPrefix="'item'" Fields="ViewData['fields']" />
+		<FormGenerator FieldPrefix="'item'" Fields="ViewData['fields']" if="ViewData['prefix'] == null" />
+
+		<FormGenerator FieldPrefix="ViewData['prefix']" Fields="ViewData['fields']" if="ViewData['prefix'] != null" />
 		
 		${Form.Submit("Submit", new { id = 'submit' })} 
 	</fieldset>    

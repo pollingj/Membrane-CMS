@@ -22,7 +22,9 @@ namespace Membrane.Controllers.User
 
 		public void Show()
 		{
-			PropertyBag["details"] = userService.LoadDetails(((AuthenticatedUserDTO) Session["user"]).Id);
+			var dataPropertyBagName = "details";
+			PropertyBag["prefix"] = dataPropertyBagName;
+			PropertyBag[dataPropertyBagName] = userService.LoadDetails(((AuthenticatedUserDTO)Session["user"]).Id);
 			readerService.ReadViewModelProperties();
 			PropertyBag["fields"] = readerService.FormFields;
 
