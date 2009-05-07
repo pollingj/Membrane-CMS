@@ -79,9 +79,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		[Test]
 		public void CanDisplaySimpleFormFields()
 		{
-			SetupViewComponent();
+			setupViewComponent();
 
-			RunAndCheckViewComponentOutput(Basicfieldhtml);
+			runAndCheckViewComponentOutput(Basicfieldhtml);
 		}
 
 
@@ -95,7 +95,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 
 			formFields.Add(new FormField { Id = "NavigationType", Label = "Navigation Type", OptionValue = "Id", OptionText = "Type", Type = FieldType.SingleSelectDropDownList, RelatedTypeName = "NavigationTypeDTO"});
 
-			SetupViewComponent();
+			setupViewComponent();
 			// Need to make sure a call to load the related data is called.
 			component.Context.ContextVars["support.NavigationTypeDTO"] = new ArrayList
 			                                                                         	{
@@ -104,7 +104,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 																							new { Id = 3, Type = "Tertiary Navigation"}
 			                                                                         	};
 
-			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType_Id\">Navigation Type</label>\r\n<select id=\"item_NavigationType_Id\" name=\"item.NavigationType.Id\" >\r\n<option value=\"\">Please select</option>\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
+			runAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType_Id\">Navigation Type</label>\r\n<select id=\"item_NavigationType_Id\" name=\"item.NavigationType.Id\" >\r\n<option value=\"\">Please select</option>\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
 		}
 
 		[Test]
@@ -112,7 +112,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		{
 			formFields.Add(new FormField { Id = "NavigationType", Label = "Navigation Type", OptionValue = "Id", OptionText = "Type", Type = FieldType.MultiSelectDropDownList, RelatedTypeName = "NavigationTypeDTO" });
 
-			SetupViewComponent();
+			setupViewComponent();
 
 			// Need to make sure a call to load the related data is called.
 			component.Context.ContextVars["support.NavigationTypeDTO"] = new ArrayList
@@ -122,7 +122,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 																							new { Id = 3, Type = "Tertiary Navigation"}
 			                                                                         	};
 
-			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType\">Navigation Type</label>\r\n<select id=\"item_NavigationType\" name=\"item.NavigationType\" multiple=\"multiple\" >\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
+			runAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_NavigationType\">Navigation Type</label>\r\n<select id=\"item_NavigationType\" name=\"item.NavigationType\" multiple=\"multiple\" >\r\n<option value=\"1\">Primary Navigation</option>\r\n<option value=\"2\">Secondary Navigation</option>\r\n<option value=\"3\">Tertiary Navigation</option>\r\n</select>\r\n</div>\r\n", Basicfieldhtml));
 
 		}
 
@@ -131,9 +131,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		{
 			formFields.Add(new FormField { Id = "IsLive", Label = "Is Live", Type = FieldType.CheckBox });
 
-			SetupViewComponent();
+			setupViewComponent();
 
-			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_IsLive\">Is Live</label>\r\n<input type=\"checkbox\" id=\"item_IsLive\" name=\"item.IsLive\" value=\"true\" /><input type=\"hidden\" id=\"item_IsLiveH\" name=\"item.IsLive\" value=\"false\" />\r\n</div>\r\n", Basicfieldhtml));
+			runAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_IsLive\">Is Live</label>\r\n<input type=\"checkbox\" id=\"item_IsLive\" name=\"item.IsLive\" value=\"true\" /><input type=\"hidden\" id=\"item_IsLiveH\" name=\"item.IsLive\" value=\"false\" />\r\n</div>\r\n", Basicfieldhtml));
 		}
 
 		[Test]
@@ -141,12 +141,12 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 		{
 			formFields.Add(new FormField {Id = "ExpiresOn", Label = "Expires On", Type = FieldType.Date});
 
-			SetupViewComponent();
+			setupViewComponent();
 
-			RunAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_ExpiresOn\">Expires On</label>\r\n<input type=\"text\" id=\"item_ExpiresOn\" name=\"item.ExpiresOn\" value=\"\" class=\"datePicker\" />\r\n</div>\r\n", Basicfieldhtml));
+			runAndCheckViewComponentOutput(string.Format("{0}<div>\r\n<label for=\"item_ExpiresOn\">Expires On</label>\r\n<input type=\"text\" id=\"item_ExpiresOn\" name=\"item.ExpiresOn\" value=\"\" class=\"datePicker\" />\r\n</div>\r\n", Basicfieldhtml));
 		}
 
-		private void SetupViewComponent()
+		private void setupViewComponent()
 		{
 			actions = new List<string>();
 
@@ -168,7 +168,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			PrepareViewComponent(component);	
 		}
 
-		private void RunAndCheckViewComponentOutput(string expectedHtml)
+		private void runAndCheckViewComponentOutput(string expectedHtml)
 		{
 
 			component.Render();
