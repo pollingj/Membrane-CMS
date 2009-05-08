@@ -1,11 +1,9 @@
-using System;
-using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Entities;
 
 namespace Membrane.Entities
 {
-	public class UserGroup : IEntity
+	public class UserGroup : BaseEntity
 	{
-		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
 	}
 }

@@ -18,12 +18,12 @@ using Membrane.ViewComponents;
 namespace Membrane
 {
 	/// <summary>
-	/// TODO: Need to consider the url rewriting for Membrane
+	///
 	/// </summary>
 	public class Global : MonoRailNHibernateHttpApplication
     {
 		public Global()
-			: base(Assembly.Load("Membrane.Entities"))
+			: base(new [] { Assembly.Load("Membrane.Entities"), Assembly.Load("Membrane.Commons") })
 		{
 			AutoMapperConfiguration.Configure();
 		}

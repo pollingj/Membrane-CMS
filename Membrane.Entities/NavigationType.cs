@@ -1,11 +1,9 @@
-using System;
-using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Entities;
 
 namespace Membrane.Entities
 {
-	public class NavigationType : IEntity
+	public class NavigationType : BaseEntity
 	{
-		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
 	}
 }

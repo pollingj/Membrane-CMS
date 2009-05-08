@@ -18,6 +18,7 @@ using Castle.Windsor;
 using FluentNHibernate.AutoMap;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.NHibernate;
+using Membrane.Commons.Plugin.Entities;
 using NHibernate;
 using Configuration=NHibernate.Cfg.Configuration;
 
@@ -25,7 +26,7 @@ namespace Membrane.Commons.Web.MonoRail
 {
 	public abstract class MonoRailNHibernateHttpApplication : HttpApplication, IContainerAccessor, IMonoRailConfigurationEvents
 	{
-		private readonly Assembly entitiesAssembly;
+		private readonly Assembly[] entitiesAssemblies;
 		protected static IWindsorContainer container;
 		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
 		protected Assembly webAppAssembly;
@@ -33,9 +34,9 @@ namespace Membrane.Commons.Web.MonoRail
 
 		private string pluginFolder;
 
-		protected MonoRailNHibernateHttpApplication(Assembly entitiesAssembly)
+		protected MonoRailNHibernateHttpApplication(Assembly[] entitiesAssemblies)
 		{
-			this.entitiesAssembly = entitiesAssembly;
+			this.entitiesAssemblies = entitiesAssemblies;
 			webAppAssembly = Assembly.GetCallingAssembly();
 		}
 
@@ -168,8 +169,12 @@ namespace Membrane.Commons.Web.MonoRail
 		protected virtual void ConfigureNHibernate()
 		{
 			var configuration = new Configuration();
+
+			foreach (var entityAssembly in entitiesAssemblies)
+			{
+				RegisterEntitiesAssembly(configuration, entityAssembly);
+			}
 			
-			RegisterEntitiesAssembly(configuration, entitiesAssembly);
 
 			foreach (Assembly pluginAssembly in pluginAssemblies)
 			{
@@ -192,14 +197,19 @@ namespace Membrane.Commons.Web.MonoRail
 					GetForeignKeyName = (info => info.Name + "_Id"),
 					GetTableName = (type => type.Name),
 					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name),
-					//IsBaseType = (type => type == typeof(BaseModel) || type == typeof(BaseOrderModel))
+					IsBaseType = (type => type == typeof(BaseEntity) || type == typeof(BaseOrderedEntity)
+										|| type == typeof(BaseVersionedEntity) || type == typeof(BaseVersionedAndOrderedEntity))
 				}
 			};
 
 			model
 				.AddEntityAssembly(assembly)
 				.Where(entity => entity.IsAbstract == false &&
-				                 entity.GetInterface("IEntity") != null)
+				                 entity.GetInterface("IEntity") != null)/* &&
+								 (entity != typeof(BaseEntity) ||
+								 entity != typeof(BaseOrderedEntity) ||
+								// entity != typeof(BaseVersionedEntity) ||
+								 entity != typeof(BaseVersionedAndOrderedEntity)))*/
 				.Configure(configuration);
 			
 

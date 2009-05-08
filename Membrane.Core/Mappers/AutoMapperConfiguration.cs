@@ -21,14 +21,22 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.Group, opt => opt.Ignore())
 				.ForMember(dest => dest.Type, opt => opt.Ignore());
 
-			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
-				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
+			Mapper.CreateMap<UserGroup, UserGroupDTO>();
+			Mapper.CreateMap<UserGroupDTO, UserGroup>();
+
 			Mapper.CreateMap<NavigationType, NavigationTypeDTO>();
+			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
 
 			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent))
-				.ForMember(dest => dest.Parent, opt => opt.FormatNullValueAs(null));
-			Mapper.CreateMap<NavigationTypeDTO, NavigationType>();
+				.ForMember(dest => dest.Parent, opt => opt.FormatNullValueAs(null))
+				.ForMember(dest => dest.Published, opt => opt.Ignore())
+				.ForMember(dest => dest.ParentEntity_Id, opt => opt.Ignore())
+				.ForMember(dest => dest.Culture, opt => opt.Ignore())
+				.ForMember(dest => dest.Revision, opt => opt.Ignore());
+			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
+				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
+
 		}
 	}
 }

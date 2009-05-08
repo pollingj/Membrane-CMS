@@ -122,6 +122,11 @@
     <Compile Include="Plugin\DTOs\ItemOrderRequestDTO.cs" />
     <Compile Include="Plugin\DTOs\IOrderedDTO.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderResponseDTO.cs" />
+    <Compile Include="Plugin\Entities\BaseEntity.cs" />
+    <Compile Include="Plugin\Entities\BaseOrderedEntity.cs" />
+    <Compile Include="Plugin\Entities\BaseVersionedAndOrderedEntity.cs" />
+    <Compile Include="Plugin\Entities\BaseVersionedEntity.cs" />
+    <Compile Include="Plugin\Entities\Culture.cs" />
     <Compile Include="Plugin\Queries\OrderedPagedItems.cs" />
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />

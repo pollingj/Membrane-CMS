@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
@@ -24,20 +23,6 @@ namespace Membrane.Commons.Plugin.Services
 		public CRUDService(IRepository<TEntity> repository)
 		{
 			Repository = repository;
-			RegisterMappings();
-		}
-
-		/// <summary>
-		/// Does two basic mappings
-		///  - TEntity -> TDto
-		///  - TDto -> TEntity
-		/// 
-		/// Can be overwritten for more specific mappings
-		/// </summary>
-		public virtual void RegisterMappings()
-		{
-			Mapper.CreateMap<TEntity, TDto>();
-			Mapper.CreateMap<TDto, TEntity>();
 		}
 
 		/// <summary>

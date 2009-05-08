@@ -34,13 +34,6 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		}
 
 		[Test]
-		public virtual void CanMapSuccessfullyBetweenDTOAndEntity()
-		{
-			Service.RegisterMappings();
-			Mapper.AssertConfigurationIsValid();
-		}
-
-		[Test]
 		public virtual void CanGetPagedItems()
 		{
 			var currentPage = 2;

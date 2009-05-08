@@ -1,11 +1,9 @@
-using System;
-using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Entities;
 
 namespace Membrane.Entities
 {
-	public class MembraneUser : IEntity
+	public class MembraneUser : BaseEntity
 	{
-		public virtual Guid Id { get; set; }
 		public virtual string Username { get; set; }
 		public virtual string Password { get; set; }
 		public virtual MembraneUserType Type { get; set; }
