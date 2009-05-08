@@ -5,7 +5,7 @@ using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
-using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plug;
 using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
@@ -185,20 +185,15 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 		}
 	}
 
-	public class TestSimpleConventionDto : IDto
+	public class TestSimpleConventionDto : BaseOrderedDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public decimal Price { get; set; }
 		public DateTime ExpiresOn { get; set; }
 		public bool ShowOnHomePage { get; set; }
-		public int OrderPosition { get; set; }
 	}
 
-	public class TestSimpleConfigurationDTO : IDto
+	public class TestSimpleConfigurationDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public string Title { get; set; }
 		[FormFieldType(FieldType.MultiLineTextField)]
 		public string ShortDescription { get; set; }
@@ -208,48 +203,36 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 		public string IgnoreMeField { get; set; }
 	}
 
-	public class ProductTypeDTO : IDto
+	public class ProductTypeDTO : BaseVersionedDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 	}
 
-	public class ProductDTO : IDto
+	public class ProductDTO : BaseVersionedAndOrderedDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public decimal Price { get; set; }
 		public int StockCount { get; set; }
 		public ProductTypeDTO Type { get; set; }
 	}
 
-	public class AccessoryDTO : IDto
+	public class AccessoryDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public decimal Price { get; set; }
 		public IList<ProductDTO> Products { get; set; }
 	}
 
-	public class NewsTypeDTO : IDto
+	public class NewsTypeDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
 		public bool Archive { get; set; }
-		public string Name { get; set; }
 	}
 
-	public class NewsTagDTO : IDto
+	public class NewsTagDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public bool Archive { get; set; }
 		public string Tag { get; set; }
 	}
 
-	public class NewsArticleDTO : IDto
+	public class NewsArticleDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		[FormFieldType(FieldType.SingleSelectDropDownList, "Id", "Name")]
 		public NewsTypeDTO Type { get; set; }
 		[FormFieldType(FieldType.MultiSelectDropDownList, "Id", "Tag")]

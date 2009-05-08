@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Exceptions;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
+using Membrane.Commons.Plug;
 
 namespace Membrane.Commons.FormGeneration.Services
 {
@@ -58,7 +60,7 @@ namespace Membrane.Commons.FormGeneration.Services
 				getConventionBasedOptionsValueAndText(propertyType.GetGenericArguments()[0], field);
 			}
 			// The OrderPosition property needs to be set 
-			else if (field.Id == "OrderPosition")
+			else if (field.Id == "OrderPosition" || field.Id == "Revision" || field.Id == "ParentEntity_Id" || field.Id == "Published")
 			{
 				field.Type = FieldType.Hidden;
 			}
@@ -97,7 +99,7 @@ namespace Membrane.Commons.FormGeneration.Services
 
 		private void getConventionBasedOptionsValueAndText(Type propertyType, FormField field)
 		{
-			var relatedDTOProperties = propertyType.GetProperties();
+			var relatedDTOProperties = propertyType.GetProperties().AsQueryable().Where(p => p.DeclaringType == typeof(BaseDTO)).ToArray();
 
 			if (relatedDTOProperties.Length < 2)
 				throw new RelatedDTONeedsAtLeastTwoPropertiesException();
