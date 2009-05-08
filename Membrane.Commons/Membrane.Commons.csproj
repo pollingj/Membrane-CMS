@@ -119,6 +119,11 @@
     <Compile Include="Plugin\Controllers\CRUDController.cs" />
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
     <Compile Include="Plugin\Controllers\OrderCRUDController.cs" />
+    <Compile Include="Plugin\DTOs\BaseDTO.cs" />
+    <Compile Include="Plugin\DTOs\BaseOrderedDTO.cs" />
+    <Compile Include="Plugin\DTOs\BaseVersionedAndOrderedDTO.cs" />
+    <Compile Include="Plugin\DTOs\BaseVersionedDTO.cs" />
+    <Compile Include="Plugin\DTOs\CultureDTO.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderRequestDTO.cs" />
     <Compile Include="Plugin\DTOs\Interfaces\IOrderedDTO.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderResponseDTO.cs" />

@@ -1,14 +1,11 @@
 using System;
 using Castle.Components.Validator;
-using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plug;
 
 namespace Membrane.Core.DTOs
 {
-	public class NavigationNodeDTO : IOrderedDto
+	public class NavigationNodeDTO : BaseVersionedAndOrderedDTO
 	{
-		public Guid Id { get; set; }
-		[ValidateNonEmpty]
-		public string Name { get; set; }
 		[ValidateNonEmpty]
 		public NavigationTypeDTO Type { get; set; }
 		public NavigationNodeDTO Parent { get; set; }
@@ -17,6 +14,5 @@ namespace Membrane.Core.DTOs
 		[ValidateLength(0, 1)]
 		public char AccessKey { get; set; }
 		public string ExternalUrl { get; set; }
-		public int OrderPosition { get; set; }
 	}
 }

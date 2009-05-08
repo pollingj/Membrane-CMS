@@ -1,6 +1,6 @@
 using System;
 
-namespace Membrane.Commons.Plugin.DTOs
+namespace Membrane.Commons.Plug
 {
 	public class ItemOrderResponseDTO
 	{

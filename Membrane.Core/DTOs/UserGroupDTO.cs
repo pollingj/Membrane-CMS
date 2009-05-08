@@ -1,14 +1,8 @@
-using System;
-using Castle.Components.Validator;
-using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plug;
 
 namespace Membrane.Core.DTOs
 {
-	public class UserGroupDTO : IDto
+	public class UserGroupDTO : BaseDTO
 	{
-		public Guid Id { get; set; }
-
-		[ValidateNonEmpty]
-		public string Name { get; set; }
 	}
 }
