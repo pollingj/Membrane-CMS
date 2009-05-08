@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Membrane.Commons.Plugin
+namespace Membrane.Commons.Plugin.Services.Interfaces
 {
 	public interface IPluginsService
 	{

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Plug;
 using Membrane.Commons.Plugin.Controllers;
-using Membrane.Commons.Plugin.DTOs;
-using Membrane.Commons.Plugin.Services;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -15,6 +16,8 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 	{
 		private OrderCRUDController<TDto, TEntity> controller;
 		private IOrderCRUDService<TDto, TEntity> service;
+		public ItemOrderRequestDTO OrderedList { get; set; }
+
 		public IOrderCRUDService<TDto, TEntity> OrderedService
 		{
 			get { return service; }
@@ -27,7 +30,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			set { base.Controller = controller = value; }
 		}
 
-		public ItemOrderRequestDTO OrderedList { get; set; }
+		
 
 		public override void TestFixtureSetUp()
 		{

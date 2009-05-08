@@ -205,11 +205,7 @@ namespace Membrane.Commons.Web.MonoRail
 			model
 				.AddEntityAssembly(assembly)
 				.Where(entity => entity.IsAbstract == false &&
-				                 entity.GetInterface("IEntity") != null)/* &&
-								 (entity != typeof(BaseEntity) ||
-								 entity != typeof(BaseOrderedEntity) ||
-								// entity != typeof(BaseVersionedEntity) ||
-								 entity != typeof(BaseVersionedAndOrderedEntity)))*/
+				                 entity.GetInterface("IEntity") != null)
 				.Configure(configuration);
 			
 

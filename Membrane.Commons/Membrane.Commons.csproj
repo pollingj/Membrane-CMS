@@ -120,7 +120,7 @@
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
     <Compile Include="Plugin\Controllers\OrderCRUDController.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderRequestDTO.cs" />
-    <Compile Include="Plugin\DTOs\IOrderedDTO.cs" />
+    <Compile Include="Plugin\DTOs\Interfaces\IOrderedDTO.cs" />
     <Compile Include="Plugin\DTOs\ItemOrderResponseDTO.cs" />
     <Compile Include="Plugin\Entities\BaseEntity.cs" />
     <Compile Include="Plugin\Entities\BaseOrderedEntity.cs" />
@@ -131,8 +131,8 @@
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />
     <Compile Include="Plugin\Controllers\ICRUDController.cs" />
-    <Compile Include="Plugin\Services\ICRUDService.cs" />
-    <Compile Include="Plugin\DTOs\IDTO.cs" />
+    <Compile Include="Plugin\Services\Interfaces\ICRUDService.cs" />
+    <Compile Include="Plugin\DTOs\Interfaces\IDTO.cs" />
     <Compile Include="Plugin\Queries\PagedItems.cs" />
     <Compile Include="FormGeneration\Attributes\FormFieldTypeAttribute.cs" />
     <Compile Include="FormGeneration\Services\PropertyReaderService.cs" />
@@ -156,8 +156,9 @@
     <Compile Include="Persistence\NHibernate\NHibernateTransactionFacility .cs" />
     <Compile Include="Persistence\NHibernate\NHibernateTransactionInterceptor.cs" />
     <Compile Include="Persistence\NHibernate\NHibernateWebSessionModule.cs" />
-    <Compile Include="Plugin\Services\IOrderCRUDService.cs" />
-    <Compile Include="Plugin\Services\IPluginsService.cs" />
+    <Compile Include="Plugin\Services\Interfaces\ICultureService.cs" />
+    <Compile Include="Plugin\Services\Interfaces\IOrderCRUDService.cs" />
+    <Compile Include="Plugin\Services\Interfaces\IPluginsService.cs" />
     <Compile Include="Plugin\Services\OrderCRUDService.cs" />
     <Compile Include="Plugin\Services\PluginsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

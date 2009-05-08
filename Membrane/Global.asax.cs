@@ -6,6 +6,7 @@ using Castle.MonoRail.WindsorExtension;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Plugin.Services;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Commons.Wrappers;
 using Membrane.Commons.Wrappers.Interfaces;

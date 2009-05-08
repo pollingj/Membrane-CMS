@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Membrane.Commons;
-using Membrane.Commons.Plugin;
 using Membrane.Commons.Plugin.Services;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Tests.Unit.Core;
 using NUnit.Framework;

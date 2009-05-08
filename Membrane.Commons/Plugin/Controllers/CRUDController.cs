@@ -3,8 +3,8 @@ using Castle.Components.Validator;
 using Castle.MonoRail.Framework;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Plugin.DTOs;
-using Membrane.Commons.Plugin.Services;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plugin.Services.Interfaces;
 
 namespace Membrane.Commons.Plugin.Controllers
 {

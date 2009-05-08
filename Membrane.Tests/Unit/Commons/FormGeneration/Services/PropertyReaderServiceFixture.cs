@@ -5,7 +5,7 @@ using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
-using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
 using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Commons.FormGeneration.Services

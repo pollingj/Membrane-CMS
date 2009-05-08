@@ -1,5 +1,5 @@
 using System;
-using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
 
 namespace Membrane.Plugins.News.DTOs
 {

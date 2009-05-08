@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Membrane.Commons.Persistence;
-using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
 using Membrane.Commons.Plugin.Services;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using NUnit.Framework;
 using Rhino.Mocks;
 

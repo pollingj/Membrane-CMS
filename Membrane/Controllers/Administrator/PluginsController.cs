@@ -1,5 +1,5 @@
 using Castle.Components.Validator;
-using Membrane.Commons.Plugin;
+using Membrane.Commons.Plugin.Services.Interfaces;
 
 namespace Membrane.Controllers.Administrator
 {

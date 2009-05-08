@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using Castle.Windsor;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Wrappers.Interfaces;
 
 namespace Membrane.Commons.Plugin.Services

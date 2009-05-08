@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plug;
 
-namespace Membrane.Commons.Plugin.Services
+namespace Membrane.Commons.Plugin.Services.Interfaces
 {
 	public interface IOrderCRUDService<TDto, TEntity> : ICRUDService<TDto, TEntity>
 	{

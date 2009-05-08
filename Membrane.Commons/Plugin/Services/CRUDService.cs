@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using AutoMapper;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
-using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plugin.DTOs.Interfaces;
 using Membrane.Commons.Plugin.Queries;
+using Membrane.Commons.Plugin.Services.Interfaces;
 
 namespace Membrane.Commons.Plugin.Services
 {
