@@ -17,6 +17,7 @@ using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using FluentNHibernate.AutoMap;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.Conventions;
 using Membrane.Commons.Persistence.NHibernate;
 using Membrane.Commons.Plugin.Entities;
 using NHibernate;
@@ -188,9 +189,26 @@ namespace Membrane.Commons.Web.MonoRail
 
 		private void RegisterEntitiesAssembly(Configuration configuration, Assembly assembly)
 		{
-			var model = new AutoPersistenceModel
-			{
-				Conventions =
+			var model = new AutoPersistenceModel()
+				.WithSetup(s => s.IsBaseType = (type => type == typeof (BaseEntity) || type == typeof (BaseOrderedEntity)
+				                                        || type == typeof (BaseVersionedEntity) || type == typeof (BaseVersionedAndOrderedEntity)))
+				.ConventionDiscovery.Setup(c =>
+				                           	{
+				                           		c.Add<FluentNHibernate.Conventions.Defaults.PrimaryKeyConvention>();
+				                           		c.Add<ForeignKeyConvention>();
+				                           		c.Add<TableNameConvention>();
+				                           		c.Add<ManyToManyTableConvention>();
+				                           	}
+				);
+
+			/*{
+                
+                ConventionDiscovery =
+            	{
+            		PrimaryKey.Name.Is(x => "ID"),
+					ForeignKey.EndsWith("_Id")
+            	}
+				/*Conventions =
 				{
 					GetPrimaryKeyName = (type => "Id"),
 					GetForeignKeyNameOfParent = (type => type.Name + "_Id"),
@@ -199,8 +217,8 @@ namespace Membrane.Commons.Web.MonoRail
 					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name),
 					IsBaseType = (type => type == typeof(BaseEntity) || type == typeof(BaseOrderedEntity)
 										|| type == typeof(BaseVersionedEntity) || type == typeof(BaseVersionedAndOrderedEntity))
-				}
-			};
+				}*
+			};*/
 
 			model
 				.AddEntityAssembly(assembly)

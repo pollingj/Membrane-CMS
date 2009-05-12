@@ -115,6 +115,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Persistence\Conventions\ForeignKeyConvention.cs" />
+    <Compile Include="Persistence\Conventions\ManyToManyTableConvention.cs" />
+    <Compile Include="Persistence\Conventions\PrimaryKeyConvention.cs" />
+    <Compile Include="Persistence\Conventions\TableNameConvention.cs" />
     <Compile Include="Persistence\IOrderedEntity.cs" />
     <Compile Include="Plugin\Controllers\CRUDController.cs" />
     <Compile Include="Plugin\Controllers\IOrderCRUDController.cs" />
