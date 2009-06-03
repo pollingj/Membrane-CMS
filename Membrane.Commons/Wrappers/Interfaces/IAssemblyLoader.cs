@@ -8,5 +8,6 @@ namespace Membrane.Commons.Wrappers.Interfaces
 		IAssemblyLoader GetExecutingAssembly();
 		AssemblyName GetAssemblyName(string assemblyFile);
 		Assembly Load(byte[] bytes);
+		Assembly[] GetCurrentDomainAssemblies();
 	}
 }

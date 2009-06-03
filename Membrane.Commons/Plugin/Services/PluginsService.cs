@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using SystemWrapper;
+using SystemWrapper.IO;
+using SystemWrapper.Reflection;
 using Castle.Windsor;
 using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Wrappers.Interfaces;
@@ -11,31 +14,38 @@ namespace Membrane.Commons.Plugin.Services
 {
 	public class PluginsService : IPluginsService
 	{
-		private readonly IAssemblyLoader assemblyLoader;
-		private readonly IFileSystem fileSystem;
+		private readonly IAssemblyWrap assembly;
+		private readonly IAppDomainWrap appDomain;
+		private readonly IAssemblyNameWrap assemblyName;
+		private readonly IFileWrap file;
+		private readonly IDirectoryWrap directory;
 		private readonly IWindsorContainer container;
 
-		protected static List<Assembly> pluginAssemblies = new List<Assembly>();
+		protected static List<IAssemblyWrap> pluginAssemblies = new List<IAssemblyWrap>();
 		private string pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
-		private Dictionary<string, Assembly> _assemblyList;
+		private Dictionary<string, AssemblyWrap> _assemblyList;
 
-		public PluginsService(IAssemblyLoader assemblyLoader, IFileSystem fileSystem)
+
+		public PluginsService(IAssemblyWrap assembly, IAppDomainWrap appDomain, IAssemblyNameWrap assemblyName, IFileWrap file, IDirectoryWrap directory)
 		{
-			this.assemblyLoader = assemblyLoader;
-			this.fileSystem = fileSystem;
+			this.assembly = assembly;
+			this.appDomain = appDomain;
+			this.assemblyName = assemblyName;
+			this.file = file;
+			this.directory = directory;
 		}
 
 
 		public List<IMembranePlugin> FindAvailablePlugins()
 		{
-			var pluginFilePaths = fileSystem.GetFiles(pluginFolder, "*.dll");
+			var pluginFilePaths = directory.GetFiles(pluginFolder, "*.dll");
 			var foundPlugins = new List<IMembranePlugin>();
 
 			foreach (var pluginFilePath in pluginFilePaths)
 			{
 				var pluginAssembly = getAssembly(pluginFilePath);
 
-				if (pluginAssembly != assemblyLoader.GetExecutingAssembly())
+				if (pluginAssembly != assembly.GetExecutingAssembly())
 				{
 					try
 					{
@@ -81,14 +91,14 @@ namespace Membrane.Commons.Plugin.Services
 			throw new System.NotImplementedException();
 		}
 
-		private Assembly getAssembly(string fileName)
+		private IAssemblyWrap getAssembly(string fileName)
 		{
-			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-			Assembly foundAssembly = null;
+			var currentDomain = appDomain.CurrentDomain;
+			IAssemblyWrap[] assemblies = currentDomain.GetAssemblies();
+			IAssemblyWrap foundAssembly = null;
 			foreach (var assembly in assemblies)
 			{
-				//var assemblyName = ;
-				if (assembly.FullName == assemblyLoader.GetAssemblyName(fileName).FullName)
+				if (assembly.FullName == assemblyName.GetAssemblyName(fileName).FullName)
 				{
 					foundAssembly = assembly;
 					break;
@@ -97,8 +107,8 @@ namespace Membrane.Commons.Plugin.Services
 
 			if (foundAssembly == null)
 			{
-				var assemblyBytes = fileSystem.ReadAllBytes(fileName);
-				foundAssembly = assemblyLoader.Load(assemblyBytes);
+				var assemblyBytes = file.ReadAllBytes(fileName);
+				foundAssembly = assembly.Load(assemblyBytes);
 			}
 
 			return foundAssembly;
@@ -111,9 +121,9 @@ namespace Membrane.Commons.Plugin.Services
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
 		/// <returns>The resolved Assembly</returns>
-		Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		IAssemblyWrap CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
 		{
-			Assembly assembly = null;
+			IAssemblyWrap assembly = null;
 
 			var name = args.Name;
 

@@ -5,6 +5,7 @@ using System.Reflection;
 using Membrane.Commons.Persistence.Exceptions;
 using NHibernate.Linq;
 
+
 namespace Membrane.Commons.Persistence.NHibernate
 {
 	public class NHibernateRepository<T> : IRepository<T> where T : class, IEntity

@@ -201,25 +201,6 @@ namespace Membrane.Commons.Web.MonoRail
 				                           	}
 				);
 
-			/*{
-                
-                ConventionDiscovery =
-            	{
-            		PrimaryKey.Name.Is(x => "ID"),
-					ForeignKey.EndsWith("_Id")
-            	}
-				/*Conventions =
-				{
-					GetPrimaryKeyName = (type => "Id"),
-					GetForeignKeyNameOfParent = (type => type.Name + "_Id"),
-					GetForeignKeyName = (info => info.Name + "_Id"),
-					GetTableName = (type => type.Name),
-					GetManyToManyTableName = ((child, parent) => child.Name + "_To_" + parent.Name),
-					IsBaseType = (type => type == typeof(BaseEntity) || type == typeof(BaseOrderedEntity)
-										|| type == typeof(BaseVersionedEntity) || type == typeof(BaseVersionedAndOrderedEntity))
-				}*
-			};*/
-
 			model
 				.AddEntityAssembly(assembly)
 				.Where(entity => entity.IsAbstract == false &&
