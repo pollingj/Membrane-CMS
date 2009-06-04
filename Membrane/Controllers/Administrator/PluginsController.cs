@@ -1,10 +1,14 @@
 using System;
 using System.Configuration;
 using Castle.Components.Validator;
+using Castle.MonoRail.Framework;
 using Membrane.Core.Services.Interfaces;
+using Membrane.Filters;
 
 namespace Membrane.Controllers.Administrator
 {
+	[ControllerDetails(Area = "Administrator")]
+	[Filter(ExecuteWhen.BeforeAction, typeof(AuthenticationFilter))]
 	public class PluginsController : BaseController
 	{
 		private readonly IPluginsService service;

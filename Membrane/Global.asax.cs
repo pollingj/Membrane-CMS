@@ -1,8 +1,13 @@
 ﻿using System.Reflection;
+using SystemWrapper;
+using SystemWrapper.IO;
+using SystemWrapper.Reflection;
+using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
 using Castle.MonoRail.WindsorExtension;
+using Castle.Windsor;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Plugin.Services;
@@ -32,9 +37,26 @@ namespace Membrane
 		public override void RegisterApplicationComponents()
 		{
 			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
-			container.AddComponent<IAuthenticationService, AuthenticationService>();
-			container.AddComponent<IEncryptionService, EncryptionService>();
-			container.AddComponent<IUserService, UserService>();
+			/*			container.AddComponent<IAuthenticationService, AuthenticationService>();
+						container.AddComponent<IEncryptionService, EncryptionService>();
+						container.AddComponent<IUserService, UserService>();
+						container.AddComponent<IPluginsService, PluginsService>();*/
+			container.AddComponent<IAssemblyWrap, AssemblyWrap>();
+			container.AddComponent<IAppDomainWrap, AppDomainWrap>();
+			container.AddComponent<IAssemblyNameWrap, AssemblyName>();
+			container.AddComponent<IFileWrap, FileWrap>();
+			container.AddComponent<IDirectoryWrap, DirectoryWrap>();
+
+			var assembly = Assembly.Load("Membrane.Core");
+
+			container
+				.Register(
+				AllTypes.Pick().FromAssembly(assembly)
+					.Configure(c => c.LifeStyle.Transient)
+					.If(c => c.Name.Contains("Service"))
+				);
+
+			
 			container.AddComponent("autogenerator", typeof(IPropertyReaderService<>), typeof(PropertyReaderService<>));
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 			container.AddComponent("ordercrudservice", typeof(IOrderCRUDService<,>), typeof(OrderCRUDService<,>));
@@ -42,6 +64,8 @@ namespace Membrane
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));
+
+			container.AddComponent<IWindsorContainer, WindsorContainer>();
 		}
 
 		public override void RegisterRoutes(RoutingEngine rules)

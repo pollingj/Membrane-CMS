@@ -1,4 +1,5 @@
 ﻿<ul id="adminMenu">
-	<li>${Url.Link( "User Groups", new {area = "Administrator", controller = "UserGroups", action = "List"}, new { id="UserGroups" })}</li>
-	<li>${Url.Link( "Navigation Types", new {area = "Administrator", controller = "NavigationTypes", action = "List"}, new { id="NavigationTypes" })}</li>
+	<li>${Url.Link("User Groups", new { area = "Administrator", controller = "UserGroups", action = "List" }, new { id = "UserGroups" })}</li>
+	<li>${Url.Link("Navigation Types", new { area = "Administrator", controller = "NavigationTypes", action = "List" }, new { id = "NavigationTypes" })}</li>
+	<li>${Url.Link( "Plugins", new {area = "Administrator", controller = "Plugins", action = "List"}, new { id="Plugins" })}</li>
 </ul>
