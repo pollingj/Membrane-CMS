@@ -121,7 +121,7 @@ namespace Membrane.Core.Services
 		{
 			var foundPlugin = repository.FindById(id);
 			var plugin = FindPlugin(foundPlugin.Name, pluginFolder);
-			var removed = false;
+			bool removed;
 
 			plugin.Uninstall();
 			plugin.RemoveComponents(container);
@@ -140,9 +140,29 @@ namespace Membrane.Core.Services
 			return removed;
 		}
 
-		public bool UpgradePlugin(Guid id)
+		public bool UpgradePlugin(Guid id, string pluginFolder)
 		{
-			throw new System.NotImplementedException();
+			var foundPlugin = repository.FindById(id);
+			var plugin = FindPlugin(foundPlugin.Name, pluginFolder);
+
+			bool upgraded;
+
+			foundPlugin.Version = plugin.Version;
+			plugin.Upgrade();
+			plugin.Initialize();
+			plugin.RegisterComponents(container);
+
+			try
+			{
+				repository.Update(foundPlugin);
+				upgraded = true;
+			}
+			catch (RepositoryUpdateException)
+			{
+				upgraded = false;
+			}
+
+			return upgraded;
 		}
 
 		private IMembranePlugin FindPlugin(string pluginName, string pluginFolder)

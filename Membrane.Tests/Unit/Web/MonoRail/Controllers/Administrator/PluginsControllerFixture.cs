@@ -137,7 +137,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		private void MockPluginUpgrade(bool success)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.UpgradePlugin(PluginId)).Return(success))
+				.Expecting(() => Expect.Call(service.UpgradePlugin(PluginId, PLUGINPATH)).Return(success))
 				.Verify(() => controller.Upgrade(PluginId));
 		}
 	}

@@ -36,7 +36,7 @@ namespace Membrane.Controllers.Administrator
 
 		public void Upgrade(Guid pluginId)
 		{
-			var upgraded = service.UpgradePlugin(pluginId);
+			var upgraded = service.UpgradePlugin(pluginId, ConfigurationManager.AppSettings["plugins.path"]);
 
 			PluginActionHandling(upgraded, "upgrading");
 		}

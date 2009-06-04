@@ -11,6 +11,6 @@ namespace Membrane.Core.Services.Interfaces
 		IList<InstalledPluginDTO> GetAllInstalledPlugins();
 		bool InstallPlugin(string pluginName, string pluginFolder);
 		bool UninstallPlugin(Guid id, string pluginFolder);
-		bool UpgradePlugin(Guid id);
+		bool UpgradePlugin(Guid id, string pluginFolder);
 	}
 }

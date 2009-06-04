@@ -34,6 +34,13 @@ namespace Membrane.Tests.Unit.Core.Services
 		private const string PLUGINPATH = "/plugins";
 		private const string PLUGINSEARCHPATTERN = "*.dll";
 
+		private Guid pluginId = Guid.NewGuid();
+		private string[] pluginLibraries = new[] { "plugins.dll" };
+
+		private byte[] bytes = new byte[4];
+		private AssemblyNameWrap foundAssemblyName = new AssemblyNameWrap("blog");
+		private IAssemblyWrap executingAssembly;
+
 		public override void SetUp()
 		{
 			base.SetUp();
@@ -45,6 +52,8 @@ namespace Membrane.Tests.Unit.Core.Services
 			directory = mockery.Stub<IDirectoryWrap>();
 			container = mockery.DynamicMock<IWindsorContainer>();
 			repository = mockery.DynamicMock<IRepository<InstalledPlugin>>();
+
+			executingAssembly = mockery.Stub<IAssemblyWrap>();
 
 			service = new PluginsService(assembly, appDomain, assemblyName, file, directory, container, repository);
 		}
@@ -108,14 +117,9 @@ namespace Membrane.Tests.Unit.Core.Services
 		[Test]
 		public void CanSuccessfullyUninstallPlugin()
 		{
-			var pluginId = Guid.NewGuid();
 			var result = false;
 
-			var pluginLibraries = new[] { "plugins.dll" };
 
-			var bytes = new byte[4];
-			var foundAssemblyName = new AssemblyNameWrap("blog");
-			var executingAssembly = mockery.Stub<IAssemblyWrap>();
 
 			With.Mocks(mockery)
 				.Expecting(() =>
@@ -132,6 +136,30 @@ namespace Membrane.Tests.Unit.Core.Services
 					Expect.Call(() => repository.Delete(pluginId));
 				})
 				.Verify(() => result = service.UninstallPlugin(pluginId, PLUGINPATH));
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void CanUpradePlugin()
+		{
+			var result = false;
+
+			With.Mocks(mockery)
+				.Expecting(() =>
+           		{
+					Expect.Call(repository.FindById(pluginId)).Return(new InstalledPlugin { Id = pluginId, Name = "Test Blog", Version = "2.0.0" });
+					Expect.Call(directory.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
+					Expect.Call(file.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
+					Expect.Call(appDomain.CurrentDomain).Return(new AppDomainWrap(AppDomain.CurrentDomain));
+					Expect.Call(appDomain.GetAssemblies()).Return(new[] { executingAssembly });
+					Expect.Call(assemblyName.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
+					Expect.Call(assembly.Load(null)).IgnoreArguments().Return(new AssemblyWrap(Assembly.GetExecutingAssembly()));
+					Expect.Call(assembly.GetExecutingAssembly()).Return(executingAssembly);
+					Expect.Call(assembly.GetTypes()).Return(new[] { typeof(TestBlogPlugin), typeof(TestNewsPlugin) });
+           			Expect.Call(() => repository.Update(new InstalledPlugin {Id = pluginId, Name = "Test Blog", Version = "3.0.0"})).IgnoreArguments();
+           		})
+				.Verify(() => result = service.UpgradePlugin(pluginId, PLUGINPATH));
 
 			Assert.IsTrue(result);
 		}
@@ -153,12 +181,6 @@ namespace Membrane.Tests.Unit.Core.Services
 
 		private With.IMockVerifier mockFindAvailablePlugins(bool withSaveRepositoryCall)
 		{
-			var pluginLibraries = new []{ "plugins.dll" };
-
-			var bytes = new byte[4];
-			var foundAssemblyName = new AssemblyNameWrap("blog");
-			var executingAssembly = mockery.Stub<IAssemblyWrap>();
-
 			var mocked = With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
