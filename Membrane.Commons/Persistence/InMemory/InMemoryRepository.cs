@@ -24,11 +24,13 @@ namespace Membrane.Commons.Persistence.InMemory
 			return matches.Count > 0 ? matches[0] : null;
 		}
 
-		public void Save(T entity)
+		public Guid Save(T entity)
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
 
 			entities.Add(entity);
+
+			return Guid.NewGuid();
 		}
 
 		public void Update(T entity)

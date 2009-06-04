@@ -26,21 +26,23 @@ namespace Membrane.Commons.Persistence.NHibernate
 			return sessionLocater.CurrentSession.Load<T>(id);
 		}
 
-		public void Save(T entity)
+		public Guid Save(T entity)
 		{
 			GuardAgainst.ArgumentNull(entity, "entity");
-
+			Guid newId;
 			cleanRelatedData(entity);
 
 			try
 			{
-				sessionLocater.CurrentSession.Save(entity);
+				newId = (Guid)sessionLocater.CurrentSession.Save(entity);
 				sessionLocater.CurrentSession.Flush();
 			}
 			catch
 			{
 				throw new RepositorySaveException();
 			}
+
+			return newId;
 
 		}
 

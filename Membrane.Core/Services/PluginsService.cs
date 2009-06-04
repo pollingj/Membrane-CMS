@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using SystemWrapper;
 using SystemWrapper.IO;
 using SystemWrapper.Reflection;
+using AutoMapper;
 using Castle.Windsor;
-using Membrane.Commons.Plugin.Services.Interfaces;
-using Membrane.Commons.Wrappers.Interfaces;
+using Membrane.Commons;
+using Membrane.Commons.Persistence;
+using Membrane.Commons.Persistence.Exceptions;
+using Membrane.Core.DTOs;
+using Membrane.Core.Queries.Plugin;
+using Membrane.Core.Services.Interfaces;
+using Membrane.Entities;
 
-namespace Membrane.Commons.Plugin.Services
+namespace Membrane.Core.Services
 {
 	public class PluginsService : IPluginsService
 	{
@@ -20,23 +25,25 @@ namespace Membrane.Commons.Plugin.Services
 		private readonly IFileWrap file;
 		private readonly IDirectoryWrap directory;
 		private readonly IWindsorContainer container;
+		private readonly IRepository<InstalledPlugin> repository;
 
 		protected static List<IAssemblyWrap> pluginAssemblies = new List<IAssemblyWrap>();
-		private string pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 		private Dictionary<string, AssemblyWrap> _assemblyList;
 
 
-		public PluginsService(IAssemblyWrap assembly, IAppDomainWrap appDomain, IAssemblyNameWrap assemblyName, IFileWrap file, IDirectoryWrap directory)
+		public PluginsService(IAssemblyWrap assembly, IAppDomainWrap appDomain, IAssemblyNameWrap assemblyName, IFileWrap file, IDirectoryWrap directory, IWindsorContainer container, IRepository<InstalledPlugin> repository)
 		{
 			this.assembly = assembly;
 			this.appDomain = appDomain;
 			this.assemblyName = assemblyName;
 			this.file = file;
 			this.directory = directory;
+			this.container = container;
+			this.repository = repository;
 		}
 
 
-		public List<IMembranePlugin> FindAvailablePlugins()
+		public IList<IMembranePlugin> FindAvailablePlugins(string pluginFolder)
 		{
 			var pluginFilePaths = directory.GetFiles(pluginFolder, "*.dll");
 			var foundPlugins = new List<IMembranePlugin>();
@@ -59,8 +66,8 @@ namespace Membrane.Commons.Plugin.Services
 							{
 								var plugin = (IMembranePlugin)Activator.CreateInstance(pluginType);
 
-								plugin.Initialize();
-								plugin.RegisterComponents(container);
+								/*plugin.Initialize();
+								plugin.RegisterComponents(container);*/
 
 								foundPlugins.Add(plugin);
 							}
@@ -76,19 +83,84 @@ namespace Membrane.Commons.Plugin.Services
 			return foundPlugins;
 		}
 
-		public bool InstallPlugin(string pluginName)
+		public IList<InstalledPluginDTO> GetAllInstalledPlugins()
+		{
+			var installedPlugins = repository.Find(new OrderedPlugins());
+
+			return Mapper.Map<ICollection<InstalledPlugin>, IList<InstalledPluginDTO>>(installedPlugins);
+		}
+
+		public bool InstallPlugin(string pluginName, string pluginFolder)
+		{
+			var installedPlugin = false;
+			var id = Guid.Empty;
+			var plugin = FindPlugin(pluginName, pluginFolder);
+
+			if (plugin != null)
+			{
+				plugin.Install();
+				plugin.Initialize();
+				plugin.RegisterComponents(container);
+				try
+				{
+					id = repository.Save(new InstalledPlugin {Name = plugin.Name, Version = plugin.Version});
+				}
+				catch (RepositorySaveException)
+				{
+					id = Guid.Empty;
+				}
+
+				if (id != Guid.Empty)
+					installedPlugin = true;
+			}
+
+			return installedPlugin;
+		}
+
+		public bool UninstallPlugin(Guid id, string pluginFolder)
+		{
+			var foundPlugin = repository.FindById(id);
+			var plugin = FindPlugin(foundPlugin.Name, pluginFolder);
+			var removed = false;
+
+			plugin.Uninstall();
+			plugin.RemoveComponents(container);
+
+			try
+			{
+				repository.Delete(id);
+				removed = true;
+			}
+			catch (RepositoryDeleteException)
+			{
+				removed = false;
+			}
+
+
+			return removed;
+		}
+
+		public bool UpgradePlugin(Guid id)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		public bool UninstallPlugin(string pluginName)
+		private IMembranePlugin FindPlugin(string pluginName, string pluginFolder)
 		{
-			throw new System.NotImplementedException();
-		}
+			IMembranePlugin foundPlugin = null;
+			var installedPlugin = false;
+			var plugins = FindAvailablePlugins(pluginFolder);
+			Guid id = Guid.Empty;
+			foreach (var plugin in plugins)
+			{
+				if (plugin.Name == pluginName)
+				{
+					foundPlugin = plugin;
+					break;
+				}
+			}
 
-		public bool UpgradePlugin(string pluginName)
-		{
-			throw new System.NotImplementedException();
+			return foundPlugin;
 		}
 
 		private IAssemblyWrap getAssembly(string fileName)

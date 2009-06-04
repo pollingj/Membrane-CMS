@@ -103,7 +103,7 @@
     <Compile Include="Unit\Commons\Plugin\Services\CRUDServiceFixture.cs" />
     <Compile Include="Unit\Commons\FormGeneration\Services\PropertyReaderServiceFixture.cs" />
     <Compile Include="Unit\Commons\Plugin\Services\OrderCRUDServiceFixture.cs" />
-    <Compile Include="Unit\Commons\Plugin\Services\PluginServiceFixture.cs" />
+    <Compile Include="Unit\Core\Services\PluginServiceFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
     <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\UserGroups\PagedUserGroupsFixture.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Unit\Core\Services\UserServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserGroupServiceFixture.cs" />
     <Compile Include="Unit\Plugins\News\NewsControllerFixture.cs" />
+    <Compile Include="Unit\TestPlugins\Plugins.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\NavigationTypesControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\PluginsControllerFixture.cs" />

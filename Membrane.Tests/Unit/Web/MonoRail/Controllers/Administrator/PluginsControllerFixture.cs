@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
-using Castle.Windsor;
+using System.Configuration;
 using Membrane.Commons;
-using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Controllers.Administrator;
+using Membrane.Core.DTOs;
+using Membrane.Core.Services.Interfaces;
+using Membrane.Tests.Unit.TestPlugins;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -15,7 +18,9 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		private PluginsController controller;
 
 		private const string PLUGINNAME = "Blog";
+		private const string PLUGINPATH = "/plugins";
 
+		private Guid PluginId = Guid.NewGuid();
 		public override void TestFixtureSetUp()
 		{
 			base.TestFixtureSetUp();
@@ -25,11 +30,16 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 			service = mockery.DynamicMock<IPluginsService>();
 			controller = new PluginsController(service);
 
+			ConfigurationManager.AppSettings["plugins.path"] = PLUGINPATH;
+
 			PrepareController(controller, "Plugins");
+
+
+
 		}
 
 		[Test]
-		public void CanListAllPluginNamesFromPluginsFolder()
+		public void CanListAllPluginNamesFromPluginsFolderAndAllInstalledPlugins()
 		{
 			var plugins = new List<IMembranePlugin>
 			              	{
@@ -37,11 +47,22 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 								new TestNewsPlugin()
 			              	};
 
+			var installedPlugins = new List<InstalledPluginDTO>
+			                       	{
+			                       		new InstalledPluginDTO {Id = Guid.NewGuid(), Name = "Blog", Version = "1.0.0"},
+			                       		new InstalledPluginDTO {Id = Guid.NewGuid(), Name = "News", Version = "2.0.0"}
+			                       	};
+
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.FindAvailablePlugins()).Return(plugins))
+				.Expecting(() =>
+				           	{
+				           		Expect.Call(service.FindAvailablePlugins(PLUGINPATH)).Return(plugins);
+				           		Expect.Call(service.GetAllInstalledPlugins()).Return(installedPlugins);
+				           	})
 				.Verify(() => controller.List());
 
 			Assert.AreEqual(plugins, controller.PropertyBag["plugins"]);
+			Assert.AreEqual(installedPlugins, controller.PropertyBag["installedplugins"]);
 			Assert.AreEqual(@"Plugins\Action", controller.SelectedViewName);
 		}
 
@@ -102,78 +123,24 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		private void MockPluginInstall(bool success)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.InstallPlugin(PLUGINNAME)).Return(success))
+				.Expecting(() => Expect.Call(service.InstallPlugin(PLUGINNAME, PLUGINPATH)).Return(success))
 				.Verify(() => controller.Install(PLUGINNAME));
 		}
 
 		private void MockPluginUninstall(bool success)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.UninstallPlugin(PLUGINNAME)).Return(success))
-				.Verify(() => controller.Uninstall(PLUGINNAME));
+				.Expecting(() => Expect.Call(service.UninstallPlugin(PluginId, PLUGINPATH)).Return(success))
+				.Verify(() => controller.Uninstall(PluginId));
 		}
 
 		private void MockPluginUpgrade(bool success)
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.UpgradePlugin(PLUGINNAME)).Return(success))
-				.Verify(() => controller.Upgrade(PLUGINNAME));
+				.Expecting(() => Expect.Call(service.UpgradePlugin(PluginId)).Return(success))
+				.Verify(() => controller.Upgrade(PluginId));
 		}
 	}
 
-	public class TestBlogPlugin : IMembranePlugin
-	{
-		public string Name
-		{
-			get { return "Blog"; }
-		}
 
-		public void Initialize()
-		{
-		}
-
-		public void Install()
-		{
-		}
-
-		public void Uninstall()
-		{
-		}
-
-		public void Upgrade()
-		{
-		}
-
-		public void RegisterComponents(IWindsorContainer container)
-		{
-		}
-	}
-
-	public class TestNewsPlugin : IMembranePlugin
-	{
-		public string Name
-		{
-			get { return "News"; }
-		}
-
-		public void Initialize()
-		{
-		}
-
-		public void Install()
-		{
-		}
-
-		public void Uninstall()
-		{
-		}
-
-		public void Upgrade()
-		{
-		}
-
-		public void RegisterComponents(IWindsorContainer container)
-		{
-		}
-	}
 }

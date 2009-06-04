@@ -44,6 +44,8 @@ namespace Membrane.Core.Mappers
 			Mapper.CreateMap<NavigationNode, NavigationNodeDTO>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
 
+			Mapper.CreateMap<InstalledPlugin, InstalledPluginDTO>();
+
 		}
 	}
 }

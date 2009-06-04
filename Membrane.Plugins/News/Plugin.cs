@@ -11,6 +11,12 @@ namespace Membrane.Plugins.News
 			get { return "News"; }
 		}
 
+		public string Version
+		{
+			get { return "1.0.0"; }
+		}
+
+
 		public void Initialize()
 		{
 		}
@@ -19,18 +25,21 @@ namespace Membrane.Plugins.News
 		{
 		}
 
+		public void RemoveComponents(IWindsorContainer container)
+		{
+		}
+
 		public void Install()
 		{
 			// Run sql install scripts
 
-            // Register any relevants componets with the container.
+
 		}
 
 		public void Uninstall()
 		{
 			// Run sql uninstall scripts
 
-			// Remove any relevant components from the container.
 		}
 
 		public void Upgrade()

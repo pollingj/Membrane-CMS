@@ -70,11 +70,11 @@ namespace Membrane.Commons.Plugin.Services
 		/// <returns>The Guid of the new object</returns>
 		public virtual Guid Create(TDto item)
 		{
-			var id = item.Id = Guid.NewGuid();
+			Guid id;
 
 			try
 			{
-				Repository.Save(Mapper.Map<TDto, TEntity>(item));
+				id = Repository.Save(Mapper.Map<TDto, TEntity>(item));
 			}
 			catch (RepositorySaveException)
 			{

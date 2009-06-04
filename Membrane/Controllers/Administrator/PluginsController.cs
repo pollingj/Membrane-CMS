@@ -1,5 +1,7 @@
+using System;
+using System.Configuration;
 using Castle.Components.Validator;
-using Membrane.Commons.Plugin.Services.Interfaces;
+using Membrane.Core.Services.Interfaces;
 
 namespace Membrane.Controllers.Administrator
 {
@@ -14,26 +16,27 @@ namespace Membrane.Controllers.Administrator
 
 		public void List()
 		{
-			PropertyBag["plugins"] = service.FindAvailablePlugins();
+			PropertyBag["plugins"] = service.FindAvailablePlugins(ConfigurationManager.AppSettings["plugins.path"]);
+			PropertyBag["installedplugins"] = service.GetAllInstalledPlugins();
 		}
 
 		public void Install(string pluginName)
 		{
-			var installed = service.InstallPlugin(pluginName);
+			var installed = service.InstallPlugin(pluginName, ConfigurationManager.AppSettings["plugins.path"]);
 
 			PluginActionHandling(installed, "installing");
 		}
 
-		public void Uninstall(string pluginName)
+		public void Uninstall(Guid pluginId)
 		{
-			var uninstalled = service.UninstallPlugin(pluginName);
+			var uninstalled = service.UninstallPlugin(pluginId, ConfigurationManager.AppSettings["plugins.path"]);
 
 			PluginActionHandling(uninstalled, "uninstalling");
 		}
 
-		public void Upgrade(string pluginName)
+		public void Upgrade(Guid pluginId)
 		{
-			var upgraded = service.UpgradePlugin(pluginName);
+			var upgraded = service.UpgradePlugin(pluginId);
 
 			PluginActionHandling(upgraded, "upgrading");
 		}

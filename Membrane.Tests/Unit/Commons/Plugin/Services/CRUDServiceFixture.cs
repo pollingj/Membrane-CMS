@@ -54,7 +54,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		}
 
 		[Test]
-		public virtual void CanGetUserGroupWithId()
+		public virtual void CanGetItemWithId()
 		{
 			var result = default(TDto);
 			With.Mocks(mockery)
@@ -69,7 +69,7 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Services
 		{
 			var result = Guid.Empty;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => Repository.Save(SingleEntity)).IgnoreArguments())
+				.Expecting(() => Expect.Call(Repository.Save(SingleEntity)).IgnoreArguments().Return(Guid.NewGuid()))
 				.Verify(() => result = Service.Create(SingleDTO));
 
 			Assert.AreNotEqual(Guid.Empty, result);
