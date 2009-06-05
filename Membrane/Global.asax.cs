@@ -1,23 +1,18 @@
-﻿using System.Reflection;
-using SystemWrapper;
-using SystemWrapper.IO;
-using SystemWrapper.Reflection;
+﻿using System;
+using System.Configuration;
+using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
-using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
 using Membrane.Commons.Plugin.Services;
 using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Web.MonoRail;
-using Membrane.Commons.Wrappers;
-using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
-using Membrane.Core.Services;
 using Membrane.Core.Services.Interfaces;
 using Membrane.ViewComponents;
 
@@ -34,27 +29,17 @@ namespace Membrane
 			AutoMapperConfiguration.Configure();
 		}
 
-		public override void RegisterApplicationComponents()
+		protected override void RegisterApplicationComponents()
 		{
-			container.AddComponent<IFormsAuthentication, FormsAuthenticationWrapper>();
-			/*			container.AddComponent<IAuthenticationService, AuthenticationService>();
-						container.AddComponent<IEncryptionService, EncryptionService>();
-						container.AddComponent<IUserService, UserService>();
-						container.AddComponent<IPluginsService, PluginsService>();*/
-			container.AddComponent<IAssemblyWrap, AssemblyWrap>();
-			container.AddComponent<IAppDomainWrap, AppDomainWrap>();
-			container.AddComponent<IAssemblyNameWrap, AssemblyName>();
-			container.AddComponent<IFileWrap, FileWrap>();
-			container.AddComponent<IDirectoryWrap, DirectoryWrap>();
+			container.Register(
+				AllTypes.Pick().FromAssembly(Assembly.Load("Membrane.Commons"))
+				.Configure(c => c.LifeStyle.Transient).If(c => c.Namespace.Contains("Wrappers"))
+				.WithService.FirstInterface());
 
-			var assembly = Assembly.Load("Membrane.Core");
-
-			container
-				.Register(
-				AllTypes.Pick().FromAssembly(assembly)
-					.Configure(c => c.LifeStyle.Transient)
-					.If(c => c.Name.Contains("Service"))
-				);
+			container.Register(
+				AllTypes.Pick().FromAssembly(Assembly.Load("Membrane.Core"))
+					.Configure(c => c.LifeStyle.Transient).If(c => c.Name.Contains("Service"))
+					.WithService.FirstInterface());
 
 			
 			container.AddComponent("autogenerator", typeof(IPropertyReaderService<>), typeof(PropertyReaderService<>));
@@ -65,10 +50,10 @@ namespace Membrane
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));
 
-			container.AddComponent<IWindsorContainer, WindsorContainer>();
+			container.Register(Component.For<IWindsorContainer>().Instance(container));
 		}
 
-		public override void RegisterRoutes(RoutingEngine rules)
+		protected override void RegisterRoutes(RoutingEngine rules)
 		{
 			rules.Add(new PatternRoute("/")
 				.DefaultForArea().IsEmpty
@@ -81,10 +66,18 @@ namespace Membrane
 
 			rules.Add(new PatternRoute("/<area>/<controller>/<action>")
 				.Restrict("area").AnyOf("Administrator", "User"));
-
-
-			
 		}
 
+		protected override void RegisterPlugins()
+		{
+			var service = container.Resolve<IPluginsService>();
+
+			var installedPlugins = service.GetAllInstalledPlugins();
+
+			foreach (var plugin in installedPlugins)
+			{
+				service.RegisterPlugin(plugin.Name, ConfigurationManager.AppSettings["plugins.path"]);
+			}
+		}
     }
 }

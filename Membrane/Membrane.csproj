@@ -138,10 +138,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
-    <Reference Include="SystemWrapper, Version=0.2.3441.24980, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\SystemWrapper.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -193,6 +189,10 @@
     <ProjectReference Include="..\Membrane.Core\Membrane.Core.csproj">
       <Project>{9926362A-159C-4073-B525-CF11FCE730B1}</Project>
       <Name>Membrane.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\CastleStuff\systemwrapper\SystemWrapper\SystemWrapper.csproj">
+      <Project>{B8DEECE0-6074-47C2-9AF4-123EE324D212}</Project>
+      <Name>SystemWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

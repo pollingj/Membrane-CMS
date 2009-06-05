@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SystemWrapper;
-using SystemWrapper.IO;
-using SystemWrapper.Reflection;
 using Castle.Windsor;
 using Membrane.Commons;
 using Membrane.Commons.Persistence;
+using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Queries.Plugin;
 using Membrane.Core.Services;
@@ -21,11 +19,8 @@ namespace Membrane.Tests.Unit.Core.Services
 	[TestFixture]
 	public class PluginServiceFixture : BaseFixture
 	{
-		private IAssemblyWrap assembly;
-		private IAssemblyNameWrap assemblyName;
-		private IAppDomainWrap appDomain;
-		private IFileWrap file;
-		private IDirectoryWrap directory;
+		private IAssemblyLoader assemblyLoader;
+		private IFileSystem fileSystem;
 		private IWindsorContainer container;
 		private IRepository<InstalledPlugin> repository;
 
@@ -38,24 +33,21 @@ namespace Membrane.Tests.Unit.Core.Services
 		private string[] pluginLibraries = new[] { "plugins.dll" };
 
 		private byte[] bytes = new byte[4];
-		private AssemblyNameWrap foundAssemblyName = new AssemblyNameWrap("blog");
-		private IAssemblyWrap executingAssembly;
+		private AssemblyName foundAssemblyName = new AssemblyName("blog");
+		private Assembly executingAssembly;
 
 		public override void SetUp()
 		{
 			base.SetUp();
 
-			assembly = mockery.Stub<IAssemblyWrap>();
-			appDomain = mockery.Stub<IAppDomainWrap>();
-			assemblyName = mockery.Stub<IAssemblyNameWrap>();
-			file = mockery.Stub<IFileWrap>();
-			directory = mockery.Stub<IDirectoryWrap>();
+			assemblyLoader = mockery.Stub<IAssemblyLoader>();
+			fileSystem = mockery.Stub<IFileSystem>();
 			container = mockery.DynamicMock<IWindsorContainer>();
 			repository = mockery.DynamicMock<IRepository<InstalledPlugin>>();
 
-			executingAssembly = mockery.Stub<IAssemblyWrap>();
+			executingAssembly = Assembly.Load("Membrane.Commons");
 
-			service = new PluginsService(assembly, appDomain, assemblyName, file, directory, container, repository);
+			service = new PluginsService(assemblyLoader, fileSystem, container, repository);
 		}
 
 		[Test]
@@ -94,7 +86,7 @@ namespace Membrane.Tests.Unit.Core.Services
 			Assert.AreEqual(installedPluginsDTO.Count, results.Count);
 
 		}
-
+		
 		[Test]
 		public void CanSuccessfullyInstallPlugin()
 		{
@@ -125,14 +117,12 @@ namespace Membrane.Tests.Unit.Core.Services
 				.Expecting(() =>
 				{
 					Expect.Call(repository.FindById(pluginId)).Return(new InstalledPlugin { Id = pluginId, Name = "Test Blog", Version = "2.0.0" });
-					Expect.Call(directory.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
-					Expect.Call(file.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
-					Expect.Call(appDomain.CurrentDomain).Return(new AppDomainWrap(AppDomain.CurrentDomain));
-					Expect.Call(appDomain.GetAssemblies()).Return(new[] { executingAssembly });
-					Expect.Call(assemblyName.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
-					Expect.Call(assembly.Load(null)).IgnoreArguments().Return(new AssemblyWrap(Assembly.GetExecutingAssembly()));
-					Expect.Call(assembly.GetExecutingAssembly()).Return(executingAssembly);
-					Expect.Call(assembly.GetTypes()).Return(new[] { typeof(TestBlogPlugin), typeof(TestNewsPlugin) });
+					Expect.Call(fileSystem.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
+					Expect.Call(fileSystem.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
+					Expect.Call(assemblyLoader.GetCurrentDomainAssemblies()).Return(new[] { executingAssembly });
+					Expect.Call(assemblyLoader.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
+					Expect.Call(assemblyLoader.Load(null)).IgnoreArguments().Return(Assembly.GetExecutingAssembly());
+					Expect.Call(assemblyLoader.GetExecutingAssembly()).Return(executingAssembly);
 					Expect.Call(() => repository.Delete(pluginId));
 				})
 				.Verify(() => result = service.UninstallPlugin(pluginId, PLUGINPATH));
@@ -149,19 +139,23 @@ namespace Membrane.Tests.Unit.Core.Services
 				.Expecting(() =>
            		{
 					Expect.Call(repository.FindById(pluginId)).Return(new InstalledPlugin { Id = pluginId, Name = "Test Blog", Version = "2.0.0" });
-					Expect.Call(directory.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
-					Expect.Call(file.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
-					Expect.Call(appDomain.CurrentDomain).Return(new AppDomainWrap(AppDomain.CurrentDomain));
-					Expect.Call(appDomain.GetAssemblies()).Return(new[] { executingAssembly });
-					Expect.Call(assemblyName.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
-					Expect.Call(assembly.Load(null)).IgnoreArguments().Return(new AssemblyWrap(Assembly.GetExecutingAssembly()));
-					Expect.Call(assembly.GetExecutingAssembly()).Return(executingAssembly);
-					Expect.Call(assembly.GetTypes()).Return(new[] { typeof(TestBlogPlugin), typeof(TestNewsPlugin) });
+					Expect.Call(fileSystem.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
+					Expect.Call(fileSystem.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
+					Expect.Call(assemblyLoader.GetCurrentDomainAssemblies()).Return(new[] { executingAssembly });
+					Expect.Call(assemblyLoader.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
+					Expect.Call(assemblyLoader.Load(null)).IgnoreArguments().Return(Assembly.GetExecutingAssembly());
+					Expect.Call(assemblyLoader.GetExecutingAssembly()).Return(executingAssembly);
            			Expect.Call(() => repository.Update(new InstalledPlugin {Id = pluginId, Name = "Test Blog", Version = "3.0.0"})).IgnoreArguments();
            		})
 				.Verify(() => result = service.UpgradePlugin(pluginId, PLUGINPATH));
 
 			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void CanRegisterPluginsWithContainer()
+		{
+			// TODO
 		}
 
 
@@ -184,14 +178,13 @@ namespace Membrane.Tests.Unit.Core.Services
 			var mocked = With.Mocks(mockery)
 				.Expecting(() =>
 				           	{
-				           		Expect.Call(directory.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
-				           		Expect.Call(file.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
-				           		Expect.Call(appDomain.CurrentDomain).Return(new AppDomainWrap(AppDomain.CurrentDomain));
-				           		Expect.Call(appDomain.GetAssemblies()).Return(new[] {executingAssembly});
-				           		Expect.Call(assemblyName.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
-				           		Expect.Call(assembly.Load(null)).IgnoreArguments().Return(new AssemblyWrap(Assembly.GetExecutingAssembly()));
-				           		Expect.Call(assembly.GetExecutingAssembly()).Return(executingAssembly);
-				           		Expect.Call(assembly.GetTypes()).Return(new[] {typeof (TestBlogPlugin), typeof (TestNewsPlugin)});
+				           		Expect.Call(fileSystem.GetFiles(PLUGINPATH, PLUGINSEARCHPATTERN)).IgnoreArguments().Return(pluginLibraries);
+								Expect.Call(fileSystem.ReadAllBytes(null)).IgnoreArguments().Return(bytes);
+				           		Expect.Call(assemblyLoader.GetCurrentDomainAssemblies()).Return(new[] {executingAssembly});
+								Expect.Call(assemblyLoader.GetAssemblyName("fileName")).Repeat.Any().IgnoreArguments().Return(foundAssemblyName);
+								Expect.Call(assemblyLoader.Load(null)).IgnoreArguments().Return(Assembly.GetExecutingAssembly());
+								Expect.Call(assemblyLoader.GetExecutingAssembly()).Return(executingAssembly);
+								//Expect.Call(assemblyLoader.GetTypes()).Return(new[] { typeof(TestBlogPlugin), typeof(TestNewsPlugin) });
 								if (withSaveRepositoryCall)
 									Expect.Call(repository.Save(null)).IgnoreArguments().Return(Guid.NewGuid());
 				           	});

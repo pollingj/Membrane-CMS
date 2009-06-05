@@ -46,9 +46,6 @@ namespace Membrane.Commons.Web.MonoRail
 			container = new WindsorContainer();
 			pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 
-			if (Directory.Exists(pluginFolder))
-				RegisterPlugins();
-
 			RegisterRoutes(RoutingModuleEx.Engine);
 
 			RegisterFacilities();
@@ -59,6 +56,9 @@ namespace Membrane.Commons.Web.MonoRail
 				ResolveEntityPluginDlls();
 
 			ConfigureNHibernate();
+
+			if (Directory.Exists(pluginFolder))
+				RegisterPlugins();
 
 		}
 
@@ -72,40 +72,7 @@ namespace Membrane.Commons.Web.MonoRail
 			get { return container; }
 		}
 
-		protected virtual void RegisterPlugins()
-		{
-			var pluginFilePaths = Directory.GetFiles(pluginFolder, "*.dll");
-
-			foreach (var pluginFilePath in pluginFilePaths)
-			{
-				var pluginAssembly = getAssembly(pluginFilePath);
-
-				if (pluginAssembly != Assembly.GetExecutingAssembly())
-				{
-					try
-					{
-						var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof (IMembranePlugin).IsAssignableFrom(t)).ToList();
-
-						if (pluginTypes.Count > 0)
-						{
-							pluginAssemblies.Add(pluginAssembly);
-
-							foreach (var pluginType in pluginTypes)
-							{
-								var plugin = (IMembranePlugin) Activator.CreateInstance(pluginType);
-
-								plugin.Initialize();
-								plugin.RegisterComponents(container);
-							}
-						}
-					}
-					catch (ReflectionTypeLoadException)
-					{
-						//There was a reflection error, ignore for now but probably need to at least log this info
-					}
-				}
-			}
-		}
+		
 
 		public void Configure(IMonoRailConfiguration configuration)
 		{
@@ -133,10 +100,10 @@ namespace Membrane.Commons.Web.MonoRail
 		{
 			RegisterAssemblyControllers(webAppAssembly);
 
-			foreach (var pluginAssembly in pluginAssemblies)
+			/*foreach (var pluginAssembly in pluginAssemblies)
 			{
 				RegisterAssemblyControllers(pluginAssembly);
-			}
+			}*/
 		}
 
 		private void RegisterAssemblyControllers(Assembly assembly)
@@ -272,8 +239,9 @@ namespace Membrane.Commons.Web.MonoRail
 
 		}
 
-		public abstract void RegisterApplicationComponents();
-		public abstract void RegisterRoutes(RoutingEngine rules);
+		protected abstract void RegisterApplicationComponents();
+		protected abstract void RegisterRoutes(RoutingEngine rules);
+		protected abstract void RegisterPlugins();
 
 	}
 

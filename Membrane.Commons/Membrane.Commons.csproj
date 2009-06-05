@@ -176,6 +176,8 @@
     <Compile Include="Web\HttpContextFacade .cs" />
     <Compile Include="Web\IHttpContext.cs" />
     <Compile Include="Web\MonoRail\MonoRailNHibernateHttpApplication .cs" />
+    <Compile Include="Wrappers\AssemblyLoader.cs" />
+    <Compile Include="Wrappers\FileSystem.cs" />
     <Compile Include="Wrappers\FormsAuthenticationWrapper.cs" />
     <Compile Include="Wrappers\Interfaces\IAssemblyLoader.cs" />
     <Compile Include="Wrappers\Interfaces\IFileSystem.cs" />

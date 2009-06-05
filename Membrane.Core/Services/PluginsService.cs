@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SystemWrapper;
-using SystemWrapper.IO;
 using SystemWrapper.Reflection;
 using AutoMapper;
 using Castle.Windsor;
 using Membrane.Commons;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
+using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Queries.Plugin;
 using Membrane.Core.Services.Interfaces;
@@ -19,40 +18,35 @@ namespace Membrane.Core.Services
 {
 	public class PluginsService : IPluginsService
 	{
-		private readonly IAssemblyWrap assembly;
-		private readonly IAppDomainWrap appDomain;
-		private readonly IAssemblyNameWrap assemblyName;
-		private readonly IFileWrap file;
-		private readonly IDirectoryWrap directory;
+		private readonly IAssemblyLoader assemblyLoader;
+		private readonly IFileSystem fileSystem;
 		private readonly IWindsorContainer container;
 		private readonly IRepository<InstalledPlugin> repository;
 
-		protected static List<IAssemblyWrap> pluginAssemblies = new List<IAssemblyWrap>();
+		private List<Assembly> pluginAssemblies = new List<Assembly>();
 		private Dictionary<string, AssemblyWrap> _assemblyList;
 
 
-		public PluginsService(IAssemblyWrap assembly, IAppDomainWrap appDomain, IAssemblyNameWrap assemblyName, IFileWrap file, IDirectoryWrap directory, IWindsorContainer container, IRepository<InstalledPlugin> repository)
+		public PluginsService(IAssemblyLoader assemblyLoader, IFileSystem fileSystem, IWindsorContainer container, IRepository<InstalledPlugin> repository)
 		{
-			this.assembly = assembly;
-			this.appDomain = appDomain;
-			this.assemblyName = assemblyName;
-			this.file = file;
-			this.directory = directory;
+			this.assemblyLoader = assemblyLoader;
+			this.fileSystem = fileSystem;
 			this.container = container;
 			this.repository = repository;
 		}
 
 
+
 		public IList<IMembranePlugin> FindAvailablePlugins(string pluginFolder)
 		{
-			var pluginFilePaths = directory.GetFiles(pluginFolder, "*.dll");
+			var pluginFilePaths = fileSystem.GetFiles(pluginFolder, "*.dll");
 			var foundPlugins = new List<IMembranePlugin>();
 
 			foreach (var pluginFilePath in pluginFilePaths)
 			{
 				var pluginAssembly = getAssembly(pluginFilePath);
 
-				if (pluginAssembly != assembly.GetExecutingAssembly())
+				if (pluginAssembly != assemblyLoader.GetExecutingAssembly())
 				{
 					try
 					{
@@ -65,10 +59,6 @@ namespace Membrane.Core.Services
 							foreach (var pluginType in pluginTypes)
 							{
 								var plugin = (IMembranePlugin)Activator.CreateInstance(pluginType);
-
-								/*plugin.Initialize();
-								plugin.RegisterComponents(container);*/
-
 								foundPlugins.Add(plugin);
 							}
 						}
@@ -165,6 +155,14 @@ namespace Membrane.Core.Services
 			return upgraded;
 		}
 
+		public void RegisterPlugin(string pluginName, string pluginFolder)
+		{
+			var plugin = FindPlugin(pluginName, pluginFolder);
+
+			plugin.Initialize();
+			plugin.RegisterComponents(container);
+		}
+
 		private IMembranePlugin FindPlugin(string pluginName, string pluginFolder)
 		{
 			IMembranePlugin foundPlugin = null;
@@ -183,14 +181,15 @@ namespace Membrane.Core.Services
 			return foundPlugin;
 		}
 
-		private IAssemblyWrap getAssembly(string fileName)
+		private Assembly getAssembly(string fileName)
 		{
-			var currentDomain = appDomain.CurrentDomain;
-			IAssemblyWrap[] assemblies = currentDomain.GetAssemblies();
-			IAssemblyWrap foundAssembly = null;
+			//var currentDomain = appDomain.CurrentDomain;
+			//Assembly[] assemblies = currentDomain.GetAssemblies();
+			var assemblies = assemblyLoader.GetCurrentDomainAssemblies();
+			Assembly foundAssembly = null;
 			foreach (var assembly in assemblies)
 			{
-				if (assembly.FullName == assemblyName.GetAssemblyName(fileName).FullName)
+				if (assembly.FullName == assemblyLoader.GetAssemblyName(fileName).FullName)
 				{
 					foundAssembly = assembly;
 					break;
@@ -199,8 +198,8 @@ namespace Membrane.Core.Services
 
 			if (foundAssembly == null)
 			{
-				var assemblyBytes = file.ReadAllBytes(fileName);
-				foundAssembly = assembly.Load(assemblyBytes);
+				var assemblyBytes = fileSystem.ReadAllBytes(fileName);
+				foundAssembly = assemblyLoader.Load(assemblyBytes);
 			}
 
 			return foundAssembly;

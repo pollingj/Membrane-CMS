@@ -1,1 +1,41 @@
-﻿
+﻿<global Title="'Membrane Plugins'"/>
+<use file="SharedMenu" />
+<use file="AdminMenu" />
+
+<h1>Available Plugins</h1>
+<table summary="The currently available membrane plugins">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Version</th>
+			<td />
+		</tr>
+	</thead>
+	<tbody>
+		<tr each='IMembranePlugin item in (IList)ViewData["plugins"]'>
+			<td>${item.Name}</td>
+			<td>${item.Version}</td>
+			<td>${Url.Link("Install", new { action = "Install", querystring = string.Format("pluginName={0}", item.Name) })}</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h1>Installed Plugins</h1>
+<table summary="The currently installed membrane plugins">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Version</th>
+			<td colspan="2" />
+		</tr>
+	</thead>
+	<tbody>
+		<tr each='InstalledPluginDTO item in (IList)ViewData["installedplugins"]'>
+			<td>${item.Name}</td>
+			<td>${item.Version}</td>
+			<td>${Url.Link("Upgrade", new { action = "Upgrade", querystring = string.Format("pluginId={0}", item.Id) })}</td>
+			<td>${Url.Link("Uninstall", new { action = "Uninstall", querystring = string.Format("pluginId={0}", item.Id) })}</td>
+		</tr>
+	</tbody>
+</table>

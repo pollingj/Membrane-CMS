@@ -1,6 +1,8 @@
 using System;
+using Castle.Core;
 using Castle.Windsor;
 using Membrane.Commons;
+using Membrane.Plugins.News.Controllers;
 
 namespace Membrane.Plugins.News
 {
@@ -23,10 +25,12 @@ namespace Membrane.Plugins.News
 
 		public void RegisterComponents(IWindsorContainer container)
 		{
+			container.AddComponentLifeStyle("newscontroller", typeof(NewsController), LifestyleType.Transient);
 		}
 
 		public void RemoveComponents(IWindsorContainer container)
 		{
+			container.Kernel.RemoveComponent("newscontroller");
 		}
 
 		public void Install()
