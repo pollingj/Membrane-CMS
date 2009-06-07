@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{390BD897-89B6-4D73-8B92-8B66C688004C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -190,10 +190,6 @@
       <Project>{9926362A-159C-4073-B525-CF11FCE730B1}</Project>
       <Name>Membrane.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="D:\CastleStuff\systemwrapper\SystemWrapper\SystemWrapper.csproj">
-      <Project>{B8DEECE0-6074-47C2-9AF4-123EE324D212}</Project>
-      <Name>SystemWrapper</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Administrator\Home\index.spark" />
@@ -228,9 +224,6 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
