@@ -29,16 +29,12 @@ namespace Membrane.Commons.Persistence.NHibernate
 
 			if (transactionRequired)
 			{
-				logger.Info("Starting transaction for method {0}.{1}.", invocation.TargetType.Name, invocation.Method.Name);
-
-				sessionLocater.CurrentSession.Transaction.Begin();
+				//The method is marked as transaction required. Each request has a transaction started by default (in NHibernateWebSessionModule)
+				//so this handles the transaction rollback only
 
 				try
 				{
 					invocation.Proceed();
-
-					logger.Info("Method {0}.{1} completed successfully, committing transaction.", invocation.TargetType.Name, invocation.Method.Name);
-					sessionLocater.CurrentSession.Transaction.Commit();
 				}
 				catch (Exception)
 				{
@@ -49,7 +45,9 @@ namespace Membrane.Commons.Persistence.NHibernate
 			}
 			else
 			{
-				logger.Info("Method {0}.{1} does not require a transaction, executing as normal.", invocation.TargetType.Name, invocation.Method.Name);
+				//The method is not marked as transaction required and so the default transaction will not be rolled back even if an exception occurs
+
+				logger.Info("Method {0}.{1} does not require a transaction, executing as normal (exceptions will not rollback the default transaction).", invocation.TargetType.Name, invocation.Method.Name);
 				invocation.Proceed();
 			}
 		}

@@ -35,7 +35,6 @@ namespace Membrane.Commons.Persistence.NHibernate
 			try
 			{
 				newId = (Guid)sessionLocater.CurrentSession.Save(entity);
-				sessionLocater.CurrentSession.Flush();
 			}
 			catch
 			{
@@ -55,7 +54,6 @@ namespace Membrane.Commons.Persistence.NHibernate
 			try
 			{
 				sessionLocater.CurrentSession.Update(entity);
-				sessionLocater.CurrentSession.Flush();
 			}
 			catch
 			{
@@ -93,7 +91,6 @@ namespace Membrane.Commons.Persistence.NHibernate
 			try
 			{
 				sessionLocater.CurrentSession.Delete(item);
-				sessionLocater.CurrentSession.Flush();
 			}
 			catch
 			{
