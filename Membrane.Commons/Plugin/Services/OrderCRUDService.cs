@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Castle.Services.Transaction;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Plug;
 using Membrane.Commons.Plugin.DTOs.Interfaces;
@@ -10,6 +11,7 @@ using Membrane.Commons.Plugin.Services.Interfaces;
 
 namespace Membrane.Commons.Plugin.Services
 {
+	[Transactional]
 	public class OrderCRUDService<TDto, TEntity> : CRUDService<TDto, TEntity>, IOrderCRUDService<TDto, TEntity>
 		where TDto : IOrderedDto
 		where TEntity : IOrderedEntity
@@ -63,6 +65,7 @@ namespace Membrane.Commons.Plugin.Services
 		/// </summary>
 		/// <param name="currentItemsOrder">The current list items in the correct order</param>
 		/// <returns>If successful or not (bool)</returns>
+		[Transaction]
 		public virtual bool SaveItemsOrder(ItemOrderRequestDTO currentItemsOrder)
 		{
 			var success = true;
