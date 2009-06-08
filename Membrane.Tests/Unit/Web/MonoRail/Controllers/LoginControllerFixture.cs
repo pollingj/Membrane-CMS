@@ -1,4 +1,7 @@
 using System;
+using System.Configuration;
+using Membrane.Commons.Plugin.DTOs;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Controllers;
 using Membrane.Core.DTOs;
@@ -12,28 +15,44 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 	[TestFixture]
 	public class LoginControllerFixture : BaseControllerFixture
 	{
-		private IAuthenticationService service;
+		private IAuthenticationService authenticationService;
+		private IPluginsService pluginsService;
+		private ICultureService cultureService;
 		private IFormsAuthentication formsAuthentication;
 		private LoginController controller;
 
 		private readonly AuthenticationRequestDTO authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
 
+		private const string PLUGINPATH = "/plugins";
+
 		public override void TestFixtureSetUp()
 		{
 			base.TestFixtureSetUp();
 
-			service = mockery.DynamicMock<IAuthenticationService>();
+			authenticationService = mockery.DynamicMock<IAuthenticationService>();
+			pluginsService = mockery.DynamicMock<IPluginsService>();
 			formsAuthentication = mockery.Stub<IFormsAuthentication>();
-			controller = new LoginController(service, formsAuthentication);
+			cultureService = mockery.DynamicMock<ICultureService>();
+			controller = new LoginController(authenticationService, pluginsService, cultureService, formsAuthentication);
+
+			ConfigurationManager.AppSettings["plugins.path"] = PLUGINPATH;
 
 			PrepareController(controller);
+		}
+
+		[Test]
+		public void IndexShouldRegisterPlugins()
+		{
+			With.Mocks(mockery)
+				.Expecting(() => pluginsService.RegisterInstalledPlugins(PLUGINPATH))
+				.Verify(() => controller.Index());
 		}
 
 		[Test]
 		public void ShouldAlertUserForInvalidLogin()
 		{
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(new AuthenticatedUserDTO()))
+				.Expecting(() => Expect.Call(authenticationService.AuthenticateUser(authenticationRequest)).Return(new AuthenticatedUserDTO()))
 				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.AreEqual(1, controller.Flash.Count, "Flash error is not being populate");
@@ -54,16 +73,19 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 
 		private void DoSuccessFullLogin(AuthenticatedUserDTO authenticatedUser, UserType role, string redirectPath)
 		{
+			var defaultCulture = new CultureDTO {Id = Guid.NewGuid(), Name = "English"};
 			With.Mocks(mockery)
 				.Expecting(() =>
 					{
-						Expect.Call(service.AuthenticateUser(authenticationRequest)).Return(authenticatedUser);
+						Expect.Call(authenticationService.AuthenticateUser(authenticationRequest)).Return(authenticatedUser);
 						Expect.Call(formsAuthentication.Encrypt(null)).IgnoreArguments();
+						Expect.Call(cultureService.GetDefaultCulture()).Return(defaultCulture);
 					})
 				.Verify(() => controller.Login(authenticationRequest));
 
 			Assert.IsTrue(Context.CurrentUser.Identity.IsAuthenticated);
 			Assert.IsTrue(Context.CurrentUser.IsInRole(role.ToString()));
+			Assert.AreEqual(defaultCulture, Context.Session["Culture"]);
 			Assert.AreEqual(redirectPath, Response.RedirectedTo);
 		}
 

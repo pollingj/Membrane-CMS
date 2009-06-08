@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Web;
 using Castle.Facilities.Logging;
@@ -56,10 +55,6 @@ namespace Membrane.Commons.Web.MonoRail
 				ResolveEntityPluginDlls();
 
 			ConfigureNHibernate();
-
-			if (Directory.Exists(pluginFolder))
-				RegisterPlugins();
-
 		}
 
 		public void Application_OnEnd()
@@ -99,11 +94,6 @@ namespace Membrane.Commons.Web.MonoRail
 		protected virtual void RegisterControllers()
 		{
 			RegisterAssemblyControllers(webAppAssembly);
-
-			/*foreach (var pluginAssembly in pluginAssemblies)
-			{
-				RegisterAssemblyControllers(pluginAssembly);
-			}*/
 		}
 
 		private void RegisterAssemblyControllers(Assembly assembly)
@@ -144,10 +134,10 @@ namespace Membrane.Commons.Web.MonoRail
 			}
 			
 
-			foreach (Assembly pluginAssembly in pluginAssemblies)
+			/*foreach (Assembly pluginAssembly in pluginAssemblies)
 			{
 				RegisterEntitiesAssembly(configuration, pluginAssembly);
-			}
+			}*/
 
 
 			ISessionFactory sessionFactory = configuration.BuildSessionFactory();
@@ -241,8 +231,6 @@ namespace Membrane.Commons.Web.MonoRail
 
 		protected abstract void RegisterApplicationComponents();
 		protected abstract void RegisterRoutes(RoutingEngine rules);
-		protected abstract void RegisterPlugins();
-
 	}
 
 

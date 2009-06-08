@@ -1,7 +1,9 @@
 using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Security;
 using Castle.MonoRail.Framework;
+using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Core.DTOs;
 using Membrane.Core.Services.Interfaces;
@@ -14,24 +16,33 @@ namespace Membrane.Controllers
 	/// </summary>
 	public class LoginController : BaseController
 	{
-		private readonly IAuthenticationService service;
+		private readonly IAuthenticationService authenticationService;
+		private readonly IPluginsService pluginsService;
+		private readonly ICultureService cultureService;
 		private readonly IFormsAuthentication formsAuthentication;
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="service">The <see cref="AuthenticationService"/></param>
+		/// <param name="authenticationService">The <see cref="AuthenticationService"/></param>
+		/// <param name="pluginsService">The <see cref="Core.Services.PluginsService"/></param>
+		/// <param name="cultureService">The <see cref="CultureService"/></param>
 		/// <param name="formsAuthentication">The <see cref="FormsAuthentication"/> wrapper</param>
-		public LoginController(IAuthenticationService service, IFormsAuthentication formsAuthentication)
+		public LoginController(IAuthenticationService authenticationService, IPluginsService pluginsService, ICultureService cultureService, IFormsAuthentication formsAuthentication)
 		{
-			this.service = service;
+			this.authenticationService = authenticationService;
+			this.pluginsService = pluginsService;
+			this.cultureService = cultureService;
 			this.formsAuthentication = formsAuthentication;
 		}
 
 		/// <summary>
-		/// The Initial Index action - does nothing
+		/// The Initial Index action - registers all of the current plugins
 		/// </summary>
-		public void Index(){}
+		public void Index()
+		{
+			pluginsService.RegisterInstalledPlugins(ConfigurationManager.AppSettings["plugins.path"]);
+		}
 
 		/// <summary>
 		/// Login action for when the user posts their login credentials
@@ -40,7 +51,7 @@ namespace Membrane.Controllers
 		[AccessibleThrough(Verb.Post)]
 		public void Login([DataBind("login")]AuthenticationRequestDTO authenticationRequest)
 		{
-			var authenticatedUser = service.AuthenticateUser(authenticationRequest);
+			var authenticatedUser = authenticationService.AuthenticateUser(authenticationRequest);
 
 			if (authenticatedUser.Id != Guid.Empty)
 			{
@@ -56,12 +67,18 @@ namespace Membrane.Controllers
 						Redirect("Home", "Index");
 						break;
 				}
+				setDefaultCulture();
 			}
 			else
 			{
 				Flash["error"] = "Username or Password not recognised";
 				RedirectToReferrer();	
 			}
+		}
+
+		private void setDefaultCulture()
+		{
+			Session["culture"] = cultureService.GetDefaultCulture();
 		}
 
 		private void createAuthenticationTicket(AuthenticatedUserDTO user)

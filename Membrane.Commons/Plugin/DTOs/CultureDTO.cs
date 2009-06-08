@@ -1,4 +1,4 @@
-namespace Membrane.Commons.Plug
+namespace Membrane.Commons.Plugin.DTOs
 {
 	public class CultureDTO : BaseDTO
 	{

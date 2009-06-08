@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Reflection;
+﻿using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
@@ -13,7 +11,6 @@ using Membrane.Commons.Plugin.Services.Interfaces;
 using Membrane.Commons.Web.MonoRail;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
-using Membrane.Core.Services.Interfaces;
 using Membrane.ViewComponents;
 
 namespace Membrane
@@ -66,18 +63,6 @@ namespace Membrane
 
 			rules.Add(new PatternRoute("/<area>/<controller>/<action>")
 				.Restrict("area").AnyOf("Administrator", "User"));
-		}
-
-		protected override void RegisterPlugins()
-		{
-			var service = container.Resolve<IPluginsService>();
-
-			var installedPlugins = service.GetAllInstalledPlugins();
-
-			foreach (var plugin in installedPlugins)
-			{
-				service.RegisterPlugin(plugin.Name, ConfigurationManager.AppSettings["plugins.path"]);
-			}
 		}
     }
 }

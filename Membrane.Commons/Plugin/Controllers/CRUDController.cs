@@ -59,7 +59,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		public virtual void New()
 		{
 			PropertyBag["itemtype"] = typeof(TDto);
-			GetFormFields();
+			getFormFields();
 			RenderView(FormView);
 		}
 
@@ -70,7 +70,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		public virtual void Edit(Guid id)
 		{
 			PropertyBag["item"] = Service.GetItem(id);
-			GetFormFields();
+			getFormFields();
 			RenderView(FormView);
 		}
 
@@ -165,7 +165,7 @@ namespace Membrane.Commons.Plugin.Controllers
 			return true;
 		}
 
-		private void GetFormFields()
+		private void getFormFields()
 		{
 			propertyReaderService.ReadViewModelProperties();
 			PropertyBag["fields"] = propertyReaderService.FormFields;

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9926362A-159C-4073-B525-CF11FCE730B1}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -75,12 +75,15 @@
     <Compile Include="DTOs\UserGroupDTO.cs" />
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\Culture\DefaultCulture.cs" />
     <Compile Include="Queries\Plugin\OrderedPlugins.cs" />
     <Compile Include="Queries\UserGroups\PagedUserGroups.cs" />
     <Compile Include="Queries\Users\UserByUsernameAndPassword.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\CultureService.cs" />
     <Compile Include="Services\EncryptionService.cs" />
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Services\Interfaces\ICultureService.cs" />
     <Compile Include="Services\Interfaces\IEncryptionService.cs" />
     <Compile Include="Services\Interfaces\IPluginsService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />

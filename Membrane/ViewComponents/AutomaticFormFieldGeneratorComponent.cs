@@ -5,6 +5,7 @@ using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Helpers;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.ViewComponents
 {
@@ -116,7 +117,10 @@ namespace Membrane.ViewComponents
 
 		private void renderHiddenField(FormField field, StringWriter writer)
 		{
-			writer.WriteLine(formHelper.HiddenField(field.Id));
+			if (field.Label == "Culture")
+				writer.WriteLine(formHelper.HiddenField(string.Format("{0}.Id", field.Id), ((CultureDTO)Session["Culture"]).Id));
+			else
+				writer.WriteLine(formHelper.HiddenField(field.Id));
 		}
 
 		private void renderSelectList(FormField field, StringWriter writer, bool isMultiple)

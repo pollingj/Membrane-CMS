@@ -5,12 +5,18 @@ namespace Membrane.Commons.FormGeneration.Attributes
 {
 	public class FormFieldTypeAttribute : Attribute
 	{
-		public FieldType Type { get; set; }
+		public FieldType? Type { get; set; }
 		public string OptionValue { get; set; }
 		public string OptionText { get; set; }
+		public int FieldOrder { get; set; }
 
 		public FormFieldTypeAttribute()
 		{
+		}
+
+		public FormFieldTypeAttribute(int fieldOrder)
+		{
+			FieldOrder = fieldOrder;
 		}
 
 		public FormFieldTypeAttribute(FieldType type)
@@ -18,9 +24,19 @@ namespace Membrane.Commons.FormGeneration.Attributes
 			Type = type;
 		}
 
-		public FormFieldTypeAttribute(FieldType type, string optionValue, string optionText)
+		public FormFieldTypeAttribute(FieldType type, int fieldOrder) : this(fieldOrder)
 		{
 			Type = type;
+		}
+
+		public FormFieldTypeAttribute(FieldType type, string optionValue, string optionText) : this(type)
+		{
+			OptionValue = optionValue;
+			OptionText = optionText;
+		}
+
+		public FormFieldTypeAttribute(FieldType type, string optionValue, string optionText, int fieldOrder) : this(type, fieldOrder)
+		{
 			OptionValue = optionValue;
 			OptionText = optionText;
 		}

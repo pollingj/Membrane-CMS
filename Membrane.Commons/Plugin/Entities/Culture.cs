@@ -4,5 +4,6 @@ namespace Membrane.Commons.Plugin.Entities
 	{
 		public virtual string Language { get; set; }
 		public virtual string ShortCode { get; set; }
+		public virtual bool IsDefault { get; set; }
 	}
 }

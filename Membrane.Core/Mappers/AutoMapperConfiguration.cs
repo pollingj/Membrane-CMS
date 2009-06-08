@@ -1,6 +1,6 @@
 
 using AutoMapper;
-using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs;
 using Membrane.Commons.Plugin.Entities;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
@@ -33,7 +33,8 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.Name, opt => opt.MapFrom(source => source.Language));
 			Mapper.CreateMap<CultureDTO, Culture>()
 				.ForMember(dest => dest.Language, opt => opt.MapFrom(source => source.Name))
-				.ForMember(dest => dest.ShortCode, opt => opt.Ignore());
+				.ForMember(dest => dest.ShortCode, opt => opt.Ignore())
+				.ForMember(dest => dest.IsDefault, opt => opt.Ignore());
 
 			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent))
@@ -45,7 +46,6 @@ namespace Membrane.Core.Mappers
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent));
 
 			Mapper.CreateMap<InstalledPlugin, InstalledPluginDTO>();
-
 		}
 	}
 }

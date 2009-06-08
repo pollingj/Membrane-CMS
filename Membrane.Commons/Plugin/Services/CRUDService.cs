@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using Castle.Services.Transaction;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Exceptions;
 using Membrane.Commons.Plugin.DTOs.Interfaces;
@@ -15,7 +14,6 @@ namespace Membrane.Commons.Plugin.Services
 	/// </summary>
 	/// <typeparam name="TDto">The DTO type</typeparam>
 	/// <typeparam name="TEntity">The Entity type</typeparam>
-	[Transactional]
 	public class CRUDService<TDto, TEntity> : ICRUDService<TDto, TEntity> 
 		where TDto : IDto
 		where TEntity : IEntity
@@ -70,7 +68,6 @@ namespace Membrane.Commons.Plugin.Services
 		/// </summary>
 		/// <param name="item">The item that needs to be saved</param>
 		/// <returns>The Guid of the new object</returns>
-		[Transaction]
 		public virtual Guid Create(TDto item)
 		{
 			Guid id;
@@ -92,7 +89,6 @@ namespace Membrane.Commons.Plugin.Services
 		/// </summary>
 		/// <param name="item">The item that needs to be updated</param>
 		/// <returns>Has the item been updated successfully?</returns>
-		[Transaction]
 		public virtual bool Update(TDto item)
 		{
 			var success = true;
@@ -113,7 +109,6 @@ namespace Membrane.Commons.Plugin.Services
 		/// </summary>
 		/// <param name="id">The id of the item that needs to be deleted</param>
 		/// <returns>Has the item been deleted successfully?</returns>
-		[Transaction]
 		public virtual bool Delete(Guid id)
 		{
 			var success = true;

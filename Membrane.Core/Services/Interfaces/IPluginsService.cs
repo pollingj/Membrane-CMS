@@ -13,5 +13,6 @@ namespace Membrane.Core.Services.Interfaces
 		bool UninstallPlugin(Guid id, string pluginFolder);
 		bool UpgradePlugin(Guid id, string pluginFolder);
 		void RegisterPlugin(string pluginName, string pluginFolder);
+		void RegisterInstalledPlugins(string pluginFolder);
 	}
 }

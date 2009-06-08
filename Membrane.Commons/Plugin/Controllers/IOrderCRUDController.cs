@@ -1,5 +1,5 @@
 using System;
-using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Commons.Plugin.Controllers
 {

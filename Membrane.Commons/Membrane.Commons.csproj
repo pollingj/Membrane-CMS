@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{447ECB81-C632-46DD-9FDD-38696EA69C72}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -167,7 +167,6 @@
     <Compile Include="Persistence\NHibernate\NHibernateTransactionFacility .cs" />
     <Compile Include="Persistence\NHibernate\NHibernateTransactionInterceptor.cs" />
     <Compile Include="Persistence\NHibernate\NHibernateWebSessionModule.cs" />
-    <Compile Include="Plugin\Services\Interfaces\ICultureService.cs" />
     <Compile Include="Plugin\Services\Interfaces\IOrderCRUDService.cs" />
     <Compile Include="Plugin\Services\OrderCRUDService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

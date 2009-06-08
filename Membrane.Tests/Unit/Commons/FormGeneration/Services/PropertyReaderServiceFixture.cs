@@ -5,7 +5,7 @@ using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
-using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs;
 using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
@@ -20,6 +20,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 			propertyReaderService.ReadViewModelProperties();
 
 			Assert.AreEqual(typeof(TestSimpleConventionDto).GetProperties().Length, propertyReaderService.FormFields.Count);
+			Assert.AreEqual("Name", propertyReaderService.FormFields[0].Label);
 
 			foreach (var field in propertyReaderService.FormFields)
 			{
@@ -55,6 +56,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 
 			// Remember the 1 ignore field
 			Assert.AreEqual(typeof(TestSimpleConfigurationDTO).GetProperties().Length - 1, propertyReaderService.FormFields.Count);
+			Assert.AreEqual("Name", propertyReaderService.FormFields[0].Label);
 
 			foreach (var field in propertyReaderService.FormFields)
 			{
@@ -83,6 +85,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 			propertyReaderService.ReadViewModelProperties();
 
 			Assert.AreEqual(typeof(ProductDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
+			Assert.AreEqual("Name", propertyReaderService.FormFields[0].Label);
 
 			foreach (var field in propertyReaderService.FormFields)
 			{
@@ -117,6 +120,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 			propertyReaderService.ReadViewModelProperties();
 
 			Assert.AreEqual(typeof(AccessoryDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
+			Assert.AreEqual("Name", propertyReaderService.FormFields[0].Label);
 
 			foreach (var field in propertyReaderService.FormFields)
 			{
@@ -147,6 +151,7 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 			propertyReaderService.ReadViewModelProperties();
 
 			Assert.AreEqual(typeof(NewsArticleDTO).GetProperties().Length, propertyReaderService.FormFields.Count);
+			Assert.AreEqual("Name", propertyReaderService.FormFields[0].Label);
 
 			foreach (var field in propertyReaderService.FormFields)
 			{

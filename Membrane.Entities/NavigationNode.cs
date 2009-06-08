@@ -1,4 +1,3 @@
-using System;
 using Membrane.Commons.Plugin.Entities;
 
 namespace Membrane.Entities

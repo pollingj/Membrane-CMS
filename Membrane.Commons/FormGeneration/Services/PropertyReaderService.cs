@@ -6,7 +6,7 @@ using Membrane.Commons.FormGeneration.Attributes;
 using Membrane.Commons.FormGeneration.Enums;
 using Membrane.Commons.FormGeneration.Exceptions;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
-using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Commons.FormGeneration.Services
 {
@@ -30,16 +30,25 @@ namespace Membrane.Commons.FormGeneration.Services
 
 				if (formFieldAttributes.Length > 0)
 				{
-					formField.Type = ((FormFieldTypeAttribute) formFieldAttributes[0]).Type;
+					var fieldAttribute = ((FormFieldTypeAttribute) formFieldAttributes[0]);
+					formField.Type = fieldAttribute.Type;
+					formField.FieldOrder = fieldAttribute.FieldOrder;
 					if (formField.Type == FieldType.SingleSelectDropDownList || formField.Type == FieldType.MultiSelectDropDownList)
-						getConfigurationBasedOptionsValueAndText((FormFieldTypeAttribute) formFieldAttributes[0], formField);
+						getConfigurationBasedOptionsValueAndText(fieldAttribute, formField);
 				}
-				else
+
+				if (!formField.Type.HasValue)
 					getConventionBasedFields(formField, propertyInfo.PropertyType);
 					
 					
 				if (formField.Type != FieldType.Ignore)
-					FormFields.Add(formField);
+				{
+					if (formField.FieldOrder.HasValue)
+						FormFields.Insert(formField.FieldOrder.Value, formField);
+					else
+						FormFields.Add(formField);
+				}
+					
 			}
 		}
 
@@ -58,11 +67,6 @@ namespace Membrane.Commons.FormGeneration.Services
 				// Assume we are handling a has and belong to many relationship
 				field.Type = FieldType.MultiSelectDropDownList;
 				getConventionBasedOptionsValueAndText(propertyType.GetGenericArguments()[0], field);
-			}
-			// The OrderPosition property needs to be set 
-			else if (field.Id == "OrderPosition" || field.Id == "Revision" || field.Id == "ParentEntity_Id" || field.Id == "Published")
-			{
-				field.Type = FieldType.Hidden;
 			}
 			else
 			{
