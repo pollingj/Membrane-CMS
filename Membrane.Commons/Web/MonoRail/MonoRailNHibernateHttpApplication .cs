@@ -132,15 +132,14 @@ namespace Membrane.Commons.Web.MonoRail
 			{
 				RegisterEntitiesAssembly(configuration, entityAssembly);
 			}
-			
 
-			/*foreach (Assembly pluginAssembly in pluginAssemblies)
+			foreach (var pluginAssembly in pluginAssemblies)
 			{
 				RegisterEntitiesAssembly(configuration, pluginAssembly);
-			}*/
+			}
 
 
-			ISessionFactory sessionFactory = configuration.BuildSessionFactory();
+			var sessionFactory = configuration.BuildSessionFactory();
 			container.Kernel.AddComponentInstance("ISessionFactory", typeof(ISessionFactory), sessionFactory);
 		}
 
