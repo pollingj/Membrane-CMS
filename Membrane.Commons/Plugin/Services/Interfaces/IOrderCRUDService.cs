@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Membrane.Commons.Plug;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Commons.Plugin.Services.Interfaces
 {
