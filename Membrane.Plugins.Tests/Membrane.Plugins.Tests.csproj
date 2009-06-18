@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C9B4E161-F91B-4019-B53D-83F706020E0A}</ProjectGuid>
+    <ProjectGuid>{62860CC8-F5D4-40C6-BF44-45010BC3ECD4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Membrane.Plugins</RootNamespace>
-    <AssemblyName>Membrane.Plugins</AssemblyName>
+    <RootNamespace>Membrane.Plugins.Tests</RootNamespace>
+    <AssemblyName>Membrane.Plugins.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -35,21 +35,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Castle.MicroKernel.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.MonoRail.Framework, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.MonoRail.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+    <Reference Include="Castle.MonoRail.TestSupport, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\Castle.Windsor.dll</HintPath>
+      <HintPath>..\Libs\Castle.MonoRail.TestSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -65,21 +61,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="News\Controllers\NewsController.cs" />
-    <Compile Include="News\DTOs\NewsArticleDTO.cs" />
-    <Compile Include="News\Entities\NewsArticle.cs" />
-    <Compile Include="News\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\News\Controllers\NewsControllerFixture.cs" />
+    <Compile Include="Unit\News\PluginFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Membrane.Commons\Membrane.Commons.csproj">
       <Project>{447ECB81-C632-46DD-9FDD-38696EA69C72}</Project>
       <Name>Membrane.Commons</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="News\Sql\Uninstall.sql" />
-    <Content Include="News\Sql\Install.sql" />
+    <ProjectReference Include="..\Membrane.Plugins\Membrane.Plugins.csproj">
+      <Project>{C9B4E161-F91B-4019-B53D-83F706020E0A}</Project>
+      <Name>Membrane.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membrane.Tests\Membrane.Tests.csproj">
+      <Project>{5F552887-F9EE-40AC-BFC1-FD41D7064650}</Project>
+      <Name>Membrane.Tests</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

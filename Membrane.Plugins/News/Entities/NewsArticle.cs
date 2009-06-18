@@ -8,6 +8,6 @@ namespace Membrane.Plugins.News.Entities
 		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
 		public virtual string Story { get; set; }
-		public virtual string CreationDate { get; set; }
+		public virtual DateTime CreationDate { get; set; }
 	}
 }

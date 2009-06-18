@@ -1,8 +1,11 @@
 using System;
+using AutoMapper;
 using Castle.Core;
 using Castle.Windsor;
 using Membrane.Commons;
 using Membrane.Plugins.News.Controllers;
+using Membrane.Plugins.News.DTOs;
+using Membrane.Plugins.News.Entities;
 
 namespace Membrane.Plugins.News
 {
@@ -21,6 +24,8 @@ namespace Membrane.Plugins.News
 
 		public void Initialize()
 		{
+			Mapper.CreateMap<NewsArticleDTO, NewsArticle>();
+			Mapper.CreateMap<NewsArticle, NewsArticleDTO>();
 		}
 
 		public void RegisterComponents(IWindsorContainer container)

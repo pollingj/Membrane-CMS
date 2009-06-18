@@ -113,7 +113,6 @@
     <Compile Include="Unit\Core\Services\NavigationNodeServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\UserGroupServiceFixture.cs" />
-    <Compile Include="Unit\Plugins\News\NewsControllerFixture.cs" />
     <Compile Include="Unit\TestPlugins\Plugins.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\Administrator\NavigationTypesControllerFixture.cs" />
@@ -122,6 +121,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LogOffControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\User\ContentControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\NavigationControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\UserDetailsControllerFixture.cs" />
