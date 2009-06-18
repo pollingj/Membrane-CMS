@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,11 +13,13 @@ namespace Membrane.ViewComponents
 	[ViewComponentDetails("FormGenerator", Sections = "startrow,endrow")]
 	public class AutomaticFormFieldGeneratorComponent : ViewComponent
 	{
-		private const string StartRowSection = "startrow";
-		private const string EndRowSection = "endrow";
+		private const string STARTROWSECTION = "startrow";
+		private const string ENDROWSECTION = "endrow";
 
-		private const string DefaultStartRow = "<div>";
-		private const string DefaultEndRow = "</div>";
+		private const string DEFAULTSTARTROW = "<div>";
+		private const string DEFAULTENDROW = "</div>";
+
+		private const string TEXTEDITORCLASS = "texteditor";
 
 
 		[ViewComponentParam(Required = true)]
@@ -52,7 +55,7 @@ namespace Membrane.ViewComponents
 			foreach (var field in Fields)
 			{
 				// Render Start Row
-				renderRowSection(StartRowSection, writer, DefaultStartRow);
+				renderRowSection(STARTROWSECTION, writer, DEFAULTSTARTROW);
 				switch(field.Type)
 				{
 					case FieldType.SingleLineTextField:
@@ -60,6 +63,9 @@ namespace Membrane.ViewComponents
 						break;
 					case FieldType.MultiLineTextField:
 						renderMultiLineTextField(field, writer);
+						break;
+					case FieldType.TextEditor:
+						renderMultiLineTextField(field, writer, TEXTEDITORCLASS);
 						break;
 					case FieldType.Hidden:
 						renderHiddenField(field, writer);
@@ -80,7 +86,7 @@ namespace Membrane.ViewComponents
 				}
 
 				// Render End Row
-				renderRowSection(EndRowSection, writer, DefaultEndRow);
+				renderRowSection(ENDROWSECTION, writer, DEFAULTENDROW);
 			}
 
 			RenderText(writer.ToString());
@@ -111,8 +117,16 @@ namespace Membrane.ViewComponents
 
 		private void renderMultiLineTextField(FormField field, StringWriter writer)
 		{
+			renderMultiLineTextField(field, writer, null);
+		}
+
+		private void renderMultiLineTextField(FormField field, StringWriter writer, string cssClass)
+		{
 			writer.WriteLine(formHelper.LabelFor(field.Id, field.Label));
-			writer.WriteLine(formHelper.TextArea(field.Id, DictHelper.Create(new [] { "cols=20", "rows=50"})));
+			if (string.IsNullOrEmpty(cssClass))
+				writer.WriteLine(formHelper.TextArea(field.Id, DictHelper.Create(new[] { "cols=20", "rows=50" })));
+			else
+				writer.WriteLine(formHelper.TextArea(field.Id, DictHelper.Create(new[] { "cols=20", "rows=50", string.Format("class={0}", cssClass) })));
 		}
 
 		private void renderHiddenField(FormField field, StringWriter writer)
