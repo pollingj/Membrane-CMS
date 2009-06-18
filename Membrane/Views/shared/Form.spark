@@ -1,5 +1,34 @@
 ﻿<global Title="'User Groups'"/>
 
+<content name="extraScripts">
+		<JSCombine key="'js'">
+			# combiner.Add("Content/js/jquery.wymeditor.js");
+			# combiner.Add("Content/js/jquery.wymeditor.hovertools.js");
+	    </JSCombine>
+
+	<script type="text/javascript">
+jQuery(function() {
+    jQuery('.texteditor').wymeditor({
+    
+        html: '<p>Hello, World!<\/p>',
+        stylesheet: 'styles.css',
+        postInit: function(wym) {
+        
+            //postInit is executed after WYMeditor initialization
+            //'wym' is the current WYMeditor instance
+            
+            //we generally activate plugins after WYMeditor initialization
+ 
+            //activate 'hovertools' plugin
+            //which gives advanced feedback to the user:
+            wym.hovertools();
+        }
+    });
+});
+	</script>
+</content>
+
+
 <use file="SharedMenu" />
 <use file="AdminMenu" />
 
@@ -14,7 +43,7 @@
 
 
 
-${Form.FormTag(new { id='entryForm', action='submit' })}
+${Form.FormTag(new { id = 'entryForm', action = 'submit' })}
 	<h2>User Group Form</h2>
 	<fieldset>
 		<legend>User Group Details</legend>

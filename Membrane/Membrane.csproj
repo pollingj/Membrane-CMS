@@ -176,6 +176,8 @@
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.validate.js" />
+    <Content Include="Content\js\jquery.wymeditor.hovertools.js" />
+    <Content Include="Content\js\jquery.wymeditor.js" />
     <Content Include="logging.config" />
   </ItemGroup>
   <ItemGroup>

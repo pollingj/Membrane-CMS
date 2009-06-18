@@ -11,7 +11,6 @@
 		<meta content="Membrane " name="author" />
 		<meta content="noindex,nofollow" name="robots" />
 		
-		<!--media="screen,projection" type="text/css" rel="stylesheet"-->
 		<JSCombine key="'css'">
 			# combiner.Add("Content/css/reset.css");
 			# combiner.Add("Content/css/layout.css");
@@ -21,6 +20,9 @@
 			# combiner.Add("Content/js/jquery.js");
 			# combiner.Add("Content/js/jquery.validate.js");
 	    </JSCombine>
+	    
+	    <use content="extraScripts"/>
+
 	    
 		<title>${Title} :: Membrane</title>
 	</head>
