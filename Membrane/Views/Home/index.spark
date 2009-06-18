@@ -1,4 +1,23 @@
-﻿<global Title="'User Home Page'"/>
+﻿<viewdata InstalledPlugins="IList<InstalledPluginDTO>" />
+
+<global Title="'User Home Page'"/>
 <use file="SharedMenu"/>
 
 <SharedMenu />
+
+<if condition='InstalledPlugins.Count != 0'>
+	${Form.FormTag(new { id = 'createContent', action = 'GoToPluginCreation' })}
+		<h2>Create New Content Item</h2>
+		<fieldset>
+			<legend>Create New Content Item</legend>
+			<div class="values">
+				${Form.LabelFor("controller", "Content Type:")}
+				${Form.Select("controller", InstalledPlugins, new { @text = 'Name', @value = 'Name', @firstoption = 'Please select', @firstoptionvalue = '' })}
+			</div>
+			${Form.Submit("Create", new { id = 'submit' })} 
+		</fieldset>    
+	${Form.EndFormTag()}
+</if>
+<else>
+	<p>There are currently no content plugins installed</p>
+</else>

@@ -122,6 +122,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\BaseControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LoginControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\LogOffControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\User\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\NavigationControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\UserDetailsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Filters\AuthenticationFilterFixture.cs" />

@@ -59,9 +59,11 @@ namespace Membrane
 
 			rules.Add(new PatternRoute("/<controller>/<action>")
 						.DefaultForArea().IsEmpty
+						.DefaultForAction().Is("index")
 						.Restrict("controller").AnythingBut("MonoRail"));
 
 			rules.Add(new PatternRoute("/<area>/<controller>/<action>")
+				.DefaultForAction().Is("index")
 				.Restrict("area").AnyOf("Administrator", "User"));
 		}
     }

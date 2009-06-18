@@ -1,4 +1,6 @@
 using Castle.MonoRail.Framework;
+using Membrane.Core.DTOs;
+using Membrane.Core.Services.Interfaces;
 using Membrane.Filters;
 
 namespace Membrane.Controllers.User
@@ -9,9 +11,21 @@ namespace Membrane.Controllers.User
 	[Filter(ExecuteWhen.BeforeAction, typeof(AuthenticationFilter))]
 	public class HomeController : BaseController
 	{
+		private readonly IPluginsService service;
+
+		public HomeController(IPluginsService service)
+		{
+			this.service = service;
+		}
+
 		public void Index()
 		{
+			PropertyBag["InstalledPlugins"] = service.GetAllInstalledPlugins();
+		}
 
+		public void GoToPluginCreation(string controller)
+		{
+			Redirect(controller, "New");
 		}
 	}
 }
