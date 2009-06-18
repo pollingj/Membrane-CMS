@@ -71,6 +71,9 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 					case "ShortDescription":
 						AssertFormFieldData("Short Description", FieldType.MultiLineTextField, field);
 						break;
+					case "FullDescription":
+						AssertFormFieldData("Full Description", FieldType.TextEditor, field);
+						break;
 					case "NewsImage":
 						AssertFormFieldData("News Image", FieldType.Asset, field);
 						break;
@@ -202,6 +205,8 @@ namespace Membrane.Tests.Unit.Commons.FormGeneration.Services
 		public string Title { get; set; }
 		[FormFieldType(FieldType.MultiLineTextField)]
 		public string ShortDescription { get; set; }
+		[FormFieldType(FieldType.TextEditor)]
+		public string FullDescripiont { get; set; }
 		[FormFieldType(FieldType.Asset)]
 		public string NewsImage { get; set; }
 		[FormFieldType(FieldType.Ignore)]

@@ -5,6 +5,7 @@ namespace Membrane.Commons.FormGeneration.Enums
 		Hidden,
 		SingleLineTextField,
 		MultiLineTextField,
+		TextEditor,
 		Date,
 		CheckBox,
 		Asset,
