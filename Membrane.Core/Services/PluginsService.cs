@@ -158,6 +158,7 @@ namespace Membrane.Core.Services
 		{
 			var plugin = FindPlugin(pluginName, pluginFolder);
 
+			plugin.RemoveComponents(container);
 			plugin.Initialize();
 			plugin.RegisterComponents(container);
 		}

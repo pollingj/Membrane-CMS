@@ -26,7 +26,7 @@ namespace Membrane.Controllers
 		/// </summary>
 		/// <param name="authenticationService">The <see cref="AuthenticationService"/></param>
 		/// <param name="pluginsService">The <see cref="Core.Services.PluginsService"/></param>
-		/// <param name="cultureService">The <see cref="CultureService"/></param>
+		/// <param name="cultureService">The <see cref="Core.Services.CultureService"/></param>
 		/// <param name="formsAuthentication">The <see cref="FormsAuthentication"/> wrapper</param>
 		public LoginController(IAuthenticationService authenticationService, IPluginsService pluginsService, ICultureService cultureService, IFormsAuthentication formsAuthentication)
 		{

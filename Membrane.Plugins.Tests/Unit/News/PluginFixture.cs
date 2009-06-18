@@ -1,4 +1,5 @@
 using AutoMapper;
+using Membrane.Commons.Mappers;
 using Membrane.Plugins.News;
 using NUnit.Framework;
 
@@ -13,6 +14,7 @@ namespace Membrane.Plugins.Tests.Unit.News
 		public void SetUp()
 		{
 			newsPlugin = new Plugin();
+			CommonsAutoMapperConfiguration.Configure();
 		}
 
 		[Test]

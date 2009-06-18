@@ -76,7 +76,7 @@ namespace Membrane.Commons.Plugin.Services
 			{
 				id = Repository.Save(Mapper.Map<TDto, TEntity>(item));
 			}
-			catch (RepositorySaveException)
+			catch (RepositorySaveException ex)
 			{
 				id = Guid.Empty;
 			}

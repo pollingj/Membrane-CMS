@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Web;
 using Castle.Facilities.Logging;
@@ -45,6 +46,8 @@ namespace Membrane.Commons.Web.MonoRail
 			container = new WindsorContainer();
 			pluginFolder = ConfigurationManager.AppSettings["plugins.path"];
 
+			GetPluginAssemblies();
+
 			RegisterRoutes(RoutingModuleEx.Engine);
 
 			RegisterFacilities();
@@ -67,7 +70,6 @@ namespace Membrane.Commons.Web.MonoRail
 			get { return container; }
 		}
 
-		
 
 		public void Configure(IMonoRailConfiguration configuration)
 		{
@@ -94,6 +96,33 @@ namespace Membrane.Commons.Web.MonoRail
 		protected virtual void RegisterControllers()
 		{
 			RegisterAssemblyControllers(webAppAssembly);
+		}
+
+		private void GetPluginAssemblies()
+		{
+			var pluginFilePaths = Directory.GetFiles(pluginFolder, "*.dll");
+
+			foreach (var pluginFilePath in pluginFilePaths)
+			{
+				var pluginAssembly = getAssembly(pluginFilePath);
+
+				if (pluginAssembly != Assembly.GetExecutingAssembly())
+				{
+					try
+					{
+						var pluginTypes = pluginAssembly.GetTypes().Where(t => typeof(IMembranePlugin).IsAssignableFrom(t)).ToList();
+
+						if (pluginTypes.Count > 0)
+						{
+							pluginAssemblies.Add(pluginAssembly);
+						}
+					}
+					catch (ReflectionTypeLoadException)
+					{
+						//There was a reflection error, ignore for now but probably need to at least log this info
+					}
+				}
+			}
 		}
 
 		private void RegisterAssemblyControllers(Assembly assembly)

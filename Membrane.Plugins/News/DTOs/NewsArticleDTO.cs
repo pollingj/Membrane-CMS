@@ -1,12 +1,10 @@
 using System;
-using Membrane.Commons.Plugin.DTOs.Interfaces;
+using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Plugins.News.DTOs
 {
-	public class NewsArticleDTO : IDto
+	public class NewsArticleDTO : BaseVersionedDTO
 	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
 		public string Story { get; set; }
 		public DateTime CreationDate { get; set; }
 	}

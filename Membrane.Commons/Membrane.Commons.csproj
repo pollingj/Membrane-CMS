@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISpecification.cs" />
+    <Compile Include="Mappers\CommonsAutoMapperConfiguration.cs" />
     <Compile Include="Persistence\Conventions\ForeignKeyConvention.cs" />
     <Compile Include="Persistence\Conventions\ManyToManyTableConvention.cs" />
     <Compile Include="Persistence\Conventions\PrimaryKeyConvention.cs" />

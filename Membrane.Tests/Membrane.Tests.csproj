@@ -100,12 +100,13 @@
     <Compile Include="Unit\Commons\Plugin\Services\CRUDServiceFixture.cs" />
     <Compile Include="Unit\Commons\FormGeneration\Services\PropertyReaderServiceFixture.cs" />
     <Compile Include="Unit\Commons\Plugin\Services\OrderCRUDServiceFixture.cs" />
+    <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\Culture\DefaultCultureFixture.cs" />
     <Compile Include="Unit\Core\Queries\Plugin\OrderedPluginFixture.cs" />
     <Compile Include="Unit\Core\Services\CultureServiceFixture.cs" />
     <Compile Include="Unit\Core\Services\PluginServiceFixture.cs" />
     <Compile Include="Unit\Core\BaseFixture.cs" />
-    <Compile Include="Unit\Core\Mappers\AutoMapperConfigurationFixture.cs" />
+    <Compile Include="Unit\Commons\Mappers\CommonsAutoMapperConfigurationFixture.cs" />
     <Compile Include="Unit\Core\Queries\UserGroups\PagedUserGroupsFixture.cs" />
     <Compile Include="Unit\Core\Queries\Users\UserByUsernameAndPasswordFixture.cs" />
     <Compile Include="Unit\Core\Services\AuthenticationServiceFixture.cs" />

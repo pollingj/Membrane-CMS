@@ -1,11 +1,10 @@
 using System;
-using Membrane.Commons.Persistence;
+using Membrane.Commons.Plugin.Entities;
 
 namespace Membrane.Plugins.News.Entities
 {
-	public class NewsArticle : IEntity
+	public class NewsArticle : BaseVersionedEntity
 	{
-		public virtual Guid Id { get; set; }
 		public virtual string Name { get; set; }
 		public virtual string Story { get; set; }
 		public virtual DateTime CreationDate { get; set; }
