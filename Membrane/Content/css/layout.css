@@ -228,14 +228,14 @@ form input.readonly, form div.values input.readonly
 	background: transparent;
 }
 
-form div
+form > fieldset > div
 {
 	clear: both;
 	float: left;
 	display: inline;
 	margin-bottom: 15px;
 	min-height: 22px;
-	width:544px;
+	width:844px;
 }
 
 form #documentFields div

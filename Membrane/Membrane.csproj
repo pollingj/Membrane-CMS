@@ -178,6 +178,21 @@
     <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.wymeditor.hovertools.js" />
     <Content Include="Content\js\jquery.wymeditor.js" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-blockquote.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h1.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h2.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h3.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h4.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h5.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-h6.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-p.png" />
+    <Content Include="Content\wymeditor\iframe\default\lbl-pre.png" />
+    <Content Include="Content\wymeditor\iframe\default\wymiframe.css" />
+    <Content Include="Content\wymeditor\iframe\default\wymiframe.html" />
+    <Content Include="Content\wymeditor\skins\default\icons.png" />
+    <Content Include="Content\wymeditor\skins\default\skin.css" />
+    <Content Include="Content\wymeditor\skins\default\skin.js" />
+    <Content Include="Content\wymeditor\skins\wymeditor_icon.png" />
     <Content Include="logging.config" />
   </ItemGroup>
   <ItemGroup>
