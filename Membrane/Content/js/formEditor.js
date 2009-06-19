@@ -21,26 +21,7 @@ var formEditor =
     },
 
     initialistDatePicker: function() {
-
-        $('.datePicker').DatePicker({
-            format: 'd/m/Y',
-            date: $('.datePicker').val(),
-            current: $('.datePicker').val(),
-            starts: 1,
-            position: 'r',
-            onBeforeShow: function() {
-                if ($('.datePicker').val() != '')
-                    $('.datePicker').DatePickerSetDate($('.datePicker').val(), true);
-                else
-                    $('.datePicker').DatePickerSetDate(new Date(), true);
-
-            },
-            onChange: function(formated, dates) {
-                $('.datePicker').val(formated);
-                $('.datePicker').DatePickerHide();
-            }
-
-        });
+    $('.datePicker').datepicker({ dateFormat: 'dd/mm/yy'});
     }
 }
 

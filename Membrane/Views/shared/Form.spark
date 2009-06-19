@@ -1,20 +1,21 @@
 ﻿<global Title="'User Groups'"/>
 
 <content name="extraStyles">
-	<link rel="stylesheet" media="screen" type="text/css" href="/Content/datepicker/css/datepicker.css" />
+		<JSCombine key="'css'">
+			# combiner.Add("Content/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css");
+		</JSCombine>
 </content>
 
 
 <content name="extraScripts">
 	<JSCombine key="'js'">
-		# combiner.Add("Content/datepicker/js/datepicker.js");
-		# combiner.Add("Content/datepicker/js/eye.js");
-		# combiner.Add("Content/datepicker/js/utils.js");
-		# combiner.Add("Content/datepicker/js/layout.js?ver=1.0.2");
+		# combiner.Add("Content/jquery/js/jquery-ui-1.7.2.custom.min.js");
 		# combiner.Add("Content/wymeditor/jquery.wymeditor.js");
 		# combiner.Add("Content/wymeditor/plugins/hovertools/jquery.wymeditor.hovertools.js");
 		# combiner.Add("Content/js/formEditor.js");
 	</JSCombine>
+	
+
 </content>
 
 

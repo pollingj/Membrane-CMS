@@ -19,8 +19,8 @@
 		<use content="extraStyles"/>
 
 		<JSCombine key="'js'">
-			# combiner.Add("Content/js/jquery.js");
-			# combiner.Add("Content/js/jquery.validate.js");
+			# combiner.Add("Content/jquery/js/jquery.js");
+			# combiner.Add("Content/jquery/js/jquery.validate.js");
 	    </JSCombine>
 	    
 	    <use content="extraScripts"/>
