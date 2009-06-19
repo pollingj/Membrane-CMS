@@ -1,19 +1,17 @@
 ﻿<global Title="'User Groups'"/>
 
 <content name="extraScripts">
-<!--		<JSCombine key="'js'">
-			# combiner.Add("Content/js/jquery.wymeditor.js");
-			# combiner.Add("Content/js/jquery.wymeditor.hovertools.js");
-	    </JSCombine>-->
-	    <script src="/Content/js/jquery.wymeditor.js" type="text/javascript"></script>
-	    <script src="/Content/js/jquery.wymeditor.hovertools.js" type="text/javascript"></script>
+	<JSCombine key="'js'">
+		# combiner.Add("Content/js/jquery.wymeditor.js");
+		# combiner.Add("Content/js/jquery.wymeditor.hovertools.js");
+	</JSCombine>
 
 	<script type="text/javascript">
 	
 		$(document).ready(function()
 		{
 			$('.texteditor').wymeditor({
-				stylesheet: '/Content/css/wymeditorstyles.css',
+				stylesheet: '/Content/css/styles.css',
 				basePath: '/Content/wymeditor/',
 				skinPath: '/Content/wymeditor/skins/default/',
 				postInit: function(wym) {
@@ -30,25 +28,6 @@
 
 			});
 		});
-
-		/*jQuery(function() {
-			jQuery('.texteditor').wymeditor({
-		    
-				html: '<p>Hello, World!<\/p>',
-				stylesheet: 'styles.css',
-				postInit: function(wym) {
-		        
-					//postInit is executed after WYMeditor initialization
-					//'wym' is the current WYMeditor instance
-		            
-					//we generally activate plugins after WYMeditor initialization
-
-					//activate 'hovertools' plugin
-					//which gives advanced feedback to the user:
-					wym.hovertools();
-					}
-			});
-		});*/
 	</script>
 </content>
 
