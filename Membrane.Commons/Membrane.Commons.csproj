@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormGeneration\Exceptions\NoRenderMethodForFormFieldType.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="Mappers\CommonsAutoMapperConfiguration.cs" />
     <Compile Include="Persistence\Conventions\ForeignKeyConvention.cs" />

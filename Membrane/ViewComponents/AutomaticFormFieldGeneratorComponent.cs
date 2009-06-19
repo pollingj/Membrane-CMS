@@ -6,6 +6,7 @@ using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Helpers;
 using Membrane.Commons.FormGeneration;
 using Membrane.Commons.FormGeneration.Enums;
+using Membrane.Commons.FormGeneration.Exceptions;
 using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.ViewComponents
@@ -82,6 +83,8 @@ namespace Membrane.ViewComponents
 					case FieldType.Date:
 						renderDateField(field, writer);
 						break;
+					default:
+						throw new NoRenderMethodForFormFieldType();
 						
 				}
 
