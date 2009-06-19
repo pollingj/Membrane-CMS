@@ -55,7 +55,7 @@ ${Form.FormTag(new { id = 'entryForm', action = 'submit' })}
 
 		<FormGenerator FieldPrefix="ViewData['prefix']" Fields="ViewData['fields']" if="ViewData['prefix'] != null" />
 		
-		${Form.Submit("Submit", new { id = 'submit' })} 
+		${Form.Submit("Submit", new { id = 'submit', class = 'wymupdate' })} 
 	</fieldset>    
 ${Form.EndFormTag()}
 
