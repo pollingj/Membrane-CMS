@@ -22,6 +22,8 @@ namespace Membrane.Core.Mappers
 			Mapper.CreateMap<UserDetailsRequestDTO, MembraneUser>()
 				.ForMember(dest => dest.Group, opt => opt.Ignore())
 				.ForMember(dest => dest.Type, opt => opt.Ignore());
+			Mapper.CreateMap<MembraneUser, UserDetailsRequestDTO>()
+				.ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore());
 
 			Mapper.CreateMap<UserGroup, UserGroupDTO>();
 			Mapper.CreateMap<UserGroupDTO, UserGroup>();

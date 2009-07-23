@@ -31,18 +31,20 @@
     </ul>
 </div>
 
+<var action="'submit'">
+	<set action="ViewData['formAction'].ToString()" if="ViewData['formAction'] != null" />
 
+	${Form.FormTag(new { id = 'entryForm', action = action })}
+		<h2>User Group Form</h2>
+		<fieldset>
+			<legend>User Group Details</legend>
+			
+			<FormGenerator FieldPrefix="'item'" Fields="ViewData['fields']" if="ViewData['prefix'] == null" />
 
-${Form.FormTag(new { id = 'entryForm', action = 'submit' })}
-	<h2>User Group Form</h2>
-	<fieldset>
-		<legend>User Group Details</legend>
-		
-		<FormGenerator FieldPrefix="'item'" Fields="ViewData['fields']" if="ViewData['prefix'] == null" />
+			<FormGenerator FieldPrefix="ViewData['prefix']" Fields="ViewData['fields']" if="ViewData['prefix'] != null" />
+			
+			${Form.Submit("Submit", new { id = 'submit', class = 'wymupdate' })} 
+		</fieldset>    
+	${Form.EndFormTag()}
 
-		<FormGenerator FieldPrefix="ViewData['prefix']" Fields="ViewData['fields']" if="ViewData['prefix'] != null" />
-		
-		${Form.Submit("Submit", new { id = 'submit', class = 'wymupdate' })} 
-	</fieldset>    
-${Form.EndFormTag()}
-
+</var>

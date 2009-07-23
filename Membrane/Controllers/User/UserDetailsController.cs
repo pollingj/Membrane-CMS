@@ -27,7 +27,7 @@ namespace Membrane.Controllers.User
 			PropertyBag[dataPropertyBagName] = userService.LoadDetails(((AuthenticatedUserDTO)Session["user"]).Id);
 			readerService.ReadViewModelProperties();
 			PropertyBag["fields"] = readerService.FormFields;
-
+			PropertyBag["formAction"] = "Update";
 			RenderView("/Shared/Form");
 		}
 

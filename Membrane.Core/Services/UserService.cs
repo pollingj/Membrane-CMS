@@ -36,6 +36,7 @@ namespace Membrane.Core.Services
 					details.Password = encryptionService.Encrypt(details.Password);
 				}
 				var user = Mapper.Map<UserDetailsRequestDTO, MembraneUser>(details);
+				user.Type = repository.FindById(user.Id).Type;
 				repository.Update(user);
 			}
 			catch (RepositoryUpdateException)

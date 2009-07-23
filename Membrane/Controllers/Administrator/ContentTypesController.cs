@@ -1,4 +1,3 @@
-
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
 using Membrane.Commons;

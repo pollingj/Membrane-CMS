@@ -16,20 +16,33 @@ namespace Membrane.Tests.Unit.Core.Services
 	{
 		private UserService service;
 		private IEncryptionService encryptionService;
-		private IRepository<MembraneUser> repository;
+		private IRepository<MembraneUser> userRepository;
 
 		private UserDetailsRequestDTO userDetails;
+
+		private MembraneUser currentUser;
 
 		public override void SetUp()
 		{
 			base.SetUp();
 
-			repository = mockery.DynamicMock<IRepository<MembraneUser>>();
+			userRepository = mockery.DynamicMock<IRepository<MembraneUser>>();
 			encryptionService = mockery.DynamicMock<IEncryptionService>();
 
-			service = new UserService(repository, encryptionService);
+			service = new UserService(userRepository, encryptionService);
 
 			userDetails = new UserDetailsRequestDTO { Id = Guid.NewGuid(), Username = "johnpolling", Name = "John Polling", Email = "john@theusualsuspect.com" };
+
+			currentUser = new MembraneUser
+			{
+				Id = userDetails.Id,
+				Group = new UserGroup { Id = Guid.NewGuid(), Name = "Admin" },
+				Password = "Password",
+				Type = new MembraneUserType { Id = Guid.NewGuid(), Type = UserType.Administrator },
+				Username = "johnpolling",
+				Name = "John Polling",
+				Email = "john@theusualsuspect.com"
+			};
 
 		}
 
@@ -38,19 +51,10 @@ namespace Membrane.Tests.Unit.Core.Services
 		{
 			UserDetailsResponseDTO result = null;
 
-			var user = new MembraneUser
-			           	{
-			           		Id = userDetails.Id,
-			           		Group = new UserGroup {Id = Guid.NewGuid(), Name = "Admin"},
-			           		Password = "Password",
-			           		Type = new MembraneUserType {Id = Guid.NewGuid(), Type = UserType.Administrator},
-			           		Username = "johnpolling",
-							Name = "John Polling",
-							Email = "john@theusualsuspect.com"
-			           	};
+
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(repository.FindById(userDetails.Id)).Return(user))
+				.Expecting(() => Expect.Call(userRepository.FindById(userDetails.Id)).Return(currentUser))
 				.Verify(() => result = service.LoadDetails(userDetails.Id));
 
 			Assert.AreEqual(userDetails.Id, result.Id);
@@ -71,7 +75,11 @@ namespace Membrane.Tests.Unit.Core.Services
 
 			var result = false;
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(user)).IgnoreArguments())
+				.Expecting(() =>
+				           	{
+								Expect.Call(userRepository.FindById(userDetails.Id)).Return(currentUser);
+				           		Expect.Call(() => userRepository.Update(user)).IgnoreArguments();
+				           	})
 				.Verify(() => result = service.UpdateDetails(userDetails));
 
 			Assert.IsTrue(result);
@@ -85,7 +93,7 @@ namespace Membrane.Tests.Unit.Core.Services
 			var result = true;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => repository.Update(null)).IgnoreArguments().Throw(new RepositoryUpdateException()))
+				.Expecting(() => Expect.Call(() => userRepository.Update(null)).IgnoreArguments().Throw(new RepositoryUpdateException()))
 				.Verify(() => result = service.UpdateDetails(userDetails));
 
 			Assert.IsFalse(result);
@@ -110,7 +118,7 @@ namespace Membrane.Tests.Unit.Core.Services
 				.Expecting(() => 
 					{
 						Expect.Call(encryptionService.Encrypt("newpassword")).Return("7D-D2-9A-9C-96-43-FD-52-4E-1B-43-60-96-4B-89-CE-59-91-4E-68-D1-FD-1A-B0-4D-D6-1F-BA-AA-BC-58-E5-79-DC-FF-B5-B7-45-4A-B0-1E-58-6C-8A-E9-8E-53-8B-5D-6E-0F-F3-AE-7D-D4-42-DE-73-33-48-6D-C9-DF-1A");
-						Expect.Call(() => repository.Update(user)).IgnoreArguments();
+						Expect.Call(() => userRepository.Update(user)).IgnoreArguments();
 					})
 				.Verify(() => result = service.UpdateDetails(userDetails));
 

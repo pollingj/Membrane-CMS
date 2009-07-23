@@ -126,6 +126,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\User\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\NavigationControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\UserDetailsControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\User\UsersControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Filters\AuthenticationFilterFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\ViewComponents\AutomaticFormGeneratorComponentFixture.cs" />
   </ItemGroup>
