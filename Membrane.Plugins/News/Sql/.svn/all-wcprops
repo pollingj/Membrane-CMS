@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/226/trunk/Membrane.Plugins/News/Sql
+END
+Install.sql
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/226/trunk/Membrane.Plugins/News/Sql/Install.sql
+END
+Uninstall.sql
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/156/trunk/Membrane.Plugins/News/Sql/Uninstall.sql
+END

@@ -1,4 +1,6 @@
 using System;
+using System.Configuration;
+using System.Reflection;
 using AutoMapper;
 using Castle.Core;
 using Castle.Windsor;
@@ -6,6 +8,7 @@ using Membrane.Commons;
 using Membrane.Plugins.News.Controllers;
 using Membrane.Plugins.News.DTOs;
 using Membrane.Plugins.News.Entities;
+using Migrator.Framework;
 
 namespace Membrane.Plugins.News
 {
@@ -41,19 +44,32 @@ namespace Membrane.Plugins.News
 		public void Install()
 		{
 			// Run sql install scripts
+			var migrator = GetMigrator();
 
+			migrator.MigrateToLastVersion();
 
 		}
 
 		public void Uninstall()
 		{
 			// Run sql uninstall scripts
+			var migrator = GetMigrator();
+			migrator.MigrateTo(0);
 
 		}
 
 		public void Upgrade()
 		{
 			throw new NotImplementedException();
+		}
+
+		private Migrator.Migrator GetMigrator()
+		{
+			var asm = Assembly.GetCallingAssembly();
+
+			Migrator.Migrator migrator = new Migrator.Migrator("SqlServer", ConfigurationManager.AppSettings["conString"], asm, false);
+
+			return migrator;
 		}
 	}
 }

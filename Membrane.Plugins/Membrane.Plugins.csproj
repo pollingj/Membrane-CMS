@@ -51,7 +51,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Migrator, Version=0.9.0.20605, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Migrator.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Framework, Version=0.9.0.20601, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Migrator.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -66,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="News\Controllers\NewsController.cs" />
+    <Compile Include="News\DB\CreateNewsArticleTable.cs" />
     <Compile Include="News\DTOs\NewsArticleDTO.cs" />
     <Compile Include="News\Entities\NewsArticle.cs" />
     <Compile Include="News\Plugin.cs" />
