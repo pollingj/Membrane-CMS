@@ -1,0 +1,635 @@
+2009-09-18 14:10:59,187 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Version select: SELECT Id FROM UserGroup WHERE Id = ?
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Snapshot select: SELECT usergroup_.Id, usergroup_.Name as Name3_ FROM UserGroup usergroup_ WHERE usergroup_.Id=?
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Insert 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Update 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Delete 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ with (updlock, rowlock) WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,203 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ with (updlock, rowlock) WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ with (updlock, rowlock) WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+MergeCascadingAction on entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+RefreshCascadingAction on entity Membrane.Entities.UserGroup: SELECT usergroup0_.Id as Id3_0_, usergroup0_.Name as Name3_0_ FROM UserGroup usergroup0_ WHERE usergroup0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Static SQL for entity: Membrane.Entities.NavigationNode
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Version select: SELECT Id FROM NavigationNode WHERE Id = ?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Snapshot select: SELECT navigation_.Id, navigation_.Name as Name4_, navigation_.Title as Title4_, navigation_.AccessKey as AccessKey4_, navigation_.ExternalUrl as External5_4_, navigation_.OrderPosition as OrderPos6_4_, navigation_.Revision as Revision4_, navigation_.ParentEntity_Id as ParentEn8_4_, navigation_.Published as Published4_, navigation_.Type_id as Type10_4_, navigation_.Parent_id as Parent11_4_, navigation_.Culture_id as Culture12_4_ FROM NavigationNode navigation_ WHERE navigation_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Insert 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Update 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Delete 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ with (updlock, rowlock) WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ with (updlock, rowlock) WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ with (updlock, rowlock) WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+MergeCascadingAction on entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+RefreshCascadingAction on entity Membrane.Entities.NavigationNode: SELECT navigation0_.Id as Id4_0_, navigation0_.Name as Name4_0_, navigation0_.Title as Title4_0_, navigation0_.AccessKey as AccessKey4_0_, navigation0_.ExternalUrl as External5_4_0_, navigation0_.OrderPosition as OrderPos6_4_0_, navigation0_.Revision as Revision4_0_, navigation0_.ParentEntity_Id as ParentEn8_4_0_, navigation0_.Published as Published4_0_, navigation0_.Type_id as Type10_4_0_, navigation0_.Parent_id as Parent11_4_0_, navigation0_.Culture_id as Culture12_4_0_ FROM NavigationNode navigation0_ WHERE navigation0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Static SQL for entity: Membrane.Entities.InstalledPlugin
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Version select: SELECT Id FROM InstalledPlugin WHERE Id = ?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Snapshot select: SELECT installedp_.Id, installedp_.Name as Name5_, installedp_.Version as Version5_ FROM InstalledPlugin installedp_ WHERE installedp_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Insert 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Update 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Delete 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ with (updlock, rowlock) WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ with (updlock, rowlock) WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ with (updlock, rowlock) WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+MergeCascadingAction on entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+RefreshCascadingAction on entity Membrane.Entities.InstalledPlugin: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Static SQL for entity: Membrane.Commons.Plugin.Entities.Culture
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Version select: SELECT Id FROM Culture WHERE Id = ?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Snapshot select: SELECT culture_.Id, culture_.Language as Language6_, culture_.ShortCode as ShortCode6_, culture_.IsDefault as IsDefault6_ FROM Culture culture_ WHERE culture_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Insert 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Update 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Delete 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ with (updlock, rowlock) WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ with (updlock, rowlock) WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ with (updlock, rowlock) WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+MergeCascadingAction on entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+RefreshCascadingAction on entity Membrane.Commons.Plugin.Entities.Culture: SELECT culture0_.Id as Id6_0_, culture0_.Language as Language6_0_, culture0_.ShortCode as ShortCode6_0_, culture0_.IsDefault as IsDefault6_0_ FROM Culture culture0_ WHERE culture0_.Id=?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Static SQL for entity: Membrane.Plugins.News.Entities.NewsArticle
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Version select: SELECT Id FROM NewsArticle WHERE Id = ?
+2009-09-18 14:10:59,218 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Snapshot select: SELECT newsarticl_.Id, newsarticl_.Name as Name7_, newsarticl_.Story as Story7_, newsarticl_.CreationDate as Creation4_7_, newsarticl_.Revision as Revision7_, newsarticl_.ParentEntity_Id as ParentEn6_7_, newsarticl_.Published as Published7_, newsarticl_.Culture_id as Culture8_7_ FROM NewsArticle newsarticl_ WHERE newsarticl_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Insert 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Update 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] -  Delete 0: NHibernate.SqlCommand.SqlCommandInfo
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ with (updlock, rowlock) WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ with (updlock, rowlock) WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ with (updlock, rowlock) WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+MergeCascadingAction on entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Loader.Entity.AbstractEntityLoader [(null)] - Static select for action NHibernate.Engine.CascadingAction+RefreshCascadingAction on entity Membrane.Plugins.News.Entities.NewsArticle: SELECT newsarticl0_.Id as Id7_0_, newsarticl0_.Name as Name7_0_, newsarticl0_.Story as Story7_0_, newsarticl0_.CreationDate as Creation4_7_0_, newsarticl0_.Revision as Revision7_0_, newsarticl0_.ParentEntity_Id as ParentEn6_7_0_, newsarticl0_.Published as Published7_0_, newsarticl0_.Culture_id as Culture8_7_0_ FROM NewsArticle newsarticl0_ WHERE newsarticl0_.Id=?
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Impl.SessionFactoryObjectFactory [(null)] - registered: 85332ae009ab49f39e809f1c46c1cbe5(unnamed)
+2009-09-18 14:10:59,234 [10] INFO  NHibernate.Impl.SessionFactoryObjectFactory [(null)] - no name configured
+2009-09-18 14:10:59,234 [10] DEBUG NHibernate.Impl.SessionFactoryImpl [(null)] - Instantiated session factory
+2009-09-18 14:10:59,250 [10] DEBUG NHibernate.Impl.SessionFactoryImpl [(null)] - Checking 0 named HQL queries
+2009-09-18 14:10:59,250 [10] DEBUG NHibernate.Impl.SessionFactoryImpl [(null)] - Checking 0 named SQL queries
+2009-09-18 14:10:59,734 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798596
+2009-09-18 14:10:59,750 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:10:59,781 [10] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:01,031 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Building controller descriptor for Membrane.Controllers.Administrator.PluginsController
+2009-09-18 14:11:01,031 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultHelperDescriptorProvider [(null)] - Collecting helpers for Membrane.Controllers.Administrator.PluginsController
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for PluginsController
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultFilterDescriptorProvider [(null)] - Collecting filters for Membrane.Controllers.Administrator.PluginsController
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultFilterDescriptorProvider [(null)] - Collected filter Membrane.Filters.AuthenticationFilter to execute Before order 2147483647
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for PluginsController
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for PluginsController
+2009-09-18 14:11:01,046 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collected rescue with view name generalerror for exception type System.Exception
+2009-09-18 14:11:01,062 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultDynamicActionProviderDescriptorProvider [(null)] - Collecting dynamic action providers for Membrane.Controllers.Administrator.PluginsController
+2009-09-18 14:11:01,062 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action List
+2009-09-18 14:11:01,062 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for List
+2009-09-18 14:11:01,062 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for List
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for List
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Install
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Install
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Install
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Install
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Uninstall
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Uninstall
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Uninstall
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Uninstall
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Upgrade
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Upgrade
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Upgrade
+2009-09-18 14:11:01,078 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Upgrade
+2009-09-18 14:11:01,140 [10] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:01,171 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:01,171 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:01,171 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:01,171 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:01,187 [10] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:01,187 [10] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:01,187 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:01,187 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:01,203 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:01,203 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:01,218 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798612
+2009-09-18 14:11:01,218 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:01,234 [10] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Building controller descriptor for Membrane.Controllers.LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultHelperDescriptorProvider [(null)] - Collecting helpers for Membrane.Controllers.LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultFilterDescriptorProvider [(null)] - Collecting filters for Membrane.Controllers.LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collected rescue with view name generalerror for exception type System.Exception
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultDynamicActionProviderDescriptorProvider [(null)] - Collecting dynamic action providers for Membrane.Controllers.LoginController
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Index
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Index
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Index
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Index
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Login
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Login
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Login
+2009-09-18 14:11:01,234 [10] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Login
+2009-09-18 14:11:01,546 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:01,546 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:01,546 [10] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:01,546 [10] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:01,562 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:01,562 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (0 rows)
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 0
+2009-09-18 14:11:01,578 [10] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:03,843 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:03,953 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798639
+2009-09-18 14:11:03,953 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:03,953 [10] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:03,968 [10] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:03,968 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798639
+2009-09-18 14:11:03,968 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:03,984 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:15,000 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798750
+2009-09-18 14:11:15,000 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:15,000 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.SqlCommand.SqlSelectBuilder [(null)] - The initial capacity was set too low at: 8 for the SelectSqlBuilder that needed a capacity of: 14 for the table MembraneUser this_
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id2_0_, this_.Username as Username2_0_, this_.Password as Password2_0_, this_.Name as Name2_0_, this_.Email as Email2_0_, this_.Type_id as Type6_2_0_, this_.Group_id as Group7_2_0_ FROM MembraneUser this_ WHERE (this_.Username = ? and this_.Password = ?)
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.Type.StringType [(null)] - binding 'johnpolling' to parameter: 0
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.Type.StringType [(null)] - binding 'B1-09-F3-BB-BC-24-4E-B8-24-41-91-7E-D0-6D-61-8B-90-08-DD-09-B3-BE-FD-1B-5E-07-39-4C-70-6A-8B-B9-80-B1-D7-78-5E-59-76-EC-04-9B-46-DF-5F-13-26-AF-5A-2E-A6-D1-03-FD-07-C9-53-85-FF-AB-0C-AC-BC-86' to parameter: 1
+2009-09-18 14:11:15,171 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id2_0_, this_.Username as Username2_0_, this_.Password as Password2_0_, this_.Name as Name2_0_, this_.Email as Email2_0_, this_.Type_id as Type6_2_0_, this_.Group_id as Group7_2_0_ FROM MembraneUser this_ WHERE (this_.Username = @p0 and this_.Password = @p1)
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id2_0_, this_.Username as Username2_0_, this_.Password as Password2_0_, this_.Name as Name2_0_, this_.Email as Email2_0_, this_.Type_id as Type6_2_0_, this_.Group_id as Group7_2_0_ FROM MembraneUser this_ WHERE (this_.Username = @p0 and this_.Password = @p1); @p0 = 'johnpolling', @p1 = 'B1-09-F3-BB-BC-24-4E-B8-24-41-91-7E-D0-6D-61-8B-90-08-DD-09-B3-BE-FD-1B-5E-07-39-4C-70-6A-8B-B9-80-B1-D7-78-5E-59-76-EC-04-9B-46-DF-5F-13-26-AF-5A-2E-A6-D1-03-FD-07-C9-53-85-FF-AB-0C-AC-BC-86'
+2009-09-18 14:11:15,171 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:15,187 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:15,187 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:15,187 [11] DEBUG NHibernate.Loader.Loader [(null)] - result set row: 0
+2009-09-18 14:11:15,187 [11] DEBUG NHibernate.Type.GuidType [(null)] - returning 'c83d366b-8294-4d6e-930f-30edcd78db8d' as column: Id2_0_
+2009-09-18 14:11:15,187 [11] DEBUG NHibernate.Loader.Loader [(null)] - result row: EntityKey[Membrane.Entities.MembraneUser#c83d366b-8294-4d6e-930f-30edcd78db8d]
+2009-09-18 14:11:15,203 [11] DEBUG NHibernate.Loader.Loader [(null)] - Initializing object from DataReader: [Membrane.Entities.MembraneUser#c83d366b-8294-4d6e-930f-30edcd78db8d]
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Hydrating entity: [Membrane.Entities.MembraneUser#c83d366b-8294-4d6e-930f-30edcd78db8d]
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'johnpolling' as column: Username2_0_
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'B1-09-F3-BB-BC-24-4E-B8-24-41-91-7E-D0-6D-61-8B-90-08-DD-09-B3-BE-FD-1B-5E-07-39-4C-70-6A-8B-B9-80-B1-D7-78-5E-59-76-EC-04-9B-46-DF-5F-13-26-AF-5A-2E-A6-D1-03-FD-07-C9-53-85-FF-AB-0C-AC-BC-86' as column: Password2_0_
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'John Polling' as column: Name2_0_
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'john@theusualsuspect.com' as column: Email2_0_
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.GuidType [(null)] - returning 'f11f8074-924c-4836-9c81-020bb9358bb7' as column: Type6_2_0_
+2009-09-18 14:11:15,218 [11] DEBUG NHibernate.Type.GuidType [(null)] - returning null as column: Group7_2_0_
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (1 rows)
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 1
+2009-09-18 14:11:15,234 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - resolving associations for [Membrane.Entities.MembraneUser#c83d366b-8294-4d6e-930f-30edcd78db8d]
+2009-09-18 14:11:15,250 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - loading entity: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,250 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - creating new proxy for entity
+2009-09-18 14:11:15,578 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - done materializing entity [Membrane.Entities.MembraneUser#c83d366b-8294-4d6e-930f-30edcd78db8d]
+2009-09-18 14:11:15,578 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:15,625 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - initializing proxy: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,625 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - attempting to resolve: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - object not resolved in any cache: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Fetching entity: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.Loader.Loader [(null)] - loading entity: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT membraneus0_.Id as Id0_0_ FROM MembraneUserType membraneus0_ WHERE membraneus0_.Id=?
+2009-09-18 14:11:15,640 [11] DEBUG NHibernate.Type.GuidType [(null)] - binding 'f11f8074-924c-4836-9c81-020bb9358bb7' to parameter: 0
+2009-09-18 14:11:15,640 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT membraneus0_.Id as Id0_0_ FROM MembraneUserType membraneus0_ WHERE membraneus0_.Id=@p0
+2009-09-18 14:11:15,656 [11] DEBUG NHibernate.SQL [(null)] - SELECT membraneus0_.Id as Id0_0_ FROM MembraneUserType membraneus0_ WHERE membraneus0_.Id=@p0; @p0 = 'f11f8074-924c-4836-9c81-020bb9358bb7'
+2009-09-18 14:11:16,375 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - result set row: 0
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - result row: EntityKey[Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - Initializing object from DataReader: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Hydrating entity: [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (1 rows)
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 1
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - resolving associations for [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - done materializing entity [Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7]
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:16,468 [11] DEBUG NHibernate.Loader.Loader [(null)] - done entity load
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id6_0_, this_.Language as Language6_0_, this_.ShortCode as ShortCode6_0_, this_.IsDefault as IsDefault6_0_ FROM Culture this_ WHERE this_.IsDefault = ?
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.Type.BooleanType [(null)] - binding 'True' to parameter: 0
+2009-09-18 14:11:16,484 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id6_0_, this_.Language as Language6_0_, this_.ShortCode as ShortCode6_0_, this_.IsDefault as IsDefault6_0_ FROM Culture this_ WHERE this_.IsDefault = @p0
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id6_0_, this_.Language as Language6_0_, this_.ShortCode as ShortCode6_0_, this_.IsDefault as IsDefault6_0_ FROM Culture this_ WHERE this_.IsDefault = @p0; @p0 = 'True'
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:16,484 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Loader.Loader [(null)] - result set row: 0
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Type.GuidType [(null)] - returning '6e631ed5-97ff-43d7-b2e8-5ac7965f1242' as column: Id6_0_
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Loader.Loader [(null)] - result row: EntityKey[Membrane.Commons.Plugin.Entities.Culture#6e631ed5-97ff-43d7-b2e8-5ac7965f1242]
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Loader.Loader [(null)] - Initializing object from DataReader: [Membrane.Commons.Plugin.Entities.Culture#6e631ed5-97ff-43d7-b2e8-5ac7965f1242]
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Hydrating entity: [Membrane.Commons.Plugin.Entities.Culture#6e631ed5-97ff-43d7-b2e8-5ac7965f1242]
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'English' as column: Language6_0_
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'EN' as column: ShortCode6_0_
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Type.BooleanType [(null)] - returning 'True' as column: IsDefault6_0_
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (1 rows)
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 1
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - resolving associations for [Membrane.Commons.Plugin.Entities.Culture#6e631ed5-97ff-43d7-b2e8-5ac7965f1242]
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - done materializing entity [Membrane.Commons.Plugin.Entities.Culture#6e631ed5-97ff-43d7-b2e8-5ac7965f1242]
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:16,500 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:16,515 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - flushing session
+2009-09-18 14:11:16,515 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - processing flush-time cascades
+2009-09-18 14:11:16,515 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - dirty checking collections
+2009-09-18 14:11:16,515 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushing entities and processing referenced collections
+2009-09-18 14:11:16,546 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Processing unreferenced collections
+2009-09-18 14:11:16,546 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Scheduling collection removes/(re)creates/updates
+2009-09-18 14:11:16,546 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 insertions, 0 updates, 0 deletions to 3 objects
+2009-09-18 14:11:16,546 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2009-09-18 14:11:16,546 [11] DEBUG NHibernate.Impl.Printer [(null)] - listing entities:
+2009-09-18 14:11:16,562 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Entities.MembraneUser{'Id'='c83d366b-8294-4d6e-930f-30edcd78db8d', 'Username'='johnpolling', 'Password'='B1-09-F3-BB-BC-24-4E-B8-24-41-91-7E-D0-6D-61-8B-90-08-DD-09-B3-BE-FD-1B-5E-07-39-4C-70-6A-8B-B9-80-B1-D7-78-5E-59-76-EC-04-9B-46-DF-5F-13-26-AF-5A-2E-A6-D1-03-FD-07-C9-53-85-FF-AB-0C-AC-BC-86', 'Name'='John Polling', 'Email'='john@theusualsuspect.com', 'Type'='Membrane.Entities.MembraneUserType#f11f8074-924c-4836-9c81-020bb9358bb7', 'Group'='null'}
+2009-09-18 14:11:16,562 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Entities.MembraneUserType{'Id'='f11f8074-924c-4836-9c81-020bb9358bb7'}
+2009-09-18 14:11:16,562 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Commons.Plugin.Entities.Culture{'Id'='6e631ed5-97ff-43d7-b2e8-5ac7965f1242', 'Language'='English', 'ShortCode'='EN', 'IsDefault'='True'}
+2009-09-18 14:11:16,562 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - executing flush
+2009-09-18 14:11:16,562 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush begin
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush end
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - post flush
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:16,578 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:16,609 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798766
+2009-09-18 14:11:16,609 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:16,609 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Building controller descriptor for Membrane.Controllers.Administrator.HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultHelperDescriptorProvider [(null)] - Collecting helpers for Membrane.Controllers.Administrator.HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultFilterDescriptorProvider [(null)] - Collecting filters for Membrane.Controllers.Administrator.HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultFilterDescriptorProvider [(null)] - Collected filter Membrane.Filters.AuthenticationFilter to execute Before order 2147483647
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collected rescue with view name generalerror for exception type System.Exception
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultDynamicActionProviderDescriptorProvider [(null)] - Collecting dynamic action providers for Membrane.Controllers.Administrator.HomeController
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultControllerDescriptorProvider [(null)] - Collection attributes for action Index
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultResourceDescriptorProvider [(null)] - Collecting resources information for Index
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultRescueDescriptorProvider [(null)] - Collecting rescue information for Index
+2009-09-18 14:11:16,609 [11] DEBUG Castle.MonoRail.Framework.Providers.DefaultLayoutDescriptorProvider [(null)] - Collecting layout information for Index
+2009-09-18 14:11:16,609 [11] DEBUG Membrane.Controllers.Administrator.HomeController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:18,359 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:18,453 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798784
+2009-09-18 14:11:18,453 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:18,453 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:18,468 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:18,484 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798784
+2009-09-18 14:11:18,484 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:18,484 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:18,484 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:18,484 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:18,500 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:20,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798802
+2009-09-18 14:11:20,265 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:20,265 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:20,281 [11] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:22,890 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (0 rows)
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 0
+2009-09-18 14:11:22,890 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:23,734 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798838
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:23,843 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798838
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:23,859 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:23,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:25,890 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798858
+2009-09-18 14:11:25,890 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:25,906 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:25,906 [11] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:29,171 [11] DEBUG NHibernate.Event.Default.DefaultSaveOrUpdateEventListener [(null)] - saving transient instance
+2009-09-18 14:11:29,187 [11] DEBUG NHibernate.Event.Default.AbstractSaveEventListener [(null)] - generated identifier: 364fd3b5-41f0-4481-86eb-9c8800e9de25, using strategy: NHibernate.Id.GuidCombGenerator
+2009-09-18 14:11:29,187 [11] DEBUG NHibernate.Event.Default.AbstractSaveEventListener [(null)] - saving [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - flushing session
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - processing flush-time cascades
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - dirty checking collections
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushing entities and processing referenced collections
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Processing unreferenced collections
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Scheduling collection removes/(re)creates/updates
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 1 insertions, 0 updates, 0 deletions to 1 objects
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Impl.Printer [(null)] - listing entities:
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Entities.InstalledPlugin{'Id'='364fd3b5-41f0-4481-86eb-9c8800e9de25', 'Name'='News', 'Version'='1.0.0'}
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - executing flush
+2009-09-18 14:11:29,218 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush begin
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Inserting entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: INSERT INTO InstalledPlugin (Name, Version, Id) VALUES (?, ?, ?)
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Dehydrating entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.Type.StringType [(null)] - binding 'News' to parameter: 0
+2009-09-18 14:11:29,234 [11] DEBUG NHibernate.Type.StringType [(null)] - binding '1.0.0' to parameter: 1
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.Type.GuidType [(null)] - binding '364fd3b5-41f0-4481-86eb-9c8800e9de25' to parameter: 2
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.SQL [(null)] - INSERT INTO InstalledPlugin (Name, Version, Id) VALUES (@p0, @p1, @p2); @p0 = 'News', @p1 = '1.0.0', @p2 = '364fd3b5-41f0-4481-86eb-9c8800e9de25'
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush end
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - post flush
+2009-09-18 14:11:29,250 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:29,265 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:29,359 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798893
+2009-09-18 14:11:29,359 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:29,359 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:29,359 [11] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:31,875 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - result set row: 0
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Type.GuidType [(null)] - returning '364fd3b5-41f0-4481-86eb-9c8800e9de25' as column: Id5_0_
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - result row: EntityKey[Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - Initializing object from DataReader: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Hydrating entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'News' as column: Name5_0_
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Type.StringType [(null)] - returning '1.0.0' as column: Version5_0_
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (1 rows)
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 1
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - resolving associations for [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - done materializing entity [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:31,875 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - flushing session
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - processing flush-time cascades
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - dirty checking collections
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushing entities and processing referenced collections
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Processing unreferenced collections
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Scheduling collection removes/(re)creates/updates
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.Printer [(null)] - listing entities:
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Entities.InstalledPlugin{'Id'='364fd3b5-41f0-4481-86eb-9c8800e9de25', 'Name'='News', 'Version'='1.0.0'}
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - executing flush
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush begin
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush end
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - post flush
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:31,890 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798919
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:31,984 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:32,000 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798920
+2009-09-18 14:11:32,000 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:32,015 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:34,328 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798943
+2009-09-18 14:11:34,328 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:34,328 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:34,343 [11] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:34,359 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - loading entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,359 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - creating new proxy for entity
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - initializing proxy: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - attempting to resolve: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - object not resolved in any cache: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Fetching entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Loader.Loader [(null)] - loading entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=?
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.Type.GuidType [(null)] - binding '364fd3b5-41f0-4481-86eb-9c8800e9de25' to parameter: 0
+2009-09-18 14:11:34,437 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=@p0
+2009-09-18 14:11:34,437 [11] DEBUG NHibernate.SQL [(null)] - SELECT installedp0_.Id as Id5_0_, installedp0_.Name as Name5_0_, installedp0_.Version as Version5_0_ FROM InstalledPlugin installedp0_ WHERE installedp0_.Id=@p0; @p0 = '364fd3b5-41f0-4481-86eb-9c8800e9de25'
+2009-09-18 14:11:34,515 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - result set row: 0
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - result row: EntityKey[Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - Initializing object from DataReader: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Hydrating entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Type.StringType [(null)] - returning 'News' as column: Name5_0_
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Type.StringType [(null)] - returning '1.0.0' as column: Version5_0_
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (1 rows)
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 1
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - resolving associations for [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Engine.TwoPhaseLoad [(null)] - done materializing entity [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:34,609 [11] DEBUG NHibernate.Loader.Loader [(null)] - done entity load
+2009-09-18 14:11:37,203 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - loading entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:37,203 [11] DEBUG NHibernate.Event.Default.DefaultLoadEventListener [(null)] - entity proxy found in session cache
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Event.Default.DefaultDeleteEventListener [(null)] - deleting a persistent instance
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Event.Default.DefaultDeleteEventListener [(null)] - deleting [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - setting cache mode to: Get
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - setting cache mode to: Normal
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - setting cache mode to: Get
+2009-09-18 14:11:37,218 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - setting cache mode to: Normal
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - flushing session
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - processing flush-time cascades
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - dirty checking collections
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushing entities and processing referenced collections
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Processing unreferenced collections
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Scheduling collection removes/(re)creates/updates
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 insertions, 0 updates, 1 deletions to 1 objects
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Impl.Printer [(null)] - listing entities:
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Impl.Printer [(null)] - Membrane.Entities.InstalledPlugin{'Id'='364fd3b5-41f0-4481-86eb-9c8800e9de25', 'Name'='News', 'Version'='1.0.0'}
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - executing flush
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush begin
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Persister.Entity.AbstractEntityPersister [(null)] - Deleting entity: [Membrane.Entities.InstalledPlugin#364fd3b5-41f0-4481-86eb-9c8800e9de25]
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: DELETE FROM InstalledPlugin WHERE Id = ?
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Type.GuidType [(null)] - binding '364fd3b5-41f0-4481-86eb-9c8800e9de25' to parameter: 0
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.SQL [(null)] - DELETE FROM InstalledPlugin WHERE Id = @p0; @p0 = '364fd3b5-41f0-4481-86eb-9c8800e9de25'
+2009-09-18 14:11:37,234 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:37,250 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:37,250 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - registering flush end
+2009-09-18 14:11:37,250 [11] DEBUG NHibernate.Event.Default.AbstractFlushingEventListener [(null)] - post flush
+2009-09-18 14:11:37,250 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:37,265 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:37,281 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888798972
+2009-09-18 14:11:37,281 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:37,281 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:37,281 [11] DEBUG Membrane.Controllers.Administrator.PluginsController [(null)] - Running filter Before/Membrane.Filters.AuthenticationFilter
+2009-09-18 14:11:39,921 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened new IDbCommand, open IDbCommands: 1
+2009-09-18 14:11:39,921 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Building an IDbCommand object for the SqlString: SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:39,921 [11] INFO  NHibernate.Loader.Loader [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:39,921 [11] DEBUG NHibernate.SQL [(null)] - SELECT this_.Id as Id5_0_, this_.Name as Name5_0_, this_.Version as Version5_0_ FROM InstalledPlugin this_ ORDER BY this_.Name asc
+2009-09-18 14:11:39,921 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Enlist Command
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Opened IDataReader, open IDataReaders: 1
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Loader.Loader [(null)] - processing result set
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Loader.Loader [(null)] - done processing result set (0 rows)
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Driver.NHybridDataReader [(null)] - running NHybridDataReader.Dispose()
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDataReader, open IDataReaders :0
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - Closed IDbCommand, open IDbCommands: 0
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Loader.Loader [(null)] - total objects hydrated: 0
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Engine.StatefulPersistenceContext [(null)] - initializing non-lazy collections
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:39,937 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:40,031 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888799000
+2009-09-18 14:11:40,031 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:40,031 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:40,046 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - opened session at timestamp: 633888799000
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Begin (ReadCommitted)
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Connection.DriverConnectionProvider [(null)] - Obtaining IDbConnection from Driver
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - Start Commit
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - before transaction completion
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction Committed
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - transaction completion
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.AdoNet.ConnectionManager [(null)] - aggressively releasing database connection
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Connection.ConnectionProvider [(null)] - Closing connection
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Transaction.AdoTransaction [(null)] - IDbTransaction disposed.
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - running ISession.Dispose()
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.Impl.SessionImpl [(null)] - closing session
+2009-09-18 14:11:40,062 [11] DEBUG NHibernate.AdoNet.AbstractBatcher [(null)] - running BatcherImpl.Dispose(true)

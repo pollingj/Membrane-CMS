@@ -83,6 +83,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Migrator.Framework, Version=0.9.0.20601, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Migrator.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.1001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\NHibernate.dll</HintPath>
@@ -140,6 +144,9 @@
     <Compile Include="Plugin\Entities\BaseVersionedAndOrderedEntity.cs" />
     <Compile Include="Plugin\Entities\BaseVersionedEntity.cs" />
     <Compile Include="Plugin\Entities\Culture.cs" />
+    <Compile Include="Plugin\Migrations\BaseMigration.cs" />
+    <Compile Include="Plugin\Migrations\BaseOrderedMigration.cs" />
+    <Compile Include="Plugin\Migrations\BaseVersionedMigration.cs" />
     <Compile Include="Plugin\Queries\OrderedPagedItems.cs" />
     <Compile Include="Plugin\Queries\QueryItems.cs" />
     <Compile Include="Plugin\Services\CRUDService.cs" />
