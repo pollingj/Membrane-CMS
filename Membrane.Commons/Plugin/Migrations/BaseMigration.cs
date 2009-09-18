@@ -6,7 +6,7 @@ namespace Membrane.Commons.Plugin.Migrations
 {
 	public class BaseMigration : Migration
 	{
-		public IList<Column> Columns
+		public List<Column> Columns
 		{
 			get
 			{
@@ -18,9 +18,15 @@ namespace Membrane.Commons.Plugin.Migrations
 			}
 		}
 
-		public void DropTable(string tableName)
+		public virtual void DropTable(string tableName)
 		{
 			Database.RemoveTable("NewsArticle");
+		}
+
+		public virtual void CreateTable(string tableName, List<Column> columns)
+		{
+			Columns.AddRange(columns);
+			Database.AddTable(tableName, Columns.ToArray());
 		}
 
 		public override void Up()

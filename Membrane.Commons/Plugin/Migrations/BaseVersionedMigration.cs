@@ -19,11 +19,19 @@ namespace Membrane.Commons.Plugin.Migrations
 			}
 		}
 
-		public void CreateTable(string tableName, List<Column> columns)
+		public override void CreateTable(string tableName, List<Column> columns)
 		{
-			Columns.AddRange(columns);
-			Database.AddTable(tableName, Columns.ToArray());
+			base.CreateTable(tableName, columns);
 			Database.AddForeignKey(string.Format("FK_{0}_Culture", tableName), tableName, "Culture_Id", "Culture", "Id");
+			Database.AddForeignKey(string.Format("FK_{0}_{0}", tableName), tableName, "ParentEntity_Id", tableName, "Id");
+			
+		}
+
+		public override void DropTable(string tableName)
+		{
+			Database.RemoveForeignKey(tableName, string.Format("FK_{0}_Culture", tableName));
+			Database.RemoveForeignKey(tableName, string.Format("FK_{0}_{0}", tableName));
+			base.DropTable(tableName);
 		}
 	}
 }
