@@ -43,6 +43,7 @@ namespace Membrane
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 			container.AddComponent("ordercrudservice", typeof(IOrderCRUDService<,>), typeof(OrderCRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
+			container.AddComponent("News", typeof (NewsComponent));
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));

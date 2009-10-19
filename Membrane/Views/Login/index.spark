@@ -7,10 +7,8 @@
         <li>${ViewData['error']}</li>
     </ul>
 </div>
-
-
-
-${Form.FormTag(new { id='loginDetails', action='login' })}
+<newsitem><p>test</p></newsitem>
+${Form.FormTag(new { id = 'loginDetails', action = 'login' })}
 	<h2>Please login with your Membrane Account</h2>
 	<fieldset>
 		<legend>Log in Details</legend>
@@ -25,3 +23,5 @@ ${Form.FormTag(new { id='loginDetails', action='login' })}
 		${Form.Submit("Login", new { id = 'submit' })} 
 	</fieldset>    
 ${Form.EndFormTag()}
+
+${ViewData['content']}
