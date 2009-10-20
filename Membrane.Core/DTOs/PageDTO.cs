@@ -9,5 +9,6 @@ namespace Membrane.Core.DTOs
 		public string Name { get; set; }
 		[FormFieldType(FieldType.TextEditor)]
 		public string Content { get; set; }
+		public TemplateDTO Template { get; set; }
 	}
 }

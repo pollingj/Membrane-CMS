@@ -15,10 +15,11 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		{
 			base.SetUp();
 
-			NewDTO = new PageDTO { Name = "About Us", Content = "<p>This is the about us page</p>" };
-			EditDTO = new PageDTO { Id = Guid.NewGuid(), Name = "About Us Edited", Content = "<p>This is the about us page edited</p>" };
+			var template = new TemplateDTO {Name = "Main Template", Content = "<p>This is the main template</p>"};
+			NewDTO = new PageDTO { Name = "About Us", Content = "<p>This is the about us page</p>", Template = template };
+			EditDTO = new PageDTO { Id = Guid.NewGuid(), Name = "About Us Edited", Content = "<p>This is the about us page edited</p>", Template = template };
 			InvalidDTO = new PageDTO { Id = Guid.NewGuid() };
-			DeleteDTO = new PageDTO { Id = Guid.NewGuid(), Name = "About Us Deleted", Content = "<p>This is the about us page deleted</p>" };
+			DeleteDTO = new PageDTO { Id = Guid.NewGuid(), Name = "About Us Deleted", Content = "<p>This is the about us page deleted</p>", Template = template };
 
 
 			Controller = new PageController(Service, PropertyReaderService);
