@@ -15,9 +15,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		private IPluginsService pluginService;
 		private ContentController controller;
 
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 
 			pluginService = mockery.DynamicMock<IPluginsService>();
 

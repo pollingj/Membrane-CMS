@@ -25,8 +25,9 @@ namespace Membrane.Commons.Plugin.Migrations
 
 		public virtual void CreateTable(string tableName, List<Column> columns)
 		{
-			Columns.AddRange(columns);
-			Database.AddTable(tableName, Columns.ToArray());
+			var allColumns = new List<Column>(Columns);
+			allColumns.AddRange(columns);
+			Database.AddTable(tableName, allColumns.ToArray());
 		}
 
 		public override void Up()

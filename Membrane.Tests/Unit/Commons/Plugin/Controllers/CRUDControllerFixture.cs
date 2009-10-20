@@ -39,9 +39,10 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 		public IList<FormField> FormFields { get; set; }
 
 
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 
 			Service = mockery.DynamicMock<ICRUDService<TDto, TEntity>>();
 			PropertyReaderService = mockery.DynamicMock<IPropertyReaderService<TDto>>();

@@ -30,11 +30,11 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			set { base.Controller = controller = value; }
 		}
 
-		
 
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 			OrderedService = mockery.DynamicMock<IOrderCRUDService<TDto, TEntity>>();
 			ListView = "/Shared/OrderedList";
 		}

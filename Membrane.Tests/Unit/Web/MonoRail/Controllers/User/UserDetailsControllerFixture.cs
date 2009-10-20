@@ -18,9 +18,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.User
 		private IPropertyReaderService<UserDetailsRequestDTO> readerService; 
 		private UserDetailsController controller;
 
-		public override void  TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
- 			base.TestFixtureSetUp();
+ 			base.SetUp();
 
 			userService = mockery.DynamicMock<IUserService>();
 			readerService = mockery.DynamicMock<IPropertyReaderService<UserDetailsRequestDTO>>();

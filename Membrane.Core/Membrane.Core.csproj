@@ -51,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Spark, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7f8549eed921a12c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Spark.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -70,6 +74,7 @@
     <Compile Include="DTOs\InstalledPluginDTO.cs" />
     <Compile Include="DTOs\NavigationNodeDTO.cs" />
     <Compile Include="DTOs\NavigationTypeDTO.cs" />
+    <Compile Include="DTOs\TemplateDTO.cs" />
     <Compile Include="DTOs\UserDetailsRequestDTO.cs" />
     <Compile Include="DTOs\UserDetailsResponseDTO.cs" />
     <Compile Include="DTOs\UserGroupDTO.cs" />

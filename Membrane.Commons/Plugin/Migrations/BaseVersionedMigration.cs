@@ -10,7 +10,7 @@ namespace Membrane.Commons.Plugin.Migrations
 		{
 			get
 			{
-				var columns = new List<Column>(base.Columns);
+				var columns = new List<Column>();
 				columns.Add(new Column("Culture_Id", DbType.Guid, ColumnProperty.NotNull));
 				columns.Add(new Column("Revision", DbType.Int32, ColumnProperty.NotNull));
 				columns.Add(new Column("ParentEntity_Id", DbType.Guid, ColumnProperty.Null));
@@ -21,7 +21,10 @@ namespace Membrane.Commons.Plugin.Migrations
 
 		public override void CreateTable(string tableName, List<Column> columns)
 		{
-			base.CreateTable(tableName, columns);
+			var allColumns = new List<Column>(Columns);
+			allColumns.AddRange(columns);
+
+			base.CreateTable(tableName, allColumns);
 			Database.AddForeignKey(string.Format("FK_{0}_Culture", tableName), tableName, "Culture_Id", "Culture", "Id");
 			Database.AddForeignKey(string.Format("FK_{0}_{0}", tableName), tableName, "ParentEntity_Id", tableName, "Id");
 			

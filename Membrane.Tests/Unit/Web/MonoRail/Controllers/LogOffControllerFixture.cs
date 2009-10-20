@@ -11,9 +11,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		private LogOffController controller;
 		private IFormsAuthentication formsAuthentication;
 
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 
 
 			formsAuthentication = mockery.Stub<IFormsAuthentication>();

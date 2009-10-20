@@ -4,14 +4,16 @@ using Membrane.Controllers.Administrator;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 using Membrane.Tests.Unit.Commons.Plugin.Controllers;
+using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 {
 	public class UserGroupsControllerFixture : CRUDControllerFixture<UserGroupDTO, UserGroup>
 	{
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 			NewDTO = new UserGroupDTO {Name = "New Group"};
 			EditDTO = new UserGroupDTO {Id = Guid.NewGuid(), Name = "Edit Group"};
 			InvalidDTO = new UserGroupDTO {Id = Guid.NewGuid()};

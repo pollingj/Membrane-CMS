@@ -15,15 +15,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		public MockRepository mockery;
 
 		[SetUp]
-		public void SetUp()
-		{
-			TestFixtureSetUp();
-			
-		}
-
-		public virtual void TestFixtureSetUp()
+		public virtual void SetUp()
 		{
 			mockery = new MockRepository();
+			
 		}
 
 		[TearDown]

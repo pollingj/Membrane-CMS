@@ -21,9 +21,11 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		private const string PLUGINPATH = "/plugins";
 
 		private Guid PluginId = Guid.NewGuid();
-		public override void TestFixtureSetUp()
+
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 
 			Referrer = "Plugins/List";
 

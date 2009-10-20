@@ -4,6 +4,9 @@ using System.IO;
 using System.Web;
 using System.Web.Security;
 using Castle.MonoRail.Framework;
+using Castle.MonoRail.Framework.Test;
+using Castle.MonoRail.Views.Spark;
+using Membrane.Commons.SparkExtensions;
 using Membrane.Commons.Web.Spark;
 using Membrane.Commons.Wrappers.Interfaces;
 using Membrane.Core.DTOs;
@@ -44,6 +47,39 @@ namespace Membrane.Controllers
 		/// </summary>
 		public void Index()
 		{
+			// Some spiking code for use later on
+			/*var settings = new SparkSettings().SetPageBaseType(typeof(SparkTemplateBase));
+			var templates = new InMemoryViewFolder();
+			var engine = new SparkViewEngine(settings)
+			             	{
+			             		ViewFolder = templates,
+								ExtensionFactory = new MembraneSparkExtensionsFactory()
+							};
+			
+			templates.Add("test.spark", "<var names=\"new [] {'alpha', 'beta', 'gamma'}\"/><p>Test</p><news><p>testing</p></news>");
+			templates.Add("test2.spark", "<news><p>testing2</p></news>");
+			
+
+			var descriptor = new SparkViewDescriptor();
+			descriptor.AddTemplate("test.spark").AddTemplate("test2.spark");
+			
+			var entry = engine.CreateEntry(descriptor);
+			
+			var view = (SparkTemplateBase)entry.CreateInstance();
+			
+			var writer = new StringWriter();
+			try
+			{
+				view.RenderView(writer);
+			}
+			finally
+			{
+				engine.ReleaseInstance(view);
+			}
+			
+			PropertyBag["content"] = writer;
+			*/
+
 			pluginsService.RegisterInstalledPlugins(ConfigurationManager.AppSettings["plugins.path"]);
 		}
 

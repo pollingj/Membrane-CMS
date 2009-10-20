@@ -3,6 +3,7 @@ using Membrane.Controllers.Administrator;
 using Membrane.Core.DTOs;
 using Membrane.Entities;
 using Membrane.Tests.Unit.Commons.Plugin.Controllers;
+using NUnit.Framework;
 
 namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 {
@@ -14,9 +15,10 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers.Administrator
 		/// <summary>
 		/// Overriding the base SetUp to set up the relevant TDto objects
 		/// </summary>
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 			NewDTO = new NavigationTypeDTO { Name = "Primary Navigation" };
 			EditDTO = new NavigationTypeDTO { Id = Guid.NewGuid(), Name = "Secondary Navigation" };
 			InvalidDTO = new NavigationTypeDTO { Id = Guid.NewGuid() };

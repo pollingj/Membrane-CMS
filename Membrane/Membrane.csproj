@@ -110,10 +110,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\Spark.dll</HintPath>
     </Reference>
-    <Reference Include="SparkLanguage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\SparkLanguage.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition, Version=2009.1.23.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -160,6 +156,7 @@
     <Compile Include="Controllers\User\ContentController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Controllers\User\NavigationController.cs" />
+    <Compile Include="Controllers\User\TemplateController.cs" />
     <Compile Include="Controllers\User\UserDetailsController.cs" />
     <Compile Include="Controllers\User\UsersController.cs" />
     <Compile Include="Default.aspx.cs">

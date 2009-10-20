@@ -19,15 +19,17 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		private IPluginsService pluginsService;
 		private ICultureService cultureService;
 		private IFormsAuthentication formsAuthentication;
+		private IServiceProvider serviceProvider;
 		private LoginController controller;
 
 		private readonly AuthenticationRequestDTO authenticationRequest = new AuthenticationRequestDTO {Username = "username", Password = "password"};
 
 		private const string PLUGINPATH = "/plugins";
 
-		public override void TestFixtureSetUp()
+		[SetUp]
+		public override void SetUp()
 		{
-			base.TestFixtureSetUp();
+			base.SetUp();
 
 			authenticationService = mockery.DynamicMock<IAuthenticationService>();
 			pluginsService = mockery.DynamicMock<IPluginsService>();
