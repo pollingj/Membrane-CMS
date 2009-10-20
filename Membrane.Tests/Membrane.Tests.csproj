@@ -125,6 +125,7 @@
     <Compile Include="Unit\Web\MonoRail\Controllers\User\ContentControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\HomeControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\NavigationControllerFixture.cs" />
+    <Compile Include="Unit\Web\MonoRail\Controllers\User\PageControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\TemplateControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\UserDetailsControllerFixture.cs" />
     <Compile Include="Unit\Web\MonoRail\Controllers\User\UsersControllerFixture.cs" />

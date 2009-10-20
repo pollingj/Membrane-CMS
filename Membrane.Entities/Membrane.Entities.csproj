@@ -50,6 +50,7 @@
     <Compile Include="NavigationNode.cs" />
     <Compile Include="NavigationType.cs" />
     <Compile Include="InstalledPlugin.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MembraneUser.cs" />
     <Compile Include="Template.cs" />

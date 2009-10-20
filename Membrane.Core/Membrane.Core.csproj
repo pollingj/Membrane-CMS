@@ -74,6 +74,7 @@
     <Compile Include="DTOs\InstalledPluginDTO.cs" />
     <Compile Include="DTOs\NavigationNodeDTO.cs" />
     <Compile Include="DTOs\NavigationTypeDTO.cs" />
+    <Compile Include="DTOs\PageDTO.cs" />
     <Compile Include="DTOs\TemplateDTO.cs" />
     <Compile Include="DTOs\UserDetailsRequestDTO.cs" />
     <Compile Include="DTOs\UserDetailsResponseDTO.cs" />

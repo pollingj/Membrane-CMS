@@ -156,6 +156,7 @@
     <Compile Include="Controllers\User\ContentController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Controllers\User\NavigationController.cs" />
+    <Compile Include="Controllers\User\PageController.cs" />
     <Compile Include="Controllers\User\TemplateController.cs" />
     <Compile Include="Controllers\User\UserDetailsController.cs" />
     <Compile Include="Controllers\User\UsersController.cs" />

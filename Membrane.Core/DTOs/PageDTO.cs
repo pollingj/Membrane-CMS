@@ -4,7 +4,7 @@ using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Core.DTOs
 {
-	public class TemplateDTO : BaseDTO
+	public class PageDTO : BaseDTO
 	{
 		public string Name { get; set; }
 		[FormFieldType(FieldType.TextEditor)]
