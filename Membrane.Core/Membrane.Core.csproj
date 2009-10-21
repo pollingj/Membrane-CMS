@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="DTOs\AuthenticatedUserDTO.cs" />
     <Compile Include="DTOs\AuthenticationRequestDTO.cs" />
+    <Compile Include="DTOs\ContentBlockDTO.cs" />
     <Compile Include="DTOs\InstalledPluginDTO.cs" />
     <Compile Include="DTOs\NavigationNodeDTO.cs" />
     <Compile Include="DTOs\NavigationTypeDTO.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Services\Interfaces\IAuthenticationService.cs" />
     <Compile Include="Services\Interfaces\ICultureService.cs" />
     <Compile Include="Services\Interfaces\IEncryptionService.cs" />
+    <Compile Include="Services\Interfaces\IPageService.cs" />
     <Compile Include="Services\Interfaces\IPluginsService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\PluginsService.cs" />

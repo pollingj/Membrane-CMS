@@ -1,5 +1,4 @@
-using Membrane.Commons.FormGeneration.Attributes;
-using Membrane.Commons.FormGeneration.Enums;
+using System.Collections.Generic;
 using Membrane.Commons.Plugin.DTOs;
 
 namespace Membrane.Core.DTOs
@@ -7,8 +6,7 @@ namespace Membrane.Core.DTOs
 	public class PageDTO : BaseDTO
 	{
 		public string Name { get; set; }
-		[FormFieldType(FieldType.TextEditor)]
-		public string Content { get; set; }
 		public TemplateDTO Template { get; set; }
+		public IList<ContentBlockDTO> ContentBlocks { get; set; }
 	}
 }
