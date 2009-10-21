@@ -1,6 +1,6 @@
-obj
-bin
-_Resharper.*
+obj/
+bin/
+_ReSharper.*/
 *.csproject.user
 *.resharper.user
 *.resharper
@@ -8,4 +8,4 @@ _Resharper.*
 *.cache
 *~
 *.swp
-Logs
+Logs/
