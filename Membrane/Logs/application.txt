@@ -688,3 +688,19 @@ There are two possible reasons: either the template does not exist, or the view 
    at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(String templateName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
    at Castle.MonoRail.Framework.Controller.ProcessView()
    at Castle.MonoRail.Framework.Controller.ProcessRescue(IExecutableAction action, Exception actionException)
+2009-10-20 17:21:48,906 [8] FATAL Membrane.Controllers.User.TemplateController [(null)] - Failed to process rescue view. View name rescues\generalerror
+Castle.MonoRail.Framework.MonoRailException: MonoRail could not resolve a view engine instance for the template 'rescues\generalerror'
+There are two possible reasons: either the template does not exist, or the view engine that handles an specific file extension has not been configured correctly web.config (section monorail, node viewEngines).
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ResolveEngine(String templateName, Boolean throwIfNotFound)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ResolveEngine(String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(String templateName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.Controller.ProcessView()
+   at Castle.MonoRail.Framework.Controller.ProcessRescue(IExecutableAction action, Exception actionException)
+2009-10-21 08:28:54,671 [1] FATAL Membrane.Controllers.User.TemplateController [(null)] - Failed to process rescue view. View name rescues\generalerror
+Castle.MonoRail.Framework.MonoRailException: MonoRail could not resolve a view engine instance for the template 'rescues\generalerror'
+There are two possible reasons: either the template does not exist, or the view engine that handles an specific file extension has not been configured correctly web.config (section monorail, node viewEngines).
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ResolveEngine(String templateName, Boolean throwIfNotFound)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.ResolveEngine(String templateName)
+   at Castle.MonoRail.Framework.Services.DefaultViewEngineManager.Process(String templateName, TextWriter output, IEngineContext context, IController controller, IControllerContext controllerContext)
+   at Castle.MonoRail.Framework.Controller.ProcessView()
+   at Castle.MonoRail.Framework.Controller.ProcessRescue(IExecutableAction action, Exception actionException)

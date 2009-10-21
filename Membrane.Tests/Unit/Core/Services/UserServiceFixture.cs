@@ -93,7 +93,11 @@ namespace Membrane.Tests.Unit.Core.Services
 			var result = true;
 
 			With.Mocks(mockery)
-				.Expecting(() => Expect.Call(() => userRepository.Update(null)).IgnoreArguments().Throw(new RepositoryUpdateException()))
+				.Expecting(() =>
+				           	{
+				           		Expect.Call(userRepository.FindById(userDetails.Id)).Return(currentUser);
+				           		Expect.Call(() => userRepository.Update(null)).IgnoreArguments().Throw(new RepositoryUpdateException());
+				           	})
 				.Verify(() => result = service.UpdateDetails(userDetails));
 
 			Assert.IsFalse(result);
@@ -117,6 +121,7 @@ namespace Membrane.Tests.Unit.Core.Services
 			With.Mocks(mockery)
 				.Expecting(() => 
 					{
+						Expect.Call(userRepository.FindById(userDetails.Id)).Return(currentUser);
 						Expect.Call(encryptionService.Encrypt("newpassword")).Return("7D-D2-9A-9C-96-43-FD-52-4E-1B-43-60-96-4B-89-CE-59-91-4E-68-D1-FD-1A-B0-4D-D6-1F-BA-AA-BC-58-E5-79-DC-FF-B5-B7-45-4A-B0-1E-58-6C-8A-E9-8E-53-8B-5D-6E-0F-F3-AE-7D-D4-42-DE-73-33-48-6D-C9-DF-1A");
 						Expect.Call(() => userRepository.Update(user)).IgnoreArguments();
 					})
