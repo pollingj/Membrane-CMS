@@ -20,9 +20,9 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 	{
 
 
-		public CRUDController<TDto, TEntity> Controller { get; set; }
-		public ICRUDService<TDto, TEntity> Service { get; set; }
-		public IPropertyReaderService<TDto> PropertyReaderService { get; set; }
+		protected CRUDController<TDto, TEntity> Controller { get; set; }
+		protected ICRUDService<TDto, TEntity> Service { get; set; }
+		protected IPropertyReaderService<TDto> PropertyReaderService { get; set; }
 
 		private const int defaultCurrentPageNumber = 1;
 		private const int defaultCurrentPageSize = 10;
@@ -57,6 +57,13 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			             		new FormField { Id = "Description", Label = "Description", Type = FieldType.MultiLineTextField}
 			             	};
 
+		}
+
+
+		protected void SetUp(CRUDController<TDto, TEntity> controller, ICRUDService<TDto, TEntity> service)
+		{
+			Controller = controller;
+			Service = service;	
 		}
 
 		[Test]
@@ -223,5 +230,6 @@ namespace Membrane.Tests.Unit.Commons.Plugin.Controllers
 			Assert.AreEqual(ListView, Controller.SelectedViewName, "List view not being used");
 			Assert.AreEqual(ListDTO, Controller.Flash["items"], "groups PropertyBag not being set");
 		}
+
 	}
 }

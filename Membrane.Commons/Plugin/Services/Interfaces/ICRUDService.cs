@@ -11,5 +11,6 @@ namespace Membrane.Commons.Plugin.Services.Interfaces
 		Guid Create(TDto group);
 		bool Update(TDto group);
 		bool Delete(Guid id);
+		
 	}
 }

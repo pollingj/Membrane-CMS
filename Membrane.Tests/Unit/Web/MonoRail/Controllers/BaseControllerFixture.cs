@@ -18,7 +18,12 @@ namespace Membrane.Tests.Unit.Web.MonoRail.Controllers
 		public virtual void SetUp()
 		{
 			mockery = new MockRepository();
-			
+		}
+
+		public void CreateMockery()
+		{
+			//if (mockery == null)
+				
 		}
 
 		[TearDown]
