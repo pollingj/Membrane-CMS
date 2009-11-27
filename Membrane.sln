@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Plugins", "Membran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Membrane.Plugins.Tests", "Membrane.Plugins.Tests\Membrane.Plugins.Tests.csproj", "{62860CC8-F5D4-40C6-BF44-45010BC3ECD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{FF8AD431-727D-4FFD-8270-56AA4BDB3461}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,12 @@ Global
 		{62860CC8-F5D4-40C6-BF44-45010BC3ECD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62860CC8-F5D4-40C6-BF44-45010BC3ECD4}.Retail|Any CPU.ActiveCfg = Release|Any CPU
 		{62860CC8-F5D4-40C6-BF44-45010BC3ECD4}.Retail|Any CPU.Build.0 = Release|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Retail|Any CPU.ActiveCfg = Release|Any CPU
+		{FF8AD431-727D-4FFD-8270-56AA4BDB3461}.Retail|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
