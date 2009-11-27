@@ -3,6 +3,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework.Routing;
 using Castle.MonoRail.Framework.Services;
 using Castle.MonoRail.Framework.ViewComponents;
+using Castle.MonoRail.Views.Spark;
 using Castle.Windsor;
 using Membrane.Commons.FormGeneration.Services;
 using Membrane.Commons.FormGeneration.Services.Interfaces;
@@ -12,6 +13,7 @@ using Membrane.Commons.Web.MonoRail;
 using Membrane.Controllers;
 using Membrane.Core.Mappers;
 using Membrane.ViewComponents;
+using Spark;
 
 namespace Membrane
 {
@@ -43,12 +45,11 @@ namespace Membrane
 			container.AddComponent("crudservice", typeof(ICRUDService<,>), typeof(CRUDService<,>));
 			container.AddComponent("ordercrudservice", typeof(IOrderCRUDService<,>), typeof(OrderCRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
-			container.AddComponent("News", typeof (NewsComponent));
 
 			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
 			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));
 
-			container.Register(Component.For<IWindsorContainer>().Instance(container));
+			container.Register(Component.For<IWindsorContainer>().Instance(container));			
 		}
 
 		protected override void RegisterRoutes(RoutingEngine rules)

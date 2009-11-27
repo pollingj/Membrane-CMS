@@ -180,11 +180,9 @@ namespace Membrane.Core.Services
 			var id = Guid.Empty;
 			foreach (var plugin in plugins)
 			{
-				if (plugin.Name == pluginName)
-				{
-					foundPlugin = plugin;
-					break;
-				}
+				if (plugin.Name != pluginName) continue;
+				foundPlugin = plugin;
+				break;
 			}
 
 			return foundPlugin;
@@ -196,11 +194,9 @@ namespace Membrane.Core.Services
 			Assembly foundAssembly = null;
 			foreach (var assembly in assemblies)
 			{
-				if (assembly.FullName == assemblyLoader.GetAssemblyName(fileName).FullName)
-				{
-					foundAssembly = assembly;
-					break;
-				}
+				if (assembly.FullName != assemblyLoader.GetAssemblyName(fileName).FullName) continue;
+				foundAssembly = assembly;
+				break;
 			}
 
 			if (foundAssembly == null)
@@ -212,28 +208,5 @@ namespace Membrane.Core.Services
 			return foundAssembly;
 		}
 
-		/// <summary>
-		/// Resolves the dependancies when RegisterEntitiesAssembly is called for the plugin entities
-		/// It searches the assemblyList stored earlier
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="args"></param>
-		/// <returns>The resolved Assembly</returns>
-		Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-		{
-			Assembly assembly = null;
-
-			var name = args.Name;
-
-			// Make sure the Name is clean to match the dictionary key
-			if (name.IndexOf(',') > -1)
-				name = name.Remove(name.IndexOf(','));
-
-			if (_assemblyList.ContainsKey(name))
-				assembly = _assemblyList[name];
-
-			return assembly;
-
-		}
 	}
 }

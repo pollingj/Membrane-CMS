@@ -1,20 +1,14 @@
-using System.Collections.Generic;
-using Membrane.Commons.SparkExtensions;
-using Spark.Parser.Markup;
+using Castle.MonoRail.Framework;
 
 namespace Membrane.Plugins.News.Tags
 {
-	public class News : ITag
+	[ViewComponentDetails("news", Sections = "startrow,endrow")]
+	public class News : ViewComponent
 	{
-		public string Render(ElementNode node, IList<Node> body)
+		public override void Initialize()
 		{
-			var output = "";
-			for(var count = 0; count < 3; count++)
-			{
-				output += body;
-			}
+			throw new ViewComponentException("The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance");
 
-			return output;
 		}
 	}
 }

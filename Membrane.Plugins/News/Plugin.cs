@@ -8,7 +8,7 @@ using Membrane.Commons;
 using Membrane.Plugins.News.Controllers;
 using Membrane.Plugins.News.DTOs;
 using Membrane.Plugins.News.Entities;
-using Migrator.Framework;
+using Membrane.Plugins.News.Tags;
 
 namespace Membrane.Plugins.News
 {
@@ -34,6 +34,8 @@ namespace Membrane.Plugins.News
 		public void RegisterComponents(IWindsorContainer container)
 		{
 			container.AddComponentLifeStyle("newscontroller", typeof(NewsController), LifestyleType.Transient);
+
+			container.AddComponent("News", typeof(Tags.News));
 		}
 
 		public void RemoveComponents(IWindsorContainer container)
