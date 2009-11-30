@@ -46,8 +46,8 @@ namespace Membrane
 			container.AddComponent("ordercrudservice", typeof(IOrderCRUDService<,>), typeof(OrderCRUDService<,>));
 			container.AddComponent("FormGenerator", typeof(AutomaticFormFieldGeneratorComponent));
 
-			container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
-			container.AddComponent("JSCombine", typeof(CombineJSViewComponent));
+			//container.AddComponent<IScriptBuilder, YuiScriptBuilder>();
+			//container.AddComponent("JSCombine", typeof(CombineJSViewComponent));
 
 			container.Register(Component.For<IWindsorContainer>().Instance(container));			
 		}

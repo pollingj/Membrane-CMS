@@ -40,7 +40,7 @@ namespace Membrane.Core.Mappers
 
 			Mapper.CreateMap<NavigationNodeDTO, NavigationNode>()
 				.ForMember(dest => dest.Parent, opt => opt.MapFrom(source => source.Parent))
-				.ForMember(dest => dest.Parent, opt => opt.FormatNullValueAs(null))
+				.ForMember(dest => dest.Parent, opt => opt.NullSubstitute(null))
 				.ForMember(dest => dest.Published, opt => opt.Ignore())
 				.ForMember(dest => dest.ParentEntity_Id, opt => opt.Ignore())
 				.ForMember(dest => dest.Revision, opt => opt.Ignore());

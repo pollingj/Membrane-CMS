@@ -1,19 +1,19 @@
 ﻿<global Title="'User Groups'"/>
 
 <content name="extraStyles">
-		<JSCombine key="'css'">
+		<CombineJS key="'css'">
 			# combiner.Add("Content/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css");
-		</JSCombine>
+		</CombineJS>
 </content>
 
 
 <content name="extraScripts">
-	<JSCombine key="'js'">
+	<CombineJS key="'js'">
 		# combiner.Add("Content/jquery/js/jquery-ui-1.7.2.custom.min.js");
 		# combiner.Add("Content/wymeditor/jquery.wymeditor.js");
 		# combiner.Add("Content/wymeditor/plugins/hovertools/jquery.wymeditor.hovertools.js");
 		# combiner.Add("Content/js/formEditor.js");
-	</JSCombine>
+	</CombineJS>
 	
 
 </content>

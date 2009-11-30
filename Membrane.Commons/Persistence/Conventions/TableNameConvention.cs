@@ -1,19 +1,13 @@
-using System;
 using FluentNHibernate.Conventions;
-using FluentNHibernate.Mapping;
+using FluentNHibernate.Conventions.Instances;
 
 namespace Membrane.Commons.Persistence.Conventions
 {
 	public class TableNameConvention : IClassConvention
 	{
-		public bool Accept(IClassMap target)
+		public void Apply(IClassInstance target)
 		{
-			return true;
-		}
-
-		public void Apply(IClassMap target)
-		{
-			target.WithTable(target.EntityType.Name);
+			target.Table(target.EntityType.Name);
 		}
 	}
 }

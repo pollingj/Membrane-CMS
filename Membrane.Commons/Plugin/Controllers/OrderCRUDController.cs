@@ -20,26 +20,26 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			this.service = service;
 
-			ListView = "/Shared/OrderedList";
+			ListView = "Shared/OrderedList";
 		}
 
 		public override void List(int currentPage, int pageSize)
 		{
 			Flash["items"] = service.GetPagedItems(currentPage, pageSize);
 
-			RenderView(ListView);
+			RenderSharedView(ListView);
 		}
 
 		public void MoveItemDown(Guid id)
 		{
 			Flash["items"] = service.MoveItemDown((IList<TDto>)Flash["items"], id);
-			RenderView(ListView);
+			RenderSharedView(ListView);
 		}
 
 		public void MoveItemUp(Guid id)
 		{
 			Flash["items"] = service.MoveItemUp((IList<TDto>)Flash["items"], id);
-			RenderView(ListView);
+			RenderSharedView(ListView);
 		}
 
 		public void SaveOrder([DataBind("ordereditems")] ItemOrderRequestDTO currentOrder)

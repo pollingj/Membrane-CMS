@@ -1,18 +1,13 @@
 ﻿using FluentNHibernate.Conventions;
-using FluentNHibernate.Mapping;
+using FluentNHibernate.Conventions.Instances;
 
 namespace Membrane.Commons.Persistence.Conventions
 {
 	public class PrimaryKeyConvention : IIdConvention
 	{
-		public bool Accept(IIdentityPart target)
+		public void Apply(IIdentityInstance target)
 		{
-			return true;
-		}
-
-		public void Apply(IIdentityPart target)
-		{
-			target.ColumnName("Id");
+			target.Column("Id");
 		}
 	}
 }

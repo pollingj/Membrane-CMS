@@ -23,9 +23,9 @@ namespace Membrane.Commons.Plugin.Controllers
 		private const int defaultPageNumber = 1;
 		private const int defaultPageSize = 10;
 
-		protected string ListView = "/Shared/List";
-		protected string FormView = "/Shared/Form";
-		protected string ConfirmDeleteView = "/Shared/ConfirmDelete";
+		protected string ListView = "Shared/List";
+		protected string FormView = "Shared/Form";
+		protected string ConfirmDeleteView = "Shared/ConfirmDelete";
 
 		public CRUDController(ICRUDService<TDto, TEntity> service, IPropertyReaderService<TDto> propertyReaderService)
 		{
@@ -50,7 +50,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			Flash["items"] = Service.GetPagedItems(currentPage, pageSize);
 
-			RenderView(ListView);
+			RenderSharedView(ListView);
 		}
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			PropertyBag["itemtype"] = typeof(TDto);
 			getFormFields();
-			RenderView(FormView);
+			RenderSharedView(FormView);
 		}
 
 		/// <summary>
@@ -71,7 +71,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			PropertyBag["item"] = Service.GetItem(id);
 			getFormFields();
-			RenderView(FormView);
+			RenderSharedView(FormView);
 		}
 
 		/// <summary>
@@ -131,7 +131,7 @@ namespace Membrane.Commons.Plugin.Controllers
 		{
 			PropertyBag["Item"] = Service.GetItem(id);
 
-			RenderView(ConfirmDeleteView);
+			RenderSharedView(ConfirmDeleteView);
 		}
 
 		/// <summary>

@@ -1,19 +1,13 @@
 using FluentNHibernate.Conventions;
-using FluentNHibernate.Mapping;
+using FluentNHibernate.Conventions.Instances;
 
 namespace Membrane.Commons.Persistence.Conventions
 {
 	public class ForeignKeyConvention : IHasManyConvention
 	{
-		public bool Accept(IOneToManyPart target)
+		public void Apply(IOneToManyCollectionInstance target)
 		{
-			return true;
-		}
-
-		public void Apply(IOneToManyPart target)
-		{
-			target.KeyColumnNames.Clear();
-			target.KeyColumnNames.Add(target.EntityType.Name + "_Id"); 
+			target.Key.Column(target.EntityType.Name + "_Id");
 		}
 	}
 }

@@ -10,20 +10,17 @@ using Castle.MicroKernel.Registration;
 using Castle.MonoRail.Framework;
 using Castle.MonoRail.Framework.Configuration;
 using Castle.MonoRail.Framework.Helpers.ValidationStrategy;
-using Castle.MonoRail.Framework.Internal;
 using Castle.MonoRail.Framework.JSGeneration;
 using Castle.MonoRail.Framework.JSGeneration.jQuery;
 using Castle.MonoRail.Framework.Routing;
-using Castle.MonoRail.Views.Spark;
 using Castle.MonoRail.WindsorExtension;
 using Castle.Windsor;
-using FluentNHibernate.AutoMap;
+using FluentNHibernate.Automapping;
 using Membrane.Commons.Persistence;
 using Membrane.Commons.Persistence.Conventions;
 using Membrane.Commons.Persistence.NHibernate;
 using Membrane.Commons.Plugin.Entities;
 using NHibernate;
-using Spark;
 using Configuration=NHibernate.Cfg.Configuration;
 
 namespace Membrane.Commons.Web.MonoRail
@@ -178,11 +175,10 @@ namespace Membrane.Commons.Web.MonoRail
 		private void RegisterEntitiesAssembly(Configuration configuration, Assembly assembly)
 		{
 			var model = new AutoPersistenceModel()
-				.WithSetup(s => s.IsBaseType = (type => type == typeof (BaseEntity) || type == typeof (BaseOrderedEntity)
+				.Setup(s => s.IsBaseType = (type => type == typeof (BaseEntity) || type == typeof (BaseOrderedEntity)
 				                                        || type == typeof (BaseVersionedEntity) || type == typeof (BaseVersionedAndOrderedEntity)))
-				.ConventionDiscovery.Setup(c =>
+				.Conventions.Setup(c =>
 				                           	{
-				                           		c.Add<FluentNHibernate.Conventions.Defaults.PrimaryKeyConvention>();
 				                           		c.Add<ForeignKeyConvention>();
 				                           		c.Add<TableNameConvention>();
 				                           		c.Add<ManyToManyTableConvention>();

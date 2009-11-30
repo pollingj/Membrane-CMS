@@ -11,17 +11,17 @@
 		<meta content="Membrane " name="author" />
 		<meta content="noindex,nofollow" name="robots" />
 		
-		<JSCombine key="'css'">
+		<CombineJS key="'css'">
 			# combiner.Add("Content/css/reset.css");
 			# combiner.Add("Content/css/layout.css");
-		</JSCombine>
+		</CombineJS>
 		
 		<use content="extraStyles"/>
 
-		<JSCombine key="'js'">
+		<CombineJS key="'js'">
 			# combiner.Add("Content/jquery/js/jquery.js");
 			# combiner.Add("Content/jquery/js/jquery.validate.js");
-	    </JSCombine>
+	    </CombineJS>
 	    
 	    <use content="extraScripts"/>
 

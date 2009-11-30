@@ -34,8 +34,6 @@ namespace Membrane.Plugins.News
 		public void RegisterComponents(IWindsorContainer container)
 		{
 			container.AddComponentLifeStyle("newscontroller", typeof(NewsController), LifestyleType.Transient);
-
-			container.AddComponent("News", typeof(Tags.News));
 		}
 
 		public void RemoveComponents(IWindsorContainer container)

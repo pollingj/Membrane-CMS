@@ -53,7 +53,7 @@ namespace Membrane.Tests.Unit.Web.MonoRail.ViewComponents
 			CleanUp();
 		}
 
-		[Test, ExpectedException(typeof(ViewComponentException), "The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance")]
+		[Test, ExpectedException(typeof(ViewComponentException), ExpectedMessage = "The AutomaticFormItemGenerator requires a view component parameter named 'fields' which should contain 'IList<FormField>' instance")]
 		public void ThrowsExceptionIfNoFieldsParameterIsSupplied()
 		{
 			component.Fields = null;

@@ -28,7 +28,7 @@ namespace Membrane.Controllers.User
 			readerService.ReadViewModelProperties();
 			PropertyBag["fields"] = readerService.FormFields;
 			PropertyBag["formAction"] = "Update";
-			RenderView("/Shared/Form");
+			RenderSharedView("Shared/Form");
 		}
 
 		public void Update([DataBind("details", Validate = true)] UserDetailsRequestDTO details)
