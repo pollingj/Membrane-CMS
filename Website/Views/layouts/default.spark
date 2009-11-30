@@ -1,0 +1,36 @@
+﻿<use namespace="Castle.MonoRail.Views.Spark"/> 
+<viewdata combiner="Castle.MonoRail.Framework.ViewComponents.CombineJSViewComponent.CombinerConfig"/>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta content="false" http-equiv="imagetoolbar" />
+		<meta content="true" name="MSSmartTagsPreventParsing" />
+		<meta content="Membrane " name="author" />
+		<meta content="noindex,nofollow" name="robots" />
+		
+		<JSCombine key="'css'">
+			# combiner.Add("Content/css/reset.css");
+			# combiner.Add("Content/css/layout.css");
+		</JSCombine>
+		
+		<use content="extraStyles"/>
+
+		<JSCombine key="'js'">
+			# combiner.Add("Content/jquery/js/jquery.js");
+			# combiner.Add("Content/jquery/js/jquery.validate.js");
+	    </JSCombine>
+	    
+	    <use content="extraScripts"/>
+
+	    
+		<title>${Title} :: Website</title>
+	</head>
+	<body>
+		<use content="view"/>
+		
+
+	</body>
+</html>
